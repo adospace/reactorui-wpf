@@ -11,6 +11,11 @@ namespace WpfReactorUI
     public interface IVisualNode
     {
         void AppendAnimatable<T>(object key, T animation, Action<T> action) where T : RxAnimation;
+
+
+        Action<object, PropertyChangingEventArgs> PropertyChangingAction { get; set; }
+        Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
+
     }
 
     public static class VisualNodeExtensions
@@ -95,6 +100,10 @@ namespace WpfReactorUI
         public object Key { get; set; }
         public Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
         public Action<object, System.ComponentModel.PropertyChangingEventArgs> PropertyChangingAction { get; set; }
+        protected readonly Dictionary<DependencyProperty, object> _attachedProperties = new Dictionary<DependencyProperty, object>();
+  
+        public void SetAttachedProperty(DependencyProperty property, object value)
+            => _attachedProperties[property] = value;
 
         //internal event EventHandler LayoutCycleRequest;
         internal IReadOnlyList<VisualNode> Children
@@ -232,7 +241,6 @@ namespace WpfReactorUI
 
             if (_invalidated)
             {
-                //System.Diagnostics.Debug.WriteLine($"{this}->Layout(Invalidated)");
                 var oldChildren = Children;
                 _children = null;
                 MergeChildrenFrom(oldChildren);
@@ -347,6 +355,8 @@ namespace WpfReactorUI
 
         protected virtual void OnMigrated(VisualNode newNode)
         {
+            OnDetachNativeEvents();
+
             foreach (var newAnimatableProperty in newNode._animatables)
             {
                 if (_animatables.TryGetValue(newAnimatableProperty.Key, out var oldAnimatableProperty))
@@ -372,6 +382,8 @@ namespace WpfReactorUI
 
         protected virtual void OnUnmount()
         {
+            OnDetachNativeEvents();
+
             _isMounted = false;
             Parent = null;
         }
@@ -379,19 +391,34 @@ namespace WpfReactorUI
         protected virtual void OnUpdate()
         {
             _stateChanged = false;
+
+            OnAttachNativeEvents();
         }
 
-        protected abstract IEnumerable<VisualNode> RenderChildren();
+        protected virtual void OnAttachNativeEvents()
+        { 
+        
+        }
+
+        protected virtual void OnDetachNativeEvents()
+        { 
+        
+        }
+
+        protected virtual IEnumerable<VisualNode> RenderChildren()
+        {
+            yield break;
+        }
 
         private bool AnimateThis()
         {
             bool animated = false;
             foreach (var _ in _animatables
                 .Where(_ => _.Value.IsEnabled.GetValueOrDefault() && !_.Value.Animation.IsCompleted()))
-                {
-                    _.Value.Animate();
-                    animated = true;
-                };
+            {
+                _.Value.Animate();
+                animated = true;
+            };
 
             return animated;
         }
@@ -418,11 +445,15 @@ namespace WpfReactorUI
         TResult GetNativeControl<TResult>() where TResult : DependencyObject;
     }
 
+    // public interface IVisualNodeWithAttachedProperties
+    // {
+    //     void SetAttachedProperty(DependencyProperty property, object value);
+    // }
+
     public abstract class VisualNode<T> : VisualNode, IVisualNodeWithNativeControl where T : DependencyObject, new()
     {
         protected DependencyObject _nativeControl;
 
-        private readonly Dictionary<DependencyProperty, object> _attachedProperties = new Dictionary<DependencyProperty, object>();
         private readonly Action<T> _componentRefAction;
 
         protected VisualNode()
@@ -434,9 +465,6 @@ namespace WpfReactorUI
         }
 
         protected T NativeControl { get => (T)_nativeControl; }
-
-        public void SetAttachedProperty(DependencyProperty property, object value)
-            => _attachedProperties[property] = value;
 
         internal override void MergeWith(VisualNode newNode)
         {
@@ -464,7 +492,7 @@ namespace WpfReactorUI
 
                 foreach (var attachedProperty in _attachedProperties)
                 {
-                    NativeControl.SetValue(attachedProperty.Key, attachedProperty.Key.DefaultMetadata.DefaultValue);
+                    NativeControl.ClearValue(attachedProperty.Key);
                 }
             }
 
@@ -475,7 +503,7 @@ namespace WpfReactorUI
 
         protected override void OnMount()
         {
-            _nativeControl = _nativeControl ?? new T();
+            _nativeControl ??= new T();
             Parent?.AddChild(this, _nativeControl);
             _componentRefAction?.Invoke(NativeControl);
 

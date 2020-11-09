@@ -13,5 +13,10 @@ namespace WpfReactorUI.DemoApp
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            RxApplication.Create<MainComponent>(this)
+                .Run();
+        }
     }
 }
