@@ -1,4 +1,4 @@
-# ReactorUI for WPF (aka reactoru-wpf)
+# ReactorUI for WPF (aka reactorui-wpf)
 UI framework built on top of WPF heavily inspired to ReactJS and Flutter
 
 [![Build status](https://ci.appveyor.com/api/projects/status/yn1n2vth5tam1bv1?svg=true)](https://ci.appveyor.com/project/adospace/reactorui-wpf)
