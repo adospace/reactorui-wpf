@@ -75,19 +75,19 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxWindow = (IRxWindow)this;
-            NativeControl.Set(Window.AllowsTransparencyProperty, thisAsIRxWindow.AllowsTransparency);
-            NativeControl.Set(Window.IconProperty, thisAsIRxWindow.Icon);
-            NativeControl.Set(Window.LeftProperty, thisAsIRxWindow.Left);
-            NativeControl.Set(Window.ResizeModeProperty, thisAsIRxWindow.ResizeMode);
-            NativeControl.Set(Window.ShowActivatedProperty, thisAsIRxWindow.ShowActivated);
-            NativeControl.Set(Window.ShowInTaskbarProperty, thisAsIRxWindow.ShowInTaskbar);
-            NativeControl.Set(Window.SizeToContentProperty, thisAsIRxWindow.SizeToContent);
-            NativeControl.Set(Window.TaskbarItemInfoProperty, thisAsIRxWindow.TaskbarItemInfo);
-            NativeControl.Set(Window.TitleProperty, thisAsIRxWindow.Title);
-            NativeControl.Set(Window.TopProperty, thisAsIRxWindow.Top);
-            NativeControl.Set(Window.TopmostProperty, thisAsIRxWindow.Topmost);
-            NativeControl.Set(Window.WindowStateProperty, thisAsIRxWindow.WindowState);
-            NativeControl.Set(Window.WindowStyleProperty, thisAsIRxWindow.WindowStyle);
+            NativeControl.Set(this, Window.AllowsTransparencyProperty, thisAsIRxWindow.AllowsTransparency);
+            NativeControl.Set(this, Window.IconProperty, thisAsIRxWindow.Icon);
+            NativeControl.Set(this, Window.LeftProperty, thisAsIRxWindow.Left);
+            NativeControl.Set(this, Window.ResizeModeProperty, thisAsIRxWindow.ResizeMode);
+            NativeControl.Set(this, Window.ShowActivatedProperty, thisAsIRxWindow.ShowActivated);
+            NativeControl.Set(this, Window.ShowInTaskbarProperty, thisAsIRxWindow.ShowInTaskbar);
+            NativeControl.Set(this, Window.SizeToContentProperty, thisAsIRxWindow.SizeToContent);
+            NativeControl.Set(this, Window.TaskbarItemInfoProperty, thisAsIRxWindow.TaskbarItemInfo);
+            NativeControl.Set(this, Window.TitleProperty, thisAsIRxWindow.Title);
+            NativeControl.Set(this, Window.TopProperty, thisAsIRxWindow.Top);
+            NativeControl.Set(this, Window.TopmostProperty, thisAsIRxWindow.Topmost);
+            NativeControl.Set(this, Window.WindowStateProperty, thisAsIRxWindow.WindowState);
+            NativeControl.Set(this, Window.WindowStyleProperty, thisAsIRxWindow.WindowStyle);
 
             base.OnUpdate();
 

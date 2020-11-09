@@ -111,7 +111,7 @@ namespace WpfReactorUI
 
         protected sealed override void OnRemoveChild(VisualNode widget, DependencyObject nativeControl)
         {
-            _application.MainWindow.Close();
+            _application.MainWindow?.Close();
         }
 
         public override IRxHostElement Run()
@@ -120,7 +120,9 @@ namespace WpfReactorUI
             {
                 _rootComponent ??= new T();
                 _sleeping = false;
+                
                 OnLayout();
+
             }
 
             if (ComponentLoader.Instance != null)
@@ -134,6 +136,12 @@ namespace WpfReactorUI
 
         private void OnComponentAssemblyChanged(object sender, EventArgs e)
         {
+            if (!_application.Dispatcher.CheckAccess())
+            {
+                _application.Dispatcher.BeginInvoke(() => OnComponentAssemblyChanged(sender, e));
+                return;
+            }
+
             try
             {
                 var newComponent = ComponentLoader.Instance.LoadComponent<T>();
@@ -147,7 +155,7 @@ namespace WpfReactorUI
             catch (Exception ex)
             {
                 FireUnhandledExpectionEvent(ex);
-            }            
+            }
         }
 
         public override void Stop()

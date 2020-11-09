@@ -292,7 +292,7 @@ namespace WpfReactorUI
             
             #line default
             #line hidden
-            this.Write("            NativeControl.Set(");
+            this.Write("            NativeControl.Set(this, ");
             
             #line 78 "C:\Users\adosp\source\repos\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));

@@ -22,7 +22,6 @@ namespace WpfReactorUI
 {
     public partial interface IRxContentControl : IRxControl
     {
-        PropertyValue<object> Content { get; set; }
         PropertyValue<string> ContentStringFormat { get; set; }
 
     }
@@ -40,7 +39,6 @@ namespace WpfReactorUI
 
         }
 
-        PropertyValue<object> IRxContentControl.Content { get; set; }
         PropertyValue<string> IRxContentControl.ContentStringFormat { get; set; }
 
 
@@ -49,8 +47,7 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxContentControl = (IRxContentControl)this;
-            NativeControl.Set(ContentControl.ContentProperty, thisAsIRxContentControl.Content);
-            NativeControl.Set(ContentControl.ContentStringFormatProperty, thisAsIRxContentControl.ContentStringFormat);
+            NativeControl.Set(this, ContentControl.ContentStringFormatProperty, thisAsIRxContentControl.ContentStringFormat);
 
             base.OnUpdate();
 
@@ -93,11 +90,6 @@ namespace WpfReactorUI
     }
     public static partial class RxContentControlExtensions
     {
-        public static T Content<T>(this T contentcontrol, object content) where T : IRxContentControl
-        {
-            contentcontrol.Content = new PropertyValue<object>(content);
-            return contentcontrol;
-        }
         public static T ContentStringFormat<T>(this T contentcontrol, string contentStringFormat) where T : IRxContentControl
         {
             contentcontrol.ContentStringFormat = new PropertyValue<string>(contentStringFormat);

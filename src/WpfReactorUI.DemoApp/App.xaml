@@ -4,7 +4,10 @@
              xmlns:local="clr-namespace:WpfReactorUI.DemoApp"
              Startup="Application_Startup">
     <Application.Resources>
-        <ResourceDictionary>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
+        <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/FluentUI;component/Styles/FabricUI.Brushes.xaml"/>
                 <ResourceDictionary Source="/FluentUI;component/Styles/FabricUI.Icons.xaml"/>
@@ -25,6 +28,6 @@
                 <ResourceDictionary Source="/FluentUI;component/Styles/FabricUI.ScrollViewer.xaml"/>
                 <ResourceDictionary Source="/FluentUI;component/Styles/FabricUI.Controls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary>-->
     </Application.Resources>
 </Application>

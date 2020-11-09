@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace WpfReactorUI.DemoApp
 {
@@ -35,8 +36,8 @@ namespace WpfReactorUI.DemoApp
                     .ItemsSource(State.Items)
                     .SelectedItem(State.SelectedItem)
                     .OnSelectionChanged(args => SetState(s => s.SelectedItem = args.AddedItems.Cast<Item>().FirstOrDefault()))
-                    .OnRenderItem<RxListBox, Item>(_ => new RxTextBlock().Text(_.Name))
-                    .FontSize(36)
+                    .OnRenderItem<RxListBox, Item>(_ => new RxTextBlock().Text(_.Name).Foreground(Brushes.Black))
+                    .FontSize(24)
                     .VCenter()
                     .HCenter()
             };

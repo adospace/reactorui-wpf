@@ -75,7 +75,7 @@ namespace WpfReactorUI
 
             var thisAsIRx<#= TypeName #> = (IRx<#= TypeName #>)this;
             <# foreach (var property in Properties) { #>
-            NativeControl.Set(<#= TypeName #>.<#= property.Name #>Property, thisAsIRx<#= TypeName #>.<#= property.Name #>);
+            NativeControl.Set(this, <#= TypeName #>.<#= property.Name #>Property, thisAsIRx<#= TypeName #>.<#= property.Name #>);
             <# } #>
 
             base.OnUpdate();

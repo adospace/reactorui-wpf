@@ -24,7 +24,7 @@ namespace WpfReactorUI.Internals
                 throw new ArgumentException($"'{nameof(assemblyFileName)}' can't be null or empty", nameof(assemblyFileName));
             }
 
-            _assemblyFileName = assemblyFileName;
+            _assemblyFileName = Path.GetFullPath(assemblyFileName);
         }
 
         public event EventHandler ComponentAssemblyChanged;
@@ -55,7 +55,7 @@ namespace WpfReactorUI.Internals
             _fileSystemWatcher.EnableRaisingEvents = true;
         }
 
-        private async void OnAssemblyFileChanged(object sender, FileSystemEventArgs e)
+        private void OnAssemblyFileChanged(object sender, FileSystemEventArgs e)
         {
             if (Path.GetFullPath(e.FullPath) != Path.GetFullPath(_assemblyFileName))
                 return;
@@ -64,8 +64,7 @@ namespace WpfReactorUI.Internals
 
             try
             {
-                await Dispatcher.CurrentDispatcher.InvokeAsync(()=>
-                    ComponentAssemblyChanged?.Invoke(this, EventArgs.Empty));
+                ComponentAssemblyChanged?.Invoke(this, EventArgs.Empty);
             }
             finally
             {

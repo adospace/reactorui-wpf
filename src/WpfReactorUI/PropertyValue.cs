@@ -5,14 +5,32 @@ using System.Windows;
 
 namespace WpfReactorUI
 {
-    public class PropertyValue<T>
+    public interface IPropertyValue
+    { 
+        bool SetDefault { get; }
+
+        object GetValue();
+    }
+
+    public class PropertyValue<T> : IPropertyValue
     {
         public PropertyValue(T value)
         {
             Value = value;
         }
 
+        private PropertyValue()
+        {
+            SetDefault = true;
+        }
+
+        public static IPropertyValue Default { get; } = new PropertyValue<T>();
+
         public T Value { get; }
+
+        public bool SetDefault { get; }
+
+        public object GetValue() => Value;
 
         public override string ToString()
         {
@@ -20,20 +38,22 @@ namespace WpfReactorUI
         }
     }
 
-    public static class PropertyValueExtenstions
+    internal static class PropertyValueExtenstions
     {
-        public static void Set<T>(this DependencyObject dependencyObject, DependencyProperty property, PropertyValue<T> propertyValue)
+        public static void Set(this DependencyObject dependencyObject, IVisualNodeWithNativeControl visualNode, DependencyProperty property, IPropertyValue propertyValue)
         {
-            if (propertyValue == null)
+            if (propertyValue != null)
             {
-                //var defaultValue = property.GetMetadata(dependencyObject).DefaultValue;
-                //if (!object.Equals(defaultValue, dependencyObject.GetValue(property)))
-                //{
-                //    dependencyObject.SetValue(property, property.GetMetadata(dependencyObject).DefaultValue);
-                //}
+                visualNode.SetDefaultPropertyValue(property, dependencyObject.GetValue(property));
+                dependencyObject.SetValue(property, propertyValue.GetValue());
             }
             else
-                dependencyObject.SetValue(property, propertyValue.Value);
+            {
+                if (visualNode.TryGetDefaultPropertyValue(property, out var defaultValue))
+                {
+                    dependencyObject.SetValue(property, defaultValue);
+                }            
+            }            
         }
     }
 }

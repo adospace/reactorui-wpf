@@ -59,13 +59,13 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxItemsControl = (IRxItemsControl)this;
-            NativeControl.Set(ItemsControl.AlternationCountProperty, thisAsIRxItemsControl.AlternationCount);
-            NativeControl.Set(ItemsControl.DisplayMemberPathProperty, thisAsIRxItemsControl.DisplayMemberPath);
-            NativeControl.Set(ItemsControl.IsTextSearchCaseSensitiveProperty, thisAsIRxItemsControl.IsTextSearchCaseSensitive);
-            NativeControl.Set(ItemsControl.IsTextSearchEnabledProperty, thisAsIRxItemsControl.IsTextSearchEnabled);
-            NativeControl.Set(ItemsControl.ItemContainerStyleProperty, thisAsIRxItemsControl.ItemContainerStyle);
-            NativeControl.Set(ItemsControl.ItemsSourceProperty, thisAsIRxItemsControl.ItemsSource);
-            NativeControl.Set(ItemsControl.ItemStringFormatProperty, thisAsIRxItemsControl.ItemStringFormat);
+            NativeControl.Set(this, ItemsControl.AlternationCountProperty, thisAsIRxItemsControl.AlternationCount);
+            NativeControl.Set(this, ItemsControl.DisplayMemberPathProperty, thisAsIRxItemsControl.DisplayMemberPath);
+            NativeControl.Set(this, ItemsControl.IsTextSearchCaseSensitiveProperty, thisAsIRxItemsControl.IsTextSearchCaseSensitive);
+            NativeControl.Set(this, ItemsControl.IsTextSearchEnabledProperty, thisAsIRxItemsControl.IsTextSearchEnabled);
+            NativeControl.Set(this, ItemsControl.ItemContainerStyleProperty, thisAsIRxItemsControl.ItemContainerStyle);
+            NativeControl.Set(this, ItemsControl.ItemsSourceProperty, thisAsIRxItemsControl.ItemsSource);
+            NativeControl.Set(this, ItemsControl.ItemStringFormatProperty, thisAsIRxItemsControl.ItemStringFormat);
 
             base.OnUpdate();
 

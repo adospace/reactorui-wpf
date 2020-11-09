@@ -409,22 +409,22 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxUIElement = (IRxUIElement)this;
-            NativeControl.Set(UIElement.AllowDropProperty, thisAsIRxUIElement.AllowDrop);
-            NativeControl.Set(UIElement.CacheModeProperty, thisAsIRxUIElement.CacheMode);
-            NativeControl.Set(UIElement.ClipProperty, thisAsIRxUIElement.Clip);
-            NativeControl.Set(UIElement.ClipToBoundsProperty, thisAsIRxUIElement.ClipToBounds);
-            NativeControl.Set(UIElement.EffectProperty, thisAsIRxUIElement.Effect);
-            NativeControl.Set(UIElement.FocusableProperty, thisAsIRxUIElement.Focusable);
-            NativeControl.Set(UIElement.IsEnabledProperty, thisAsIRxUIElement.IsEnabled);
-            NativeControl.Set(UIElement.IsHitTestVisibleProperty, thisAsIRxUIElement.IsHitTestVisible);
-            NativeControl.Set(UIElement.IsManipulationEnabledProperty, thisAsIRxUIElement.IsManipulationEnabled);
-            NativeControl.Set(UIElement.OpacityProperty, thisAsIRxUIElement.Opacity);
-            NativeControl.Set(UIElement.OpacityMaskProperty, thisAsIRxUIElement.OpacityMask);
-            NativeControl.Set(UIElement.RenderTransformProperty, thisAsIRxUIElement.RenderTransform);
-            NativeControl.Set(UIElement.RenderTransformOriginProperty, thisAsIRxUIElement.RenderTransformOrigin);
-            NativeControl.Set(UIElement.SnapsToDevicePixelsProperty, thisAsIRxUIElement.SnapsToDevicePixels);
-            NativeControl.Set(UIElement.UidProperty, thisAsIRxUIElement.Uid);
-            NativeControl.Set(UIElement.VisibilityProperty, thisAsIRxUIElement.Visibility);
+            NativeControl.Set(this, UIElement.AllowDropProperty, thisAsIRxUIElement.AllowDrop);
+            NativeControl.Set(this, UIElement.CacheModeProperty, thisAsIRxUIElement.CacheMode);
+            NativeControl.Set(this, UIElement.ClipProperty, thisAsIRxUIElement.Clip);
+            NativeControl.Set(this, UIElement.ClipToBoundsProperty, thisAsIRxUIElement.ClipToBounds);
+            NativeControl.Set(this, UIElement.EffectProperty, thisAsIRxUIElement.Effect);
+            NativeControl.Set(this, UIElement.FocusableProperty, thisAsIRxUIElement.Focusable);
+            NativeControl.Set(this, UIElement.IsEnabledProperty, thisAsIRxUIElement.IsEnabled);
+            NativeControl.Set(this, UIElement.IsHitTestVisibleProperty, thisAsIRxUIElement.IsHitTestVisible);
+            NativeControl.Set(this, UIElement.IsManipulationEnabledProperty, thisAsIRxUIElement.IsManipulationEnabled);
+            NativeControl.Set(this, UIElement.OpacityProperty, thisAsIRxUIElement.Opacity);
+            NativeControl.Set(this, UIElement.OpacityMaskProperty, thisAsIRxUIElement.OpacityMask);
+            NativeControl.Set(this, UIElement.RenderTransformProperty, thisAsIRxUIElement.RenderTransform);
+            NativeControl.Set(this, UIElement.RenderTransformOriginProperty, thisAsIRxUIElement.RenderTransformOrigin);
+            NativeControl.Set(this, UIElement.SnapsToDevicePixelsProperty, thisAsIRxUIElement.SnapsToDevicePixels);
+            NativeControl.Set(this, UIElement.UidProperty, thisAsIRxUIElement.Uid);
+            NativeControl.Set(this, UIElement.VisibilityProperty, thisAsIRxUIElement.Visibility);
 
             base.OnUpdate();
 

@@ -57,10 +57,10 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxSelector = (IRxSelector)this;
-            NativeControl.Set(Selector.SelectedIndexProperty, thisAsIRxSelector.SelectedIndex);
-            NativeControl.Set(Selector.SelectedItemProperty, thisAsIRxSelector.SelectedItem);
-            NativeControl.Set(Selector.SelectedValueProperty, thisAsIRxSelector.SelectedValue);
-            NativeControl.Set(Selector.SelectedValuePathProperty, thisAsIRxSelector.SelectedValuePath);
+            NativeControl.Set(this, Selector.SelectedIndexProperty, thisAsIRxSelector.SelectedIndex);
+            NativeControl.Set(this, Selector.SelectedItemProperty, thisAsIRxSelector.SelectedItem);
+            NativeControl.Set(this, Selector.SelectedValueProperty, thisAsIRxSelector.SelectedValue);
+            NativeControl.Set(this, Selector.SelectedValuePathProperty, thisAsIRxSelector.SelectedValuePath);
 
             base.OnUpdate();
 

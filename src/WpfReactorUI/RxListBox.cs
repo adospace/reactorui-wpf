@@ -47,7 +47,7 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxListBox = (IRxListBox)this;
-            NativeControl.Set(ListBox.SelectionModeProperty, thisAsIRxListBox.SelectionMode);
+            NativeControl.Set(this, ListBox.SelectionModeProperty, thisAsIRxListBox.SelectionMode);
 
             base.OnUpdate();
 

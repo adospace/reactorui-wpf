@@ -1,4 +1,6 @@
-﻿namespace WpfReactorUI.DemoApp
+﻿using System.Windows.Media;
+
+namespace WpfReactorUI.DemoApp
 {
     internal class MainComponent : RxComponent
     {
@@ -10,7 +12,8 @@
                     .Text("ReactorUI + WFP!")
                     .VCenter()
                     .HCenter()
-                    .FontSize(24)
+                    .FontSize(32)
+                    .Foreground(Brushes.Black)
             }
             .Title("ReactorUI for WPF");
         }

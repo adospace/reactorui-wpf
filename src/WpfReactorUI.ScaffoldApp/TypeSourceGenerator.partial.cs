@@ -30,6 +30,8 @@ namespace WpfReactorUI.ScaffoldApp
                 .Where(_ => !typeof(StyleSelector).IsAssignableFrom(_.PropertyType))
                 .Where(_ => !typeof(DataTemplateSelector).IsAssignableFrom(_.PropertyType))
 
+                .Where(_ => !(_typeToScaffold == typeof(ContentControl) && _.Name == "Content"))
+
                 .Distinct(new PropertyInfoEqualityComparer())
                 .ToDictionary(_ => _.Name, _ => _);
 

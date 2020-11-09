@@ -13,24 +13,24 @@ namespace WpfReactorUI
         void AppendAnimatable<T>(object key, T animation, Action<T> action) where T : RxAnimation;
 
 
-        Action<object, PropertyChangingEventArgs> PropertyChangingAction { get; set; }
-        Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
+        //Action<object, PropertyChangingEventArgs> PropertyChangingAction { get; set; }
+        //Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
 
     }
 
     public static class VisualNodeExtensions
     {
-        public static T OnPropertyChanged<T>(this T element, Action<object, PropertyChangedEventArgs> action) where T : VisualNode
-        {
-            element.PropertyChangedAction = action;
-            return element;
-        }
+        //public static T OnPropertyChanged<T>(this T element, Action<object, PropertyChangedEventArgs> action) where T : VisualNode
+        //{
+        //    element.PropertyChangedAction = action;
+        //    return element;
+        //}
 
-        public static T OnPropertyChanging<T>(this T element, Action<object, System.ComponentModel.PropertyChangingEventArgs> action) where T : VisualNode
-        {
-            element.PropertyChangingAction = action;
-            return element;
-        }
+        //public static T OnPropertyChanging<T>(this T element, Action<object, System.ComponentModel.PropertyChangingEventArgs> action) where T : VisualNode
+        //{
+        //    element.PropertyChangingAction = action;
+        //    return element;
+        //}
 
         public static T When<T>(this T node, bool flag, Action<T> actionToApplyWhenFlagIsTrue) where T : VisualNode
         {
@@ -98,8 +98,8 @@ namespace WpfReactorUI
 
         public int ChildIndex { get; private set; }
         public object Key { get; set; }
-        public Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
-        public Action<object, System.ComponentModel.PropertyChangingEventArgs> PropertyChangingAction { get; set; }
+        //public Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
+        //public Action<object, System.ComponentModel.PropertyChangingEventArgs> PropertyChangingAction { get; set; }
         protected readonly Dictionary<DependencyProperty, object> _attachedProperties = new Dictionary<DependencyProperty, object>();
   
         public void SetAttachedProperty(DependencyProperty property, object value)
@@ -222,8 +222,8 @@ namespace WpfReactorUI
             {
                 if (_.Animation is RxTweenAnimation tweenAnimation)
                 {
-                    tweenAnimation.Easing = tweenAnimation.Easing ?? easing;
-                    tweenAnimation.Duration = tweenAnimation.Duration ?? duration;
+                    tweenAnimation.Easing ??= easing;
+                    tweenAnimation.Duration ??= duration;
                     _.IsEnabled = true;
                 }
             };
@@ -443,6 +443,10 @@ namespace WpfReactorUI
     internal interface IVisualNodeWithNativeControl
     {
         TResult GetNativeControl<TResult>() where TResult : DependencyObject;
+
+        bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object value);
+
+        bool SetDefaultPropertyValue(DependencyProperty dependencyProperty, object value);
     }
 
     // public interface IVisualNodeWithAttachedProperties
@@ -453,6 +457,30 @@ namespace WpfReactorUI
     public abstract class VisualNode<T> : VisualNode, IVisualNodeWithNativeControl where T : DependencyObject, new()
     {
         protected DependencyObject _nativeControl;
+
+        private Dictionary<DependencyProperty, object> _defaultPropertyValueBag = new Dictionary<DependencyProperty, object>();
+
+        public bool SetDefaultPropertyValue(DependencyProperty dependencyProperty, object value)
+        {
+            if (!_defaultPropertyValueBag.ContainsKey(dependencyProperty))
+            {
+                _defaultPropertyValueBag[dependencyProperty] = value;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object value)
+        {
+            if (_defaultPropertyValueBag.TryGetValue(dependencyProperty, out value))
+            {
+                _defaultPropertyValueBag.Remove(dependencyProperty);
+                return true;
+            }
+
+            return false;
+        }
 
         private readonly Action<T> _componentRefAction;
 
@@ -473,6 +501,7 @@ namespace WpfReactorUI
                 ((VisualNode<T>)newNode)._nativeControl = this._nativeControl;
                 ((VisualNode<T>)newNode)._isMounted = this._nativeControl != null;
                 ((VisualNode<T>)newNode)._componentRefAction?.Invoke(NativeControl);
+                ((VisualNode<T>)newNode)._defaultPropertyValueBag = _defaultPropertyValueBag;
                 OnMigrated(newNode);
 
                 base.MergeWith(newNode);

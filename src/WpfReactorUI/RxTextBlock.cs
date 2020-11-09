@@ -81,24 +81,24 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxTextBlock = (IRxTextBlock)this;
-            NativeControl.Set(TextBlock.BackgroundProperty, thisAsIRxTextBlock.Background);
-            NativeControl.Set(TextBlock.BaselineOffsetProperty, thisAsIRxTextBlock.BaselineOffset);
-            NativeControl.Set(TextBlock.FontFamilyProperty, thisAsIRxTextBlock.FontFamily);
-            NativeControl.Set(TextBlock.FontSizeProperty, thisAsIRxTextBlock.FontSize);
-            NativeControl.Set(TextBlock.FontStretchProperty, thisAsIRxTextBlock.FontStretch);
-            NativeControl.Set(TextBlock.FontStyleProperty, thisAsIRxTextBlock.FontStyle);
-            NativeControl.Set(TextBlock.FontWeightProperty, thisAsIRxTextBlock.FontWeight);
-            NativeControl.Set(TextBlock.ForegroundProperty, thisAsIRxTextBlock.Foreground);
-            NativeControl.Set(TextBlock.IsHyphenationEnabledProperty, thisAsIRxTextBlock.IsHyphenationEnabled);
-            NativeControl.Set(TextBlock.LineHeightProperty, thisAsIRxTextBlock.LineHeight);
-            NativeControl.Set(TextBlock.LineStackingStrategyProperty, thisAsIRxTextBlock.LineStackingStrategy);
-            NativeControl.Set(TextBlock.PaddingProperty, thisAsIRxTextBlock.Padding);
-            NativeControl.Set(TextBlock.TextProperty, thisAsIRxTextBlock.Text);
-            NativeControl.Set(TextBlock.TextAlignmentProperty, thisAsIRxTextBlock.TextAlignment);
-            NativeControl.Set(TextBlock.TextDecorationsProperty, thisAsIRxTextBlock.TextDecorations);
-            NativeControl.Set(TextBlock.TextEffectsProperty, thisAsIRxTextBlock.TextEffects);
-            NativeControl.Set(TextBlock.TextTrimmingProperty, thisAsIRxTextBlock.TextTrimming);
-            NativeControl.Set(TextBlock.TextWrappingProperty, thisAsIRxTextBlock.TextWrapping);
+            NativeControl.Set(this, TextBlock.BackgroundProperty, thisAsIRxTextBlock.Background);
+            NativeControl.Set(this, TextBlock.BaselineOffsetProperty, thisAsIRxTextBlock.BaselineOffset);
+            NativeControl.Set(this, TextBlock.FontFamilyProperty, thisAsIRxTextBlock.FontFamily);
+            NativeControl.Set(this, TextBlock.FontSizeProperty, thisAsIRxTextBlock.FontSize);
+            NativeControl.Set(this, TextBlock.FontStretchProperty, thisAsIRxTextBlock.FontStretch);
+            NativeControl.Set(this, TextBlock.FontStyleProperty, thisAsIRxTextBlock.FontStyle);
+            NativeControl.Set(this, TextBlock.FontWeightProperty, thisAsIRxTextBlock.FontWeight);
+            NativeControl.Set(this, TextBlock.ForegroundProperty, thisAsIRxTextBlock.Foreground);
+            NativeControl.Set(this, TextBlock.IsHyphenationEnabledProperty, thisAsIRxTextBlock.IsHyphenationEnabled);
+            NativeControl.Set(this, TextBlock.LineHeightProperty, thisAsIRxTextBlock.LineHeight);
+            NativeControl.Set(this, TextBlock.LineStackingStrategyProperty, thisAsIRxTextBlock.LineStackingStrategy);
+            NativeControl.Set(this, TextBlock.PaddingProperty, thisAsIRxTextBlock.Padding);
+            NativeControl.Set(this, TextBlock.TextProperty, thisAsIRxTextBlock.Text);
+            NativeControl.Set(this, TextBlock.TextAlignmentProperty, thisAsIRxTextBlock.TextAlignment);
+            NativeControl.Set(this, TextBlock.TextDecorationsProperty, thisAsIRxTextBlock.TextDecorations);
+            NativeControl.Set(this, TextBlock.TextEffectsProperty, thisAsIRxTextBlock.TextEffects);
+            NativeControl.Set(this, TextBlock.TextTrimmingProperty, thisAsIRxTextBlock.TextTrimming);
+            NativeControl.Set(this, TextBlock.TextWrappingProperty, thisAsIRxTextBlock.TextWrapping);
 
             base.OnUpdate();
 

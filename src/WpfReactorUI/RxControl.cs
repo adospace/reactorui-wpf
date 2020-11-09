@@ -81,20 +81,20 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxControl = (IRxControl)this;
-            NativeControl.Set(Control.BackgroundProperty, thisAsIRxControl.Background);
-            NativeControl.Set(Control.BorderBrushProperty, thisAsIRxControl.BorderBrush);
-            NativeControl.Set(Control.BorderThicknessProperty, thisAsIRxControl.BorderThickness);
-            NativeControl.Set(Control.FontFamilyProperty, thisAsIRxControl.FontFamily);
-            NativeControl.Set(Control.FontSizeProperty, thisAsIRxControl.FontSize);
-            NativeControl.Set(Control.FontStretchProperty, thisAsIRxControl.FontStretch);
-            NativeControl.Set(Control.FontStyleProperty, thisAsIRxControl.FontStyle);
-            NativeControl.Set(Control.FontWeightProperty, thisAsIRxControl.FontWeight);
-            NativeControl.Set(Control.ForegroundProperty, thisAsIRxControl.Foreground);
-            NativeControl.Set(Control.HorizontalContentAlignmentProperty, thisAsIRxControl.HorizontalContentAlignment);
-            NativeControl.Set(Control.IsTabStopProperty, thisAsIRxControl.IsTabStop);
-            NativeControl.Set(Control.PaddingProperty, thisAsIRxControl.Padding);
-            NativeControl.Set(Control.TabIndexProperty, thisAsIRxControl.TabIndex);
-            NativeControl.Set(Control.VerticalContentAlignmentProperty, thisAsIRxControl.VerticalContentAlignment);
+            NativeControl.Set(this, Control.BackgroundProperty, thisAsIRxControl.Background);
+            NativeControl.Set(this, Control.BorderBrushProperty, thisAsIRxControl.BorderBrush);
+            NativeControl.Set(this, Control.BorderThicknessProperty, thisAsIRxControl.BorderThickness);
+            NativeControl.Set(this, Control.FontFamilyProperty, thisAsIRxControl.FontFamily);
+            NativeControl.Set(this, Control.FontSizeProperty, thisAsIRxControl.FontSize);
+            NativeControl.Set(this, Control.FontStretchProperty, thisAsIRxControl.FontStretch);
+            NativeControl.Set(this, Control.FontStyleProperty, thisAsIRxControl.FontStyle);
+            NativeControl.Set(this, Control.FontWeightProperty, thisAsIRxControl.FontWeight);
+            NativeControl.Set(this, Control.ForegroundProperty, thisAsIRxControl.Foreground);
+            NativeControl.Set(this, Control.HorizontalContentAlignmentProperty, thisAsIRxControl.HorizontalContentAlignment);
+            NativeControl.Set(this, Control.IsTabStopProperty, thisAsIRxControl.IsTabStop);
+            NativeControl.Set(this, Control.PaddingProperty, thisAsIRxControl.Padding);
+            NativeControl.Set(this, Control.TabIndexProperty, thisAsIRxControl.TabIndex);
+            NativeControl.Set(this, Control.VerticalContentAlignmentProperty, thisAsIRxControl.VerticalContentAlignment);
 
             base.OnUpdate();
 
