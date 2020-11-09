@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WpfReactorUI.Host": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\WpfReactorUI.DemoApp\\bin\\Debug\\netcoreapp3.1\\WpfReactorUI.DemoApp.dll"
+    }
+  }
+}
