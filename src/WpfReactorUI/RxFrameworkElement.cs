@@ -14,7 +14,7 @@ using System.Windows.Shell;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
-
+using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
@@ -22,7 +22,6 @@ namespace WpfReactorUI
 {
     public partial interface IRxFrameworkElement : IRxUIElement
     {
-        PropertyValue<BindingGroup> BindingGroup { get; set; }
         PropertyValue<ContextMenu> ContextMenu { get; set; }
         PropertyValue<Cursor> Cursor { get; set; }
         PropertyValue<object> DataContext { get; set; }
@@ -79,7 +78,6 @@ namespace WpfReactorUI
 
         }
 
-        PropertyValue<BindingGroup> IRxFrameworkElement.BindingGroup { get; set; }
         PropertyValue<ContextMenu> IRxFrameworkElement.ContextMenu { get; set; }
         PropertyValue<Cursor> IRxFrameworkElement.Cursor { get; set; }
         PropertyValue<object> IRxFrameworkElement.DataContext { get; set; }
@@ -127,7 +125,6 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
-            NativeControl.Set(FrameworkElement.BindingGroupProperty, thisAsIRxFrameworkElement.BindingGroup);
             NativeControl.Set(FrameworkElement.ContextMenuProperty, thisAsIRxFrameworkElement.ContextMenu);
             NativeControl.Set(FrameworkElement.CursorProperty, thisAsIRxFrameworkElement.Cursor);
             NativeControl.Set(FrameworkElement.DataContextProperty, thisAsIRxFrameworkElement.DataContext);
@@ -282,11 +279,6 @@ namespace WpfReactorUI
     }
     public static partial class RxFrameworkElementExtensions
     {
-        public static T BindingGroup<T>(this T frameworkelement, BindingGroup bindingGroup) where T : IRxFrameworkElement
-        {
-            frameworkelement.BindingGroup = new PropertyValue<BindingGroup>(bindingGroup);
-            return frameworkelement;
-        }
         public static T ContextMenu<T>(this T frameworkelement, ContextMenu contextMenu) where T : IRxFrameworkElement
         {
             frameworkelement.ContextMenu = new PropertyValue<ContextMenu>(contextMenu);

@@ -20,31 +20,34 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxVisual : IVisualNode
+    public partial interface IRxListBox : IRxSelector
     {
+        PropertyValue<SelectionMode> SelectionMode { get; set; }
 
     }
 
-    public partial class RxVisual<T> : VisualNode<T>, IRxVisual where T : Visual, new()
+    public partial class RxListBox<T> : RxSelector<T>, IRxListBox where T : ListBox, new()
     {
-        public RxVisual()
+        public RxListBox()
         {
 
         }
 
-        public RxVisual(Action<T> componentRefAction)
+        public RxListBox(Action<T> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
+        PropertyValue<SelectionMode> IRxListBox.SelectionMode { get; set; }
 
 
         protected override void OnUpdate()
         {
             OnBeginUpdate();
 
-            var thisAsIRxVisual = (IRxVisual)this;
+            var thisAsIRxListBox = (IRxListBox)this;
+            NativeControl.Set(ListBox.SelectionModeProperty, thisAsIRxListBox.SelectionMode);
 
             base.OnUpdate();
 
@@ -56,7 +59,7 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxVisual = (IRxVisual)this;
+            var thisAsIRxListBox = (IRxListBox)this;
 
             base.OnAttachNativeEvents();
         }
@@ -72,7 +75,25 @@ namespace WpfReactorUI
         }
 
     }
-    public static partial class RxVisualExtensions
+    public partial class RxListBox : RxListBox<ListBox>
     {
+        public RxListBox()
+        {
+
+        }
+
+        public RxListBox(Action<ListBox> componentRefAction)
+            : base(componentRefAction)
+        {
+
+        }
+    }
+    public static partial class RxListBoxExtensions
+    {
+        public static T SelectionMode<T>(this T listbox, SelectionMode selectionMode) where T : IRxListBox
+        {
+            listbox.SelectionMode = new PropertyValue<SelectionMode>(selectionMode);
+            return listbox;
+        }
     }
 }

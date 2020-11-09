@@ -14,7 +14,7 @@ using System.Windows.Shell;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
-
+using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 

@@ -14,7 +14,7 @@ using System.Windows.Shell;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
-
+using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
@@ -24,8 +24,6 @@ namespace WpfReactorUI
     {
         PropertyValue<object> Content { get; set; }
         PropertyValue<string> ContentStringFormat { get; set; }
-        PropertyValue<DataTemplate> ContentTemplate { get; set; }
-        PropertyValue<DataTemplateSelector> ContentTemplateSelector { get; set; }
 
     }
 
@@ -44,8 +42,6 @@ namespace WpfReactorUI
 
         PropertyValue<object> IRxContentControl.Content { get; set; }
         PropertyValue<string> IRxContentControl.ContentStringFormat { get; set; }
-        PropertyValue<DataTemplate> IRxContentControl.ContentTemplate { get; set; }
-        PropertyValue<DataTemplateSelector> IRxContentControl.ContentTemplateSelector { get; set; }
 
 
         protected override void OnUpdate()
@@ -55,8 +51,6 @@ namespace WpfReactorUI
             var thisAsIRxContentControl = (IRxContentControl)this;
             NativeControl.Set(ContentControl.ContentProperty, thisAsIRxContentControl.Content);
             NativeControl.Set(ContentControl.ContentStringFormatProperty, thisAsIRxContentControl.ContentStringFormat);
-            NativeControl.Set(ContentControl.ContentTemplateProperty, thisAsIRxContentControl.ContentTemplate);
-            NativeControl.Set(ContentControl.ContentTemplateSelectorProperty, thisAsIRxContentControl.ContentTemplateSelector);
 
             base.OnUpdate();
 
@@ -107,16 +101,6 @@ namespace WpfReactorUI
         public static T ContentStringFormat<T>(this T contentcontrol, string contentStringFormat) where T : IRxContentControl
         {
             contentcontrol.ContentStringFormat = new PropertyValue<string>(contentStringFormat);
-            return contentcontrol;
-        }
-        public static T ContentTemplate<T>(this T contentcontrol, DataTemplate contentTemplate) where T : IRxContentControl
-        {
-            contentcontrol.ContentTemplate = new PropertyValue<DataTemplate>(contentTemplate);
-            return contentcontrol;
-        }
-        public static T ContentTemplateSelector<T>(this T contentcontrol, DataTemplateSelector contentTemplateSelector) where T : IRxContentControl
-        {
-            contentcontrol.ContentTemplateSelector = new PropertyValue<DataTemplateSelector>(contentTemplateSelector);
             return contentcontrol;
         }
     }

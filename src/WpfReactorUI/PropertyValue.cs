@@ -13,6 +13,11 @@ namespace WpfReactorUI
         }
 
         public T Value { get; }
+
+        public override string ToString()
+        {
+            return $"{{{(Value == null ? "null" : Value.ToString())}}}";
+        }
     }
 
     public static class PropertyValueExtenstions

@@ -16,7 +16,7 @@ namespace WpfReactorUI.ScaffoldConsole
             if (args == null ||
                 args.Length == 0)
             {
-                Console.WriteLine("AvaloniaReactorUI folder not specified");
+                Console.WriteLine("WpfReactorUI folder not specified");
                 return;
             }
 

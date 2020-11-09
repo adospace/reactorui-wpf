@@ -15,7 +15,7 @@ namespace WpfReactorUI.DemoApp
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            RxApplication.Create<MainComponent>(this)
+            RxApplication.Create<ItemsControlComponent>(this)
                 .Run();
         }
     }

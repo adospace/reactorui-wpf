@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace WpfReactorUI.ScaffoldApp
 {
@@ -22,6 +24,11 @@ namespace WpfReactorUI.ScaffoldApp
                 //generic types not supported
                 .Where(_ => !_.PropertyType.IsGenericType)
                 //excluding common properties not relevant to ReactorUI framework
+                .Where(_ => !typeof(FrameworkTemplate).IsAssignableFrom(_.PropertyType))
+                .Where(_ => !typeof(GroupStyleSelector).IsAssignableFrom(_.PropertyType))
+                .Where(_ => !typeof(BindingGroup).IsAssignableFrom(_.PropertyType))
+                .Where(_ => !typeof(StyleSelector).IsAssignableFrom(_.PropertyType))
+                .Where(_ => !typeof(DataTemplateSelector).IsAssignableFrom(_.PropertyType))
 
                 .Distinct(new PropertyInfoEqualityComparer())
                 .ToDictionary(_ => _.Name, _ => _);

@@ -5,3 +5,6 @@ System.Windows.Controls.Control
 System.Windows.Controls.ContentControl
 System.Windows.Window
 System.Windows.Controls.TextBlock
+System.Windows.Controls.ItemsControl
+System.Windows.Controls.ListBox
+System.Windows.Controls.Primitives.Selector

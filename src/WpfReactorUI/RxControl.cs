@@ -14,7 +14,7 @@ using System.Windows.Shell;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
-
+using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
@@ -35,7 +35,6 @@ namespace WpfReactorUI
         PropertyValue<bool> IsTabStop { get; set; }
         PropertyValue<Thickness> Padding { get; set; }
         PropertyValue<int> TabIndex { get; set; }
-        PropertyValue<ControlTemplate> Template { get; set; }
         PropertyValue<VerticalAlignment> VerticalContentAlignment { get; set; }
 
         Action MouseDoubleClickAction { get; set; }
@@ -70,7 +69,6 @@ namespace WpfReactorUI
         PropertyValue<bool> IRxControl.IsTabStop { get; set; }
         PropertyValue<Thickness> IRxControl.Padding { get; set; }
         PropertyValue<int> IRxControl.TabIndex { get; set; }
-        PropertyValue<ControlTemplate> IRxControl.Template { get; set; }
         PropertyValue<VerticalAlignment> IRxControl.VerticalContentAlignment { get; set; }
 
         Action IRxControl.MouseDoubleClickAction { get; set; }
@@ -96,7 +94,6 @@ namespace WpfReactorUI
             NativeControl.Set(Control.IsTabStopProperty, thisAsIRxControl.IsTabStop);
             NativeControl.Set(Control.PaddingProperty, thisAsIRxControl.Padding);
             NativeControl.Set(Control.TabIndexProperty, thisAsIRxControl.TabIndex);
-            NativeControl.Set(Control.TemplateProperty, thisAsIRxControl.Template);
             NativeControl.Set(Control.VerticalContentAlignmentProperty, thisAsIRxControl.VerticalContentAlignment);
 
             base.OnUpdate();
@@ -245,11 +242,6 @@ namespace WpfReactorUI
         public static T TabIndex<T>(this T control, int tabIndex) where T : IRxControl
         {
             control.TabIndex = new PropertyValue<int>(tabIndex);
-            return control;
-        }
-        public static T Template<T>(this T control, ControlTemplate template) where T : IRxControl
-        {
-            control.Template = new PropertyValue<ControlTemplate>(template);
             return control;
         }
         public static T VerticalContentAlignment<T>(this T control, VerticalAlignment verticalContentAlignment) where T : IRxControl
