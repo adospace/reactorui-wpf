@@ -12,25 +12,21 @@ Traditionally, WPF/UWP/WinUI/Avalonia/Xamarin/Uno frameworks encourage a MVVM ap
 
 There is a view (usually written in XAML):
 ```xaml
-<Window xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="App.MainWindow">
-    <StackLayout
-        VerticalOptions="Center"
-        HorizontalOptions="Center">
-        <TextBox Placeholder="Username" Text="{Binding Username}" />
-        <TextBox Placeholder="Password" Text="{Binding Password}" />
-        <Button Text="Login" Command="{Binding LoginCommand}" />
-    </StackLayout>
+<Window x:Class="WpfReactorUI.DemoApp.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
+        <TextBox Text="{Binding Username}"/>
+        <TextBox Text="{Binding Password}"/>
+    </StackPanel>
 </Window>
 ```
 that is linked/bound to ViewModel (written in C#/VB.NET/F# etc):
 
 ```cs
-public class MainWindowViewModel : BindableObject
+public class LoginWindowViewModel : BindableObject
 {
     private string _username;
 
@@ -87,38 +83,31 @@ ReactorUI uses a MVU approach: you write components instead of controls in a sin
 Following is the same login screen written in ReactorUI:
 
 ```cs
-public class MainPageState : IState
+public class LoginComponentState : IState
 {
     public string Username { get; set; }
+
     public string Password { get; set; }
 }
 
-public class MainPage : RxComponent<MainPageState>
+public class LoginComponent : RxComponent<LoginComponentState>
 {
     public override VisualNode Render()
-    {
-        return new RxContentPage()
+        => new RxStackPanel()
         {
-            new RxStackLayout()
-            {
-                new RxTextBox()
-                    .Placeholder("Username")
-                    .OnTextChanged((s,e)=> SetState(_ => _.Username = e.NewTextValue)),
-                new RxTextBox()
-                    .Placeholder("Password")
-                    .OnTextChanged((s,e)=> SetState(_ => _.Password = e.NewTextValue)),
-                new RxButton("Login")
-                    .IsEnabled(!string.IsNullOrWhiteSpace(State.Username) && !string.IsNullOrWhiteSpace(State.Password))
-                    .OnClick(OnLogin)
-            }
-            .VCenter()
-            .HCenter()
+            new RxTextBox()
+                .Text(State.Username)
+                .OnTextChanged(text => SetState(s => s.Username = text)),
+            new RxTextBox()
+                .Text(State.Password)
+                .OnTextChanged(text => SetState(s => s.Password = text)),
+            new RxButton()
+                .OnClick(OnLogin)
         };
-    }
 
     private void OnLogin()
     {
-        //use State.Username and State.Password to login...
+        //login with State.Username and State.Password
     }
 }
 ```
