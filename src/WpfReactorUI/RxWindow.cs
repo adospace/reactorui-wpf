@@ -37,7 +37,7 @@ namespace WpfReactorUI
         PropertyValue<WindowStyle> WindowStyle { get; set; }
 
         Action DpiChangedAction { get; set; }
-        Action<DpiChangedEventArgs> DpiChangedActionWithArgs { get; set; }
+        Action<object, DpiChangedEventArgs> DpiChangedActionWithArgs { get; set; }
     }
 
     public partial class RxWindow<T> : RxContentControl<T>, IRxWindow where T : Window, new()
@@ -68,7 +68,7 @@ namespace WpfReactorUI
         PropertyValue<WindowStyle> IRxWindow.WindowStyle { get; set; }
 
         Action IRxWindow.DpiChangedAction { get; set; }
-        Action<DpiChangedEventArgs> IRxWindow.DpiChangedActionWithArgs { get; set; }
+        Action<object, DpiChangedEventArgs> IRxWindow.DpiChangedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -112,7 +112,7 @@ namespace WpfReactorUI
         {
             var thisAsIRxWindow = (IRxWindow)this;
             thisAsIRxWindow.DpiChangedAction?.Invoke();
-            thisAsIRxWindow.DpiChangedActionWithArgs?.Invoke(e);
+            thisAsIRxWindow.DpiChangedActionWithArgs?.Invoke(sender, e);
         }
 
         protected override void OnDetachNativeEvents()
@@ -247,7 +247,7 @@ namespace WpfReactorUI
             return window;
         }
 
-        public static T OnDpiChanged<T>(this T window, Action<DpiChangedEventArgs> dpichangedActionWithArgs) where T : IRxWindow
+        public static T OnDpiChanged<T>(this T window, Action<object, DpiChangedEventArgs> dpichangedActionWithArgs) where T : IRxWindow
         {
             window.DpiChangedActionWithArgs = dpichangedActionWithArgs;
             return window;

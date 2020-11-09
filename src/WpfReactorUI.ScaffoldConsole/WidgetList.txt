@@ -8,3 +8,9 @@ System.Windows.Controls.TextBlock
 System.Windows.Controls.ItemsControl
 System.Windows.Controls.ListBox
 System.Windows.Controls.Primitives.Selector
+System.Windows.Controls.TextBox
+System.Windows.Controls.Primitives.TextBoxBase
+System.Windows.Controls.Panel
+System.Windows.Controls.StackPanel
+System.Windows.Controls.Button
+System.Windows.Controls.Primitives.ButtonBase

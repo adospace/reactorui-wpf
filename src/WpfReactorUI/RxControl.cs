@@ -38,9 +38,9 @@ namespace WpfReactorUI
         PropertyValue<VerticalAlignment> VerticalContentAlignment { get; set; }
 
         Action MouseDoubleClickAction { get; set; }
-        Action<MouseButtonEventArgs> MouseDoubleClickActionWithArgs { get; set; }
+        Action<object, MouseButtonEventArgs> MouseDoubleClickActionWithArgs { get; set; }
         Action PreviewMouseDoubleClickAction { get; set; }
-        Action<MouseButtonEventArgs> PreviewMouseDoubleClickActionWithArgs { get; set; }
+        Action<object, MouseButtonEventArgs> PreviewMouseDoubleClickActionWithArgs { get; set; }
     }
 
     public partial class RxControl<T> : RxFrameworkElement<T>, IRxControl where T : Control, new()
@@ -72,9 +72,9 @@ namespace WpfReactorUI
         PropertyValue<VerticalAlignment> IRxControl.VerticalContentAlignment { get; set; }
 
         Action IRxControl.MouseDoubleClickAction { get; set; }
-        Action<MouseButtonEventArgs> IRxControl.MouseDoubleClickActionWithArgs { get; set; }
+        Action<object, MouseButtonEventArgs> IRxControl.MouseDoubleClickActionWithArgs { get; set; }
         Action IRxControl.PreviewMouseDoubleClickAction { get; set; }
-        Action<MouseButtonEventArgs> IRxControl.PreviewMouseDoubleClickActionWithArgs { get; set; }
+        Action<object, MouseButtonEventArgs> IRxControl.PreviewMouseDoubleClickActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -123,13 +123,13 @@ namespace WpfReactorUI
         {
             var thisAsIRxControl = (IRxControl)this;
             thisAsIRxControl.MouseDoubleClickAction?.Invoke();
-            thisAsIRxControl.MouseDoubleClickActionWithArgs?.Invoke(e);
+            thisAsIRxControl.MouseDoubleClickActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var thisAsIRxControl = (IRxControl)this;
             thisAsIRxControl.PreviewMouseDoubleClickAction?.Invoke();
-            thisAsIRxControl.PreviewMouseDoubleClickActionWithArgs?.Invoke(e);
+            thisAsIRxControl.PreviewMouseDoubleClickActionWithArgs?.Invoke(sender, e);
         }
 
         protected override void OnDetachNativeEvents()
@@ -255,7 +255,7 @@ namespace WpfReactorUI
             return control;
         }
 
-        public static T OnMouseDoubleClick<T>(this T control, Action<MouseButtonEventArgs> mousedoubleclickActionWithArgs) where T : IRxControl
+        public static T OnMouseDoubleClick<T>(this T control, Action<object, MouseButtonEventArgs> mousedoubleclickActionWithArgs) where T : IRxControl
         {
             control.MouseDoubleClickActionWithArgs = mousedoubleclickActionWithArgs;
             return control;
@@ -266,7 +266,7 @@ namespace WpfReactorUI
             return control;
         }
 
-        public static T OnPreviewMouseDoubleClick<T>(this T control, Action<MouseButtonEventArgs> previewmousedoubleclickActionWithArgs) where T : IRxControl
+        public static T OnPreviewMouseDoubleClick<T>(this T control, Action<object, MouseButtonEventArgs> previewmousedoubleclickActionWithArgs) where T : IRxControl
         {
             control.PreviewMouseDoubleClickActionWithArgs = previewmousedoubleclickActionWithArgs;
             return control;

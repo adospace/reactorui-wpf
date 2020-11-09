@@ -43,7 +43,7 @@ namespace WpfReactorUI
 
     <# foreach (var ev in Events) { #>
         Action <#= ev.Name #>Action { get; set; }
-        Action<<#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> <#= ev.Name #>ActionWithArgs { get; set; }
+        Action<object, <#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> <#= ev.Name #>ActionWithArgs { get; set; }
     <# } #>
     }
     
@@ -66,7 +66,7 @@ namespace WpfReactorUI
 
         <# foreach (var ev in Events) { #>
         Action IRx<#= TypeName #>.<#= ev.Name #>Action { get; set; }
-        Action<<#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> IRx<#= TypeName #>.<#= ev.Name #>ActionWithArgs { get; set; }
+        Action<object, <#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> IRx<#= TypeName #>.<#= ev.Name #>ActionWithArgs { get; set; }
         <# } #>
 
         protected override void OnUpdate()
@@ -104,7 +104,7 @@ namespace WpfReactorUI
         {
             var thisAsIRx<#= TypeName #> = (IRx<#= TypeName #>)this;
             thisAsIRx<#= TypeName #>.<#= ev.Name #>Action?.Invoke();
-            thisAsIRx<#= TypeName #>.<#= ev.Name #>ActionWithArgs?.Invoke(e);
+            thisAsIRx<#= TypeName #>.<#= ev.Name #>ActionWithArgs?.Invoke(sender, e);
         }
         <# } #>
 
@@ -202,7 +202,7 @@ namespace WpfReactorUI
             return <#= TypeName.ToLowerInvariant() #>;
         }
 
-        public static T On<#= ev.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Action<<#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> <#= ev.Name.ToLowerInvariant() #>ActionWithArgs) where T : IRx<#= TypeName #>
+        public static T On<#= ev.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Action<object, <#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>> <#= ev.Name.ToLowerInvariant() #>ActionWithArgs) where T : IRx<#= TypeName #>
         {
             <#= TypeName.ToLowerInvariant() #>.<#= ev.Name #>ActionWithArgs = <#= ev.Name.ToLowerInvariant() #>ActionWithArgs;
             return <#= TypeName.ToLowerInvariant() #>;

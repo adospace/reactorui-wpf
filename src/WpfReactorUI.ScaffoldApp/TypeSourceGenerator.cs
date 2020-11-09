@@ -122,7 +122,7 @@ namespace WpfReactorUI
             
             #line default
             #line hidden
-            this.Write("Action { get; set; }\r\n        Action<");
+            this.Write("Action { get; set; }\r\n        Action<object, ");
             
             #line 46 "C:\Users\adosp\source\repos\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
@@ -242,7 +242,7 @@ namespace WpfReactorUI
             
             #line default
             #line hidden
-            this.Write("Action { get; set; }\r\n        Action<");
+            this.Write("Action { get; set; }\r\n        Action<object, ");
             
             #line 69 "C:\Users\adosp\source\repos\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
@@ -463,7 +463,7 @@ namespace WpfReactorUI
             
             #line default
             #line hidden
-            this.Write("ActionWithArgs?.Invoke(e);\r\n        }\r\n        ");
+            this.Write("ActionWithArgs?.Invoke(sender, e);\r\n        }\r\n        ");
             
             #line 109 "C:\Users\adosp\source\repos\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
@@ -1100,7 +1100,7 @@ namespace WpfReactorUI
             
             #line default
             #line hidden
-            this.Write(", Action<");
+            this.Write(", Action<object, ");
             
             #line 205 "C:\Users\adosp\source\repos\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));

@@ -48,21 +48,21 @@ namespace WpfReactorUI
         PropertyValue<double> Width { get; set; }
 
         Action ContextMenuClosingAction { get; set; }
-        Action<ContextMenuEventArgs> ContextMenuClosingActionWithArgs { get; set; }
+        Action<object, ContextMenuEventArgs> ContextMenuClosingActionWithArgs { get; set; }
         Action ContextMenuOpeningAction { get; set; }
-        Action<ContextMenuEventArgs> ContextMenuOpeningActionWithArgs { get; set; }
+        Action<object, ContextMenuEventArgs> ContextMenuOpeningActionWithArgs { get; set; }
         Action LoadedAction { get; set; }
-        Action<RoutedEventArgs> LoadedActionWithArgs { get; set; }
+        Action<object, RoutedEventArgs> LoadedActionWithArgs { get; set; }
         Action RequestBringIntoViewAction { get; set; }
-        Action<RequestBringIntoViewEventArgs> RequestBringIntoViewActionWithArgs { get; set; }
+        Action<object, RequestBringIntoViewEventArgs> RequestBringIntoViewActionWithArgs { get; set; }
         Action SizeChangedAction { get; set; }
-        Action<SizeChangedEventArgs> SizeChangedActionWithArgs { get; set; }
+        Action<object, SizeChangedEventArgs> SizeChangedActionWithArgs { get; set; }
         Action ToolTipClosingAction { get; set; }
-        Action<ToolTipEventArgs> ToolTipClosingActionWithArgs { get; set; }
+        Action<object, ToolTipEventArgs> ToolTipClosingActionWithArgs { get; set; }
         Action ToolTipOpeningAction { get; set; }
-        Action<ToolTipEventArgs> ToolTipOpeningActionWithArgs { get; set; }
+        Action<object, ToolTipEventArgs> ToolTipOpeningActionWithArgs { get; set; }
         Action UnloadedAction { get; set; }
-        Action<RoutedEventArgs> UnloadedActionWithArgs { get; set; }
+        Action<object, RoutedEventArgs> UnloadedActionWithArgs { get; set; }
     }
 
     public partial class RxFrameworkElement<T> : RxUIElement<T>, IRxFrameworkElement where T : FrameworkElement, new()
@@ -104,21 +104,21 @@ namespace WpfReactorUI
         PropertyValue<double> IRxFrameworkElement.Width { get; set; }
 
         Action IRxFrameworkElement.ContextMenuClosingAction { get; set; }
-        Action<ContextMenuEventArgs> IRxFrameworkElement.ContextMenuClosingActionWithArgs { get; set; }
+        Action<object, ContextMenuEventArgs> IRxFrameworkElement.ContextMenuClosingActionWithArgs { get; set; }
         Action IRxFrameworkElement.ContextMenuOpeningAction { get; set; }
-        Action<ContextMenuEventArgs> IRxFrameworkElement.ContextMenuOpeningActionWithArgs { get; set; }
+        Action<object, ContextMenuEventArgs> IRxFrameworkElement.ContextMenuOpeningActionWithArgs { get; set; }
         Action IRxFrameworkElement.LoadedAction { get; set; }
-        Action<RoutedEventArgs> IRxFrameworkElement.LoadedActionWithArgs { get; set; }
+        Action<object, RoutedEventArgs> IRxFrameworkElement.LoadedActionWithArgs { get; set; }
         Action IRxFrameworkElement.RequestBringIntoViewAction { get; set; }
-        Action<RequestBringIntoViewEventArgs> IRxFrameworkElement.RequestBringIntoViewActionWithArgs { get; set; }
+        Action<object, RequestBringIntoViewEventArgs> IRxFrameworkElement.RequestBringIntoViewActionWithArgs { get; set; }
         Action IRxFrameworkElement.SizeChangedAction { get; set; }
-        Action<SizeChangedEventArgs> IRxFrameworkElement.SizeChangedActionWithArgs { get; set; }
+        Action<object, SizeChangedEventArgs> IRxFrameworkElement.SizeChangedActionWithArgs { get; set; }
         Action IRxFrameworkElement.ToolTipClosingAction { get; set; }
-        Action<ToolTipEventArgs> IRxFrameworkElement.ToolTipClosingActionWithArgs { get; set; }
+        Action<object, ToolTipEventArgs> IRxFrameworkElement.ToolTipClosingActionWithArgs { get; set; }
         Action IRxFrameworkElement.ToolTipOpeningAction { get; set; }
-        Action<ToolTipEventArgs> IRxFrameworkElement.ToolTipOpeningActionWithArgs { get; set; }
+        Action<object, ToolTipEventArgs> IRxFrameworkElement.ToolTipOpeningActionWithArgs { get; set; }
         Action IRxFrameworkElement.UnloadedAction { get; set; }
-        Action<RoutedEventArgs> IRxFrameworkElement.UnloadedActionWithArgs { get; set; }
+        Action<object, RoutedEventArgs> IRxFrameworkElement.UnloadedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -201,49 +201,49 @@ namespace WpfReactorUI
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ContextMenuClosingAction?.Invoke();
-            thisAsIRxFrameworkElement.ContextMenuClosingActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.ContextMenuClosingActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ContextMenuOpeningAction?.Invoke();
-            thisAsIRxFrameworkElement.ContextMenuOpeningActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.ContextMenuOpeningActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_Loaded(object sender, RoutedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.LoadedAction?.Invoke();
-            thisAsIRxFrameworkElement.LoadedActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.LoadedActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.RequestBringIntoViewAction?.Invoke();
-            thisAsIRxFrameworkElement.RequestBringIntoViewActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.RequestBringIntoViewActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.SizeChangedAction?.Invoke();
-            thisAsIRxFrameworkElement.SizeChangedActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.SizeChangedActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_ToolTipClosing(object sender, ToolTipEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ToolTipClosingAction?.Invoke();
-            thisAsIRxFrameworkElement.ToolTipClosingActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.ToolTipClosingActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ToolTipOpeningAction?.Invoke();
-            thisAsIRxFrameworkElement.ToolTipOpeningActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.ToolTipOpeningActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_Unloaded(object sender, RoutedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.UnloadedAction?.Invoke();
-            thisAsIRxFrameworkElement.UnloadedActionWithArgs?.Invoke(e);
+            thisAsIRxFrameworkElement.UnloadedActionWithArgs?.Invoke(sender, e);
         }
 
         protected override void OnDetachNativeEvents()
@@ -415,7 +415,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnContextMenuClosing<T>(this T frameworkelement, Action<ContextMenuEventArgs> contextmenuclosingActionWithArgs) where T : IRxFrameworkElement
+        public static T OnContextMenuClosing<T>(this T frameworkelement, Action<object, ContextMenuEventArgs> contextmenuclosingActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ContextMenuClosingActionWithArgs = contextmenuclosingActionWithArgs;
             return frameworkelement;
@@ -426,7 +426,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnContextMenuOpening<T>(this T frameworkelement, Action<ContextMenuEventArgs> contextmenuopeningActionWithArgs) where T : IRxFrameworkElement
+        public static T OnContextMenuOpening<T>(this T frameworkelement, Action<object, ContextMenuEventArgs> contextmenuopeningActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ContextMenuOpeningActionWithArgs = contextmenuopeningActionWithArgs;
             return frameworkelement;
@@ -437,7 +437,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnLoaded<T>(this T frameworkelement, Action<RoutedEventArgs> loadedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnLoaded<T>(this T frameworkelement, Action<object, RoutedEventArgs> loadedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.LoadedActionWithArgs = loadedActionWithArgs;
             return frameworkelement;
@@ -448,7 +448,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnRequestBringIntoView<T>(this T frameworkelement, Action<RequestBringIntoViewEventArgs> requestbringintoviewActionWithArgs) where T : IRxFrameworkElement
+        public static T OnRequestBringIntoView<T>(this T frameworkelement, Action<object, RequestBringIntoViewEventArgs> requestbringintoviewActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.RequestBringIntoViewActionWithArgs = requestbringintoviewActionWithArgs;
             return frameworkelement;
@@ -459,7 +459,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnSizeChanged<T>(this T frameworkelement, Action<SizeChangedEventArgs> sizechangedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnSizeChanged<T>(this T frameworkelement, Action<object, SizeChangedEventArgs> sizechangedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.SizeChangedActionWithArgs = sizechangedActionWithArgs;
             return frameworkelement;
@@ -470,7 +470,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnToolTipClosing<T>(this T frameworkelement, Action<ToolTipEventArgs> tooltipclosingActionWithArgs) where T : IRxFrameworkElement
+        public static T OnToolTipClosing<T>(this T frameworkelement, Action<object, ToolTipEventArgs> tooltipclosingActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ToolTipClosingActionWithArgs = tooltipclosingActionWithArgs;
             return frameworkelement;
@@ -481,7 +481,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnToolTipOpening<T>(this T frameworkelement, Action<ToolTipEventArgs> tooltipopeningActionWithArgs) where T : IRxFrameworkElement
+        public static T OnToolTipOpening<T>(this T frameworkelement, Action<object, ToolTipEventArgs> tooltipopeningActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ToolTipOpeningActionWithArgs = tooltipopeningActionWithArgs;
             return frameworkelement;
@@ -492,7 +492,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnUnloaded<T>(this T frameworkelement, Action<RoutedEventArgs> unloadedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnUnloaded<T>(this T frameworkelement, Action<object, RoutedEventArgs> unloadedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.UnloadedActionWithArgs = unloadedActionWithArgs;
             return frameworkelement;

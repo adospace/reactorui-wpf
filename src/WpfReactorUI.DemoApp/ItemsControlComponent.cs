@@ -35,7 +35,7 @@ namespace WpfReactorUI.DemoApp
                 new RxListBox()
                     .ItemsSource(State.Items)
                     .SelectedItem(State.SelectedItem)
-                    .OnSelectionChanged(args => SetState(s => s.SelectedItem = args.AddedItems.Cast<Item>().FirstOrDefault()))
+                    .OnSelectionChanged<RxListBox, Item>(item => SetState(s => s.SelectedItem = item))
                     .OnRenderItem<RxListBox, Item>(_ => new RxTextBlock().Text(_.Name).Foreground(Brushes.Black))
                     .FontSize(24)
                     .VCenter()
