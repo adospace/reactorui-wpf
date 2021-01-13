@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxListBox : IRxSelector
@@ -47,7 +48,7 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxListBox = (IRxListBox)this;
-            NativeControl.Set(this, ListBox.SelectionModeProperty, thisAsIRxListBox.SelectionMode);
+            SetPropertyValue(NativeControl, ListBox.SelectionModeProperty, thisAsIRxListBox.SelectionMode);
 
             base.OnUpdate();
 
@@ -93,6 +94,11 @@ namespace WpfReactorUI
         public static T SelectionMode<T>(this T listbox, SelectionMode selectionMode) where T : IRxListBox
         {
             listbox.SelectionMode = new PropertyValue<SelectionMode>(selectionMode);
+            return listbox;
+        }
+        public static T SelectionMode<T>(this T listbox, Func<SelectionMode> selectionModeFunc) where T : IRxListBox
+        {
+            listbox.SelectionMode = new PropertyValue<SelectionMode>(selectionModeFunc);
             return listbox;
         }
     }

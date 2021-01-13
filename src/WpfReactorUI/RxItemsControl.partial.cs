@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
@@ -55,7 +56,7 @@ namespace WpfReactorUI
 
         public UIElement RootControl { get; private set; }
 
-        protected sealed override void OnAddChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
         {
             if (nativeControl is UIElement view)
                 RootControl = view;
@@ -65,7 +66,7 @@ namespace WpfReactorUI
             }
         }
 
-        protected sealed override void OnRemoveChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnRemoveChild(VisualNode widget, object nativeControl)
         {
             RootControl = null;
         }

@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxContentControl : IRxControl
@@ -47,7 +48,7 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxContentControl = (IRxContentControl)this;
-            NativeControl.Set(this, ContentControl.ContentStringFormatProperty, thisAsIRxContentControl.ContentStringFormat);
+            SetPropertyValue(NativeControl, ContentControl.ContentStringFormatProperty, thisAsIRxContentControl.ContentStringFormat);
 
             base.OnUpdate();
 
@@ -93,6 +94,11 @@ namespace WpfReactorUI
         public static T ContentStringFormat<T>(this T contentcontrol, string contentStringFormat) where T : IRxContentControl
         {
             contentcontrol.ContentStringFormat = new PropertyValue<string>(contentStringFormat);
+            return contentcontrol;
+        }
+        public static T ContentStringFormat<T>(this T contentcontrol, Func<string> contentStringFormatFunc) where T : IRxContentControl
+        {
+            contentcontrol.ContentStringFormat = new PropertyValue<string>(contentStringFormatFunc);
             return contentcontrol;
         }
     }

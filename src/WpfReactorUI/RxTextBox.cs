@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxTextBox : IRxTextBoxBase
@@ -61,14 +62,14 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxTextBox = (IRxTextBox)this;
-            NativeControl.Set(this, TextBox.CharacterCasingProperty, thisAsIRxTextBox.CharacterCasing);
-            NativeControl.Set(this, TextBox.MaxLengthProperty, thisAsIRxTextBox.MaxLength);
-            NativeControl.Set(this, TextBox.MaxLinesProperty, thisAsIRxTextBox.MaxLines);
-            NativeControl.Set(this, TextBox.MinLinesProperty, thisAsIRxTextBox.MinLines);
-            NativeControl.Set(this, TextBox.TextProperty, thisAsIRxTextBox.Text);
-            NativeControl.Set(this, TextBox.TextAlignmentProperty, thisAsIRxTextBox.TextAlignment);
-            NativeControl.Set(this, TextBox.TextDecorationsProperty, thisAsIRxTextBox.TextDecorations);
-            NativeControl.Set(this, TextBox.TextWrappingProperty, thisAsIRxTextBox.TextWrapping);
+            SetPropertyValue(NativeControl, TextBox.CharacterCasingProperty, thisAsIRxTextBox.CharacterCasing);
+            SetPropertyValue(NativeControl, TextBox.MaxLengthProperty, thisAsIRxTextBox.MaxLength);
+            SetPropertyValue(NativeControl, TextBox.MaxLinesProperty, thisAsIRxTextBox.MaxLines);
+            SetPropertyValue(NativeControl, TextBox.MinLinesProperty, thisAsIRxTextBox.MinLines);
+            SetPropertyValue(NativeControl, TextBox.TextProperty, thisAsIRxTextBox.Text);
+            SetPropertyValue(NativeControl, TextBox.TextAlignmentProperty, thisAsIRxTextBox.TextAlignment);
+            SetPropertyValue(NativeControl, TextBox.TextDecorationsProperty, thisAsIRxTextBox.TextDecorations);
+            SetPropertyValue(NativeControl, TextBox.TextWrappingProperty, thisAsIRxTextBox.TextWrapping);
 
             base.OnUpdate();
 
@@ -116,9 +117,19 @@ namespace WpfReactorUI
             textbox.CharacterCasing = new PropertyValue<CharacterCasing>(characterCasing);
             return textbox;
         }
+        public static T CharacterCasing<T>(this T textbox, Func<CharacterCasing> characterCasingFunc) where T : IRxTextBox
+        {
+            textbox.CharacterCasing = new PropertyValue<CharacterCasing>(characterCasingFunc);
+            return textbox;
+        }
         public static T MaxLength<T>(this T textbox, int maxLength) where T : IRxTextBox
         {
             textbox.MaxLength = new PropertyValue<int>(maxLength);
+            return textbox;
+        }
+        public static T MaxLength<T>(this T textbox, Func<int> maxLengthFunc) where T : IRxTextBox
+        {
+            textbox.MaxLength = new PropertyValue<int>(maxLengthFunc);
             return textbox;
         }
         public static T MaxLines<T>(this T textbox, int maxLines) where T : IRxTextBox
@@ -126,9 +137,19 @@ namespace WpfReactorUI
             textbox.MaxLines = new PropertyValue<int>(maxLines);
             return textbox;
         }
+        public static T MaxLines<T>(this T textbox, Func<int> maxLinesFunc) where T : IRxTextBox
+        {
+            textbox.MaxLines = new PropertyValue<int>(maxLinesFunc);
+            return textbox;
+        }
         public static T MinLines<T>(this T textbox, int minLines) where T : IRxTextBox
         {
             textbox.MinLines = new PropertyValue<int>(minLines);
+            return textbox;
+        }
+        public static T MinLines<T>(this T textbox, Func<int> minLinesFunc) where T : IRxTextBox
+        {
+            textbox.MinLines = new PropertyValue<int>(minLinesFunc);
             return textbox;
         }
         public static T Text<T>(this T textbox, string text) where T : IRxTextBox
@@ -136,9 +157,19 @@ namespace WpfReactorUI
             textbox.Text = new PropertyValue<string>(text);
             return textbox;
         }
+        public static T Text<T>(this T textbox, Func<string> textFunc) where T : IRxTextBox
+        {
+            textbox.Text = new PropertyValue<string>(textFunc);
+            return textbox;
+        }
         public static T TextAlignment<T>(this T textbox, TextAlignment textAlignment) where T : IRxTextBox
         {
             textbox.TextAlignment = new PropertyValue<TextAlignment>(textAlignment);
+            return textbox;
+        }
+        public static T TextAlignment<T>(this T textbox, Func<TextAlignment> textAlignmentFunc) where T : IRxTextBox
+        {
+            textbox.TextAlignment = new PropertyValue<TextAlignment>(textAlignmentFunc);
             return textbox;
         }
         public static T TextDecorations<T>(this T textbox, TextDecorationCollection textDecorations) where T : IRxTextBox
@@ -146,9 +177,19 @@ namespace WpfReactorUI
             textbox.TextDecorations = new PropertyValue<TextDecorationCollection>(textDecorations);
             return textbox;
         }
+        public static T TextDecorations<T>(this T textbox, Func<TextDecorationCollection> textDecorationsFunc) where T : IRxTextBox
+        {
+            textbox.TextDecorations = new PropertyValue<TextDecorationCollection>(textDecorationsFunc);
+            return textbox;
+        }
         public static T TextWrapping<T>(this T textbox, TextWrapping textWrapping) where T : IRxTextBox
         {
             textbox.TextWrapping = new PropertyValue<TextWrapping>(textWrapping);
+            return textbox;
+        }
+        public static T TextWrapping<T>(this T textbox, Func<TextWrapping> textWrappingFunc) where T : IRxTextBox
+        {
+            textbox.TextWrapping = new PropertyValue<TextWrapping>(textWrappingFunc);
             return textbox;
         }
     }

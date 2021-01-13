@@ -21,34 +21,34 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxStackPanel : IRxPanel
+    public partial interface IRxGrid : IRxPanel
     {
-        PropertyValue<Orientation> Orientation { get; set; }
+        PropertyValue<bool> ShowGridLines { get; set; }
 
     }
 
-    public partial class RxStackPanel<T> : RxPanel<T>, IRxStackPanel where T : StackPanel, new()
+    public partial class RxGrid<T> : RxPanel<T>, IRxGrid where T : Grid, new()
     {
-        public RxStackPanel()
+        public RxGrid()
         {
 
         }
 
-        public RxStackPanel(Action<T> componentRefAction)
+        public RxGrid(Action<T> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Orientation> IRxStackPanel.Orientation { get; set; }
+        PropertyValue<bool> IRxGrid.ShowGridLines { get; set; }
 
 
         protected override void OnUpdate()
         {
             OnBeginUpdate();
 
-            var thisAsIRxStackPanel = (IRxStackPanel)this;
-            SetPropertyValue(NativeControl, StackPanel.OrientationProperty, thisAsIRxStackPanel.Orientation);
+            var thisAsIRxGrid = (IRxGrid)this;
+            SetPropertyValue(NativeControl, Grid.ShowGridLinesProperty, thisAsIRxGrid.ShowGridLines);
 
             base.OnUpdate();
 
@@ -60,7 +60,7 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxStackPanel = (IRxStackPanel)this;
+            var thisAsIRxGrid = (IRxGrid)this;
 
             base.OnAttachNativeEvents();
         }
@@ -76,30 +76,30 @@ namespace WpfReactorUI
         }
 
     }
-    public partial class RxStackPanel : RxStackPanel<StackPanel>
+    public partial class RxGrid : RxGrid<Grid>
     {
-        public RxStackPanel()
+        public RxGrid()
         {
 
         }
 
-        public RxStackPanel(Action<StackPanel> componentRefAction)
+        public RxGrid(Action<Grid> componentRefAction)
             : base(componentRefAction)
         {
 
         }
     }
-    public static partial class RxStackPanelExtensions
+    public static partial class RxGridExtensions
     {
-        public static T Orientation<T>(this T stackpanel, Orientation orientation) where T : IRxStackPanel
+        public static T ShowGridLines<T>(this T grid, bool showGridLines) where T : IRxGrid
         {
-            stackpanel.Orientation = new PropertyValue<Orientation>(orientation);
-            return stackpanel;
+            grid.ShowGridLines = new PropertyValue<bool>(showGridLines);
+            return grid;
         }
-        public static T Orientation<T>(this T stackpanel, Func<Orientation> orientationFunc) where T : IRxStackPanel
+        public static T ShowGridLines<T>(this T grid, Func<bool> showGridLinesFunc) where T : IRxGrid
         {
-            stackpanel.Orientation = new PropertyValue<Orientation>(orientationFunc);
-            return stackpanel;
+            grid.ShowGridLines = new PropertyValue<bool>(showGridLinesFunc);
+            return grid;
         }
     }
 }

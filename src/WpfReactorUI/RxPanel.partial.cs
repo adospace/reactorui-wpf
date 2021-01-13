@@ -30,7 +30,7 @@ namespace WpfReactorUI
             return _internalChildren;
         }
 
-        protected override void OnAddChild(VisualNode widget, DependencyObject childControl)
+        protected override void OnAddChild(VisualNode widget, object childControl)
         {
             if (childControl is UIElement control)
             {
@@ -44,7 +44,7 @@ namespace WpfReactorUI
             base.OnAddChild(widget, childControl);
         }
 
-        protected override void OnRemoveChild(VisualNode widget, DependencyObject childControl)
+        protected override void OnRemoveChild(VisualNode widget, object childControl)
         {
             NativeControl.Children.Remove((UIElement)childControl);
 

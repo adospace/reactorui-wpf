@@ -3,32 +3,46 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 
-namespace WpfReactorUI
+namespace WpfReactorUI.Internals
 {
     public interface IPropertyValue
-    { 
+    {
         bool SetDefault { get; }
 
         object GetValue();
+
+        Action GetValueAction(DependencyObject dependencyObject, DependencyProperty dependencyProperty);
+
+        bool HasValueFunction { get; }
     }
 
     public class PropertyValue<T> : IPropertyValue
     {
+        private PropertyValue()
+        {
+            SetDefault = true;
+        }
         public PropertyValue(T value)
         {
             Value = value;
         }
 
-        private PropertyValue()
+        public PropertyValue(Func<T> valueAction)
         {
-            SetDefault = true;
+            ValueFunc = valueAction ?? throw new ArgumentNullException(nameof(valueAction));
+
+            Value = valueAction();
         }
 
         public static IPropertyValue Default { get; } = new PropertyValue<T>();
 
         public T Value { get; }
 
+        public Func<T> ValueFunc { get; }
+
         public bool SetDefault { get; }
+
+        public bool HasValueFunction => ValueFunc != null;
 
         public object GetValue() => Value;
 
@@ -36,6 +50,9 @@ namespace WpfReactorUI
         {
             return $"{{{(Value == null ? "null" : Value.ToString())}}}";
         }
+
+        public Action GetValueAction(DependencyObject dependencyObject, DependencyProperty dependencyProperty)
+            => ValueFunc != null ? () => dependencyObject.SetValue(dependencyProperty, ValueFunc()) : throw new InvalidOperationException();
     }
 
     internal static class PropertyValueExtenstions

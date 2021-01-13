@@ -8,12 +8,13 @@ namespace WpfReactorUI.DemoApp
         {
             return new RxWindow()
             {
-                new RxTextBlock()
-                    .Text("ReactorUI + WFP!")
-                    .VCenter()
-                    .HCenter()
-                    .FontSize(32)
-                    .Foreground(Brushes.Black)
+                //new RxTextBlock()
+                //    .Text("ReactorUI + WFP!")
+                //    .VCenter()
+                //    .HCenter()
+                //    .FontSize(32)
+                //    .Foreground(Brushes.Black)
+                new CounterComponent()
             }
             .Title("ReactorUI for WPF");
         }

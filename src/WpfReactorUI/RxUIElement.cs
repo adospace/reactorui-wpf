@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxUIElement : IRxVisual
@@ -409,22 +410,22 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxUIElement = (IRxUIElement)this;
-            NativeControl.Set(this, UIElement.AllowDropProperty, thisAsIRxUIElement.AllowDrop);
-            NativeControl.Set(this, UIElement.CacheModeProperty, thisAsIRxUIElement.CacheMode);
-            NativeControl.Set(this, UIElement.ClipProperty, thisAsIRxUIElement.Clip);
-            NativeControl.Set(this, UIElement.ClipToBoundsProperty, thisAsIRxUIElement.ClipToBounds);
-            NativeControl.Set(this, UIElement.EffectProperty, thisAsIRxUIElement.Effect);
-            NativeControl.Set(this, UIElement.FocusableProperty, thisAsIRxUIElement.Focusable);
-            NativeControl.Set(this, UIElement.IsEnabledProperty, thisAsIRxUIElement.IsEnabled);
-            NativeControl.Set(this, UIElement.IsHitTestVisibleProperty, thisAsIRxUIElement.IsHitTestVisible);
-            NativeControl.Set(this, UIElement.IsManipulationEnabledProperty, thisAsIRxUIElement.IsManipulationEnabled);
-            NativeControl.Set(this, UIElement.OpacityProperty, thisAsIRxUIElement.Opacity);
-            NativeControl.Set(this, UIElement.OpacityMaskProperty, thisAsIRxUIElement.OpacityMask);
-            NativeControl.Set(this, UIElement.RenderTransformProperty, thisAsIRxUIElement.RenderTransform);
-            NativeControl.Set(this, UIElement.RenderTransformOriginProperty, thisAsIRxUIElement.RenderTransformOrigin);
-            NativeControl.Set(this, UIElement.SnapsToDevicePixelsProperty, thisAsIRxUIElement.SnapsToDevicePixels);
-            NativeControl.Set(this, UIElement.UidProperty, thisAsIRxUIElement.Uid);
-            NativeControl.Set(this, UIElement.VisibilityProperty, thisAsIRxUIElement.Visibility);
+            SetPropertyValue(NativeControl, UIElement.AllowDropProperty, thisAsIRxUIElement.AllowDrop);
+            SetPropertyValue(NativeControl, UIElement.CacheModeProperty, thisAsIRxUIElement.CacheMode);
+            SetPropertyValue(NativeControl, UIElement.ClipProperty, thisAsIRxUIElement.Clip);
+            SetPropertyValue(NativeControl, UIElement.ClipToBoundsProperty, thisAsIRxUIElement.ClipToBounds);
+            SetPropertyValue(NativeControl, UIElement.EffectProperty, thisAsIRxUIElement.Effect);
+            SetPropertyValue(NativeControl, UIElement.FocusableProperty, thisAsIRxUIElement.Focusable);
+            SetPropertyValue(NativeControl, UIElement.IsEnabledProperty, thisAsIRxUIElement.IsEnabled);
+            SetPropertyValue(NativeControl, UIElement.IsHitTestVisibleProperty, thisAsIRxUIElement.IsHitTestVisible);
+            SetPropertyValue(NativeControl, UIElement.IsManipulationEnabledProperty, thisAsIRxUIElement.IsManipulationEnabled);
+            SetPropertyValue(NativeControl, UIElement.OpacityProperty, thisAsIRxUIElement.Opacity);
+            SetPropertyValue(NativeControl, UIElement.OpacityMaskProperty, thisAsIRxUIElement.OpacityMask);
+            SetPropertyValue(NativeControl, UIElement.RenderTransformProperty, thisAsIRxUIElement.RenderTransform);
+            SetPropertyValue(NativeControl, UIElement.RenderTransformOriginProperty, thisAsIRxUIElement.RenderTransformOrigin);
+            SetPropertyValue(NativeControl, UIElement.SnapsToDevicePixelsProperty, thisAsIRxUIElement.SnapsToDevicePixels);
+            SetPropertyValue(NativeControl, UIElement.UidProperty, thisAsIRxUIElement.Uid);
+            SetPropertyValue(NativeControl, UIElement.VisibilityProperty, thisAsIRxUIElement.Visibility);
 
             base.OnUpdate();
 
@@ -1385,9 +1386,19 @@ namespace WpfReactorUI
             uielement.AllowDrop = new PropertyValue<bool>(allowDrop);
             return uielement;
         }
+        public static T AllowDrop<T>(this T uielement, Func<bool> allowDropFunc) where T : IRxUIElement
+        {
+            uielement.AllowDrop = new PropertyValue<bool>(allowDropFunc);
+            return uielement;
+        }
         public static T CacheMode<T>(this T uielement, CacheMode cacheMode) where T : IRxUIElement
         {
             uielement.CacheMode = new PropertyValue<CacheMode>(cacheMode);
+            return uielement;
+        }
+        public static T CacheMode<T>(this T uielement, Func<CacheMode> cacheModeFunc) where T : IRxUIElement
+        {
+            uielement.CacheMode = new PropertyValue<CacheMode>(cacheModeFunc);
             return uielement;
         }
         public static T Clip<T>(this T uielement, Geometry clip) where T : IRxUIElement
@@ -1395,9 +1406,19 @@ namespace WpfReactorUI
             uielement.Clip = new PropertyValue<Geometry>(clip);
             return uielement;
         }
+        public static T Clip<T>(this T uielement, Func<Geometry> clipFunc) where T : IRxUIElement
+        {
+            uielement.Clip = new PropertyValue<Geometry>(clipFunc);
+            return uielement;
+        }
         public static T ClipToBounds<T>(this T uielement, bool clipToBounds) where T : IRxUIElement
         {
             uielement.ClipToBounds = new PropertyValue<bool>(clipToBounds);
+            return uielement;
+        }
+        public static T ClipToBounds<T>(this T uielement, Func<bool> clipToBoundsFunc) where T : IRxUIElement
+        {
+            uielement.ClipToBounds = new PropertyValue<bool>(clipToBoundsFunc);
             return uielement;
         }
         public static T Effect<T>(this T uielement, Effect effect) where T : IRxUIElement
@@ -1405,9 +1426,19 @@ namespace WpfReactorUI
             uielement.Effect = new PropertyValue<Effect>(effect);
             return uielement;
         }
+        public static T Effect<T>(this T uielement, Func<Effect> effectFunc) where T : IRxUIElement
+        {
+            uielement.Effect = new PropertyValue<Effect>(effectFunc);
+            return uielement;
+        }
         public static T Focusable<T>(this T uielement, bool focusable) where T : IRxUIElement
         {
             uielement.Focusable = new PropertyValue<bool>(focusable);
+            return uielement;
+        }
+        public static T Focusable<T>(this T uielement, Func<bool> focusableFunc) where T : IRxUIElement
+        {
+            uielement.Focusable = new PropertyValue<bool>(focusableFunc);
             return uielement;
         }
         public static T IsEnabled<T>(this T uielement, bool isEnabled) where T : IRxUIElement
@@ -1415,9 +1446,19 @@ namespace WpfReactorUI
             uielement.IsEnabled = new PropertyValue<bool>(isEnabled);
             return uielement;
         }
+        public static T IsEnabled<T>(this T uielement, Func<bool> isEnabledFunc) where T : IRxUIElement
+        {
+            uielement.IsEnabled = new PropertyValue<bool>(isEnabledFunc);
+            return uielement;
+        }
         public static T IsHitTestVisible<T>(this T uielement, bool isHitTestVisible) where T : IRxUIElement
         {
             uielement.IsHitTestVisible = new PropertyValue<bool>(isHitTestVisible);
+            return uielement;
+        }
+        public static T IsHitTestVisible<T>(this T uielement, Func<bool> isHitTestVisibleFunc) where T : IRxUIElement
+        {
+            uielement.IsHitTestVisible = new PropertyValue<bool>(isHitTestVisibleFunc);
             return uielement;
         }
         public static T IsManipulationEnabled<T>(this T uielement, bool isManipulationEnabled) where T : IRxUIElement
@@ -1425,9 +1466,19 @@ namespace WpfReactorUI
             uielement.IsManipulationEnabled = new PropertyValue<bool>(isManipulationEnabled);
             return uielement;
         }
+        public static T IsManipulationEnabled<T>(this T uielement, Func<bool> isManipulationEnabledFunc) where T : IRxUIElement
+        {
+            uielement.IsManipulationEnabled = new PropertyValue<bool>(isManipulationEnabledFunc);
+            return uielement;
+        }
         public static T Opacity<T>(this T uielement, double opacity) where T : IRxUIElement
         {
             uielement.Opacity = new PropertyValue<double>(opacity);
+            return uielement;
+        }
+        public static T Opacity<T>(this T uielement, Func<double> opacityFunc) where T : IRxUIElement
+        {
+            uielement.Opacity = new PropertyValue<double>(opacityFunc);
             return uielement;
         }
         public static T OpacityMask<T>(this T uielement, Brush opacityMask) where T : IRxUIElement
@@ -1435,9 +1486,19 @@ namespace WpfReactorUI
             uielement.OpacityMask = new PropertyValue<Brush>(opacityMask);
             return uielement;
         }
+        public static T OpacityMask<T>(this T uielement, Func<Brush> opacityMaskFunc) where T : IRxUIElement
+        {
+            uielement.OpacityMask = new PropertyValue<Brush>(opacityMaskFunc);
+            return uielement;
+        }
         public static T RenderTransform<T>(this T uielement, Transform renderTransform) where T : IRxUIElement
         {
             uielement.RenderTransform = new PropertyValue<Transform>(renderTransform);
+            return uielement;
+        }
+        public static T RenderTransform<T>(this T uielement, Func<Transform> renderTransformFunc) where T : IRxUIElement
+        {
+            uielement.RenderTransform = new PropertyValue<Transform>(renderTransformFunc);
             return uielement;
         }
         public static T RenderTransformOrigin<T>(this T uielement, Point renderTransformOrigin) where T : IRxUIElement
@@ -1445,9 +1506,19 @@ namespace WpfReactorUI
             uielement.RenderTransformOrigin = new PropertyValue<Point>(renderTransformOrigin);
             return uielement;
         }
+        public static T RenderTransformOrigin<T>(this T uielement, Func<Point> renderTransformOriginFunc) where T : IRxUIElement
+        {
+            uielement.RenderTransformOrigin = new PropertyValue<Point>(renderTransformOriginFunc);
+            return uielement;
+        }
         public static T SnapsToDevicePixels<T>(this T uielement, bool snapsToDevicePixels) where T : IRxUIElement
         {
             uielement.SnapsToDevicePixels = new PropertyValue<bool>(snapsToDevicePixels);
+            return uielement;
+        }
+        public static T SnapsToDevicePixels<T>(this T uielement, Func<bool> snapsToDevicePixelsFunc) where T : IRxUIElement
+        {
+            uielement.SnapsToDevicePixels = new PropertyValue<bool>(snapsToDevicePixelsFunc);
             return uielement;
         }
         public static T Uid<T>(this T uielement, string uid) where T : IRxUIElement
@@ -1455,9 +1526,19 @@ namespace WpfReactorUI
             uielement.Uid = new PropertyValue<string>(uid);
             return uielement;
         }
+        public static T Uid<T>(this T uielement, Func<string> uidFunc) where T : IRxUIElement
+        {
+            uielement.Uid = new PropertyValue<string>(uidFunc);
+            return uielement;
+        }
         public static T Visibility<T>(this T uielement, Visibility visibility) where T : IRxUIElement
         {
             uielement.Visibility = new PropertyValue<Visibility>(visibility);
+            return uielement;
+        }
+        public static T Visibility<T>(this T uielement, Func<Visibility> visibilityFunc) where T : IRxUIElement
+        {
+            uielement.Visibility = new PropertyValue<Visibility>(visibilityFunc);
             return uielement;
         }
         public static T OnDragEnter<T>(this T uielement, Action dragenterAction) where T : IRxUIElement

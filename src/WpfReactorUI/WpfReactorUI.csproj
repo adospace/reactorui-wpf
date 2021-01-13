@@ -17,10 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Internals\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Mapster" Version="6.5.1" />
   </ItemGroup>
 

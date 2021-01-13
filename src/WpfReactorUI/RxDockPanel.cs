@@ -21,34 +21,34 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxStackPanel : IRxPanel
+    public partial interface IRxDockPanel : IRxPanel
     {
-        PropertyValue<Orientation> Orientation { get; set; }
+        PropertyValue<bool> LastChildFill { get; set; }
 
     }
 
-    public partial class RxStackPanel<T> : RxPanel<T>, IRxStackPanel where T : StackPanel, new()
+    public partial class RxDockPanel<T> : RxPanel<T>, IRxDockPanel where T : DockPanel, new()
     {
-        public RxStackPanel()
+        public RxDockPanel()
         {
 
         }
 
-        public RxStackPanel(Action<T> componentRefAction)
+        public RxDockPanel(Action<T> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Orientation> IRxStackPanel.Orientation { get; set; }
+        PropertyValue<bool> IRxDockPanel.LastChildFill { get; set; }
 
 
         protected override void OnUpdate()
         {
             OnBeginUpdate();
 
-            var thisAsIRxStackPanel = (IRxStackPanel)this;
-            SetPropertyValue(NativeControl, StackPanel.OrientationProperty, thisAsIRxStackPanel.Orientation);
+            var thisAsIRxDockPanel = (IRxDockPanel)this;
+            SetPropertyValue(NativeControl, DockPanel.LastChildFillProperty, thisAsIRxDockPanel.LastChildFill);
 
             base.OnUpdate();
 
@@ -60,7 +60,7 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxStackPanel = (IRxStackPanel)this;
+            var thisAsIRxDockPanel = (IRxDockPanel)this;
 
             base.OnAttachNativeEvents();
         }
@@ -76,30 +76,30 @@ namespace WpfReactorUI
         }
 
     }
-    public partial class RxStackPanel : RxStackPanel<StackPanel>
+    public partial class RxDockPanel : RxDockPanel<DockPanel>
     {
-        public RxStackPanel()
+        public RxDockPanel()
         {
 
         }
 
-        public RxStackPanel(Action<StackPanel> componentRefAction)
+        public RxDockPanel(Action<DockPanel> componentRefAction)
             : base(componentRefAction)
         {
 
         }
     }
-    public static partial class RxStackPanelExtensions
+    public static partial class RxDockPanelExtensions
     {
-        public static T Orientation<T>(this T stackpanel, Orientation orientation) where T : IRxStackPanel
+        public static T LastChildFill<T>(this T dockpanel, bool lastChildFill) where T : IRxDockPanel
         {
-            stackpanel.Orientation = new PropertyValue<Orientation>(orientation);
-            return stackpanel;
+            dockpanel.LastChildFill = new PropertyValue<bool>(lastChildFill);
+            return dockpanel;
         }
-        public static T Orientation<T>(this T stackpanel, Func<Orientation> orientationFunc) where T : IRxStackPanel
+        public static T LastChildFill<T>(this T dockpanel, Func<bool> lastChildFillFunc) where T : IRxDockPanel
         {
-            stackpanel.Orientation = new PropertyValue<Orientation>(orientationFunc);
-            return stackpanel;
+            dockpanel.LastChildFill = new PropertyValue<bool>(lastChildFillFunc);
+            return dockpanel;
         }
     }
 }

@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxWindow : IRxContentControl
@@ -75,19 +76,19 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxWindow = (IRxWindow)this;
-            NativeControl.Set(this, Window.AllowsTransparencyProperty, thisAsIRxWindow.AllowsTransparency);
-            NativeControl.Set(this, Window.IconProperty, thisAsIRxWindow.Icon);
-            NativeControl.Set(this, Window.LeftProperty, thisAsIRxWindow.Left);
-            NativeControl.Set(this, Window.ResizeModeProperty, thisAsIRxWindow.ResizeMode);
-            NativeControl.Set(this, Window.ShowActivatedProperty, thisAsIRxWindow.ShowActivated);
-            NativeControl.Set(this, Window.ShowInTaskbarProperty, thisAsIRxWindow.ShowInTaskbar);
-            NativeControl.Set(this, Window.SizeToContentProperty, thisAsIRxWindow.SizeToContent);
-            NativeControl.Set(this, Window.TaskbarItemInfoProperty, thisAsIRxWindow.TaskbarItemInfo);
-            NativeControl.Set(this, Window.TitleProperty, thisAsIRxWindow.Title);
-            NativeControl.Set(this, Window.TopProperty, thisAsIRxWindow.Top);
-            NativeControl.Set(this, Window.TopmostProperty, thisAsIRxWindow.Topmost);
-            NativeControl.Set(this, Window.WindowStateProperty, thisAsIRxWindow.WindowState);
-            NativeControl.Set(this, Window.WindowStyleProperty, thisAsIRxWindow.WindowStyle);
+            SetPropertyValue(NativeControl, Window.AllowsTransparencyProperty, thisAsIRxWindow.AllowsTransparency);
+            SetPropertyValue(NativeControl, Window.IconProperty, thisAsIRxWindow.Icon);
+            SetPropertyValue(NativeControl, Window.LeftProperty, thisAsIRxWindow.Left);
+            SetPropertyValue(NativeControl, Window.ResizeModeProperty, thisAsIRxWindow.ResizeMode);
+            SetPropertyValue(NativeControl, Window.ShowActivatedProperty, thisAsIRxWindow.ShowActivated);
+            SetPropertyValue(NativeControl, Window.ShowInTaskbarProperty, thisAsIRxWindow.ShowInTaskbar);
+            SetPropertyValue(NativeControl, Window.SizeToContentProperty, thisAsIRxWindow.SizeToContent);
+            SetPropertyValue(NativeControl, Window.TaskbarItemInfoProperty, thisAsIRxWindow.TaskbarItemInfo);
+            SetPropertyValue(NativeControl, Window.TitleProperty, thisAsIRxWindow.Title);
+            SetPropertyValue(NativeControl, Window.TopProperty, thisAsIRxWindow.Top);
+            SetPropertyValue(NativeControl, Window.TopmostProperty, thisAsIRxWindow.Topmost);
+            SetPropertyValue(NativeControl, Window.WindowStateProperty, thisAsIRxWindow.WindowState);
+            SetPropertyValue(NativeControl, Window.WindowStyleProperty, thisAsIRxWindow.WindowStyle);
 
             base.OnUpdate();
 
@@ -146,9 +147,19 @@ namespace WpfReactorUI
             window.AllowsTransparency = new PropertyValue<bool>(allowsTransparency);
             return window;
         }
+        public static T AllowsTransparency<T>(this T window, Func<bool> allowsTransparencyFunc) where T : IRxWindow
+        {
+            window.AllowsTransparency = new PropertyValue<bool>(allowsTransparencyFunc);
+            return window;
+        }
         public static T Icon<T>(this T window, ImageSource icon) where T : IRxWindow
         {
             window.Icon = new PropertyValue<ImageSource>(icon);
+            return window;
+        }
+        public static T Icon<T>(this T window, Func<ImageSource> iconFunc) where T : IRxWindow
+        {
+            window.Icon = new PropertyValue<ImageSource>(iconFunc);
             return window;
         }
 
@@ -191,9 +202,19 @@ namespace WpfReactorUI
             window.Left = new PropertyValue<double>(left);
             return window;
         }
+        public static T Left<T>(this T window, Func<double> leftFunc) where T : IRxWindow
+        {
+            window.Left = new PropertyValue<double>(leftFunc);
+            return window;
+        }
         public static T ResizeMode<T>(this T window, ResizeMode resizeMode) where T : IRxWindow
         {
             window.ResizeMode = new PropertyValue<ResizeMode>(resizeMode);
+            return window;
+        }
+        public static T ResizeMode<T>(this T window, Func<ResizeMode> resizeModeFunc) where T : IRxWindow
+        {
+            window.ResizeMode = new PropertyValue<ResizeMode>(resizeModeFunc);
             return window;
         }
         public static T ShowActivated<T>(this T window, bool showActivated) where T : IRxWindow
@@ -201,9 +222,19 @@ namespace WpfReactorUI
             window.ShowActivated = new PropertyValue<bool>(showActivated);
             return window;
         }
+        public static T ShowActivated<T>(this T window, Func<bool> showActivatedFunc) where T : IRxWindow
+        {
+            window.ShowActivated = new PropertyValue<bool>(showActivatedFunc);
+            return window;
+        }
         public static T ShowInTaskbar<T>(this T window, bool showInTaskbar) where T : IRxWindow
         {
             window.ShowInTaskbar = new PropertyValue<bool>(showInTaskbar);
+            return window;
+        }
+        public static T ShowInTaskbar<T>(this T window, Func<bool> showInTaskbarFunc) where T : IRxWindow
+        {
+            window.ShowInTaskbar = new PropertyValue<bool>(showInTaskbarFunc);
             return window;
         }
         public static T SizeToContent<T>(this T window, SizeToContent sizeToContent) where T : IRxWindow
@@ -211,9 +242,19 @@ namespace WpfReactorUI
             window.SizeToContent = new PropertyValue<SizeToContent>(sizeToContent);
             return window;
         }
+        public static T SizeToContent<T>(this T window, Func<SizeToContent> sizeToContentFunc) where T : IRxWindow
+        {
+            window.SizeToContent = new PropertyValue<SizeToContent>(sizeToContentFunc);
+            return window;
+        }
         public static T TaskbarItemInfo<T>(this T window, TaskbarItemInfo taskbarItemInfo) where T : IRxWindow
         {
             window.TaskbarItemInfo = new PropertyValue<TaskbarItemInfo>(taskbarItemInfo);
+            return window;
+        }
+        public static T TaskbarItemInfo<T>(this T window, Func<TaskbarItemInfo> taskbarItemInfoFunc) where T : IRxWindow
+        {
+            window.TaskbarItemInfo = new PropertyValue<TaskbarItemInfo>(taskbarItemInfoFunc);
             return window;
         }
         public static T Title<T>(this T window, string title) where T : IRxWindow
@@ -221,9 +262,19 @@ namespace WpfReactorUI
             window.Title = new PropertyValue<string>(title);
             return window;
         }
+        public static T Title<T>(this T window, Func<string> titleFunc) where T : IRxWindow
+        {
+            window.Title = new PropertyValue<string>(titleFunc);
+            return window;
+        }
         public static T Top<T>(this T window, double top) where T : IRxWindow
         {
             window.Top = new PropertyValue<double>(top);
+            return window;
+        }
+        public static T Top<T>(this T window, Func<double> topFunc) where T : IRxWindow
+        {
+            window.Top = new PropertyValue<double>(topFunc);
             return window;
         }
         public static T Topmost<T>(this T window, bool topmost) where T : IRxWindow
@@ -231,14 +282,29 @@ namespace WpfReactorUI
             window.Topmost = new PropertyValue<bool>(topmost);
             return window;
         }
+        public static T Topmost<T>(this T window, Func<bool> topmostFunc) where T : IRxWindow
+        {
+            window.Topmost = new PropertyValue<bool>(topmostFunc);
+            return window;
+        }
         public static T WindowState<T>(this T window, WindowState windowState) where T : IRxWindow
         {
             window.WindowState = new PropertyValue<WindowState>(windowState);
             return window;
         }
+        public static T WindowState<T>(this T window, Func<WindowState> windowStateFunc) where T : IRxWindow
+        {
+            window.WindowState = new PropertyValue<WindowState>(windowStateFunc);
+            return window;
+        }
         public static T WindowStyle<T>(this T window, WindowStyle windowStyle) where T : IRxWindow
         {
             window.WindowStyle = new PropertyValue<WindowStyle>(windowStyle);
+            return window;
+        }
+        public static T WindowStyle<T>(this T window, Func<WindowStyle> windowStyleFunc) where T : IRxWindow
+        {
+            window.WindowStyle = new PropertyValue<WindowStyle>(windowStyleFunc);
             return window;
         }
         public static T OnDpiChanged<T>(this T window, Action dpichangedAction) where T : IRxWindow

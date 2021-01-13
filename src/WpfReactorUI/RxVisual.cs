@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxVisual : IVisualNode
@@ -44,7 +45,6 @@ namespace WpfReactorUI
         {
             OnBeginUpdate();
 
-            var thisAsIRxVisual = (IRxVisual)this;
 
             base.OnUpdate();
 

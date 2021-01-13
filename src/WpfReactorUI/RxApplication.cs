@@ -96,7 +96,7 @@ namespace WpfReactorUI
             };
         }
 
-        protected sealed override void OnAddChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
         {
             if (nativeControl is Window window)
             {
@@ -109,7 +109,7 @@ namespace WpfReactorUI
             }
         }
 
-        protected sealed override void OnRemoveChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnRemoveChild(VisualNode widget, object nativeControl)
         {
             _application.MainWindow?.Close();
         }

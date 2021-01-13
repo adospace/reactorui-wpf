@@ -14,11 +14,15 @@ namespace WpfReactorUI
         RxContext Context { get; }
     }
 
-    public abstract class RxComponent : VisualNode, IEnumerable<VisualNode>
+    public abstract class RxComponent : VisualNodeWithAttachedProperties, IEnumerable<VisualNode>
     {
+        private readonly List<VisualNode> _children = new();
+        private readonly Dictionary<DependencyProperty, object> _attachedProperties = new();
+
         public abstract VisualNode Render();
 
-        private readonly List<VisualNode> _children = new List<VisualNode>();
+        public override void SetAttachedProperty(DependencyProperty property, object value)
+            => _attachedProperties[property] = value;
 
         public IEnumerator<VisualNode> GetEnumerator()
         {
@@ -60,24 +64,30 @@ namespace WpfReactorUI
             }
         }
 
-        protected sealed override void OnAddChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
         {
-            foreach (var attachedProperty in _attachedProperties)
+            if (nativeControl is DependencyObject childAsDependencyObject)
             {
-                nativeControl.SetValue(attachedProperty.Key, attachedProperty.Value);
+                foreach (var attachedProperty in _attachedProperties)
+                {
+                    childAsDependencyObject.SetValue(attachedProperty.Key, attachedProperty.Value);
+                }
             }
 
             Parent.AddChild(this, nativeControl);
         }
 
-        protected sealed override void OnRemoveChild(VisualNode widget, DependencyObject nativeControl)
+        protected sealed override void OnRemoveChild(VisualNode widget, object nativeControl)
         {
             Parent.RemoveChild(this, nativeControl);
-            
-            foreach (var attachedProperty in _attachedProperties)
+
+            if (nativeControl is DependencyObject childAsDependencyObject)
             {
-                nativeControl.ClearValue(attachedProperty.Key);
-            }           
+                foreach (var attachedProperty in _attachedProperties)
+                {
+                    childAsDependencyObject.ClearValue(attachedProperty.Key);
+                }
+            }
         }
 
         protected sealed override IEnumerable<VisualNode> RenderChildren()
@@ -164,7 +174,11 @@ namespace WpfReactorUI
 
         PropertyInfo[] StateProperties { get; }
 
-        void ForwardState(object stateFromOldComponent);
+        void ForwardState(object stateFromOldComponent, bool invalidateComponent);
+
+        IRxComponentWithState NewComponent { get; }
+
+        void RegisterOnStateChanged(Action action);
     }
 
     internal interface IRxComponentWithProps
@@ -197,7 +211,8 @@ namespace WpfReactorUI
     public abstract class RxComponent<S, P> : RxComponentWithProps<P>, IRxComponentWithState where S : class, IState, new() where P : class, IProps, new()
     {
         private IRxComponentWithState _newComponent;
-        
+        private List<Action> _actionsRegisterdOnStateChange = new();
+
         protected RxComponent(S state = null, P props = null)
             : base(props)
         {
@@ -210,17 +225,24 @@ namespace WpfReactorUI
 
         object IRxComponentWithState.State => State;
 
-        void IRxComponentWithState.ForwardState(object stateFromOldComponent)
-        {
-            stateFromOldComponent.CopyPropertiesTo(State, StateProperties);
+        IRxComponentWithState IRxComponentWithState.NewComponent => _newComponent;
 
-            if (!Dispatcher.CurrentDispatcher.CheckAccess())
-                Dispatcher.CurrentDispatcher.BeginInvoke(Invalidate);
-            else
-                Invalidate();
+        private bool TryForwardStateToNewComponent(bool invalidateComponent)
+        {
+            var newComponent = _newComponent;
+            while (newComponent != null && newComponent.NewComponent != null)
+                newComponent = newComponent.NewComponent;
+
+            if (newComponent != null)
+            {
+                newComponent.ForwardState(State, invalidateComponent);
+                return true;
+            }
+
+            return false;
         }
 
-        protected virtual void SetState(Action<S> action)
+        protected virtual void SetState(Action<S> action, bool invalidateComponent = false)
         {
             if (action is null)
             {
@@ -229,16 +251,40 @@ namespace WpfReactorUI
 
             action(State);
 
-            if (_newComponent != null)
-            {
-                _newComponent.ForwardState(State);
+            if (TryForwardStateToNewComponent(invalidateComponent))
                 return;
-            }
+
+            _actionsRegisterdOnStateChange.ForEach(_ => _());
 
             if (!Dispatcher.CurrentDispatcher.CheckAccess())
                 Dispatcher.CurrentDispatcher.BeginInvoke(Invalidate);
             else
                 Invalidate();
+        }
+
+        void IRxComponentWithState.RegisterOnStateChanged(Action action)
+        {
+            if (action is null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            _actionsRegisterdOnStateChange.Add(action);
+        }
+
+        void IRxComponentWithState.ForwardState(object stateFromOldComponent, bool invalidateComponent)
+        {
+            stateFromOldComponent.CopyPropertiesTo(State, StateProperties);
+
+            _actionsRegisterdOnStateChange.ForEach(_ => _());
+
+            if (invalidateComponent)
+            {
+                if (!Dispatcher.CurrentDispatcher.CheckAccess())
+                    Dispatcher.CurrentDispatcher.BeginInvoke(Invalidate);
+                else
+                    Invalidate();
+            }
         }
 
         internal override void MergeWith(VisualNode newNode)

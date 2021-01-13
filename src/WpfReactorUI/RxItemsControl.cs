@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxItemsControl : IRxControl
@@ -59,13 +60,13 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxItemsControl = (IRxItemsControl)this;
-            NativeControl.Set(this, ItemsControl.AlternationCountProperty, thisAsIRxItemsControl.AlternationCount);
-            NativeControl.Set(this, ItemsControl.DisplayMemberPathProperty, thisAsIRxItemsControl.DisplayMemberPath);
-            NativeControl.Set(this, ItemsControl.IsTextSearchCaseSensitiveProperty, thisAsIRxItemsControl.IsTextSearchCaseSensitive);
-            NativeControl.Set(this, ItemsControl.IsTextSearchEnabledProperty, thisAsIRxItemsControl.IsTextSearchEnabled);
-            NativeControl.Set(this, ItemsControl.ItemContainerStyleProperty, thisAsIRxItemsControl.ItemContainerStyle);
-            NativeControl.Set(this, ItemsControl.ItemsSourceProperty, thisAsIRxItemsControl.ItemsSource);
-            NativeControl.Set(this, ItemsControl.ItemStringFormatProperty, thisAsIRxItemsControl.ItemStringFormat);
+            SetPropertyValue(NativeControl, ItemsControl.AlternationCountProperty, thisAsIRxItemsControl.AlternationCount);
+            SetPropertyValue(NativeControl, ItemsControl.DisplayMemberPathProperty, thisAsIRxItemsControl.DisplayMemberPath);
+            SetPropertyValue(NativeControl, ItemsControl.IsTextSearchCaseSensitiveProperty, thisAsIRxItemsControl.IsTextSearchCaseSensitive);
+            SetPropertyValue(NativeControl, ItemsControl.IsTextSearchEnabledProperty, thisAsIRxItemsControl.IsTextSearchEnabled);
+            SetPropertyValue(NativeControl, ItemsControl.ItemContainerStyleProperty, thisAsIRxItemsControl.ItemContainerStyle);
+            SetPropertyValue(NativeControl, ItemsControl.ItemsSourceProperty, thisAsIRxItemsControl.ItemsSource);
+            SetPropertyValue(NativeControl, ItemsControl.ItemStringFormatProperty, thisAsIRxItemsControl.ItemStringFormat);
 
             base.OnUpdate();
 
@@ -113,9 +114,19 @@ namespace WpfReactorUI
             itemscontrol.AlternationCount = new PropertyValue<int>(alternationCount);
             return itemscontrol;
         }
+        public static T AlternationCount<T>(this T itemscontrol, Func<int> alternationCountFunc) where T : IRxItemsControl
+        {
+            itemscontrol.AlternationCount = new PropertyValue<int>(alternationCountFunc);
+            return itemscontrol;
+        }
         public static T DisplayMemberPath<T>(this T itemscontrol, string displayMemberPath) where T : IRxItemsControl
         {
             itemscontrol.DisplayMemberPath = new PropertyValue<string>(displayMemberPath);
+            return itemscontrol;
+        }
+        public static T DisplayMemberPath<T>(this T itemscontrol, Func<string> displayMemberPathFunc) where T : IRxItemsControl
+        {
+            itemscontrol.DisplayMemberPath = new PropertyValue<string>(displayMemberPathFunc);
             return itemscontrol;
         }
         public static T IsTextSearchCaseSensitive<T>(this T itemscontrol, bool isTextSearchCaseSensitive) where T : IRxItemsControl
@@ -123,9 +134,19 @@ namespace WpfReactorUI
             itemscontrol.IsTextSearchCaseSensitive = new PropertyValue<bool>(isTextSearchCaseSensitive);
             return itemscontrol;
         }
+        public static T IsTextSearchCaseSensitive<T>(this T itemscontrol, Func<bool> isTextSearchCaseSensitiveFunc) where T : IRxItemsControl
+        {
+            itemscontrol.IsTextSearchCaseSensitive = new PropertyValue<bool>(isTextSearchCaseSensitiveFunc);
+            return itemscontrol;
+        }
         public static T IsTextSearchEnabled<T>(this T itemscontrol, bool isTextSearchEnabled) where T : IRxItemsControl
         {
             itemscontrol.IsTextSearchEnabled = new PropertyValue<bool>(isTextSearchEnabled);
+            return itemscontrol;
+        }
+        public static T IsTextSearchEnabled<T>(this T itemscontrol, Func<bool> isTextSearchEnabledFunc) where T : IRxItemsControl
+        {
+            itemscontrol.IsTextSearchEnabled = new PropertyValue<bool>(isTextSearchEnabledFunc);
             return itemscontrol;
         }
         public static T ItemContainerStyle<T>(this T itemscontrol, Style itemContainerStyle) where T : IRxItemsControl
@@ -133,14 +154,29 @@ namespace WpfReactorUI
             itemscontrol.ItemContainerStyle = new PropertyValue<Style>(itemContainerStyle);
             return itemscontrol;
         }
+        public static T ItemContainerStyle<T>(this T itemscontrol, Func<Style> itemContainerStyleFunc) where T : IRxItemsControl
+        {
+            itemscontrol.ItemContainerStyle = new PropertyValue<Style>(itemContainerStyleFunc);
+            return itemscontrol;
+        }
         public static T ItemsSource<T>(this T itemscontrol, IEnumerable itemsSource) where T : IRxItemsControl
         {
             itemscontrol.ItemsSource = new PropertyValue<IEnumerable>(itemsSource);
             return itemscontrol;
         }
+        public static T ItemsSource<T>(this T itemscontrol, Func<IEnumerable> itemsSourceFunc) where T : IRxItemsControl
+        {
+            itemscontrol.ItemsSource = new PropertyValue<IEnumerable>(itemsSourceFunc);
+            return itemscontrol;
+        }
         public static T ItemStringFormat<T>(this T itemscontrol, string itemStringFormat) where T : IRxItemsControl
         {
             itemscontrol.ItemStringFormat = new PropertyValue<string>(itemStringFormat);
+            return itemscontrol;
+        }
+        public static T ItemStringFormat<T>(this T itemscontrol, Func<string> itemStringFormatFunc) where T : IRxItemsControl
+        {
+            itemscontrol.ItemStringFormat = new PropertyValue<string>(itemStringFormatFunc);
             return itemscontrol;
         }
     }

@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxButtonBase : IRxContentControl
@@ -57,10 +58,10 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxButtonBase = (IRxButtonBase)this;
-            NativeControl.Set(this, ButtonBase.ClickModeProperty, thisAsIRxButtonBase.ClickMode);
-            NativeControl.Set(this, ButtonBase.CommandProperty, thisAsIRxButtonBase.Command);
-            NativeControl.Set(this, ButtonBase.CommandParameterProperty, thisAsIRxButtonBase.CommandParameter);
-            NativeControl.Set(this, ButtonBase.CommandTargetProperty, thisAsIRxButtonBase.CommandTarget);
+            SetPropertyValue(NativeControl, ButtonBase.ClickModeProperty, thisAsIRxButtonBase.ClickMode);
+            SetPropertyValue(NativeControl, ButtonBase.CommandProperty, thisAsIRxButtonBase.Command);
+            SetPropertyValue(NativeControl, ButtonBase.CommandParameterProperty, thisAsIRxButtonBase.CommandParameter);
+            SetPropertyValue(NativeControl, ButtonBase.CommandTargetProperty, thisAsIRxButtonBase.CommandTarget);
 
             base.OnUpdate();
 
@@ -106,9 +107,19 @@ namespace WpfReactorUI
             buttonbase.ClickMode = new PropertyValue<ClickMode>(clickMode);
             return buttonbase;
         }
+        public static T ClickMode<T>(this T buttonbase, Func<ClickMode> clickModeFunc) where T : IRxButtonBase
+        {
+            buttonbase.ClickMode = new PropertyValue<ClickMode>(clickModeFunc);
+            return buttonbase;
+        }
         public static T Command<T>(this T buttonbase, ICommand command) where T : IRxButtonBase
         {
             buttonbase.Command = new PropertyValue<ICommand>(command);
+            return buttonbase;
+        }
+        public static T Command<T>(this T buttonbase, Func<ICommand> commandFunc) where T : IRxButtonBase
+        {
+            buttonbase.Command = new PropertyValue<ICommand>(commandFunc);
             return buttonbase;
         }
         public static T CommandParameter<T>(this T buttonbase, object commandParameter) where T : IRxButtonBase
@@ -116,9 +127,19 @@ namespace WpfReactorUI
             buttonbase.CommandParameter = new PropertyValue<object>(commandParameter);
             return buttonbase;
         }
+        public static T CommandParameter<T>(this T buttonbase, Func<object> commandParameterFunc) where T : IRxButtonBase
+        {
+            buttonbase.CommandParameter = new PropertyValue<object>(commandParameterFunc);
+            return buttonbase;
+        }
         public static T CommandTarget<T>(this T buttonbase, IInputElement commandTarget) where T : IRxButtonBase
         {
             buttonbase.CommandTarget = new PropertyValue<IInputElement>(commandTarget);
+            return buttonbase;
+        }
+        public static T CommandTarget<T>(this T buttonbase, Func<IInputElement> commandTargetFunc) where T : IRxButtonBase
+        {
+            buttonbase.CommandTarget = new PropertyValue<IInputElement>(commandTargetFunc);
             return buttonbase;
         }
         public static T OnClick<T>(this T buttonbase, Action clickAction) where T : IRxButtonBase

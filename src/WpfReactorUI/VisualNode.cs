@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using WpfReactorUI.Animations;
+using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
@@ -100,10 +101,6 @@ namespace WpfReactorUI
         public object Key { get; set; }
         //public Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
         //public Action<object, System.ComponentModel.PropertyChangingEventArgs> PropertyChangingAction { get; set; }
-        protected readonly Dictionary<DependencyProperty, object> _attachedProperties = new Dictionary<DependencyProperty, object>();
-  
-        public void SetAttachedProperty(DependencyProperty property, object value)
-            => _attachedProperties[property] = value;
 
         //internal event EventHandler LayoutCycleRequest;
         internal IReadOnlyList<VisualNode> Children
@@ -180,7 +177,7 @@ namespace WpfReactorUI
             _metadata[typeof(T).FullName] = value;
         }
 
-        internal void AddChild(VisualNode widget, DependencyObject childNativeControl)
+        internal void AddChild(VisualNode widget, object childNativeControl)
         {
             OnAddChild(widget, childNativeControl);
         }
@@ -229,11 +226,8 @@ namespace WpfReactorUI
             };
         }
 
-        internal virtual void Layout(VisualNode parent = null)
+        internal virtual void Layout(IRxComponentWithState containerComponent = null)
         {
-            if (parent != null)
-                Parent = parent;
-
             if (!IsLayoutCycleRequired)
                 return;
 
@@ -300,7 +294,7 @@ namespace WpfReactorUI
             Parent = null;
         }
 
-        internal void RemoveChild(VisualNode widget, DependencyObject childNativeControl)
+        internal void RemoveChild(VisualNode widget, object childNativeControl)
         {
             OnRemoveChild(widget, childNativeControl);
         }
@@ -341,7 +335,7 @@ namespace WpfReactorUI
             //System.Diagnostics.Debug.WriteLine($"{this}->Invalidated()");
         }
 
-        protected virtual void OnAddChild(VisualNode widget, DependencyObject childNativeControl)
+        protected virtual void OnAddChild(VisualNode widget, object childNativeControl)
         {
         }
 
@@ -376,7 +370,7 @@ namespace WpfReactorUI
             _isMounted = true;
         }
 
-        protected virtual void OnRemoveChild(VisualNode widget, DependencyObject childNativeControl)
+        protected virtual void OnRemoveChild(VisualNode widget, object childNativeControl)
         {
         }
 
@@ -440,6 +434,11 @@ namespace WpfReactorUI
         }
     }
 
+    public abstract class VisualNodeWithAttachedProperties : VisualNode
+    {
+        public abstract void SetAttachedProperty(DependencyProperty property, object value);
+    }
+
     internal interface IVisualNodeWithNativeControl
     {
         TResult GetNativeControl<TResult>() where TResult : DependencyObject;
@@ -454,11 +453,21 @@ namespace WpfReactorUI
     //     void SetAttachedProperty(DependencyProperty property, object value);
     // }
 
-    public abstract class VisualNode<T> : VisualNode, IVisualNodeWithNativeControl where T : DependencyObject, new()
+    public abstract class VisualNode<T> : VisualNodeWithAttachedProperties, IVisualNodeWithNativeControl where T : DependencyObject, new()
     {
         protected DependencyObject _nativeControl;
 
+        private IRxComponentWithState _containerComponent;
+
         private Dictionary<DependencyProperty, object> _defaultPropertyValueBag = new Dictionary<DependencyProperty, object>();
+
+        private readonly Dictionary<DependencyProperty, object> _attachedProperties = new();
+
+        internal override void Layout(IRxComponentWithState containerComponent = null)
+        {
+            _containerComponent = containerComponent;
+            base.Layout(containerComponent);
+        }
 
         public bool SetDefaultPropertyValue(DependencyProperty dependencyProperty, object value)
         {
@@ -562,28 +571,36 @@ namespace WpfReactorUI
                 NativeControl.SetValue(attachedProperty.Key, attachedProperty.Value);
             }
 
-            //if (PropertyChangedAction != null)
-            //    NativeControl.PropertyChanged += NativeControl_PropertyChanged;
-            //if (PropertyChangingAction != null)
-            //    NativeControl.PropertyChanging += NativeControl_PropertyChanging;
-
             base.OnUpdate();
         }
-
-        //private void NativeControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    PropertyChangedAction?.Invoke(sender, e);
-        //}
-
-        //private void NativeControl_PropertyChanging(object sender, Xamarin.Forms.PropertyChangingEventArgs e)
-        //{
-        //    PropertyChangingAction?.Invoke(sender, new System.ComponentModel.PropertyChangingEventArgs(e.PropertyName));
-        //}
 
         TResult IVisualNodeWithNativeControl.GetNativeControl<TResult>()
         {
             return (_nativeControl as TResult) ??
                 throw new InvalidOperationException($"Unable to convert from type {typeof(T)} to type {typeof(TResult)} when getting the native control");
+        }
+
+        public override void SetAttachedProperty(DependencyProperty property, object value)
+            => _attachedProperties[property] = value;
+
+        protected void SetPropertyValue(DependencyObject dependencyObject, DependencyProperty property, IPropertyValue propertyValue)
+        {
+            if (propertyValue != null)
+            {
+                SetDefaultPropertyValue(property, dependencyObject.GetValue(property));
+                dependencyObject.SetValue(property, propertyValue.GetValue());
+                if (_containerComponent != null && propertyValue.HasValueFunction)
+                {
+                    _containerComponent.RegisterOnStateChanged(propertyValue.GetValueAction(dependencyObject, property));
+                }
+            }
+            else
+            {
+                if (TryGetDefaultPropertyValue(property, out var defaultValue))
+                {
+                    dependencyObject.SetValue(property, defaultValue);
+                }
+            }
         }
     }
 

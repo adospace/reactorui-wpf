@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxButton : IRxButtonBase
@@ -49,8 +50,8 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxButton = (IRxButton)this;
-            NativeControl.Set(this, Button.IsCancelProperty, thisAsIRxButton.IsCancel);
-            NativeControl.Set(this, Button.IsDefaultProperty, thisAsIRxButton.IsDefault);
+            SetPropertyValue(NativeControl, Button.IsCancelProperty, thisAsIRxButton.IsCancel);
+            SetPropertyValue(NativeControl, Button.IsDefaultProperty, thisAsIRxButton.IsDefault);
 
             base.OnUpdate();
 
@@ -98,9 +99,19 @@ namespace WpfReactorUI
             button.IsCancel = new PropertyValue<bool>(isCancel);
             return button;
         }
+        public static T IsCancel<T>(this T button, Func<bool> isCancelFunc) where T : IRxButton
+        {
+            button.IsCancel = new PropertyValue<bool>(isCancelFunc);
+            return button;
+        }
         public static T IsDefault<T>(this T button, bool isDefault) where T : IRxButton
         {
             button.IsDefault = new PropertyValue<bool>(isDefault);
+            return button;
+        }
+        public static T IsDefault<T>(this T button, Func<bool> isDefaultFunc) where T : IRxButton
+        {
+            button.IsDefault = new PropertyValue<bool>(isDefaultFunc);
             return button;
         }
     }

@@ -33,6 +33,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRx<#= TypeName #> : I<#= BaseTypeName #>
@@ -73,9 +74,11 @@ namespace WpfReactorUI
         {
             OnBeginUpdate();
 
+            <# if (Properties.Any()) { #>
             var thisAsIRx<#= TypeName #> = (IRx<#= TypeName #>)this;
             <# foreach (var property in Properties) { #>
-            NativeControl.Set(this, <#= TypeName #>.<#= property.Name #>Property, thisAsIRx<#= TypeName #>.<#= property.Name #>);
+            SetPropertyValue(NativeControl, <#= TypeName #>.<#= property.Name #>Property, thisAsIRx<#= TypeName #>.<#= property.Name #>);
+            <# } #>
             <# } #>
 
             base.OnUpdate();
@@ -144,6 +147,11 @@ namespace WpfReactorUI
             <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>);
             return <#= TypeName.ToLowerInvariant() #>;
         }
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Func<<#= property.PropertyType.Name.ToResevedWordTypeName() #>> <#= property.Name.CamelCase() #>Func) where T : IRx<#= TypeName #>
+        {
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>Func);
+            return <#= TypeName.ToLowerInvariant() #>;
+        }
         <# if (property.PropertyType.Name == "Thickness") { #>
         public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, double leftRight, double topBottom) where T : IRx<#= TypeName #>
         {
@@ -156,8 +164,8 @@ namespace WpfReactorUI
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# } #>
-            <# if (property.PropertyType.Name == "ImageSource") { 
-               var propertyName = property.Name.Length <= 6 ? property.Name : property.Name.Substring(0, property.Name.Length - 6); #>
+        <# if (property.PropertyType.Name == "ImageSource") { 
+            var propertyName = property.Name.Length <= 6 ? property.Name : property.Name.Substring(0, property.Name.Length - 6); #>
 
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, string file) where T : IRx<#= TypeName #>
         {

@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
+
 namespace WpfReactorUI
 {
     public partial interface IRxPanel : IRxFrameworkElement
@@ -49,8 +50,8 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxPanel = (IRxPanel)this;
-            NativeControl.Set(this, Panel.BackgroundProperty, thisAsIRxPanel.Background);
-            NativeControl.Set(this, Panel.IsItemsHostProperty, thisAsIRxPanel.IsItemsHost);
+            SetPropertyValue(NativeControl, Panel.BackgroundProperty, thisAsIRxPanel.Background);
+            SetPropertyValue(NativeControl, Panel.IsItemsHostProperty, thisAsIRxPanel.IsItemsHost);
 
             base.OnUpdate();
 
@@ -85,9 +86,19 @@ namespace WpfReactorUI
             panel.Background = new PropertyValue<Brush>(background);
             return panel;
         }
+        public static T Background<T>(this T panel, Func<Brush> backgroundFunc) where T : IRxPanel
+        {
+            panel.Background = new PropertyValue<Brush>(backgroundFunc);
+            return panel;
+        }
         public static T IsItemsHost<T>(this T panel, bool isItemsHost) where T : IRxPanel
         {
             panel.IsItemsHost = new PropertyValue<bool>(isItemsHost);
+            return panel;
+        }
+        public static T IsItemsHost<T>(this T panel, Func<bool> isItemsHostFunc) where T : IRxPanel
+        {
+            panel.IsItemsHost = new PropertyValue<bool>(isItemsHostFunc);
             return panel;
         }
     }
