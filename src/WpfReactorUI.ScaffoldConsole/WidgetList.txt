@@ -16,3 +16,8 @@ System.Windows.Controls.Button
 System.Windows.Controls.Primitives.ButtonBase
 System.Windows.Controls.Grid
 System.Windows.Controls.DockPanel
+System.Windows.Controls.TabControl
+
+ModernWpf.Controls.SimpleStackPanel
+ModernWpf.Controls.CommandBar
+ModernWpf.Controls.AppBarButton

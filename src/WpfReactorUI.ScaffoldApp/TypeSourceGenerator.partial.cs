@@ -16,7 +16,7 @@ namespace WpfReactorUI.ScaffoldApp
     {
         private readonly Type _typeToScaffold;
 
-        public TypeSourceGenerator(Type typeToScaffold)
+        public TypeSourceGenerator(Type typeToScaffold, string[] additionalUsings = null)
         {
             _typeToScaffold = typeToScaffold;
 
@@ -60,17 +60,21 @@ namespace WpfReactorUI.ScaffoldApp
                 .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
                 .OrderBy(_ => _.Name)
                 .ToArray();
+
+            AdditionalUsings = additionalUsings ?? Array.Empty<string>();
         }
 
         public string TypeName => _typeToScaffold.Name;
 
         public string BaseTypeName => _typeToScaffold.BaseType.Name == "DependencyObject" ? "VisualNode" : $"Rx{_typeToScaffold.BaseType.Name}";
 
-        public bool IsTypeNotAbstractWithEmptyConstructur => !_typeToScaffold.IsAbstract && _typeToScaffold.GetConstructor(new Type[] { }) != null;
+        public bool IsTypeNotAbstractWithEmptyConstructur => !_typeToScaffold.IsAbstract && _typeToScaffold.GetConstructor(Array.Empty<Type>()) != null;
 
         public PropertyInfo[] Properties { get; }
 
         public EventInfo[] Events { get; }
+
+        public string[] AdditionalUsings { get; }
 
         public string TransformAndPrettify()
         {
@@ -119,7 +123,7 @@ namespace WpfReactorUI.ScaffoldApp
         {
             if (string.IsNullOrWhiteSpace(s))
                 return s;
-            return Char.ToLowerInvariant(s[0]) + s.Substring(1, s.Length - 1);
+            return char.ToLowerInvariant(s[0]) + s[1..];
         }
 
         public static string ToResevedWordTypeName(this string typename)

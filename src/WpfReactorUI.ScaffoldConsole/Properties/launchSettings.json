@@ -1,8 +1,7 @@
 {
   "profiles": {
     "WpfReactorUI.ScaffoldConsole": {
-      "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\WpfReactorUI"
+      "commandName": "Project"
     }
   }
 }

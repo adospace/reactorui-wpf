@@ -32,7 +32,9 @@ using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
-
+<# foreach (var usingNS in AdditionalUsings) { #>
+using <#= usingNS #>;
+<# } #>
 
 namespace WpfReactorUI
 {

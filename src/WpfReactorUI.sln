@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfReactorUI", "WpfReactorU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfReactorUI.ScaffoldApp", "WpfReactorUI.ScaffoldApp\WpfReactorUI.ScaffoldApp.csproj", "{C9F4B055-F487-4903-BBCD-95CB21A50E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfReactorUI.ScaffoldConsole", "WpfReactorUI.ScaffoldConsole\WpfReactorUI.ScaffoldConsole.csproj", "{81108416-BB61-4E4A-A05F-A94188151D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfReactorUI.ScaffoldConsole", "WpfReactorUI.ScaffoldConsole\WpfReactorUI.ScaffoldConsole.csproj", "{81108416-BB61-4E4A-A05F-A94188151D81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfReactorUI.Host", "WpfReactorUI.Host\WpfReactorUI.Host.csproj", "{EE6429BE-E577-414A-A8BA-B4ED74606FB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfReactorUI.Host", "WpfReactorUI.Host\WpfReactorUI.Host.csproj", "{EE6429BE-E577-414A-A8BA-B4ED74606FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfReactorUI.ModernTheme", "WpfReactorUI.ModernTheme\WpfReactorUI.ModernTheme.csproj", "{A9C340DB-55A0-4218-B99A-3DBED9EF7870}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EE6429BE-E577-414A-A8BA-B4ED74606FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6429BE-E577-414A-A8BA-B4ED74606FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6429BE-E577-414A-A8BA-B4ED74606FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C340DB-55A0-4218-B99A-3DBED9EF7870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C340DB-55A0-4218-B99A-3DBED9EF7870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C340DB-55A0-4218-B99A-3DBED9EF7870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C340DB-55A0-4218-B99A-3DBED9EF7870}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

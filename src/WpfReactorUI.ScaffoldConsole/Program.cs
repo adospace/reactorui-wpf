@@ -11,17 +11,18 @@ namespace WpfReactorUI.ScaffoldConsole
     class Program
     {
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
-            if (args == null ||
-                args.Length == 0)
-            {
-                Console.WriteLine("WpfReactorUI folder not specified");
-                return;
-            }
+            var basePath = @"..\..\..\..\";
+            var baseWpfReactorUIPath = basePath + "WpfReactorUI";
+            var baseWpfReactorUIModernThemePath = basePath + "WpfReactorUI.ModernTheme";
 
+            //force assemblies loading
             var uIElement = new UIElement();
             var button = new Button();
+            var simplePanel = new ModernWpf.Controls.CommandBar();
+            
+
             var types = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
                          // alternative: from domainAssembly in domainAssembly.GetExportedTypes()
                          from assemblyType in domainAssembly.GetTypes()
@@ -31,13 +32,19 @@ namespace WpfReactorUI.ScaffoldConsole
                          select assemblyType)
                 .ToDictionary(_ => _.FullName, _ => _);
 
-            foreach (var classNameToGenerate in File.ReadAllLines("WidgetList.txt"))
+            foreach (var classNameToGenerate in File.ReadAllLines("WidgetList.txt").Where(_ => !string.IsNullOrWhiteSpace(_)))
             {
                 var typeToGenerate = types[classNameToGenerate];
-                var targetPath = Path.Combine(args[0], $"Rx{typeToGenerate.Name}.cs");
-                Console.WriteLine($"Generating {typeToGenerate.FullName} to {targetPath}...");
-
+                var targetPath = Path.Combine(baseWpfReactorUIPath, $"Rx{typeToGenerate.Name}.cs");
                 var generator = new TypeSourceGenerator(typeToGenerate);
+
+                if (classNameToGenerate.StartsWith("ModernWpf"))
+                {
+                    targetPath = Path.Combine(baseWpfReactorUIModernThemePath, $"Rx{typeToGenerate.Name}.cs");
+                    generator = new TypeSourceGenerator(typeToGenerate, new[] { "ModernWpf.Controls", "ModernWpf.Controls.Primitives" });
+                }
+
+                Console.WriteLine($"Generating {typeToGenerate.FullName} to {targetPath}...");                
                 File.WriteAllText(targetPath, generator.TransformAndPrettify());
             }
 

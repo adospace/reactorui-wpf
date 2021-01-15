@@ -18,7 +18,6 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 
-
 namespace WpfReactorUI
 {
     public partial interface IRxTextBoxBase : IRxControl
