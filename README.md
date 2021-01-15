@@ -112,4 +112,4 @@ public class LoginComponent : RxComponent<LoginComponentState>
 }
 ```
 
-One big advantage of the ReactorUI approach is that its state live externally to the component making possible the its hot reload.
+One big advantage of the ReactorUI approach is that its state live externally to the component making possible hot reloading it.
