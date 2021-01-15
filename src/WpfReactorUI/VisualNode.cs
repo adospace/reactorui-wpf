@@ -42,7 +42,7 @@ namespace WpfReactorUI
             return node;
         }
 
-        public static T WithAnimation<T>(this T node, Easing easing = null, double duration = 600) where T : VisualNode
+        public static T WithAnimation<T>(this T node, Easing? easing = null, double duration = 600) where T : VisualNode
         {
             node.EnableCurrentAnimatableProperties(easing, duration);
             return node;
@@ -67,7 +67,7 @@ namespace WpfReactorUI
                 throw new ArgumentNullException(nameof(value));
             }
 
-            node.SetMetadata(value.GetType().FullName, value);
+            node.SetMetadata(value.GetType().FullName ?? throw new InvalidOperationException(), value);
             return node;
         }
 
@@ -86,9 +86,9 @@ namespace WpfReactorUI
 
         private readonly Dictionary<object, Animatable> _animatables = new Dictionary<object, Animatable>();
 
-        private readonly Dictionary<string, object> _metadata = new Dictionary<string, object>();
+        private readonly Dictionary<string, object?> _metadata = new Dictionary<string, object?>();
 
-        private IReadOnlyList<VisualNode> _children = null;
+        private IReadOnlyList<VisualNode>? _children = null;
 
         private bool _invalidated = false;
 
@@ -98,7 +98,7 @@ namespace WpfReactorUI
         }
 
         public int ChildIndex { get; private set; }
-        public object Key { get; set; }
+        public object? Key { get; set; }
         //public Action<object, PropertyChangedEventArgs> PropertyChangedAction { get; set; }
         //public Action<object, System.ComponentModel.PropertyChangingEventArgs> PropertyChangingAction { get; set; }
 
@@ -122,7 +122,7 @@ namespace WpfReactorUI
 
         internal bool IsAnimationFrameRequested { get; private set; } = false;
         internal bool IsLayoutCycleRequired { get; set; } = true;
-        internal VisualNode Parent { get; private set; }
+        internal VisualNode? Parent { get; private set; }
 
         public void AppendAnimatable<T>(object key, T animation, Action<T> action) where T : RxAnimation
         {
@@ -146,7 +146,7 @@ namespace WpfReactorUI
             _animatables[key] = newAnimatableProperty;
         }
 
-        public T GetMetadata<T>(string key, T defaultValue = default)
+        public T? GetMetadata<T>(string key, T defaultValue = default)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -159,8 +159,8 @@ namespace WpfReactorUI
             return defaultValue;
         }
 
-        public T GetMetadata<T>(T defaultValue = default)
-            => GetMetadata(typeof(T).FullName, defaultValue);
+        public T? GetMetadata<T>(T defaultValue = default)
+            => GetMetadata(typeof(T).FullName ?? throw new InvalidOperationException("typeof(T).FullName returns null"), defaultValue);
 
         public void SetMetadata<T>(string key, T value)
         {
@@ -174,7 +174,7 @@ namespace WpfReactorUI
 
         public void SetMetadata<T>(T value)
         {
-            _metadata[typeof(T).FullName] = value;
+            _metadata[typeof(T).FullName ?? throw new InvalidOperationException("typeof(T).FullName returns null")] = value;
         }
 
         internal void AddChild(VisualNode widget, object childNativeControl)
@@ -213,7 +213,7 @@ namespace WpfReactorUI
             };
         }
 
-        internal void EnableCurrentAnimatableProperties(Easing easing = null, double duration = 600)
+        internal void EnableCurrentAnimatableProperties(Easing? easing = null, double duration = 600)
         {
             foreach (var _ in _animatables.Where(_ => _.Value.IsEnabled == null).Select(_ => _.Value))
             {
@@ -226,7 +226,7 @@ namespace WpfReactorUI
             };
         }
 
-        internal virtual void Layout(IRxComponentWithState containerComponent = null)
+        internal virtual void Layout(IRxComponentWithState? containerComponent = null)
         {
             if (!IsLayoutCycleRequired)
                 return;
@@ -316,13 +316,13 @@ namespace WpfReactorUI
             }
         }
 
-        protected T GetParent<T>() where T : VisualNode
+        protected T? GetParent<T>() where T : VisualNode
         {
             var parent = Parent;
             while (parent != null && !(parent is T))
                 parent = parent.Parent;
 
-            return (T)parent;
+            return (T?)parent;
         }
 
         protected void Invalidate()
@@ -439,11 +439,20 @@ namespace WpfReactorUI
         public abstract void SetAttachedProperty(DependencyProperty property, object value);
     }
 
+    public static class VisualNodeWithAttachedPropertiesExtensions
+    {
+        public static T Set<T>(this T element, DependencyProperty property, object value) where T : VisualNodeWithAttachedProperties
+        {
+            element.SetAttachedProperty(property, value);
+            return element;
+        }
+    }
+
     internal interface IVisualNodeWithNativeControl
     {
         TResult GetNativeControl<TResult>() where TResult : DependencyObject;
 
-        bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object value);
+        bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object? value);
 
         bool SetDefaultPropertyValue(DependencyProperty dependencyProperty, object value);
     }
@@ -455,15 +464,15 @@ namespace WpfReactorUI
 
     public abstract class VisualNode<T> : VisualNodeWithAttachedProperties, IVisualNodeWithNativeControl where T : DependencyObject, new()
     {
-        protected DependencyObject _nativeControl;
+        protected DependencyObject? _nativeControl;
 
-        private IRxComponentWithState _containerComponent;
+        private IRxComponentWithState? _containerComponent;
 
         private Dictionary<DependencyProperty, object> _defaultPropertyValueBag = new Dictionary<DependencyProperty, object>();
 
         private readonly Dictionary<DependencyProperty, object> _attachedProperties = new();
 
-        internal override void Layout(IRxComponentWithState containerComponent = null)
+        internal override void Layout(IRxComponentWithState? containerComponent = null)
         {
             _containerComponent = containerComponent;
             base.Layout(containerComponent);
@@ -480,7 +489,7 @@ namespace WpfReactorUI
             return false;
         }
 
-        public bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object value)
+        public bool TryGetDefaultPropertyValue(DependencyProperty dependencyProperty, out object? value)
         {
             if (_defaultPropertyValueBag.TryGetValue(dependencyProperty, out value))
             {
@@ -491,17 +500,17 @@ namespace WpfReactorUI
             return false;
         }
 
-        private readonly Action<T> _componentRefAction;
+        private readonly Action<T?>? _componentRefAction;
 
         protected VisualNode()
         { }
 
-        protected VisualNode(Action<T> componentRefAction)
+        protected VisualNode(Action<T?> componentRefAction)
         {
             _componentRefAction = componentRefAction;
         }
 
-        protected T NativeControl { get => (T)_nativeControl; }
+        protected T NativeControl { get => (T)(_nativeControl ?? throw new InvalidOperationException()); }
 
         internal override void MergeWith(VisualNode newNode)
         {
@@ -583,7 +592,7 @@ namespace WpfReactorUI
         public override void SetAttachedProperty(DependencyProperty property, object value)
             => _attachedProperties[property] = value;
 
-        protected void SetPropertyValue(DependencyObject dependencyObject, DependencyProperty property, IPropertyValue propertyValue)
+        protected void SetPropertyValue(DependencyObject dependencyObject, DependencyProperty property, IPropertyValue? propertyValue)
         {
             if (propertyValue != null)
             {

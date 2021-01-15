@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxContentControl : IRxControl
     {
-        PropertyValue<string> ContentStringFormat { get; set; }
+        PropertyValue<string>? ContentStringFormat { get; set; }
 
     }
 
@@ -34,13 +34,13 @@ namespace WpfReactorUI
 
         }
 
-        public RxContentControl(Action<T> componentRefAction)
+        public RxContentControl(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<string> IRxContentControl.ContentStringFormat { get; set; }
+        PropertyValue<string>? IRxContentControl.ContentStringFormat { get; set; }
 
 
         protected override void OnUpdate()
@@ -60,7 +60,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxContentControl = (IRxContentControl)this;
 
             base.OnAttachNativeEvents();
         }
@@ -83,7 +82,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxContentControl(Action<ContentControl> componentRefAction)
+        public RxContentControl(Action<ContentControl?> componentRefAction)
             : base(componentRefAction)
         {
 

@@ -15,10 +15,10 @@ namespace WpfReactorUI.Internals
 
     internal static class ComponentLoader
     {
-        static IComponentLoader _instance;
+        static IComponentLoader? _instance;
         public static IComponentLoader Instance
         {
-            get => _instance;
+            get => _instance ?? throw new InvalidOperationException("Component loader not available (is null)");
             set
             {
                 if (_instance != null)

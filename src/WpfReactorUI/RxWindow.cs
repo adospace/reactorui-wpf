@@ -23,22 +23,22 @@ namespace WpfReactorUI
 {
     public partial interface IRxWindow : IRxContentControl
     {
-        PropertyValue<bool> AllowsTransparency { get; set; }
-        PropertyValue<ImageSource> Icon { get; set; }
-        PropertyValue<double> Left { get; set; }
-        PropertyValue<ResizeMode> ResizeMode { get; set; }
-        PropertyValue<bool> ShowActivated { get; set; }
-        PropertyValue<bool> ShowInTaskbar { get; set; }
-        PropertyValue<SizeToContent> SizeToContent { get; set; }
-        PropertyValue<TaskbarItemInfo> TaskbarItemInfo { get; set; }
-        PropertyValue<string> Title { get; set; }
-        PropertyValue<double> Top { get; set; }
-        PropertyValue<bool> Topmost { get; set; }
-        PropertyValue<WindowState> WindowState { get; set; }
-        PropertyValue<WindowStyle> WindowStyle { get; set; }
+        PropertyValue<bool>? AllowsTransparency { get; set; }
+        PropertyValue<ImageSource>? Icon { get; set; }
+        PropertyValue<double>? Left { get; set; }
+        PropertyValue<ResizeMode>? ResizeMode { get; set; }
+        PropertyValue<bool>? ShowActivated { get; set; }
+        PropertyValue<bool>? ShowInTaskbar { get; set; }
+        PropertyValue<SizeToContent>? SizeToContent { get; set; }
+        PropertyValue<TaskbarItemInfo>? TaskbarItemInfo { get; set; }
+        PropertyValue<string>? Title { get; set; }
+        PropertyValue<double>? Top { get; set; }
+        PropertyValue<bool>? Topmost { get; set; }
+        PropertyValue<WindowState>? WindowState { get; set; }
+        PropertyValue<WindowStyle>? WindowStyle { get; set; }
 
-        Action DpiChangedAction { get; set; }
-        Action<object, DpiChangedEventArgs> DpiChangedActionWithArgs { get; set; }
+        Action? DpiChangedAction { get; set; }
+        Action<object?, DpiChangedEventArgs>? DpiChangedActionWithArgs { get; set; }
     }
 
     public partial class RxWindow<T> : RxContentControl<T>, IRxWindow where T : Window, new()
@@ -48,28 +48,28 @@ namespace WpfReactorUI
 
         }
 
-        public RxWindow(Action<T> componentRefAction)
+        public RxWindow(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxWindow.AllowsTransparency { get; set; }
-        PropertyValue<ImageSource> IRxWindow.Icon { get; set; }
-        PropertyValue<double> IRxWindow.Left { get; set; }
-        PropertyValue<ResizeMode> IRxWindow.ResizeMode { get; set; }
-        PropertyValue<bool> IRxWindow.ShowActivated { get; set; }
-        PropertyValue<bool> IRxWindow.ShowInTaskbar { get; set; }
-        PropertyValue<SizeToContent> IRxWindow.SizeToContent { get; set; }
-        PropertyValue<TaskbarItemInfo> IRxWindow.TaskbarItemInfo { get; set; }
-        PropertyValue<string> IRxWindow.Title { get; set; }
-        PropertyValue<double> IRxWindow.Top { get; set; }
-        PropertyValue<bool> IRxWindow.Topmost { get; set; }
-        PropertyValue<WindowState> IRxWindow.WindowState { get; set; }
-        PropertyValue<WindowStyle> IRxWindow.WindowStyle { get; set; }
+        PropertyValue<bool>? IRxWindow.AllowsTransparency { get; set; }
+        PropertyValue<ImageSource>? IRxWindow.Icon { get; set; }
+        PropertyValue<double>? IRxWindow.Left { get; set; }
+        PropertyValue<ResizeMode>? IRxWindow.ResizeMode { get; set; }
+        PropertyValue<bool>? IRxWindow.ShowActivated { get; set; }
+        PropertyValue<bool>? IRxWindow.ShowInTaskbar { get; set; }
+        PropertyValue<SizeToContent>? IRxWindow.SizeToContent { get; set; }
+        PropertyValue<TaskbarItemInfo>? IRxWindow.TaskbarItemInfo { get; set; }
+        PropertyValue<string>? IRxWindow.Title { get; set; }
+        PropertyValue<double>? IRxWindow.Top { get; set; }
+        PropertyValue<bool>? IRxWindow.Topmost { get; set; }
+        PropertyValue<WindowState>? IRxWindow.WindowState { get; set; }
+        PropertyValue<WindowStyle>? IRxWindow.WindowStyle { get; set; }
 
-        Action IRxWindow.DpiChangedAction { get; set; }
-        Action<object, DpiChangedEventArgs> IRxWindow.DpiChangedActionWithArgs { get; set; }
+        Action? IRxWindow.DpiChangedAction { get; set; }
+        Action<object?, DpiChangedEventArgs>? IRxWindow.DpiChangedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -109,7 +109,7 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_DpiChanged(object sender, DpiChangedEventArgs e)
+        private void NativeControl_DpiChanged(object? sender, DpiChangedEventArgs e)
         {
             var thisAsIRxWindow = (IRxWindow)this;
             thisAsIRxWindow.DpiChangedAction?.Invoke();
@@ -134,7 +134,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxWindow(Action<Window> componentRefAction)
+        public RxWindow(Action<Window?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -313,7 +313,7 @@ namespace WpfReactorUI
             return window;
         }
 
-        public static T OnDpiChanged<T>(this T window, Action<object, DpiChangedEventArgs> dpichangedActionWithArgs) where T : IRxWindow
+        public static T OnDpiChanged<T>(this T window, Action<object?, DpiChangedEventArgs> dpichangedActionWithArgs) where T : IRxWindow
         {
             window.DpiChangedActionWithArgs = dpichangedActionWithArgs;
             return window;

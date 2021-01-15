@@ -9,7 +9,7 @@ namespace WpfReactorUI
     {
         public static T OnTextChanged<T>(this T textbox, Action<string> textchangedAction) where T : IRxTextBox
         {
-            textbox.TextChangedActionWithArgs = (sender, e) => textchangedAction(((TextBox)sender).Text);
+            textbox.TextChangedActionWithArgs = (sender, e) => textchangedAction((sender as TextBox ?? throw new InvalidOperationException()).Text);
             return textbox;
         }
     }

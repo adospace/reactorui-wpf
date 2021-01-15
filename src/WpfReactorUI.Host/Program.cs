@@ -22,8 +22,10 @@ namespace WpfReactorUI.Host
 
             if (!Path.IsPathRooted(assemblyPath))
             {
-                assemblyPath = Path.Combine(
-                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), assemblyPath);
+                var currentAssemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                    ?? throw new InvalidOperationException("Unable to get current assembly folder path");
+
+                assemblyPath = Path.Combine(currentAssemblyFolder, assemblyPath);
             }
 
             if (!File.Exists(assemblyPath))
@@ -32,7 +34,8 @@ namespace WpfReactorUI.Host
                 return -1;
             }
 
-            var assemblyPdbPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
+            string folderPath = Path.GetDirectoryName(assemblyPath) ?? throw new InvalidOperationException("Unable to get path of the assembly to hot-reload");
+            var assemblyPdbPath = Path.Combine(folderPath, Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
 
             var assembly = File.Exists(assemblyPdbPath) ?
                 Assembly.Load(File.ReadAllBytes(assemblyPath))
@@ -42,9 +45,8 @@ namespace WpfReactorUI.Host
             ComponentLoader.Instance = new AssemblyFileComponentLoader(assemblyPath);
 
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            string folderPath = Path.GetDirectoryName(assemblyPath);
 
-            currentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
+            currentDomain.AssemblyResolve += (object? sender, ResolveEventArgs args) =>
             {
                 string assemblyPath = Path.Combine(folderPath, new AssemblyName(args.Name).Name + ".dll");
                 if (!File.Exists(assemblyPath)) return null;
@@ -52,11 +54,13 @@ namespace WpfReactorUI.Host
                 return assembly;
             };
 
-            assembly
+            var mainMethod = assembly
                 .GetTypes()
                 .First(_ => typeof(System.Windows.Application).IsAssignableFrom(_))
                 .GetMethod("Main")
-                .Invoke(null, null);
+                ?? throw new InvalidOperationException("Application doesn't have a static Main method");
+
+            mainMethod.Invoke(null, null);
 
             return 0;
         }

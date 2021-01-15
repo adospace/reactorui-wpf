@@ -10,7 +10,8 @@ namespace WpfReactorUI
 {
     public abstract class RxApplication : VisualNode, IRxHostElement
     {
-        public static RxApplication Instance { get; private set; }
+        public static RxApplication? Instance { get; private set; }
+
         protected readonly Application _application;
 
         //internal IComponentLoader ComponentLoader { get; set; } = new LocalComponentLoader();
@@ -28,7 +29,7 @@ namespace WpfReactorUI
 
         }
 
-        public Action<UnhandledExceptionEventArgs> UnhandledException { get; set; }
+        public Action<UnhandledExceptionEventArgs>? UnhandledException { get; set; }
 
         internal void FireUnhandledExpectionEvent(Exception ex)
         {
@@ -74,10 +75,11 @@ namespace WpfReactorUI
 
     public class RxApplication<T> : RxApplication where T : RxComponent, new()
     {
-        protected RxComponent _rootComponent;
-        private bool _sleeping = true;
-        private readonly DispatcherTimer _animationTimer = null;
+        protected RxComponent? _rootComponent;
 
+        private bool _sleeping = true;
+
+        private readonly DispatcherTimer _animationTimer;
 
         internal RxApplication(Application application)
             : base(application)
@@ -134,7 +136,7 @@ namespace WpfReactorUI
             return this;
         }
 
-        private void OnComponentAssemblyChanged(object sender, EventArgs e)
+        private void OnComponentAssemblyChanged(object? sender, EventArgs e)
         {
             if (!_application.Dispatcher.CheckAccess())
             {
@@ -198,6 +200,11 @@ namespace WpfReactorUI
 
         protected override IEnumerable<VisualNode> RenderChildren()
         {
+            if (_rootComponent == null)
+            {
+                throw new InvalidOperationException();
+            }
+
             yield return _rootComponent;
         }
 

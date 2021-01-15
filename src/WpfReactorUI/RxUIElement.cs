@@ -23,189 +23,189 @@ namespace WpfReactorUI
 {
     public partial interface IRxUIElement : IRxVisual
     {
-        PropertyValue<bool> AllowDrop { get; set; }
-        PropertyValue<CacheMode> CacheMode { get; set; }
-        PropertyValue<Geometry> Clip { get; set; }
-        PropertyValue<bool> ClipToBounds { get; set; }
-        PropertyValue<Effect> Effect { get; set; }
-        PropertyValue<bool> Focusable { get; set; }
-        PropertyValue<bool> IsEnabled { get; set; }
-        PropertyValue<bool> IsHitTestVisible { get; set; }
-        PropertyValue<bool> IsManipulationEnabled { get; set; }
-        PropertyValue<double> Opacity { get; set; }
-        PropertyValue<Brush> OpacityMask { get; set; }
-        PropertyValue<Transform> RenderTransform { get; set; }
-        PropertyValue<Point> RenderTransformOrigin { get; set; }
-        PropertyValue<bool> SnapsToDevicePixels { get; set; }
-        PropertyValue<string> Uid { get; set; }
-        PropertyValue<Visibility> Visibility { get; set; }
+        PropertyValue<bool>? AllowDrop { get; set; }
+        PropertyValue<CacheMode>? CacheMode { get; set; }
+        PropertyValue<Geometry>? Clip { get; set; }
+        PropertyValue<bool>? ClipToBounds { get; set; }
+        PropertyValue<Effect>? Effect { get; set; }
+        PropertyValue<bool>? Focusable { get; set; }
+        PropertyValue<bool>? IsEnabled { get; set; }
+        PropertyValue<bool>? IsHitTestVisible { get; set; }
+        PropertyValue<bool>? IsManipulationEnabled { get; set; }
+        PropertyValue<double>? Opacity { get; set; }
+        PropertyValue<Brush>? OpacityMask { get; set; }
+        PropertyValue<Transform>? RenderTransform { get; set; }
+        PropertyValue<Point>? RenderTransformOrigin { get; set; }
+        PropertyValue<bool>? SnapsToDevicePixels { get; set; }
+        PropertyValue<string>? Uid { get; set; }
+        PropertyValue<Visibility>? Visibility { get; set; }
 
-        Action DragEnterAction { get; set; }
-        Action<object, DragEventArgs> DragEnterActionWithArgs { get; set; }
-        Action DragLeaveAction { get; set; }
-        Action<object, DragEventArgs> DragLeaveActionWithArgs { get; set; }
-        Action DragOverAction { get; set; }
-        Action<object, DragEventArgs> DragOverActionWithArgs { get; set; }
-        Action DropAction { get; set; }
-        Action<object, DragEventArgs> DropActionWithArgs { get; set; }
-        Action GiveFeedbackAction { get; set; }
-        Action<object, GiveFeedbackEventArgs> GiveFeedbackActionWithArgs { get; set; }
-        Action GotFocusAction { get; set; }
-        Action<object, RoutedEventArgs> GotFocusActionWithArgs { get; set; }
-        Action GotKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> GotKeyboardFocusActionWithArgs { get; set; }
-        Action GotMouseCaptureAction { get; set; }
-        Action<object, MouseEventArgs> GotMouseCaptureActionWithArgs { get; set; }
-        Action GotStylusCaptureAction { get; set; }
-        Action<object, StylusEventArgs> GotStylusCaptureActionWithArgs { get; set; }
-        Action GotTouchCaptureAction { get; set; }
-        Action<object, TouchEventArgs> GotTouchCaptureActionWithArgs { get; set; }
-        Action KeyDownAction { get; set; }
-        Action<object, KeyEventArgs> KeyDownActionWithArgs { get; set; }
-        Action KeyUpAction { get; set; }
-        Action<object, KeyEventArgs> KeyUpActionWithArgs { get; set; }
-        Action LostFocusAction { get; set; }
-        Action<object, RoutedEventArgs> LostFocusActionWithArgs { get; set; }
-        Action LostKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> LostKeyboardFocusActionWithArgs { get; set; }
-        Action LostMouseCaptureAction { get; set; }
-        Action<object, MouseEventArgs> LostMouseCaptureActionWithArgs { get; set; }
-        Action LostStylusCaptureAction { get; set; }
-        Action<object, StylusEventArgs> LostStylusCaptureActionWithArgs { get; set; }
-        Action LostTouchCaptureAction { get; set; }
-        Action<object, TouchEventArgs> LostTouchCaptureActionWithArgs { get; set; }
-        Action ManipulationBoundaryFeedbackAction { get; set; }
-        Action<object, ManipulationBoundaryFeedbackEventArgs> ManipulationBoundaryFeedbackActionWithArgs { get; set; }
-        Action ManipulationCompletedAction { get; set; }
-        Action<object, ManipulationCompletedEventArgs> ManipulationCompletedActionWithArgs { get; set; }
-        Action ManipulationDeltaAction { get; set; }
-        Action<object, ManipulationDeltaEventArgs> ManipulationDeltaActionWithArgs { get; set; }
-        Action ManipulationInertiaStartingAction { get; set; }
-        Action<object, ManipulationInertiaStartingEventArgs> ManipulationInertiaStartingActionWithArgs { get; set; }
-        Action ManipulationStartedAction { get; set; }
-        Action<object, ManipulationStartedEventArgs> ManipulationStartedActionWithArgs { get; set; }
-        Action ManipulationStartingAction { get; set; }
-        Action<object, ManipulationStartingEventArgs> ManipulationStartingActionWithArgs { get; set; }
-        Action MouseDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseDownActionWithArgs { get; set; }
-        Action MouseEnterAction { get; set; }
-        Action<object, MouseEventArgs> MouseEnterActionWithArgs { get; set; }
-        Action MouseLeaveAction { get; set; }
-        Action<object, MouseEventArgs> MouseLeaveActionWithArgs { get; set; }
-        Action MouseLeftButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseLeftButtonDownActionWithArgs { get; set; }
-        Action MouseLeftButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseLeftButtonUpActionWithArgs { get; set; }
-        Action MouseMoveAction { get; set; }
-        Action<object, MouseEventArgs> MouseMoveActionWithArgs { get; set; }
-        Action MouseRightButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseRightButtonDownActionWithArgs { get; set; }
-        Action MouseRightButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseRightButtonUpActionWithArgs { get; set; }
-        Action MouseUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseUpActionWithArgs { get; set; }
-        Action MouseWheelAction { get; set; }
-        Action<object, MouseWheelEventArgs> MouseWheelActionWithArgs { get; set; }
-        Action PreviewDragEnterAction { get; set; }
-        Action<object, DragEventArgs> PreviewDragEnterActionWithArgs { get; set; }
-        Action PreviewDragLeaveAction { get; set; }
-        Action<object, DragEventArgs> PreviewDragLeaveActionWithArgs { get; set; }
-        Action PreviewDragOverAction { get; set; }
-        Action<object, DragEventArgs> PreviewDragOverActionWithArgs { get; set; }
-        Action PreviewDropAction { get; set; }
-        Action<object, DragEventArgs> PreviewDropActionWithArgs { get; set; }
-        Action PreviewGiveFeedbackAction { get; set; }
-        Action<object, GiveFeedbackEventArgs> PreviewGiveFeedbackActionWithArgs { get; set; }
-        Action PreviewGotKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> PreviewGotKeyboardFocusActionWithArgs { get; set; }
-        Action PreviewKeyDownAction { get; set; }
-        Action<object, KeyEventArgs> PreviewKeyDownActionWithArgs { get; set; }
-        Action PreviewKeyUpAction { get; set; }
-        Action<object, KeyEventArgs> PreviewKeyUpActionWithArgs { get; set; }
-        Action PreviewLostKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> PreviewLostKeyboardFocusActionWithArgs { get; set; }
-        Action PreviewMouseDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseDownActionWithArgs { get; set; }
-        Action PreviewMouseLeftButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseLeftButtonDownActionWithArgs { get; set; }
-        Action PreviewMouseLeftButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseLeftButtonUpActionWithArgs { get; set; }
-        Action PreviewMouseMoveAction { get; set; }
-        Action<object, MouseEventArgs> PreviewMouseMoveActionWithArgs { get; set; }
-        Action PreviewMouseRightButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseRightButtonDownActionWithArgs { get; set; }
-        Action PreviewMouseRightButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseRightButtonUpActionWithArgs { get; set; }
-        Action PreviewMouseUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseUpActionWithArgs { get; set; }
-        Action PreviewMouseWheelAction { get; set; }
-        Action<object, MouseWheelEventArgs> PreviewMouseWheelActionWithArgs { get; set; }
-        Action PreviewQueryContinueDragAction { get; set; }
-        Action<object, QueryContinueDragEventArgs> PreviewQueryContinueDragActionWithArgs { get; set; }
-        Action PreviewStylusButtonDownAction { get; set; }
-        Action<object, StylusButtonEventArgs> PreviewStylusButtonDownActionWithArgs { get; set; }
-        Action PreviewStylusButtonUpAction { get; set; }
-        Action<object, StylusButtonEventArgs> PreviewStylusButtonUpActionWithArgs { get; set; }
-        Action PreviewStylusDownAction { get; set; }
-        Action<object, StylusDownEventArgs> PreviewStylusDownActionWithArgs { get; set; }
-        Action PreviewStylusInAirMoveAction { get; set; }
-        Action<object, StylusEventArgs> PreviewStylusInAirMoveActionWithArgs { get; set; }
-        Action PreviewStylusInRangeAction { get; set; }
-        Action<object, StylusEventArgs> PreviewStylusInRangeActionWithArgs { get; set; }
-        Action PreviewStylusMoveAction { get; set; }
-        Action<object, StylusEventArgs> PreviewStylusMoveActionWithArgs { get; set; }
-        Action PreviewStylusOutOfRangeAction { get; set; }
-        Action<object, StylusEventArgs> PreviewStylusOutOfRangeActionWithArgs { get; set; }
-        Action PreviewStylusSystemGestureAction { get; set; }
-        Action<object, StylusSystemGestureEventArgs> PreviewStylusSystemGestureActionWithArgs { get; set; }
-        Action PreviewStylusUpAction { get; set; }
-        Action<object, StylusEventArgs> PreviewStylusUpActionWithArgs { get; set; }
-        Action PreviewTextInputAction { get; set; }
-        Action<object, TextCompositionEventArgs> PreviewTextInputActionWithArgs { get; set; }
-        Action PreviewTouchDownAction { get; set; }
-        Action<object, TouchEventArgs> PreviewTouchDownActionWithArgs { get; set; }
-        Action PreviewTouchMoveAction { get; set; }
-        Action<object, TouchEventArgs> PreviewTouchMoveActionWithArgs { get; set; }
-        Action PreviewTouchUpAction { get; set; }
-        Action<object, TouchEventArgs> PreviewTouchUpActionWithArgs { get; set; }
-        Action QueryContinueDragAction { get; set; }
-        Action<object, QueryContinueDragEventArgs> QueryContinueDragActionWithArgs { get; set; }
-        Action QueryCursorAction { get; set; }
-        Action<object, QueryCursorEventArgs> QueryCursorActionWithArgs { get; set; }
-        Action StylusButtonDownAction { get; set; }
-        Action<object, StylusButtonEventArgs> StylusButtonDownActionWithArgs { get; set; }
-        Action StylusButtonUpAction { get; set; }
-        Action<object, StylusButtonEventArgs> StylusButtonUpActionWithArgs { get; set; }
-        Action StylusDownAction { get; set; }
-        Action<object, StylusDownEventArgs> StylusDownActionWithArgs { get; set; }
-        Action StylusEnterAction { get; set; }
-        Action<object, StylusEventArgs> StylusEnterActionWithArgs { get; set; }
-        Action StylusInAirMoveAction { get; set; }
-        Action<object, StylusEventArgs> StylusInAirMoveActionWithArgs { get; set; }
-        Action StylusInRangeAction { get; set; }
-        Action<object, StylusEventArgs> StylusInRangeActionWithArgs { get; set; }
-        Action StylusLeaveAction { get; set; }
-        Action<object, StylusEventArgs> StylusLeaveActionWithArgs { get; set; }
-        Action StylusMoveAction { get; set; }
-        Action<object, StylusEventArgs> StylusMoveActionWithArgs { get; set; }
-        Action StylusOutOfRangeAction { get; set; }
-        Action<object, StylusEventArgs> StylusOutOfRangeActionWithArgs { get; set; }
-        Action StylusSystemGestureAction { get; set; }
-        Action<object, StylusSystemGestureEventArgs> StylusSystemGestureActionWithArgs { get; set; }
-        Action StylusUpAction { get; set; }
-        Action<object, StylusEventArgs> StylusUpActionWithArgs { get; set; }
-        Action TextInputAction { get; set; }
-        Action<object, TextCompositionEventArgs> TextInputActionWithArgs { get; set; }
-        Action TouchDownAction { get; set; }
-        Action<object, TouchEventArgs> TouchDownActionWithArgs { get; set; }
-        Action TouchEnterAction { get; set; }
-        Action<object, TouchEventArgs> TouchEnterActionWithArgs { get; set; }
-        Action TouchLeaveAction { get; set; }
-        Action<object, TouchEventArgs> TouchLeaveActionWithArgs { get; set; }
-        Action TouchMoveAction { get; set; }
-        Action<object, TouchEventArgs> TouchMoveActionWithArgs { get; set; }
-        Action TouchUpAction { get; set; }
-        Action<object, TouchEventArgs> TouchUpActionWithArgs { get; set; }
+        Action? DragEnterAction { get; set; }
+        Action<object?, DragEventArgs>? DragEnterActionWithArgs { get; set; }
+        Action? DragLeaveAction { get; set; }
+        Action<object?, DragEventArgs>? DragLeaveActionWithArgs { get; set; }
+        Action? DragOverAction { get; set; }
+        Action<object?, DragEventArgs>? DragOverActionWithArgs { get; set; }
+        Action? DropAction { get; set; }
+        Action<object?, DragEventArgs>? DropActionWithArgs { get; set; }
+        Action? GiveFeedbackAction { get; set; }
+        Action<object?, GiveFeedbackEventArgs>? GiveFeedbackActionWithArgs { get; set; }
+        Action? GotFocusAction { get; set; }
+        Action<object?, RoutedEventArgs>? GotFocusActionWithArgs { get; set; }
+        Action? GotKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? GotKeyboardFocusActionWithArgs { get; set; }
+        Action? GotMouseCaptureAction { get; set; }
+        Action<object?, MouseEventArgs>? GotMouseCaptureActionWithArgs { get; set; }
+        Action? GotStylusCaptureAction { get; set; }
+        Action<object?, StylusEventArgs>? GotStylusCaptureActionWithArgs { get; set; }
+        Action? GotTouchCaptureAction { get; set; }
+        Action<object?, TouchEventArgs>? GotTouchCaptureActionWithArgs { get; set; }
+        Action? KeyDownAction { get; set; }
+        Action<object?, KeyEventArgs>? KeyDownActionWithArgs { get; set; }
+        Action? KeyUpAction { get; set; }
+        Action<object?, KeyEventArgs>? KeyUpActionWithArgs { get; set; }
+        Action? LostFocusAction { get; set; }
+        Action<object?, RoutedEventArgs>? LostFocusActionWithArgs { get; set; }
+        Action? LostKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? LostKeyboardFocusActionWithArgs { get; set; }
+        Action? LostMouseCaptureAction { get; set; }
+        Action<object?, MouseEventArgs>? LostMouseCaptureActionWithArgs { get; set; }
+        Action? LostStylusCaptureAction { get; set; }
+        Action<object?, StylusEventArgs>? LostStylusCaptureActionWithArgs { get; set; }
+        Action? LostTouchCaptureAction { get; set; }
+        Action<object?, TouchEventArgs>? LostTouchCaptureActionWithArgs { get; set; }
+        Action? ManipulationBoundaryFeedbackAction { get; set; }
+        Action<object?, ManipulationBoundaryFeedbackEventArgs>? ManipulationBoundaryFeedbackActionWithArgs { get; set; }
+        Action? ManipulationCompletedAction { get; set; }
+        Action<object?, ManipulationCompletedEventArgs>? ManipulationCompletedActionWithArgs { get; set; }
+        Action? ManipulationDeltaAction { get; set; }
+        Action<object?, ManipulationDeltaEventArgs>? ManipulationDeltaActionWithArgs { get; set; }
+        Action? ManipulationInertiaStartingAction { get; set; }
+        Action<object?, ManipulationInertiaStartingEventArgs>? ManipulationInertiaStartingActionWithArgs { get; set; }
+        Action? ManipulationStartedAction { get; set; }
+        Action<object?, ManipulationStartedEventArgs>? ManipulationStartedActionWithArgs { get; set; }
+        Action? ManipulationStartingAction { get; set; }
+        Action<object?, ManipulationStartingEventArgs>? ManipulationStartingActionWithArgs { get; set; }
+        Action? MouseDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseDownActionWithArgs { get; set; }
+        Action? MouseEnterAction { get; set; }
+        Action<object?, MouseEventArgs>? MouseEnterActionWithArgs { get; set; }
+        Action? MouseLeaveAction { get; set; }
+        Action<object?, MouseEventArgs>? MouseLeaveActionWithArgs { get; set; }
+        Action? MouseLeftButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseLeftButtonDownActionWithArgs { get; set; }
+        Action? MouseLeftButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseLeftButtonUpActionWithArgs { get; set; }
+        Action? MouseMoveAction { get; set; }
+        Action<object?, MouseEventArgs>? MouseMoveActionWithArgs { get; set; }
+        Action? MouseRightButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseRightButtonDownActionWithArgs { get; set; }
+        Action? MouseRightButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseRightButtonUpActionWithArgs { get; set; }
+        Action? MouseUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseUpActionWithArgs { get; set; }
+        Action? MouseWheelAction { get; set; }
+        Action<object?, MouseWheelEventArgs>? MouseWheelActionWithArgs { get; set; }
+        Action? PreviewDragEnterAction { get; set; }
+        Action<object?, DragEventArgs>? PreviewDragEnterActionWithArgs { get; set; }
+        Action? PreviewDragLeaveAction { get; set; }
+        Action<object?, DragEventArgs>? PreviewDragLeaveActionWithArgs { get; set; }
+        Action? PreviewDragOverAction { get; set; }
+        Action<object?, DragEventArgs>? PreviewDragOverActionWithArgs { get; set; }
+        Action? PreviewDropAction { get; set; }
+        Action<object?, DragEventArgs>? PreviewDropActionWithArgs { get; set; }
+        Action? PreviewGiveFeedbackAction { get; set; }
+        Action<object?, GiveFeedbackEventArgs>? PreviewGiveFeedbackActionWithArgs { get; set; }
+        Action? PreviewGotKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? PreviewGotKeyboardFocusActionWithArgs { get; set; }
+        Action? PreviewKeyDownAction { get; set; }
+        Action<object?, KeyEventArgs>? PreviewKeyDownActionWithArgs { get; set; }
+        Action? PreviewKeyUpAction { get; set; }
+        Action<object?, KeyEventArgs>? PreviewKeyUpActionWithArgs { get; set; }
+        Action? PreviewLostKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? PreviewLostKeyboardFocusActionWithArgs { get; set; }
+        Action? PreviewMouseDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseDownActionWithArgs { get; set; }
+        Action? PreviewMouseLeftButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseLeftButtonDownActionWithArgs { get; set; }
+        Action? PreviewMouseLeftButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseLeftButtonUpActionWithArgs { get; set; }
+        Action? PreviewMouseMoveAction { get; set; }
+        Action<object?, MouseEventArgs>? PreviewMouseMoveActionWithArgs { get; set; }
+        Action? PreviewMouseRightButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseRightButtonDownActionWithArgs { get; set; }
+        Action? PreviewMouseRightButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseRightButtonUpActionWithArgs { get; set; }
+        Action? PreviewMouseUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseUpActionWithArgs { get; set; }
+        Action? PreviewMouseWheelAction { get; set; }
+        Action<object?, MouseWheelEventArgs>? PreviewMouseWheelActionWithArgs { get; set; }
+        Action? PreviewQueryContinueDragAction { get; set; }
+        Action<object?, QueryContinueDragEventArgs>? PreviewQueryContinueDragActionWithArgs { get; set; }
+        Action? PreviewStylusButtonDownAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? PreviewStylusButtonDownActionWithArgs { get; set; }
+        Action? PreviewStylusButtonUpAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? PreviewStylusButtonUpActionWithArgs { get; set; }
+        Action? PreviewStylusDownAction { get; set; }
+        Action<object?, StylusDownEventArgs>? PreviewStylusDownActionWithArgs { get; set; }
+        Action? PreviewStylusInAirMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? PreviewStylusInAirMoveActionWithArgs { get; set; }
+        Action? PreviewStylusInRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? PreviewStylusInRangeActionWithArgs { get; set; }
+        Action? PreviewStylusMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? PreviewStylusMoveActionWithArgs { get; set; }
+        Action? PreviewStylusOutOfRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? PreviewStylusOutOfRangeActionWithArgs { get; set; }
+        Action? PreviewStylusSystemGestureAction { get; set; }
+        Action<object?, StylusSystemGestureEventArgs>? PreviewStylusSystemGestureActionWithArgs { get; set; }
+        Action? PreviewStylusUpAction { get; set; }
+        Action<object?, StylusEventArgs>? PreviewStylusUpActionWithArgs { get; set; }
+        Action? PreviewTextInputAction { get; set; }
+        Action<object?, TextCompositionEventArgs>? PreviewTextInputActionWithArgs { get; set; }
+        Action? PreviewTouchDownAction { get; set; }
+        Action<object?, TouchEventArgs>? PreviewTouchDownActionWithArgs { get; set; }
+        Action? PreviewTouchMoveAction { get; set; }
+        Action<object?, TouchEventArgs>? PreviewTouchMoveActionWithArgs { get; set; }
+        Action? PreviewTouchUpAction { get; set; }
+        Action<object?, TouchEventArgs>? PreviewTouchUpActionWithArgs { get; set; }
+        Action? QueryContinueDragAction { get; set; }
+        Action<object?, QueryContinueDragEventArgs>? QueryContinueDragActionWithArgs { get; set; }
+        Action? QueryCursorAction { get; set; }
+        Action<object?, QueryCursorEventArgs>? QueryCursorActionWithArgs { get; set; }
+        Action? StylusButtonDownAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? StylusButtonDownActionWithArgs { get; set; }
+        Action? StylusButtonUpAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? StylusButtonUpActionWithArgs { get; set; }
+        Action? StylusDownAction { get; set; }
+        Action<object?, StylusDownEventArgs>? StylusDownActionWithArgs { get; set; }
+        Action? StylusEnterAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusEnterActionWithArgs { get; set; }
+        Action? StylusInAirMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusInAirMoveActionWithArgs { get; set; }
+        Action? StylusInRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusInRangeActionWithArgs { get; set; }
+        Action? StylusLeaveAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusLeaveActionWithArgs { get; set; }
+        Action? StylusMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusMoveActionWithArgs { get; set; }
+        Action? StylusOutOfRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusOutOfRangeActionWithArgs { get; set; }
+        Action? StylusSystemGestureAction { get; set; }
+        Action<object?, StylusSystemGestureEventArgs>? StylusSystemGestureActionWithArgs { get; set; }
+        Action? StylusUpAction { get; set; }
+        Action<object?, StylusEventArgs>? StylusUpActionWithArgs { get; set; }
+        Action? TextInputAction { get; set; }
+        Action<object?, TextCompositionEventArgs>? TextInputActionWithArgs { get; set; }
+        Action? TouchDownAction { get; set; }
+        Action<object?, TouchEventArgs>? TouchDownActionWithArgs { get; set; }
+        Action? TouchEnterAction { get; set; }
+        Action<object?, TouchEventArgs>? TouchEnterActionWithArgs { get; set; }
+        Action? TouchLeaveAction { get; set; }
+        Action<object?, TouchEventArgs>? TouchLeaveActionWithArgs { get; set; }
+        Action? TouchMoveAction { get; set; }
+        Action<object?, TouchEventArgs>? TouchMoveActionWithArgs { get; set; }
+        Action? TouchUpAction { get; set; }
+        Action<object?, TouchEventArgs>? TouchUpActionWithArgs { get; set; }
     }
 
     public partial class RxUIElement<T> : RxVisual<T>, IRxUIElement where T : UIElement, new()
@@ -215,195 +215,195 @@ namespace WpfReactorUI
 
         }
 
-        public RxUIElement(Action<T> componentRefAction)
+        public RxUIElement(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxUIElement.AllowDrop { get; set; }
-        PropertyValue<CacheMode> IRxUIElement.CacheMode { get; set; }
-        PropertyValue<Geometry> IRxUIElement.Clip { get; set; }
-        PropertyValue<bool> IRxUIElement.ClipToBounds { get; set; }
-        PropertyValue<Effect> IRxUIElement.Effect { get; set; }
-        PropertyValue<bool> IRxUIElement.Focusable { get; set; }
-        PropertyValue<bool> IRxUIElement.IsEnabled { get; set; }
-        PropertyValue<bool> IRxUIElement.IsHitTestVisible { get; set; }
-        PropertyValue<bool> IRxUIElement.IsManipulationEnabled { get; set; }
-        PropertyValue<double> IRxUIElement.Opacity { get; set; }
-        PropertyValue<Brush> IRxUIElement.OpacityMask { get; set; }
-        PropertyValue<Transform> IRxUIElement.RenderTransform { get; set; }
-        PropertyValue<Point> IRxUIElement.RenderTransformOrigin { get; set; }
-        PropertyValue<bool> IRxUIElement.SnapsToDevicePixels { get; set; }
-        PropertyValue<string> IRxUIElement.Uid { get; set; }
-        PropertyValue<Visibility> IRxUIElement.Visibility { get; set; }
+        PropertyValue<bool>? IRxUIElement.AllowDrop { get; set; }
+        PropertyValue<CacheMode>? IRxUIElement.CacheMode { get; set; }
+        PropertyValue<Geometry>? IRxUIElement.Clip { get; set; }
+        PropertyValue<bool>? IRxUIElement.ClipToBounds { get; set; }
+        PropertyValue<Effect>? IRxUIElement.Effect { get; set; }
+        PropertyValue<bool>? IRxUIElement.Focusable { get; set; }
+        PropertyValue<bool>? IRxUIElement.IsEnabled { get; set; }
+        PropertyValue<bool>? IRxUIElement.IsHitTestVisible { get; set; }
+        PropertyValue<bool>? IRxUIElement.IsManipulationEnabled { get; set; }
+        PropertyValue<double>? IRxUIElement.Opacity { get; set; }
+        PropertyValue<Brush>? IRxUIElement.OpacityMask { get; set; }
+        PropertyValue<Transform>? IRxUIElement.RenderTransform { get; set; }
+        PropertyValue<Point>? IRxUIElement.RenderTransformOrigin { get; set; }
+        PropertyValue<bool>? IRxUIElement.SnapsToDevicePixels { get; set; }
+        PropertyValue<string>? IRxUIElement.Uid { get; set; }
+        PropertyValue<Visibility>? IRxUIElement.Visibility { get; set; }
 
-        Action IRxUIElement.DragEnterAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.DragEnterActionWithArgs { get; set; }
-        Action IRxUIElement.DragLeaveAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.DragLeaveActionWithArgs { get; set; }
-        Action IRxUIElement.DragOverAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.DragOverActionWithArgs { get; set; }
-        Action IRxUIElement.DropAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.DropActionWithArgs { get; set; }
-        Action IRxUIElement.GiveFeedbackAction { get; set; }
-        Action<object, GiveFeedbackEventArgs> IRxUIElement.GiveFeedbackActionWithArgs { get; set; }
-        Action IRxUIElement.GotFocusAction { get; set; }
-        Action<object, RoutedEventArgs> IRxUIElement.GotFocusActionWithArgs { get; set; }
-        Action IRxUIElement.GotKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> IRxUIElement.GotKeyboardFocusActionWithArgs { get; set; }
-        Action IRxUIElement.GotMouseCaptureAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.GotMouseCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.GotStylusCaptureAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.GotStylusCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.GotTouchCaptureAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.GotTouchCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.KeyDownAction { get; set; }
-        Action<object, KeyEventArgs> IRxUIElement.KeyDownActionWithArgs { get; set; }
-        Action IRxUIElement.KeyUpAction { get; set; }
-        Action<object, KeyEventArgs> IRxUIElement.KeyUpActionWithArgs { get; set; }
-        Action IRxUIElement.LostFocusAction { get; set; }
-        Action<object, RoutedEventArgs> IRxUIElement.LostFocusActionWithArgs { get; set; }
-        Action IRxUIElement.LostKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> IRxUIElement.LostKeyboardFocusActionWithArgs { get; set; }
-        Action IRxUIElement.LostMouseCaptureAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.LostMouseCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.LostStylusCaptureAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.LostStylusCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.LostTouchCaptureAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.LostTouchCaptureActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationBoundaryFeedbackAction { get; set; }
-        Action<object, ManipulationBoundaryFeedbackEventArgs> IRxUIElement.ManipulationBoundaryFeedbackActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationCompletedAction { get; set; }
-        Action<object, ManipulationCompletedEventArgs> IRxUIElement.ManipulationCompletedActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationDeltaAction { get; set; }
-        Action<object, ManipulationDeltaEventArgs> IRxUIElement.ManipulationDeltaActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationInertiaStartingAction { get; set; }
-        Action<object, ManipulationInertiaStartingEventArgs> IRxUIElement.ManipulationInertiaStartingActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationStartedAction { get; set; }
-        Action<object, ManipulationStartedEventArgs> IRxUIElement.ManipulationStartedActionWithArgs { get; set; }
-        Action IRxUIElement.ManipulationStartingAction { get; set; }
-        Action<object, ManipulationStartingEventArgs> IRxUIElement.ManipulationStartingActionWithArgs { get; set; }
-        Action IRxUIElement.MouseDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseDownActionWithArgs { get; set; }
-        Action IRxUIElement.MouseEnterAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.MouseEnterActionWithArgs { get; set; }
-        Action IRxUIElement.MouseLeaveAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.MouseLeaveActionWithArgs { get; set; }
-        Action IRxUIElement.MouseLeftButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseLeftButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.MouseLeftButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseLeftButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.MouseMoveAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.MouseMoveActionWithArgs { get; set; }
-        Action IRxUIElement.MouseRightButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseRightButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.MouseRightButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseRightButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.MouseUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.MouseUpActionWithArgs { get; set; }
-        Action IRxUIElement.MouseWheelAction { get; set; }
-        Action<object, MouseWheelEventArgs> IRxUIElement.MouseWheelActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewDragEnterAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.PreviewDragEnterActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewDragLeaveAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.PreviewDragLeaveActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewDragOverAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.PreviewDragOverActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewDropAction { get; set; }
-        Action<object, DragEventArgs> IRxUIElement.PreviewDropActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewGiveFeedbackAction { get; set; }
-        Action<object, GiveFeedbackEventArgs> IRxUIElement.PreviewGiveFeedbackActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewGotKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> IRxUIElement.PreviewGotKeyboardFocusActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewKeyDownAction { get; set; }
-        Action<object, KeyEventArgs> IRxUIElement.PreviewKeyDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewKeyUpAction { get; set; }
-        Action<object, KeyEventArgs> IRxUIElement.PreviewKeyUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewLostKeyboardFocusAction { get; set; }
-        Action<object, KeyboardFocusChangedEventArgs> IRxUIElement.PreviewLostKeyboardFocusActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseLeftButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseLeftButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseLeftButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseLeftButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseMoveAction { get; set; }
-        Action<object, MouseEventArgs> IRxUIElement.PreviewMouseMoveActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseRightButtonDownAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseRightButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseRightButtonUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseRightButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseUpAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxUIElement.PreviewMouseUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewMouseWheelAction { get; set; }
-        Action<object, MouseWheelEventArgs> IRxUIElement.PreviewMouseWheelActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewQueryContinueDragAction { get; set; }
-        Action<object, QueryContinueDragEventArgs> IRxUIElement.PreviewQueryContinueDragActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusButtonDownAction { get; set; }
-        Action<object, StylusButtonEventArgs> IRxUIElement.PreviewStylusButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusButtonUpAction { get; set; }
-        Action<object, StylusButtonEventArgs> IRxUIElement.PreviewStylusButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusDownAction { get; set; }
-        Action<object, StylusDownEventArgs> IRxUIElement.PreviewStylusDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusInAirMoveAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.PreviewStylusInAirMoveActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusInRangeAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.PreviewStylusInRangeActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusMoveAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.PreviewStylusMoveActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusOutOfRangeAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.PreviewStylusOutOfRangeActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusSystemGestureAction { get; set; }
-        Action<object, StylusSystemGestureEventArgs> IRxUIElement.PreviewStylusSystemGestureActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewStylusUpAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.PreviewStylusUpActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewTextInputAction { get; set; }
-        Action<object, TextCompositionEventArgs> IRxUIElement.PreviewTextInputActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewTouchDownAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.PreviewTouchDownActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewTouchMoveAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.PreviewTouchMoveActionWithArgs { get; set; }
-        Action IRxUIElement.PreviewTouchUpAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.PreviewTouchUpActionWithArgs { get; set; }
-        Action IRxUIElement.QueryContinueDragAction { get; set; }
-        Action<object, QueryContinueDragEventArgs> IRxUIElement.QueryContinueDragActionWithArgs { get; set; }
-        Action IRxUIElement.QueryCursorAction { get; set; }
-        Action<object, QueryCursorEventArgs> IRxUIElement.QueryCursorActionWithArgs { get; set; }
-        Action IRxUIElement.StylusButtonDownAction { get; set; }
-        Action<object, StylusButtonEventArgs> IRxUIElement.StylusButtonDownActionWithArgs { get; set; }
-        Action IRxUIElement.StylusButtonUpAction { get; set; }
-        Action<object, StylusButtonEventArgs> IRxUIElement.StylusButtonUpActionWithArgs { get; set; }
-        Action IRxUIElement.StylusDownAction { get; set; }
-        Action<object, StylusDownEventArgs> IRxUIElement.StylusDownActionWithArgs { get; set; }
-        Action IRxUIElement.StylusEnterAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusEnterActionWithArgs { get; set; }
-        Action IRxUIElement.StylusInAirMoveAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusInAirMoveActionWithArgs { get; set; }
-        Action IRxUIElement.StylusInRangeAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusInRangeActionWithArgs { get; set; }
-        Action IRxUIElement.StylusLeaveAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusLeaveActionWithArgs { get; set; }
-        Action IRxUIElement.StylusMoveAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusMoveActionWithArgs { get; set; }
-        Action IRxUIElement.StylusOutOfRangeAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusOutOfRangeActionWithArgs { get; set; }
-        Action IRxUIElement.StylusSystemGestureAction { get; set; }
-        Action<object, StylusSystemGestureEventArgs> IRxUIElement.StylusSystemGestureActionWithArgs { get; set; }
-        Action IRxUIElement.StylusUpAction { get; set; }
-        Action<object, StylusEventArgs> IRxUIElement.StylusUpActionWithArgs { get; set; }
-        Action IRxUIElement.TextInputAction { get; set; }
-        Action<object, TextCompositionEventArgs> IRxUIElement.TextInputActionWithArgs { get; set; }
-        Action IRxUIElement.TouchDownAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.TouchDownActionWithArgs { get; set; }
-        Action IRxUIElement.TouchEnterAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.TouchEnterActionWithArgs { get; set; }
-        Action IRxUIElement.TouchLeaveAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.TouchLeaveActionWithArgs { get; set; }
-        Action IRxUIElement.TouchMoveAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.TouchMoveActionWithArgs { get; set; }
-        Action IRxUIElement.TouchUpAction { get; set; }
-        Action<object, TouchEventArgs> IRxUIElement.TouchUpActionWithArgs { get; set; }
+        Action? IRxUIElement.DragEnterAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.DragEnterActionWithArgs { get; set; }
+        Action? IRxUIElement.DragLeaveAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.DragLeaveActionWithArgs { get; set; }
+        Action? IRxUIElement.DragOverAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.DragOverActionWithArgs { get; set; }
+        Action? IRxUIElement.DropAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.DropActionWithArgs { get; set; }
+        Action? IRxUIElement.GiveFeedbackAction { get; set; }
+        Action<object?, GiveFeedbackEventArgs>? IRxUIElement.GiveFeedbackActionWithArgs { get; set; }
+        Action? IRxUIElement.GotFocusAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxUIElement.GotFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.GotKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? IRxUIElement.GotKeyboardFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.GotMouseCaptureAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.GotMouseCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.GotStylusCaptureAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.GotStylusCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.GotTouchCaptureAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.GotTouchCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.KeyDownAction { get; set; }
+        Action<object?, KeyEventArgs>? IRxUIElement.KeyDownActionWithArgs { get; set; }
+        Action? IRxUIElement.KeyUpAction { get; set; }
+        Action<object?, KeyEventArgs>? IRxUIElement.KeyUpActionWithArgs { get; set; }
+        Action? IRxUIElement.LostFocusAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxUIElement.LostFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.LostKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? IRxUIElement.LostKeyboardFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.LostMouseCaptureAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.LostMouseCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.LostStylusCaptureAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.LostStylusCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.LostTouchCaptureAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.LostTouchCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationBoundaryFeedbackAction { get; set; }
+        Action<object?, ManipulationBoundaryFeedbackEventArgs>? IRxUIElement.ManipulationBoundaryFeedbackActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationCompletedAction { get; set; }
+        Action<object?, ManipulationCompletedEventArgs>? IRxUIElement.ManipulationCompletedActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationDeltaAction { get; set; }
+        Action<object?, ManipulationDeltaEventArgs>? IRxUIElement.ManipulationDeltaActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationInertiaStartingAction { get; set; }
+        Action<object?, ManipulationInertiaStartingEventArgs>? IRxUIElement.ManipulationInertiaStartingActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationStartedAction { get; set; }
+        Action<object?, ManipulationStartedEventArgs>? IRxUIElement.ManipulationStartedActionWithArgs { get; set; }
+        Action? IRxUIElement.ManipulationStartingAction { get; set; }
+        Action<object?, ManipulationStartingEventArgs>? IRxUIElement.ManipulationStartingActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseDownActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseEnterAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.MouseEnterActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseLeaveAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.MouseLeaveActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseLeftButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseLeftButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseLeftButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseLeftButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseMoveAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.MouseMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseRightButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseRightButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseRightButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseRightButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.MouseUpActionWithArgs { get; set; }
+        Action? IRxUIElement.MouseWheelAction { get; set; }
+        Action<object?, MouseWheelEventArgs>? IRxUIElement.MouseWheelActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewDragEnterAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.PreviewDragEnterActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewDragLeaveAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.PreviewDragLeaveActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewDragOverAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.PreviewDragOverActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewDropAction { get; set; }
+        Action<object?, DragEventArgs>? IRxUIElement.PreviewDropActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewGiveFeedbackAction { get; set; }
+        Action<object?, GiveFeedbackEventArgs>? IRxUIElement.PreviewGiveFeedbackActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewGotKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? IRxUIElement.PreviewGotKeyboardFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewKeyDownAction { get; set; }
+        Action<object?, KeyEventArgs>? IRxUIElement.PreviewKeyDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewKeyUpAction { get; set; }
+        Action<object?, KeyEventArgs>? IRxUIElement.PreviewKeyUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewLostKeyboardFocusAction { get; set; }
+        Action<object?, KeyboardFocusChangedEventArgs>? IRxUIElement.PreviewLostKeyboardFocusActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseLeftButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseLeftButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseLeftButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseLeftButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseMoveAction { get; set; }
+        Action<object?, MouseEventArgs>? IRxUIElement.PreviewMouseMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseRightButtonDownAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseRightButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseRightButtonUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseRightButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseUpAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxUIElement.PreviewMouseUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewMouseWheelAction { get; set; }
+        Action<object?, MouseWheelEventArgs>? IRxUIElement.PreviewMouseWheelActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewQueryContinueDragAction { get; set; }
+        Action<object?, QueryContinueDragEventArgs>? IRxUIElement.PreviewQueryContinueDragActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusButtonDownAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? IRxUIElement.PreviewStylusButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusButtonUpAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? IRxUIElement.PreviewStylusButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusDownAction { get; set; }
+        Action<object?, StylusDownEventArgs>? IRxUIElement.PreviewStylusDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusInAirMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.PreviewStylusInAirMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusInRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.PreviewStylusInRangeActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.PreviewStylusMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusOutOfRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.PreviewStylusOutOfRangeActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusSystemGestureAction { get; set; }
+        Action<object?, StylusSystemGestureEventArgs>? IRxUIElement.PreviewStylusSystemGestureActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewStylusUpAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.PreviewStylusUpActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewTextInputAction { get; set; }
+        Action<object?, TextCompositionEventArgs>? IRxUIElement.PreviewTextInputActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewTouchDownAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.PreviewTouchDownActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewTouchMoveAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.PreviewTouchMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.PreviewTouchUpAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.PreviewTouchUpActionWithArgs { get; set; }
+        Action? IRxUIElement.QueryContinueDragAction { get; set; }
+        Action<object?, QueryContinueDragEventArgs>? IRxUIElement.QueryContinueDragActionWithArgs { get; set; }
+        Action? IRxUIElement.QueryCursorAction { get; set; }
+        Action<object?, QueryCursorEventArgs>? IRxUIElement.QueryCursorActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusButtonDownAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? IRxUIElement.StylusButtonDownActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusButtonUpAction { get; set; }
+        Action<object?, StylusButtonEventArgs>? IRxUIElement.StylusButtonUpActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusDownAction { get; set; }
+        Action<object?, StylusDownEventArgs>? IRxUIElement.StylusDownActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusEnterAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusEnterActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusInAirMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusInAirMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusInRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusInRangeActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusLeaveAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusLeaveActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusMoveAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusOutOfRangeAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusOutOfRangeActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusSystemGestureAction { get; set; }
+        Action<object?, StylusSystemGestureEventArgs>? IRxUIElement.StylusSystemGestureActionWithArgs { get; set; }
+        Action? IRxUIElement.StylusUpAction { get; set; }
+        Action<object?, StylusEventArgs>? IRxUIElement.StylusUpActionWithArgs { get; set; }
+        Action? IRxUIElement.TextInputAction { get; set; }
+        Action<object?, TextCompositionEventArgs>? IRxUIElement.TextInputActionWithArgs { get; set; }
+        Action? IRxUIElement.TouchDownAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.TouchDownActionWithArgs { get; set; }
+        Action? IRxUIElement.TouchEnterAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.TouchEnterActionWithArgs { get; set; }
+        Action? IRxUIElement.TouchLeaveAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.TouchLeaveActionWithArgs { get; set; }
+        Action? IRxUIElement.TouchMoveAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.TouchMoveActionWithArgs { get; set; }
+        Action? IRxUIElement.TouchUpAction { get; set; }
+        Action<object?, TouchEventArgs>? IRxUIElement.TouchUpActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -774,499 +774,499 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_DragEnter(object sender, DragEventArgs e)
+        private void NativeControl_DragEnter(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.DragEnterAction?.Invoke();
             thisAsIRxUIElement.DragEnterActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_DragLeave(object sender, DragEventArgs e)
+        private void NativeControl_DragLeave(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.DragLeaveAction?.Invoke();
             thisAsIRxUIElement.DragLeaveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_DragOver(object sender, DragEventArgs e)
+        private void NativeControl_DragOver(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.DragOverAction?.Invoke();
             thisAsIRxUIElement.DragOverActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_Drop(object sender, DragEventArgs e)
+        private void NativeControl_Drop(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.DropAction?.Invoke();
             thisAsIRxUIElement.DropActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        private void NativeControl_GiveFeedback(object? sender, GiveFeedbackEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GiveFeedbackAction?.Invoke();
             thisAsIRxUIElement.GiveFeedbackActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GotFocus(object sender, RoutedEventArgs e)
+        private void NativeControl_GotFocus(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GotFocusAction?.Invoke();
             thisAsIRxUIElement.GotFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void NativeControl_GotKeyboardFocus(object? sender, KeyboardFocusChangedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GotKeyboardFocusAction?.Invoke();
             thisAsIRxUIElement.GotKeyboardFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GotMouseCapture(object sender, MouseEventArgs e)
+        private void NativeControl_GotMouseCapture(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GotMouseCaptureAction?.Invoke();
             thisAsIRxUIElement.GotMouseCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GotStylusCapture(object sender, StylusEventArgs e)
+        private void NativeControl_GotStylusCapture(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GotStylusCaptureAction?.Invoke();
             thisAsIRxUIElement.GotStylusCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_GotTouchCapture(object sender, TouchEventArgs e)
+        private void NativeControl_GotTouchCapture(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.GotTouchCaptureAction?.Invoke();
             thisAsIRxUIElement.GotTouchCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_KeyDown(object sender, KeyEventArgs e)
+        private void NativeControl_KeyDown(object? sender, KeyEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.KeyDownAction?.Invoke();
             thisAsIRxUIElement.KeyDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_KeyUp(object sender, KeyEventArgs e)
+        private void NativeControl_KeyUp(object? sender, KeyEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.KeyUpAction?.Invoke();
             thisAsIRxUIElement.KeyUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_LostFocus(object sender, RoutedEventArgs e)
+        private void NativeControl_LostFocus(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.LostFocusAction?.Invoke();
             thisAsIRxUIElement.LostFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void NativeControl_LostKeyboardFocus(object? sender, KeyboardFocusChangedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.LostKeyboardFocusAction?.Invoke();
             thisAsIRxUIElement.LostKeyboardFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_LostMouseCapture(object sender, MouseEventArgs e)
+        private void NativeControl_LostMouseCapture(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.LostMouseCaptureAction?.Invoke();
             thisAsIRxUIElement.LostMouseCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_LostStylusCapture(object sender, StylusEventArgs e)
+        private void NativeControl_LostStylusCapture(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.LostStylusCaptureAction?.Invoke();
             thisAsIRxUIElement.LostStylusCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_LostTouchCapture(object sender, TouchEventArgs e)
+        private void NativeControl_LostTouchCapture(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.LostTouchCaptureAction?.Invoke();
             thisAsIRxUIElement.LostTouchCaptureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        private void NativeControl_ManipulationBoundaryFeedback(object? sender, ManipulationBoundaryFeedbackEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationBoundaryFeedbackAction?.Invoke();
             thisAsIRxUIElement.ManipulationBoundaryFeedbackActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void NativeControl_ManipulationCompleted(object? sender, ManipulationCompletedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationCompletedAction?.Invoke();
             thisAsIRxUIElement.ManipulationCompletedActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        private void NativeControl_ManipulationDelta(object? sender, ManipulationDeltaEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationDeltaAction?.Invoke();
             thisAsIRxUIElement.ManipulationDeltaActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingEventArgs e)
+        private void NativeControl_ManipulationInertiaStarting(object? sender, ManipulationInertiaStartingEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationInertiaStartingAction?.Invoke();
             thisAsIRxUIElement.ManipulationInertiaStartingActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void NativeControl_ManipulationStarted(object? sender, ManipulationStartedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationStartedAction?.Invoke();
             thisAsIRxUIElement.ManipulationStartedActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
+        private void NativeControl_ManipulationStarting(object? sender, ManipulationStartingEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.ManipulationStartingAction?.Invoke();
             thisAsIRxUIElement.ManipulationStartingActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseDownAction?.Invoke();
             thisAsIRxUIElement.MouseDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseEnter(object sender, MouseEventArgs e)
+        private void NativeControl_MouseEnter(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseEnterAction?.Invoke();
             thisAsIRxUIElement.MouseEnterActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseLeave(object sender, MouseEventArgs e)
+        private void NativeControl_MouseLeave(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseLeaveAction?.Invoke();
             thisAsIRxUIElement.MouseLeaveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseLeftButtonDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseLeftButtonDownAction?.Invoke();
             thisAsIRxUIElement.MouseLeftButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseLeftButtonUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseLeftButtonUpAction?.Invoke();
             thisAsIRxUIElement.MouseLeftButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseMove(object sender, MouseEventArgs e)
+        private void NativeControl_MouseMove(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseMoveAction?.Invoke();
             thisAsIRxUIElement.MouseMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseRightButtonDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseRightButtonDownAction?.Invoke();
             thisAsIRxUIElement.MouseRightButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseRightButtonUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseRightButtonUpAction?.Invoke();
             thisAsIRxUIElement.MouseRightButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseUpAction?.Invoke();
             thisAsIRxUIElement.MouseUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_MouseWheel(object sender, MouseWheelEventArgs e)
+        private void NativeControl_MouseWheel(object? sender, MouseWheelEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.MouseWheelAction?.Invoke();
             thisAsIRxUIElement.MouseWheelActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewDragEnter(object sender, DragEventArgs e)
+        private void NativeControl_PreviewDragEnter(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewDragEnterAction?.Invoke();
             thisAsIRxUIElement.PreviewDragEnterActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewDragLeave(object sender, DragEventArgs e)
+        private void NativeControl_PreviewDragLeave(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewDragLeaveAction?.Invoke();
             thisAsIRxUIElement.PreviewDragLeaveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewDragOver(object sender, DragEventArgs e)
+        private void NativeControl_PreviewDragOver(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewDragOverAction?.Invoke();
             thisAsIRxUIElement.PreviewDragOverActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewDrop(object sender, DragEventArgs e)
+        private void NativeControl_PreviewDrop(object? sender, DragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewDropAction?.Invoke();
             thisAsIRxUIElement.PreviewDropActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        private void NativeControl_PreviewGiveFeedback(object? sender, GiveFeedbackEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewGiveFeedbackAction?.Invoke();
             thisAsIRxUIElement.PreviewGiveFeedbackActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void NativeControl_PreviewGotKeyboardFocus(object? sender, KeyboardFocusChangedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewGotKeyboardFocusAction?.Invoke();
             thisAsIRxUIElement.PreviewGotKeyboardFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void NativeControl_PreviewKeyDown(object? sender, KeyEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewKeyDownAction?.Invoke();
             thisAsIRxUIElement.PreviewKeyDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewKeyUp(object sender, KeyEventArgs e)
+        private void NativeControl_PreviewKeyUp(object? sender, KeyEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewKeyUpAction?.Invoke();
             thisAsIRxUIElement.PreviewKeyUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void NativeControl_PreviewLostKeyboardFocus(object? sender, KeyboardFocusChangedEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewLostKeyboardFocusAction?.Invoke();
             thisAsIRxUIElement.PreviewLostKeyboardFocusActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseDownAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseLeftButtonDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseLeftButtonDownAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseLeftButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseLeftButtonUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseLeftButtonUpAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseLeftButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseMove(object sender, MouseEventArgs e)
+        private void NativeControl_PreviewMouseMove(object? sender, MouseEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseMoveAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseRightButtonDown(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseRightButtonDownAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseRightButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseRightButtonUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseRightButtonUpAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseRightButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseUp(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseUpAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private void NativeControl_PreviewMouseWheel(object? sender, MouseWheelEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewMouseWheelAction?.Invoke();
             thisAsIRxUIElement.PreviewMouseWheelActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewQueryContinueDrag(object sender, QueryContinueDragEventArgs e)
+        private void NativeControl_PreviewQueryContinueDrag(object? sender, QueryContinueDragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewQueryContinueDragAction?.Invoke();
             thisAsIRxUIElement.PreviewQueryContinueDragActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusButtonDown(object sender, StylusButtonEventArgs e)
+        private void NativeControl_PreviewStylusButtonDown(object? sender, StylusButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusButtonDownAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusButtonUp(object sender, StylusButtonEventArgs e)
+        private void NativeControl_PreviewStylusButtonUp(object? sender, StylusButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusButtonUpAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusDown(object sender, StylusDownEventArgs e)
+        private void NativeControl_PreviewStylusDown(object? sender, StylusDownEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusDownAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusInAirMove(object sender, StylusEventArgs e)
+        private void NativeControl_PreviewStylusInAirMove(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusInAirMoveAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusInAirMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusInRange(object sender, StylusEventArgs e)
+        private void NativeControl_PreviewStylusInRange(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusInRangeAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusInRangeActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusMove(object sender, StylusEventArgs e)
+        private void NativeControl_PreviewStylusMove(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusMoveAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusOutOfRange(object sender, StylusEventArgs e)
+        private void NativeControl_PreviewStylusOutOfRange(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusOutOfRangeAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusOutOfRangeActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusSystemGesture(object sender, StylusSystemGestureEventArgs e)
+        private void NativeControl_PreviewStylusSystemGesture(object? sender, StylusSystemGestureEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusSystemGestureAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusSystemGestureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewStylusUp(object sender, StylusEventArgs e)
+        private void NativeControl_PreviewStylusUp(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewStylusUpAction?.Invoke();
             thisAsIRxUIElement.PreviewStylusUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void NativeControl_PreviewTextInput(object? sender, TextCompositionEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewTextInputAction?.Invoke();
             thisAsIRxUIElement.PreviewTextInputActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewTouchDown(object sender, TouchEventArgs e)
+        private void NativeControl_PreviewTouchDown(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewTouchDownAction?.Invoke();
             thisAsIRxUIElement.PreviewTouchDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewTouchMove(object sender, TouchEventArgs e)
+        private void NativeControl_PreviewTouchMove(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewTouchMoveAction?.Invoke();
             thisAsIRxUIElement.PreviewTouchMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewTouchUp(object sender, TouchEventArgs e)
+        private void NativeControl_PreviewTouchUp(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.PreviewTouchUpAction?.Invoke();
             thisAsIRxUIElement.PreviewTouchUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_QueryContinueDrag(object sender, QueryContinueDragEventArgs e)
+        private void NativeControl_QueryContinueDrag(object? sender, QueryContinueDragEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.QueryContinueDragAction?.Invoke();
             thisAsIRxUIElement.QueryContinueDragActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_QueryCursor(object sender, QueryCursorEventArgs e)
+        private void NativeControl_QueryCursor(object? sender, QueryCursorEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.QueryCursorAction?.Invoke();
             thisAsIRxUIElement.QueryCursorActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusButtonDown(object sender, StylusButtonEventArgs e)
+        private void NativeControl_StylusButtonDown(object? sender, StylusButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusButtonDownAction?.Invoke();
             thisAsIRxUIElement.StylusButtonDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusButtonUp(object sender, StylusButtonEventArgs e)
+        private void NativeControl_StylusButtonUp(object? sender, StylusButtonEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusButtonUpAction?.Invoke();
             thisAsIRxUIElement.StylusButtonUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusDown(object sender, StylusDownEventArgs e)
+        private void NativeControl_StylusDown(object? sender, StylusDownEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusDownAction?.Invoke();
             thisAsIRxUIElement.StylusDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusEnter(object sender, StylusEventArgs e)
+        private void NativeControl_StylusEnter(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusEnterAction?.Invoke();
             thisAsIRxUIElement.StylusEnterActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusInAirMove(object sender, StylusEventArgs e)
+        private void NativeControl_StylusInAirMove(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusInAirMoveAction?.Invoke();
             thisAsIRxUIElement.StylusInAirMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusInRange(object sender, StylusEventArgs e)
+        private void NativeControl_StylusInRange(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusInRangeAction?.Invoke();
             thisAsIRxUIElement.StylusInRangeActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusLeave(object sender, StylusEventArgs e)
+        private void NativeControl_StylusLeave(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusLeaveAction?.Invoke();
             thisAsIRxUIElement.StylusLeaveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusMove(object sender, StylusEventArgs e)
+        private void NativeControl_StylusMove(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusMoveAction?.Invoke();
             thisAsIRxUIElement.StylusMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusOutOfRange(object sender, StylusEventArgs e)
+        private void NativeControl_StylusOutOfRange(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusOutOfRangeAction?.Invoke();
             thisAsIRxUIElement.StylusOutOfRangeActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusSystemGesture(object sender, StylusSystemGestureEventArgs e)
+        private void NativeControl_StylusSystemGesture(object? sender, StylusSystemGestureEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusSystemGestureAction?.Invoke();
             thisAsIRxUIElement.StylusSystemGestureActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_StylusUp(object sender, StylusEventArgs e)
+        private void NativeControl_StylusUp(object? sender, StylusEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.StylusUpAction?.Invoke();
             thisAsIRxUIElement.StylusUpActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TextInput(object sender, TextCompositionEventArgs e)
+        private void NativeControl_TextInput(object? sender, TextCompositionEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TextInputAction?.Invoke();
             thisAsIRxUIElement.TextInputActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TouchDown(object sender, TouchEventArgs e)
+        private void NativeControl_TouchDown(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TouchDownAction?.Invoke();
             thisAsIRxUIElement.TouchDownActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TouchEnter(object sender, TouchEventArgs e)
+        private void NativeControl_TouchEnter(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TouchEnterAction?.Invoke();
             thisAsIRxUIElement.TouchEnterActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TouchLeave(object sender, TouchEventArgs e)
+        private void NativeControl_TouchLeave(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TouchLeaveAction?.Invoke();
             thisAsIRxUIElement.TouchLeaveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TouchMove(object sender, TouchEventArgs e)
+        private void NativeControl_TouchMove(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TouchMoveAction?.Invoke();
             thisAsIRxUIElement.TouchMoveActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TouchUp(object sender, TouchEventArgs e)
+        private void NativeControl_TouchUp(object? sender, TouchEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.TouchUpAction?.Invoke();
@@ -1373,7 +1373,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxUIElement(Action<UIElement> componentRefAction)
+        public RxUIElement(Action<UIElement?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -1547,7 +1547,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnDragEnter<T>(this T uielement, Action<object, DragEventArgs> dragenterActionWithArgs) where T : IRxUIElement
+        public static T OnDragEnter<T>(this T uielement, Action<object?, DragEventArgs> dragenterActionWithArgs) where T : IRxUIElement
         {
             uielement.DragEnterActionWithArgs = dragenterActionWithArgs;
             return uielement;
@@ -1558,7 +1558,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnDragLeave<T>(this T uielement, Action<object, DragEventArgs> dragleaveActionWithArgs) where T : IRxUIElement
+        public static T OnDragLeave<T>(this T uielement, Action<object?, DragEventArgs> dragleaveActionWithArgs) where T : IRxUIElement
         {
             uielement.DragLeaveActionWithArgs = dragleaveActionWithArgs;
             return uielement;
@@ -1569,7 +1569,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnDragOver<T>(this T uielement, Action<object, DragEventArgs> dragoverActionWithArgs) where T : IRxUIElement
+        public static T OnDragOver<T>(this T uielement, Action<object?, DragEventArgs> dragoverActionWithArgs) where T : IRxUIElement
         {
             uielement.DragOverActionWithArgs = dragoverActionWithArgs;
             return uielement;
@@ -1580,7 +1580,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnDrop<T>(this T uielement, Action<object, DragEventArgs> dropActionWithArgs) where T : IRxUIElement
+        public static T OnDrop<T>(this T uielement, Action<object?, DragEventArgs> dropActionWithArgs) where T : IRxUIElement
         {
             uielement.DropActionWithArgs = dropActionWithArgs;
             return uielement;
@@ -1591,7 +1591,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGiveFeedback<T>(this T uielement, Action<object, GiveFeedbackEventArgs> givefeedbackActionWithArgs) where T : IRxUIElement
+        public static T OnGiveFeedback<T>(this T uielement, Action<object?, GiveFeedbackEventArgs> givefeedbackActionWithArgs) where T : IRxUIElement
         {
             uielement.GiveFeedbackActionWithArgs = givefeedbackActionWithArgs;
             return uielement;
@@ -1602,7 +1602,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGotFocus<T>(this T uielement, Action<object, RoutedEventArgs> gotfocusActionWithArgs) where T : IRxUIElement
+        public static T OnGotFocus<T>(this T uielement, Action<object?, RoutedEventArgs> gotfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.GotFocusActionWithArgs = gotfocusActionWithArgs;
             return uielement;
@@ -1613,7 +1613,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGotKeyboardFocus<T>(this T uielement, Action<object, KeyboardFocusChangedEventArgs> gotkeyboardfocusActionWithArgs) where T : IRxUIElement
+        public static T OnGotKeyboardFocus<T>(this T uielement, Action<object?, KeyboardFocusChangedEventArgs> gotkeyboardfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.GotKeyboardFocusActionWithArgs = gotkeyboardfocusActionWithArgs;
             return uielement;
@@ -1624,7 +1624,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGotMouseCapture<T>(this T uielement, Action<object, MouseEventArgs> gotmousecaptureActionWithArgs) where T : IRxUIElement
+        public static T OnGotMouseCapture<T>(this T uielement, Action<object?, MouseEventArgs> gotmousecaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.GotMouseCaptureActionWithArgs = gotmousecaptureActionWithArgs;
             return uielement;
@@ -1635,7 +1635,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGotStylusCapture<T>(this T uielement, Action<object, StylusEventArgs> gotstyluscaptureActionWithArgs) where T : IRxUIElement
+        public static T OnGotStylusCapture<T>(this T uielement, Action<object?, StylusEventArgs> gotstyluscaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.GotStylusCaptureActionWithArgs = gotstyluscaptureActionWithArgs;
             return uielement;
@@ -1646,7 +1646,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnGotTouchCapture<T>(this T uielement, Action<object, TouchEventArgs> gottouchcaptureActionWithArgs) where T : IRxUIElement
+        public static T OnGotTouchCapture<T>(this T uielement, Action<object?, TouchEventArgs> gottouchcaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.GotTouchCaptureActionWithArgs = gottouchcaptureActionWithArgs;
             return uielement;
@@ -1657,7 +1657,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnKeyDown<T>(this T uielement, Action<object, KeyEventArgs> keydownActionWithArgs) where T : IRxUIElement
+        public static T OnKeyDown<T>(this T uielement, Action<object?, KeyEventArgs> keydownActionWithArgs) where T : IRxUIElement
         {
             uielement.KeyDownActionWithArgs = keydownActionWithArgs;
             return uielement;
@@ -1668,7 +1668,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnKeyUp<T>(this T uielement, Action<object, KeyEventArgs> keyupActionWithArgs) where T : IRxUIElement
+        public static T OnKeyUp<T>(this T uielement, Action<object?, KeyEventArgs> keyupActionWithArgs) where T : IRxUIElement
         {
             uielement.KeyUpActionWithArgs = keyupActionWithArgs;
             return uielement;
@@ -1679,7 +1679,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnLostFocus<T>(this T uielement, Action<object, RoutedEventArgs> lostfocusActionWithArgs) where T : IRxUIElement
+        public static T OnLostFocus<T>(this T uielement, Action<object?, RoutedEventArgs> lostfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.LostFocusActionWithArgs = lostfocusActionWithArgs;
             return uielement;
@@ -1690,7 +1690,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnLostKeyboardFocus<T>(this T uielement, Action<object, KeyboardFocusChangedEventArgs> lostkeyboardfocusActionWithArgs) where T : IRxUIElement
+        public static T OnLostKeyboardFocus<T>(this T uielement, Action<object?, KeyboardFocusChangedEventArgs> lostkeyboardfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.LostKeyboardFocusActionWithArgs = lostkeyboardfocusActionWithArgs;
             return uielement;
@@ -1701,7 +1701,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnLostMouseCapture<T>(this T uielement, Action<object, MouseEventArgs> lostmousecaptureActionWithArgs) where T : IRxUIElement
+        public static T OnLostMouseCapture<T>(this T uielement, Action<object?, MouseEventArgs> lostmousecaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.LostMouseCaptureActionWithArgs = lostmousecaptureActionWithArgs;
             return uielement;
@@ -1712,7 +1712,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnLostStylusCapture<T>(this T uielement, Action<object, StylusEventArgs> loststyluscaptureActionWithArgs) where T : IRxUIElement
+        public static T OnLostStylusCapture<T>(this T uielement, Action<object?, StylusEventArgs> loststyluscaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.LostStylusCaptureActionWithArgs = loststyluscaptureActionWithArgs;
             return uielement;
@@ -1723,7 +1723,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnLostTouchCapture<T>(this T uielement, Action<object, TouchEventArgs> losttouchcaptureActionWithArgs) where T : IRxUIElement
+        public static T OnLostTouchCapture<T>(this T uielement, Action<object?, TouchEventArgs> losttouchcaptureActionWithArgs) where T : IRxUIElement
         {
             uielement.LostTouchCaptureActionWithArgs = losttouchcaptureActionWithArgs;
             return uielement;
@@ -1734,7 +1734,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationBoundaryFeedback<T>(this T uielement, Action<object, ManipulationBoundaryFeedbackEventArgs> manipulationboundaryfeedbackActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationBoundaryFeedback<T>(this T uielement, Action<object?, ManipulationBoundaryFeedbackEventArgs> manipulationboundaryfeedbackActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationBoundaryFeedbackActionWithArgs = manipulationboundaryfeedbackActionWithArgs;
             return uielement;
@@ -1745,7 +1745,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationCompleted<T>(this T uielement, Action<object, ManipulationCompletedEventArgs> manipulationcompletedActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationCompleted<T>(this T uielement, Action<object?, ManipulationCompletedEventArgs> manipulationcompletedActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationCompletedActionWithArgs = manipulationcompletedActionWithArgs;
             return uielement;
@@ -1756,7 +1756,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationDelta<T>(this T uielement, Action<object, ManipulationDeltaEventArgs> manipulationdeltaActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationDelta<T>(this T uielement, Action<object?, ManipulationDeltaEventArgs> manipulationdeltaActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationDeltaActionWithArgs = manipulationdeltaActionWithArgs;
             return uielement;
@@ -1767,7 +1767,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationInertiaStarting<T>(this T uielement, Action<object, ManipulationInertiaStartingEventArgs> manipulationinertiastartingActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationInertiaStarting<T>(this T uielement, Action<object?, ManipulationInertiaStartingEventArgs> manipulationinertiastartingActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationInertiaStartingActionWithArgs = manipulationinertiastartingActionWithArgs;
             return uielement;
@@ -1778,7 +1778,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationStarted<T>(this T uielement, Action<object, ManipulationStartedEventArgs> manipulationstartedActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationStarted<T>(this T uielement, Action<object?, ManipulationStartedEventArgs> manipulationstartedActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationStartedActionWithArgs = manipulationstartedActionWithArgs;
             return uielement;
@@ -1789,7 +1789,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnManipulationStarting<T>(this T uielement, Action<object, ManipulationStartingEventArgs> manipulationstartingActionWithArgs) where T : IRxUIElement
+        public static T OnManipulationStarting<T>(this T uielement, Action<object?, ManipulationStartingEventArgs> manipulationstartingActionWithArgs) where T : IRxUIElement
         {
             uielement.ManipulationStartingActionWithArgs = manipulationstartingActionWithArgs;
             return uielement;
@@ -1800,7 +1800,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseDown<T>(this T uielement, Action<object, MouseButtonEventArgs> mousedownActionWithArgs) where T : IRxUIElement
+        public static T OnMouseDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> mousedownActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseDownActionWithArgs = mousedownActionWithArgs;
             return uielement;
@@ -1811,7 +1811,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseEnter<T>(this T uielement, Action<object, MouseEventArgs> mouseenterActionWithArgs) where T : IRxUIElement
+        public static T OnMouseEnter<T>(this T uielement, Action<object?, MouseEventArgs> mouseenterActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseEnterActionWithArgs = mouseenterActionWithArgs;
             return uielement;
@@ -1822,7 +1822,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseLeave<T>(this T uielement, Action<object, MouseEventArgs> mouseleaveActionWithArgs) where T : IRxUIElement
+        public static T OnMouseLeave<T>(this T uielement, Action<object?, MouseEventArgs> mouseleaveActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseLeaveActionWithArgs = mouseleaveActionWithArgs;
             return uielement;
@@ -1833,7 +1833,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseLeftButtonDown<T>(this T uielement, Action<object, MouseButtonEventArgs> mouseleftbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnMouseLeftButtonDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> mouseleftbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseLeftButtonDownActionWithArgs = mouseleftbuttondownActionWithArgs;
             return uielement;
@@ -1844,7 +1844,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseLeftButtonUp<T>(this T uielement, Action<object, MouseButtonEventArgs> mouseleftbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnMouseLeftButtonUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> mouseleftbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseLeftButtonUpActionWithArgs = mouseleftbuttonupActionWithArgs;
             return uielement;
@@ -1855,7 +1855,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseMove<T>(this T uielement, Action<object, MouseEventArgs> mousemoveActionWithArgs) where T : IRxUIElement
+        public static T OnMouseMove<T>(this T uielement, Action<object?, MouseEventArgs> mousemoveActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseMoveActionWithArgs = mousemoveActionWithArgs;
             return uielement;
@@ -1866,7 +1866,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseRightButtonDown<T>(this T uielement, Action<object, MouseButtonEventArgs> mouserightbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnMouseRightButtonDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> mouserightbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseRightButtonDownActionWithArgs = mouserightbuttondownActionWithArgs;
             return uielement;
@@ -1877,7 +1877,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseRightButtonUp<T>(this T uielement, Action<object, MouseButtonEventArgs> mouserightbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnMouseRightButtonUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> mouserightbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseRightButtonUpActionWithArgs = mouserightbuttonupActionWithArgs;
             return uielement;
@@ -1888,7 +1888,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseUp<T>(this T uielement, Action<object, MouseButtonEventArgs> mouseupActionWithArgs) where T : IRxUIElement
+        public static T OnMouseUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> mouseupActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseUpActionWithArgs = mouseupActionWithArgs;
             return uielement;
@@ -1899,7 +1899,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnMouseWheel<T>(this T uielement, Action<object, MouseWheelEventArgs> mousewheelActionWithArgs) where T : IRxUIElement
+        public static T OnMouseWheel<T>(this T uielement, Action<object?, MouseWheelEventArgs> mousewheelActionWithArgs) where T : IRxUIElement
         {
             uielement.MouseWheelActionWithArgs = mousewheelActionWithArgs;
             return uielement;
@@ -1910,7 +1910,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewDragEnter<T>(this T uielement, Action<object, DragEventArgs> previewdragenterActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewDragEnter<T>(this T uielement, Action<object?, DragEventArgs> previewdragenterActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewDragEnterActionWithArgs = previewdragenterActionWithArgs;
             return uielement;
@@ -1921,7 +1921,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewDragLeave<T>(this T uielement, Action<object, DragEventArgs> previewdragleaveActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewDragLeave<T>(this T uielement, Action<object?, DragEventArgs> previewdragleaveActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewDragLeaveActionWithArgs = previewdragleaveActionWithArgs;
             return uielement;
@@ -1932,7 +1932,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewDragOver<T>(this T uielement, Action<object, DragEventArgs> previewdragoverActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewDragOver<T>(this T uielement, Action<object?, DragEventArgs> previewdragoverActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewDragOverActionWithArgs = previewdragoverActionWithArgs;
             return uielement;
@@ -1943,7 +1943,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewDrop<T>(this T uielement, Action<object, DragEventArgs> previewdropActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewDrop<T>(this T uielement, Action<object?, DragEventArgs> previewdropActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewDropActionWithArgs = previewdropActionWithArgs;
             return uielement;
@@ -1954,7 +1954,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewGiveFeedback<T>(this T uielement, Action<object, GiveFeedbackEventArgs> previewgivefeedbackActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewGiveFeedback<T>(this T uielement, Action<object?, GiveFeedbackEventArgs> previewgivefeedbackActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewGiveFeedbackActionWithArgs = previewgivefeedbackActionWithArgs;
             return uielement;
@@ -1965,7 +1965,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewGotKeyboardFocus<T>(this T uielement, Action<object, KeyboardFocusChangedEventArgs> previewgotkeyboardfocusActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewGotKeyboardFocus<T>(this T uielement, Action<object?, KeyboardFocusChangedEventArgs> previewgotkeyboardfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewGotKeyboardFocusActionWithArgs = previewgotkeyboardfocusActionWithArgs;
             return uielement;
@@ -1976,7 +1976,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewKeyDown<T>(this T uielement, Action<object, KeyEventArgs> previewkeydownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewKeyDown<T>(this T uielement, Action<object?, KeyEventArgs> previewkeydownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewKeyDownActionWithArgs = previewkeydownActionWithArgs;
             return uielement;
@@ -1987,7 +1987,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewKeyUp<T>(this T uielement, Action<object, KeyEventArgs> previewkeyupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewKeyUp<T>(this T uielement, Action<object?, KeyEventArgs> previewkeyupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewKeyUpActionWithArgs = previewkeyupActionWithArgs;
             return uielement;
@@ -1998,7 +1998,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewLostKeyboardFocus<T>(this T uielement, Action<object, KeyboardFocusChangedEventArgs> previewlostkeyboardfocusActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewLostKeyboardFocus<T>(this T uielement, Action<object?, KeyboardFocusChangedEventArgs> previewlostkeyboardfocusActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewLostKeyboardFocusActionWithArgs = previewlostkeyboardfocusActionWithArgs;
             return uielement;
@@ -2009,7 +2009,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseDown<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmousedownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmousedownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseDownActionWithArgs = previewmousedownActionWithArgs;
             return uielement;
@@ -2020,7 +2020,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseLeftButtonDown<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmouseleftbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseLeftButtonDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmouseleftbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseLeftButtonDownActionWithArgs = previewmouseleftbuttondownActionWithArgs;
             return uielement;
@@ -2031,7 +2031,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseLeftButtonUp<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmouseleftbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseLeftButtonUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmouseleftbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseLeftButtonUpActionWithArgs = previewmouseleftbuttonupActionWithArgs;
             return uielement;
@@ -2042,7 +2042,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseMove<T>(this T uielement, Action<object, MouseEventArgs> previewmousemoveActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseMove<T>(this T uielement, Action<object?, MouseEventArgs> previewmousemoveActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseMoveActionWithArgs = previewmousemoveActionWithArgs;
             return uielement;
@@ -2053,7 +2053,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseRightButtonDown<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmouserightbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseRightButtonDown<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmouserightbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseRightButtonDownActionWithArgs = previewmouserightbuttondownActionWithArgs;
             return uielement;
@@ -2064,7 +2064,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseRightButtonUp<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmouserightbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseRightButtonUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmouserightbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseRightButtonUpActionWithArgs = previewmouserightbuttonupActionWithArgs;
             return uielement;
@@ -2075,7 +2075,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseUp<T>(this T uielement, Action<object, MouseButtonEventArgs> previewmouseupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseUp<T>(this T uielement, Action<object?, MouseButtonEventArgs> previewmouseupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseUpActionWithArgs = previewmouseupActionWithArgs;
             return uielement;
@@ -2086,7 +2086,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewMouseWheel<T>(this T uielement, Action<object, MouseWheelEventArgs> previewmousewheelActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewMouseWheel<T>(this T uielement, Action<object?, MouseWheelEventArgs> previewmousewheelActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewMouseWheelActionWithArgs = previewmousewheelActionWithArgs;
             return uielement;
@@ -2097,7 +2097,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewQueryContinueDrag<T>(this T uielement, Action<object, QueryContinueDragEventArgs> previewquerycontinuedragActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewQueryContinueDrag<T>(this T uielement, Action<object?, QueryContinueDragEventArgs> previewquerycontinuedragActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewQueryContinueDragActionWithArgs = previewquerycontinuedragActionWithArgs;
             return uielement;
@@ -2108,7 +2108,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusButtonDown<T>(this T uielement, Action<object, StylusButtonEventArgs> previewstylusbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusButtonDown<T>(this T uielement, Action<object?, StylusButtonEventArgs> previewstylusbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusButtonDownActionWithArgs = previewstylusbuttondownActionWithArgs;
             return uielement;
@@ -2119,7 +2119,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusButtonUp<T>(this T uielement, Action<object, StylusButtonEventArgs> previewstylusbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusButtonUp<T>(this T uielement, Action<object?, StylusButtonEventArgs> previewstylusbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusButtonUpActionWithArgs = previewstylusbuttonupActionWithArgs;
             return uielement;
@@ -2130,7 +2130,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusDown<T>(this T uielement, Action<object, StylusDownEventArgs> previewstylusdownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusDown<T>(this T uielement, Action<object?, StylusDownEventArgs> previewstylusdownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusDownActionWithArgs = previewstylusdownActionWithArgs;
             return uielement;
@@ -2141,7 +2141,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusInAirMove<T>(this T uielement, Action<object, StylusEventArgs> previewstylusinairmoveActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusInAirMove<T>(this T uielement, Action<object?, StylusEventArgs> previewstylusinairmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusInAirMoveActionWithArgs = previewstylusinairmoveActionWithArgs;
             return uielement;
@@ -2152,7 +2152,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusInRange<T>(this T uielement, Action<object, StylusEventArgs> previewstylusinrangeActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusInRange<T>(this T uielement, Action<object?, StylusEventArgs> previewstylusinrangeActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusInRangeActionWithArgs = previewstylusinrangeActionWithArgs;
             return uielement;
@@ -2163,7 +2163,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusMove<T>(this T uielement, Action<object, StylusEventArgs> previewstylusmoveActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusMove<T>(this T uielement, Action<object?, StylusEventArgs> previewstylusmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusMoveActionWithArgs = previewstylusmoveActionWithArgs;
             return uielement;
@@ -2174,7 +2174,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusOutOfRange<T>(this T uielement, Action<object, StylusEventArgs> previewstylusoutofrangeActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusOutOfRange<T>(this T uielement, Action<object?, StylusEventArgs> previewstylusoutofrangeActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusOutOfRangeActionWithArgs = previewstylusoutofrangeActionWithArgs;
             return uielement;
@@ -2185,7 +2185,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusSystemGesture<T>(this T uielement, Action<object, StylusSystemGestureEventArgs> previewstylussystemgestureActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusSystemGesture<T>(this T uielement, Action<object?, StylusSystemGestureEventArgs> previewstylussystemgestureActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusSystemGestureActionWithArgs = previewstylussystemgestureActionWithArgs;
             return uielement;
@@ -2196,7 +2196,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewStylusUp<T>(this T uielement, Action<object, StylusEventArgs> previewstylusupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewStylusUp<T>(this T uielement, Action<object?, StylusEventArgs> previewstylusupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewStylusUpActionWithArgs = previewstylusupActionWithArgs;
             return uielement;
@@ -2207,7 +2207,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewTextInput<T>(this T uielement, Action<object, TextCompositionEventArgs> previewtextinputActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewTextInput<T>(this T uielement, Action<object?, TextCompositionEventArgs> previewtextinputActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewTextInputActionWithArgs = previewtextinputActionWithArgs;
             return uielement;
@@ -2218,7 +2218,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewTouchDown<T>(this T uielement, Action<object, TouchEventArgs> previewtouchdownActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewTouchDown<T>(this T uielement, Action<object?, TouchEventArgs> previewtouchdownActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewTouchDownActionWithArgs = previewtouchdownActionWithArgs;
             return uielement;
@@ -2229,7 +2229,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewTouchMove<T>(this T uielement, Action<object, TouchEventArgs> previewtouchmoveActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewTouchMove<T>(this T uielement, Action<object?, TouchEventArgs> previewtouchmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewTouchMoveActionWithArgs = previewtouchmoveActionWithArgs;
             return uielement;
@@ -2240,7 +2240,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnPreviewTouchUp<T>(this T uielement, Action<object, TouchEventArgs> previewtouchupActionWithArgs) where T : IRxUIElement
+        public static T OnPreviewTouchUp<T>(this T uielement, Action<object?, TouchEventArgs> previewtouchupActionWithArgs) where T : IRxUIElement
         {
             uielement.PreviewTouchUpActionWithArgs = previewtouchupActionWithArgs;
             return uielement;
@@ -2251,7 +2251,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnQueryContinueDrag<T>(this T uielement, Action<object, QueryContinueDragEventArgs> querycontinuedragActionWithArgs) where T : IRxUIElement
+        public static T OnQueryContinueDrag<T>(this T uielement, Action<object?, QueryContinueDragEventArgs> querycontinuedragActionWithArgs) where T : IRxUIElement
         {
             uielement.QueryContinueDragActionWithArgs = querycontinuedragActionWithArgs;
             return uielement;
@@ -2262,7 +2262,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnQueryCursor<T>(this T uielement, Action<object, QueryCursorEventArgs> querycursorActionWithArgs) where T : IRxUIElement
+        public static T OnQueryCursor<T>(this T uielement, Action<object?, QueryCursorEventArgs> querycursorActionWithArgs) where T : IRxUIElement
         {
             uielement.QueryCursorActionWithArgs = querycursorActionWithArgs;
             return uielement;
@@ -2273,7 +2273,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusButtonDown<T>(this T uielement, Action<object, StylusButtonEventArgs> stylusbuttondownActionWithArgs) where T : IRxUIElement
+        public static T OnStylusButtonDown<T>(this T uielement, Action<object?, StylusButtonEventArgs> stylusbuttondownActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusButtonDownActionWithArgs = stylusbuttondownActionWithArgs;
             return uielement;
@@ -2284,7 +2284,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusButtonUp<T>(this T uielement, Action<object, StylusButtonEventArgs> stylusbuttonupActionWithArgs) where T : IRxUIElement
+        public static T OnStylusButtonUp<T>(this T uielement, Action<object?, StylusButtonEventArgs> stylusbuttonupActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusButtonUpActionWithArgs = stylusbuttonupActionWithArgs;
             return uielement;
@@ -2295,7 +2295,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusDown<T>(this T uielement, Action<object, StylusDownEventArgs> stylusdownActionWithArgs) where T : IRxUIElement
+        public static T OnStylusDown<T>(this T uielement, Action<object?, StylusDownEventArgs> stylusdownActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusDownActionWithArgs = stylusdownActionWithArgs;
             return uielement;
@@ -2306,7 +2306,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusEnter<T>(this T uielement, Action<object, StylusEventArgs> stylusenterActionWithArgs) where T : IRxUIElement
+        public static T OnStylusEnter<T>(this T uielement, Action<object?, StylusEventArgs> stylusenterActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusEnterActionWithArgs = stylusenterActionWithArgs;
             return uielement;
@@ -2317,7 +2317,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusInAirMove<T>(this T uielement, Action<object, StylusEventArgs> stylusinairmoveActionWithArgs) where T : IRxUIElement
+        public static T OnStylusInAirMove<T>(this T uielement, Action<object?, StylusEventArgs> stylusinairmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusInAirMoveActionWithArgs = stylusinairmoveActionWithArgs;
             return uielement;
@@ -2328,7 +2328,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusInRange<T>(this T uielement, Action<object, StylusEventArgs> stylusinrangeActionWithArgs) where T : IRxUIElement
+        public static T OnStylusInRange<T>(this T uielement, Action<object?, StylusEventArgs> stylusinrangeActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusInRangeActionWithArgs = stylusinrangeActionWithArgs;
             return uielement;
@@ -2339,7 +2339,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusLeave<T>(this T uielement, Action<object, StylusEventArgs> stylusleaveActionWithArgs) where T : IRxUIElement
+        public static T OnStylusLeave<T>(this T uielement, Action<object?, StylusEventArgs> stylusleaveActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusLeaveActionWithArgs = stylusleaveActionWithArgs;
             return uielement;
@@ -2350,7 +2350,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusMove<T>(this T uielement, Action<object, StylusEventArgs> stylusmoveActionWithArgs) where T : IRxUIElement
+        public static T OnStylusMove<T>(this T uielement, Action<object?, StylusEventArgs> stylusmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusMoveActionWithArgs = stylusmoveActionWithArgs;
             return uielement;
@@ -2361,7 +2361,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusOutOfRange<T>(this T uielement, Action<object, StylusEventArgs> stylusoutofrangeActionWithArgs) where T : IRxUIElement
+        public static T OnStylusOutOfRange<T>(this T uielement, Action<object?, StylusEventArgs> stylusoutofrangeActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusOutOfRangeActionWithArgs = stylusoutofrangeActionWithArgs;
             return uielement;
@@ -2372,7 +2372,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusSystemGesture<T>(this T uielement, Action<object, StylusSystemGestureEventArgs> stylussystemgestureActionWithArgs) where T : IRxUIElement
+        public static T OnStylusSystemGesture<T>(this T uielement, Action<object?, StylusSystemGestureEventArgs> stylussystemgestureActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusSystemGestureActionWithArgs = stylussystemgestureActionWithArgs;
             return uielement;
@@ -2383,7 +2383,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnStylusUp<T>(this T uielement, Action<object, StylusEventArgs> stylusupActionWithArgs) where T : IRxUIElement
+        public static T OnStylusUp<T>(this T uielement, Action<object?, StylusEventArgs> stylusupActionWithArgs) where T : IRxUIElement
         {
             uielement.StylusUpActionWithArgs = stylusupActionWithArgs;
             return uielement;
@@ -2394,7 +2394,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTextInput<T>(this T uielement, Action<object, TextCompositionEventArgs> textinputActionWithArgs) where T : IRxUIElement
+        public static T OnTextInput<T>(this T uielement, Action<object?, TextCompositionEventArgs> textinputActionWithArgs) where T : IRxUIElement
         {
             uielement.TextInputActionWithArgs = textinputActionWithArgs;
             return uielement;
@@ -2405,7 +2405,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTouchDown<T>(this T uielement, Action<object, TouchEventArgs> touchdownActionWithArgs) where T : IRxUIElement
+        public static T OnTouchDown<T>(this T uielement, Action<object?, TouchEventArgs> touchdownActionWithArgs) where T : IRxUIElement
         {
             uielement.TouchDownActionWithArgs = touchdownActionWithArgs;
             return uielement;
@@ -2416,7 +2416,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTouchEnter<T>(this T uielement, Action<object, TouchEventArgs> touchenterActionWithArgs) where T : IRxUIElement
+        public static T OnTouchEnter<T>(this T uielement, Action<object?, TouchEventArgs> touchenterActionWithArgs) where T : IRxUIElement
         {
             uielement.TouchEnterActionWithArgs = touchenterActionWithArgs;
             return uielement;
@@ -2427,7 +2427,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTouchLeave<T>(this T uielement, Action<object, TouchEventArgs> touchleaveActionWithArgs) where T : IRxUIElement
+        public static T OnTouchLeave<T>(this T uielement, Action<object?, TouchEventArgs> touchleaveActionWithArgs) where T : IRxUIElement
         {
             uielement.TouchLeaveActionWithArgs = touchleaveActionWithArgs;
             return uielement;
@@ -2438,7 +2438,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTouchMove<T>(this T uielement, Action<object, TouchEventArgs> touchmoveActionWithArgs) where T : IRxUIElement
+        public static T OnTouchMove<T>(this T uielement, Action<object?, TouchEventArgs> touchmoveActionWithArgs) where T : IRxUIElement
         {
             uielement.TouchMoveActionWithArgs = touchmoveActionWithArgs;
             return uielement;
@@ -2449,7 +2449,7 @@ namespace WpfReactorUI
             return uielement;
         }
 
-        public static T OnTouchUp<T>(this T uielement, Action<object, TouchEventArgs> touchupActionWithArgs) where T : IRxUIElement
+        public static T OnTouchUp<T>(this T uielement, Action<object?, TouchEventArgs> touchupActionWithArgs) where T : IRxUIElement
         {
             uielement.TouchUpActionWithArgs = touchupActionWithArgs;
             return uielement;

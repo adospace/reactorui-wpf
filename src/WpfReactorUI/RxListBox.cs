@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxListBox : IRxSelector
     {
-        PropertyValue<SelectionMode> SelectionMode { get; set; }
+        PropertyValue<SelectionMode>? SelectionMode { get; set; }
 
     }
 
@@ -34,13 +34,13 @@ namespace WpfReactorUI
 
         }
 
-        public RxListBox(Action<T> componentRefAction)
+        public RxListBox(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<SelectionMode> IRxListBox.SelectionMode { get; set; }
+        PropertyValue<SelectionMode>? IRxListBox.SelectionMode { get; set; }
 
 
         protected override void OnUpdate()
@@ -60,7 +60,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxListBox = (IRxListBox)this;
 
             base.OnAttachNativeEvents();
         }
@@ -83,7 +82,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxListBox(Action<ListBox> componentRefAction)
+        public RxListBox(Action<ListBox?> componentRefAction)
             : base(componentRefAction)
         {
 

@@ -23,25 +23,25 @@ namespace WpfReactorUI
 {
     public partial interface IRxControl : IRxFrameworkElement
     {
-        PropertyValue<Brush> Background { get; set; }
-        PropertyValue<Brush> BorderBrush { get; set; }
-        PropertyValue<Thickness> BorderThickness { get; set; }
-        PropertyValue<FontFamily> FontFamily { get; set; }
-        PropertyValue<double> FontSize { get; set; }
-        PropertyValue<FontStretch> FontStretch { get; set; }
-        PropertyValue<FontStyle> FontStyle { get; set; }
-        PropertyValue<FontWeight> FontWeight { get; set; }
-        PropertyValue<Brush> Foreground { get; set; }
-        PropertyValue<HorizontalAlignment> HorizontalContentAlignment { get; set; }
-        PropertyValue<bool> IsTabStop { get; set; }
-        PropertyValue<Thickness> Padding { get; set; }
-        PropertyValue<int> TabIndex { get; set; }
-        PropertyValue<VerticalAlignment> VerticalContentAlignment { get; set; }
+        PropertyValue<Brush>? Background { get; set; }
+        PropertyValue<Brush>? BorderBrush { get; set; }
+        PropertyValue<Thickness>? BorderThickness { get; set; }
+        PropertyValue<FontFamily>? FontFamily { get; set; }
+        PropertyValue<double>? FontSize { get; set; }
+        PropertyValue<FontStretch>? FontStretch { get; set; }
+        PropertyValue<FontStyle>? FontStyle { get; set; }
+        PropertyValue<FontWeight>? FontWeight { get; set; }
+        PropertyValue<Brush>? Foreground { get; set; }
+        PropertyValue<HorizontalAlignment>? HorizontalContentAlignment { get; set; }
+        PropertyValue<bool>? IsTabStop { get; set; }
+        PropertyValue<Thickness>? Padding { get; set; }
+        PropertyValue<int>? TabIndex { get; set; }
+        PropertyValue<VerticalAlignment>? VerticalContentAlignment { get; set; }
 
-        Action MouseDoubleClickAction { get; set; }
-        Action<object, MouseButtonEventArgs> MouseDoubleClickActionWithArgs { get; set; }
-        Action PreviewMouseDoubleClickAction { get; set; }
-        Action<object, MouseButtonEventArgs> PreviewMouseDoubleClickActionWithArgs { get; set; }
+        Action? MouseDoubleClickAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? MouseDoubleClickActionWithArgs { get; set; }
+        Action? PreviewMouseDoubleClickAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? PreviewMouseDoubleClickActionWithArgs { get; set; }
     }
 
     public partial class RxControl<T> : RxFrameworkElement<T>, IRxControl where T : Control, new()
@@ -51,31 +51,31 @@ namespace WpfReactorUI
 
         }
 
-        public RxControl(Action<T> componentRefAction)
+        public RxControl(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Brush> IRxControl.Background { get; set; }
-        PropertyValue<Brush> IRxControl.BorderBrush { get; set; }
-        PropertyValue<Thickness> IRxControl.BorderThickness { get; set; }
-        PropertyValue<FontFamily> IRxControl.FontFamily { get; set; }
-        PropertyValue<double> IRxControl.FontSize { get; set; }
-        PropertyValue<FontStretch> IRxControl.FontStretch { get; set; }
-        PropertyValue<FontStyle> IRxControl.FontStyle { get; set; }
-        PropertyValue<FontWeight> IRxControl.FontWeight { get; set; }
-        PropertyValue<Brush> IRxControl.Foreground { get; set; }
-        PropertyValue<HorizontalAlignment> IRxControl.HorizontalContentAlignment { get; set; }
-        PropertyValue<bool> IRxControl.IsTabStop { get; set; }
-        PropertyValue<Thickness> IRxControl.Padding { get; set; }
-        PropertyValue<int> IRxControl.TabIndex { get; set; }
-        PropertyValue<VerticalAlignment> IRxControl.VerticalContentAlignment { get; set; }
+        PropertyValue<Brush>? IRxControl.Background { get; set; }
+        PropertyValue<Brush>? IRxControl.BorderBrush { get; set; }
+        PropertyValue<Thickness>? IRxControl.BorderThickness { get; set; }
+        PropertyValue<FontFamily>? IRxControl.FontFamily { get; set; }
+        PropertyValue<double>? IRxControl.FontSize { get; set; }
+        PropertyValue<FontStretch>? IRxControl.FontStretch { get; set; }
+        PropertyValue<FontStyle>? IRxControl.FontStyle { get; set; }
+        PropertyValue<FontWeight>? IRxControl.FontWeight { get; set; }
+        PropertyValue<Brush>? IRxControl.Foreground { get; set; }
+        PropertyValue<HorizontalAlignment>? IRxControl.HorizontalContentAlignment { get; set; }
+        PropertyValue<bool>? IRxControl.IsTabStop { get; set; }
+        PropertyValue<Thickness>? IRxControl.Padding { get; set; }
+        PropertyValue<int>? IRxControl.TabIndex { get; set; }
+        PropertyValue<VerticalAlignment>? IRxControl.VerticalContentAlignment { get; set; }
 
-        Action IRxControl.MouseDoubleClickAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxControl.MouseDoubleClickActionWithArgs { get; set; }
-        Action IRxControl.PreviewMouseDoubleClickAction { get; set; }
-        Action<object, MouseButtonEventArgs> IRxControl.PreviewMouseDoubleClickActionWithArgs { get; set; }
+        Action? IRxControl.MouseDoubleClickAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxControl.MouseDoubleClickActionWithArgs { get; set; }
+        Action? IRxControl.PreviewMouseDoubleClickAction { get; set; }
+        Action<object?, MouseButtonEventArgs>? IRxControl.PreviewMouseDoubleClickActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -120,13 +120,13 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void NativeControl_MouseDoubleClick(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxControl = (IRxControl)this;
             thisAsIRxControl.MouseDoubleClickAction?.Invoke();
             thisAsIRxControl.MouseDoubleClickActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void NativeControl_PreviewMouseDoubleClick(object? sender, MouseButtonEventArgs e)
         {
             var thisAsIRxControl = (IRxControl)this;
             thisAsIRxControl.PreviewMouseDoubleClickAction?.Invoke();
@@ -152,7 +152,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxControl(Action<Control> componentRefAction)
+        public RxControl(Action<Control?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -326,7 +326,7 @@ namespace WpfReactorUI
             return control;
         }
 
-        public static T OnMouseDoubleClick<T>(this T control, Action<object, MouseButtonEventArgs> mousedoubleclickActionWithArgs) where T : IRxControl
+        public static T OnMouseDoubleClick<T>(this T control, Action<object?, MouseButtonEventArgs> mousedoubleclickActionWithArgs) where T : IRxControl
         {
             control.MouseDoubleClickActionWithArgs = mousedoubleclickActionWithArgs;
             return control;
@@ -337,7 +337,7 @@ namespace WpfReactorUI
             return control;
         }
 
-        public static T OnPreviewMouseDoubleClick<T>(this T control, Action<object, MouseButtonEventArgs> previewmousedoubleclickActionWithArgs) where T : IRxControl
+        public static T OnPreviewMouseDoubleClick<T>(this T control, Action<object?, MouseButtonEventArgs> previewmousedoubleclickActionWithArgs) where T : IRxControl
         {
             control.PreviewMouseDoubleClickActionWithArgs = previewmousedoubleclickActionWithArgs;
             return control;

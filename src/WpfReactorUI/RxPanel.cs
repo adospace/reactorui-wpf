@@ -23,8 +23,8 @@ namespace WpfReactorUI
 {
     public partial interface IRxPanel : IRxFrameworkElement
     {
-        PropertyValue<Brush> Background { get; set; }
-        PropertyValue<bool> IsItemsHost { get; set; }
+        PropertyValue<Brush>? Background { get; set; }
+        PropertyValue<bool>? IsItemsHost { get; set; }
 
     }
 
@@ -35,14 +35,14 @@ namespace WpfReactorUI
 
         }
 
-        public RxPanel(Action<T> componentRefAction)
+        public RxPanel(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Brush> IRxPanel.Background { get; set; }
-        PropertyValue<bool> IRxPanel.IsItemsHost { get; set; }
+        PropertyValue<Brush>? IRxPanel.Background { get; set; }
+        PropertyValue<bool>? IRxPanel.IsItemsHost { get; set; }
 
 
         protected override void OnUpdate()
@@ -63,7 +63,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxPanel = (IRxPanel)this;
 
             base.OnAttachNativeEvents();
         }

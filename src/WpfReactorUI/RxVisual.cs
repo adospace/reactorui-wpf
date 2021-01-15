@@ -33,7 +33,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxVisual(Action<T> componentRefAction)
+        public RxVisual(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -56,7 +56,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxVisual = (IRxVisual)this;
 
             base.OnAttachNativeEvents();
         }

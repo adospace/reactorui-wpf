@@ -9,7 +9,7 @@ namespace WpfReactorUI.Internals
     {
         bool SetDefault { get; }
 
-        object GetValue();
+        object? GetValue();
 
         Action GetValueAction(DependencyObject dependencyObject, DependencyProperty dependencyProperty);
 
@@ -36,15 +36,15 @@ namespace WpfReactorUI.Internals
 
         public static IPropertyValue Default { get; } = new PropertyValue<T>();
 
-        public T Value { get; }
+        public T? Value { get; }
 
-        public Func<T> ValueFunc { get; }
+        public Func<T>? ValueFunc { get; }
 
         public bool SetDefault { get; }
 
         public bool HasValueFunction => ValueFunc != null;
 
-        public object GetValue() => Value;
+        public object? GetValue() => Value;
 
         public override string ToString()
         {

@@ -23,14 +23,14 @@ namespace WpfReactorUI
 {
     public partial interface IRxTextBox : IRxTextBoxBase
     {
-        PropertyValue<CharacterCasing> CharacterCasing { get; set; }
-        PropertyValue<int> MaxLength { get; set; }
-        PropertyValue<int> MaxLines { get; set; }
-        PropertyValue<int> MinLines { get; set; }
-        PropertyValue<string> Text { get; set; }
-        PropertyValue<TextAlignment> TextAlignment { get; set; }
-        PropertyValue<TextDecorationCollection> TextDecorations { get; set; }
-        PropertyValue<TextWrapping> TextWrapping { get; set; }
+        PropertyValue<CharacterCasing>? CharacterCasing { get; set; }
+        PropertyValue<int>? MaxLength { get; set; }
+        PropertyValue<int>? MaxLines { get; set; }
+        PropertyValue<int>? MinLines { get; set; }
+        PropertyValue<string>? Text { get; set; }
+        PropertyValue<TextAlignment>? TextAlignment { get; set; }
+        PropertyValue<TextDecorationCollection>? TextDecorations { get; set; }
+        PropertyValue<TextWrapping>? TextWrapping { get; set; }
 
     }
 
@@ -41,20 +41,20 @@ namespace WpfReactorUI
 
         }
 
-        public RxTextBox(Action<T> componentRefAction)
+        public RxTextBox(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<CharacterCasing> IRxTextBox.CharacterCasing { get; set; }
-        PropertyValue<int> IRxTextBox.MaxLength { get; set; }
-        PropertyValue<int> IRxTextBox.MaxLines { get; set; }
-        PropertyValue<int> IRxTextBox.MinLines { get; set; }
-        PropertyValue<string> IRxTextBox.Text { get; set; }
-        PropertyValue<TextAlignment> IRxTextBox.TextAlignment { get; set; }
-        PropertyValue<TextDecorationCollection> IRxTextBox.TextDecorations { get; set; }
-        PropertyValue<TextWrapping> IRxTextBox.TextWrapping { get; set; }
+        PropertyValue<CharacterCasing>? IRxTextBox.CharacterCasing { get; set; }
+        PropertyValue<int>? IRxTextBox.MaxLength { get; set; }
+        PropertyValue<int>? IRxTextBox.MaxLines { get; set; }
+        PropertyValue<int>? IRxTextBox.MinLines { get; set; }
+        PropertyValue<string>? IRxTextBox.Text { get; set; }
+        PropertyValue<TextAlignment>? IRxTextBox.TextAlignment { get; set; }
+        PropertyValue<TextDecorationCollection>? IRxTextBox.TextDecorations { get; set; }
+        PropertyValue<TextWrapping>? IRxTextBox.TextWrapping { get; set; }
 
 
         protected override void OnUpdate()
@@ -81,7 +81,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxTextBox = (IRxTextBox)this;
 
             base.OnAttachNativeEvents();
         }
@@ -104,7 +103,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxTextBox(Action<TextBox> componentRefAction)
+        public RxTextBox(Action<TextBox?> componentRefAction)
             : base(componentRefAction)
         {
 

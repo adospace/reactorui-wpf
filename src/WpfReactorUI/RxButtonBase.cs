@@ -23,13 +23,13 @@ namespace WpfReactorUI
 {
     public partial interface IRxButtonBase : IRxContentControl
     {
-        PropertyValue<ClickMode> ClickMode { get; set; }
-        PropertyValue<ICommand> Command { get; set; }
-        PropertyValue<object> CommandParameter { get; set; }
-        PropertyValue<IInputElement> CommandTarget { get; set; }
+        PropertyValue<ClickMode>? ClickMode { get; set; }
+        PropertyValue<ICommand>? Command { get; set; }
+        PropertyValue<object>? CommandParameter { get; set; }
+        PropertyValue<IInputElement>? CommandTarget { get; set; }
 
-        Action ClickAction { get; set; }
-        Action<object, RoutedEventArgs> ClickActionWithArgs { get; set; }
+        Action? ClickAction { get; set; }
+        Action<object?, RoutedEventArgs>? ClickActionWithArgs { get; set; }
     }
 
     public partial class RxButtonBase<T> : RxContentControl<T>, IRxButtonBase where T : ButtonBase, new()
@@ -39,19 +39,19 @@ namespace WpfReactorUI
 
         }
 
-        public RxButtonBase(Action<T> componentRefAction)
+        public RxButtonBase(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<ClickMode> IRxButtonBase.ClickMode { get; set; }
-        PropertyValue<ICommand> IRxButtonBase.Command { get; set; }
-        PropertyValue<object> IRxButtonBase.CommandParameter { get; set; }
-        PropertyValue<IInputElement> IRxButtonBase.CommandTarget { get; set; }
+        PropertyValue<ClickMode>? IRxButtonBase.ClickMode { get; set; }
+        PropertyValue<ICommand>? IRxButtonBase.Command { get; set; }
+        PropertyValue<object>? IRxButtonBase.CommandParameter { get; set; }
+        PropertyValue<IInputElement>? IRxButtonBase.CommandTarget { get; set; }
 
-        Action IRxButtonBase.ClickAction { get; set; }
-        Action<object, RoutedEventArgs> IRxButtonBase.ClickActionWithArgs { get; set; }
+        Action? IRxButtonBase.ClickAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxButtonBase.ClickActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -82,7 +82,7 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_Click(object sender, RoutedEventArgs e)
+        private void NativeControl_Click(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxButtonBase = (IRxButtonBase)this;
             thisAsIRxButtonBase.ClickAction?.Invoke();
@@ -148,7 +148,7 @@ namespace WpfReactorUI
             return buttonbase;
         }
 
-        public static T OnClick<T>(this T buttonbase, Action<object, RoutedEventArgs> clickActionWithArgs) where T : IRxButtonBase
+        public static T OnClick<T>(this T buttonbase, Action<object?, RoutedEventArgs> clickActionWithArgs) where T : IRxButtonBase
         {
             buttonbase.ClickActionWithArgs = clickActionWithArgs;
             return buttonbase;

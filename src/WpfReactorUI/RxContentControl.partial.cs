@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxContentControl
     {
-        PropertyValue<string> ContentString { get; set; }
+        PropertyValue<string>? ContentString { get; set; }
     }
 
     public partial class RxContentControl<T> : IEnumerable<VisualNode>
@@ -34,7 +34,7 @@ namespace WpfReactorUI
             _contents.Add(content);
         }
 
-        PropertyValue<string> IRxContentControl.ContentString { get; set; }
+        PropertyValue<string>? IRxContentControl.ContentString { get; set; }
 
         public void Add(VisualNode child)
         {

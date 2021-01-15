@@ -23,24 +23,24 @@ namespace WpfReactorUI
 {
     public partial interface IRxTextBlock : IRxFrameworkElement
     {
-        PropertyValue<Brush> Background { get; set; }
-        PropertyValue<double> BaselineOffset { get; set; }
-        PropertyValue<FontFamily> FontFamily { get; set; }
-        PropertyValue<double> FontSize { get; set; }
-        PropertyValue<FontStretch> FontStretch { get; set; }
-        PropertyValue<FontStyle> FontStyle { get; set; }
-        PropertyValue<FontWeight> FontWeight { get; set; }
-        PropertyValue<Brush> Foreground { get; set; }
-        PropertyValue<bool> IsHyphenationEnabled { get; set; }
-        PropertyValue<double> LineHeight { get; set; }
-        PropertyValue<LineStackingStrategy> LineStackingStrategy { get; set; }
-        PropertyValue<Thickness> Padding { get; set; }
-        PropertyValue<string> Text { get; set; }
-        PropertyValue<TextAlignment> TextAlignment { get; set; }
-        PropertyValue<TextDecorationCollection> TextDecorations { get; set; }
-        PropertyValue<TextEffectCollection> TextEffects { get; set; }
-        PropertyValue<TextTrimming> TextTrimming { get; set; }
-        PropertyValue<TextWrapping> TextWrapping { get; set; }
+        PropertyValue<Brush>? Background { get; set; }
+        PropertyValue<double>? BaselineOffset { get; set; }
+        PropertyValue<FontFamily>? FontFamily { get; set; }
+        PropertyValue<double>? FontSize { get; set; }
+        PropertyValue<FontStretch>? FontStretch { get; set; }
+        PropertyValue<FontStyle>? FontStyle { get; set; }
+        PropertyValue<FontWeight>? FontWeight { get; set; }
+        PropertyValue<Brush>? Foreground { get; set; }
+        PropertyValue<bool>? IsHyphenationEnabled { get; set; }
+        PropertyValue<double>? LineHeight { get; set; }
+        PropertyValue<LineStackingStrategy>? LineStackingStrategy { get; set; }
+        PropertyValue<Thickness>? Padding { get; set; }
+        PropertyValue<string>? Text { get; set; }
+        PropertyValue<TextAlignment>? TextAlignment { get; set; }
+        PropertyValue<TextDecorationCollection>? TextDecorations { get; set; }
+        PropertyValue<TextEffectCollection>? TextEffects { get; set; }
+        PropertyValue<TextTrimming>? TextTrimming { get; set; }
+        PropertyValue<TextWrapping>? TextWrapping { get; set; }
 
     }
 
@@ -51,30 +51,30 @@ namespace WpfReactorUI
 
         }
 
-        public RxTextBlock(Action<T> componentRefAction)
+        public RxTextBlock(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Brush> IRxTextBlock.Background { get; set; }
-        PropertyValue<double> IRxTextBlock.BaselineOffset { get; set; }
-        PropertyValue<FontFamily> IRxTextBlock.FontFamily { get; set; }
-        PropertyValue<double> IRxTextBlock.FontSize { get; set; }
-        PropertyValue<FontStretch> IRxTextBlock.FontStretch { get; set; }
-        PropertyValue<FontStyle> IRxTextBlock.FontStyle { get; set; }
-        PropertyValue<FontWeight> IRxTextBlock.FontWeight { get; set; }
-        PropertyValue<Brush> IRxTextBlock.Foreground { get; set; }
-        PropertyValue<bool> IRxTextBlock.IsHyphenationEnabled { get; set; }
-        PropertyValue<double> IRxTextBlock.LineHeight { get; set; }
-        PropertyValue<LineStackingStrategy> IRxTextBlock.LineStackingStrategy { get; set; }
-        PropertyValue<Thickness> IRxTextBlock.Padding { get; set; }
-        PropertyValue<string> IRxTextBlock.Text { get; set; }
-        PropertyValue<TextAlignment> IRxTextBlock.TextAlignment { get; set; }
-        PropertyValue<TextDecorationCollection> IRxTextBlock.TextDecorations { get; set; }
-        PropertyValue<TextEffectCollection> IRxTextBlock.TextEffects { get; set; }
-        PropertyValue<TextTrimming> IRxTextBlock.TextTrimming { get; set; }
-        PropertyValue<TextWrapping> IRxTextBlock.TextWrapping { get; set; }
+        PropertyValue<Brush>? IRxTextBlock.Background { get; set; }
+        PropertyValue<double>? IRxTextBlock.BaselineOffset { get; set; }
+        PropertyValue<FontFamily>? IRxTextBlock.FontFamily { get; set; }
+        PropertyValue<double>? IRxTextBlock.FontSize { get; set; }
+        PropertyValue<FontStretch>? IRxTextBlock.FontStretch { get; set; }
+        PropertyValue<FontStyle>? IRxTextBlock.FontStyle { get; set; }
+        PropertyValue<FontWeight>? IRxTextBlock.FontWeight { get; set; }
+        PropertyValue<Brush>? IRxTextBlock.Foreground { get; set; }
+        PropertyValue<bool>? IRxTextBlock.IsHyphenationEnabled { get; set; }
+        PropertyValue<double>? IRxTextBlock.LineHeight { get; set; }
+        PropertyValue<LineStackingStrategy>? IRxTextBlock.LineStackingStrategy { get; set; }
+        PropertyValue<Thickness>? IRxTextBlock.Padding { get; set; }
+        PropertyValue<string>? IRxTextBlock.Text { get; set; }
+        PropertyValue<TextAlignment>? IRxTextBlock.TextAlignment { get; set; }
+        PropertyValue<TextDecorationCollection>? IRxTextBlock.TextDecorations { get; set; }
+        PropertyValue<TextEffectCollection>? IRxTextBlock.TextEffects { get; set; }
+        PropertyValue<TextTrimming>? IRxTextBlock.TextTrimming { get; set; }
+        PropertyValue<TextWrapping>? IRxTextBlock.TextWrapping { get; set; }
 
 
         protected override void OnUpdate()
@@ -111,7 +111,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxTextBlock = (IRxTextBlock)this;
 
             base.OnAttachNativeEvents();
         }
@@ -134,7 +133,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxTextBlock(Action<TextBlock> componentRefAction)
+        public RxTextBlock(Action<TextBlock?> componentRefAction)
             : base(componentRefAction)
         {
 

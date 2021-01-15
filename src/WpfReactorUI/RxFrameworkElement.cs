@@ -23,47 +23,47 @@ namespace WpfReactorUI
 {
     public partial interface IRxFrameworkElement : IRxUIElement
     {
-        PropertyValue<ContextMenu> ContextMenu { get; set; }
-        PropertyValue<Cursor> Cursor { get; set; }
-        PropertyValue<object> DataContext { get; set; }
-        PropertyValue<FlowDirection> FlowDirection { get; set; }
-        PropertyValue<Style> FocusVisualStyle { get; set; }
-        PropertyValue<bool> ForceCursor { get; set; }
-        PropertyValue<double> Height { get; set; }
-        PropertyValue<HorizontalAlignment> HorizontalAlignment { get; set; }
-        PropertyValue<InputScope> InputScope { get; set; }
-        PropertyValue<XmlLanguage> Language { get; set; }
-        PropertyValue<Transform> LayoutTransform { get; set; }
-        PropertyValue<Thickness> Margin { get; set; }
-        PropertyValue<double> MaxHeight { get; set; }
-        PropertyValue<double> MaxWidth { get; set; }
-        PropertyValue<double> MinHeight { get; set; }
-        PropertyValue<double> MinWidth { get; set; }
-        PropertyValue<string> Name { get; set; }
-        PropertyValue<bool> OverridesDefaultStyle { get; set; }
-        PropertyValue<Style> Style { get; set; }
-        PropertyValue<object> Tag { get; set; }
-        PropertyValue<object> ToolTip { get; set; }
-        PropertyValue<bool> UseLayoutRounding { get; set; }
-        PropertyValue<VerticalAlignment> VerticalAlignment { get; set; }
-        PropertyValue<double> Width { get; set; }
+        PropertyValue<ContextMenu>? ContextMenu { get; set; }
+        PropertyValue<Cursor>? Cursor { get; set; }
+        PropertyValue<object>? DataContext { get; set; }
+        PropertyValue<FlowDirection>? FlowDirection { get; set; }
+        PropertyValue<Style>? FocusVisualStyle { get; set; }
+        PropertyValue<bool>? ForceCursor { get; set; }
+        PropertyValue<double>? Height { get; set; }
+        PropertyValue<HorizontalAlignment>? HorizontalAlignment { get; set; }
+        PropertyValue<InputScope>? InputScope { get; set; }
+        PropertyValue<XmlLanguage>? Language { get; set; }
+        PropertyValue<Transform>? LayoutTransform { get; set; }
+        PropertyValue<Thickness>? Margin { get; set; }
+        PropertyValue<double>? MaxHeight { get; set; }
+        PropertyValue<double>? MaxWidth { get; set; }
+        PropertyValue<double>? MinHeight { get; set; }
+        PropertyValue<double>? MinWidth { get; set; }
+        PropertyValue<string>? Name { get; set; }
+        PropertyValue<bool>? OverridesDefaultStyle { get; set; }
+        PropertyValue<Style>? Style { get; set; }
+        PropertyValue<object>? Tag { get; set; }
+        PropertyValue<object>? ToolTip { get; set; }
+        PropertyValue<bool>? UseLayoutRounding { get; set; }
+        PropertyValue<VerticalAlignment>? VerticalAlignment { get; set; }
+        PropertyValue<double>? Width { get; set; }
 
-        Action ContextMenuClosingAction { get; set; }
-        Action<object, ContextMenuEventArgs> ContextMenuClosingActionWithArgs { get; set; }
-        Action ContextMenuOpeningAction { get; set; }
-        Action<object, ContextMenuEventArgs> ContextMenuOpeningActionWithArgs { get; set; }
-        Action LoadedAction { get; set; }
-        Action<object, RoutedEventArgs> LoadedActionWithArgs { get; set; }
-        Action RequestBringIntoViewAction { get; set; }
-        Action<object, RequestBringIntoViewEventArgs> RequestBringIntoViewActionWithArgs { get; set; }
-        Action SizeChangedAction { get; set; }
-        Action<object, SizeChangedEventArgs> SizeChangedActionWithArgs { get; set; }
-        Action ToolTipClosingAction { get; set; }
-        Action<object, ToolTipEventArgs> ToolTipClosingActionWithArgs { get; set; }
-        Action ToolTipOpeningAction { get; set; }
-        Action<object, ToolTipEventArgs> ToolTipOpeningActionWithArgs { get; set; }
-        Action UnloadedAction { get; set; }
-        Action<object, RoutedEventArgs> UnloadedActionWithArgs { get; set; }
+        Action? ContextMenuClosingAction { get; set; }
+        Action<object?, ContextMenuEventArgs>? ContextMenuClosingActionWithArgs { get; set; }
+        Action? ContextMenuOpeningAction { get; set; }
+        Action<object?, ContextMenuEventArgs>? ContextMenuOpeningActionWithArgs { get; set; }
+        Action? LoadedAction { get; set; }
+        Action<object?, RoutedEventArgs>? LoadedActionWithArgs { get; set; }
+        Action? RequestBringIntoViewAction { get; set; }
+        Action<object?, RequestBringIntoViewEventArgs>? RequestBringIntoViewActionWithArgs { get; set; }
+        Action? SizeChangedAction { get; set; }
+        Action<object?, SizeChangedEventArgs>? SizeChangedActionWithArgs { get; set; }
+        Action? ToolTipClosingAction { get; set; }
+        Action<object?, ToolTipEventArgs>? ToolTipClosingActionWithArgs { get; set; }
+        Action? ToolTipOpeningAction { get; set; }
+        Action<object?, ToolTipEventArgs>? ToolTipOpeningActionWithArgs { get; set; }
+        Action? UnloadedAction { get; set; }
+        Action<object?, RoutedEventArgs>? UnloadedActionWithArgs { get; set; }
     }
 
     public partial class RxFrameworkElement<T> : RxUIElement<T>, IRxFrameworkElement where T : FrameworkElement, new()
@@ -73,53 +73,53 @@ namespace WpfReactorUI
 
         }
 
-        public RxFrameworkElement(Action<T> componentRefAction)
+        public RxFrameworkElement(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<ContextMenu> IRxFrameworkElement.ContextMenu { get; set; }
-        PropertyValue<Cursor> IRxFrameworkElement.Cursor { get; set; }
-        PropertyValue<object> IRxFrameworkElement.DataContext { get; set; }
-        PropertyValue<FlowDirection> IRxFrameworkElement.FlowDirection { get; set; }
-        PropertyValue<Style> IRxFrameworkElement.FocusVisualStyle { get; set; }
-        PropertyValue<bool> IRxFrameworkElement.ForceCursor { get; set; }
-        PropertyValue<double> IRxFrameworkElement.Height { get; set; }
-        PropertyValue<HorizontalAlignment> IRxFrameworkElement.HorizontalAlignment { get; set; }
-        PropertyValue<InputScope> IRxFrameworkElement.InputScope { get; set; }
-        PropertyValue<XmlLanguage> IRxFrameworkElement.Language { get; set; }
-        PropertyValue<Transform> IRxFrameworkElement.LayoutTransform { get; set; }
-        PropertyValue<Thickness> IRxFrameworkElement.Margin { get; set; }
-        PropertyValue<double> IRxFrameworkElement.MaxHeight { get; set; }
-        PropertyValue<double> IRxFrameworkElement.MaxWidth { get; set; }
-        PropertyValue<double> IRxFrameworkElement.MinHeight { get; set; }
-        PropertyValue<double> IRxFrameworkElement.MinWidth { get; set; }
-        PropertyValue<string> IRxFrameworkElement.Name { get; set; }
-        PropertyValue<bool> IRxFrameworkElement.OverridesDefaultStyle { get; set; }
-        PropertyValue<Style> IRxFrameworkElement.Style { get; set; }
-        PropertyValue<object> IRxFrameworkElement.Tag { get; set; }
-        PropertyValue<object> IRxFrameworkElement.ToolTip { get; set; }
-        PropertyValue<bool> IRxFrameworkElement.UseLayoutRounding { get; set; }
-        PropertyValue<VerticalAlignment> IRxFrameworkElement.VerticalAlignment { get; set; }
-        PropertyValue<double> IRxFrameworkElement.Width { get; set; }
+        PropertyValue<ContextMenu>? IRxFrameworkElement.ContextMenu { get; set; }
+        PropertyValue<Cursor>? IRxFrameworkElement.Cursor { get; set; }
+        PropertyValue<object>? IRxFrameworkElement.DataContext { get; set; }
+        PropertyValue<FlowDirection>? IRxFrameworkElement.FlowDirection { get; set; }
+        PropertyValue<Style>? IRxFrameworkElement.FocusVisualStyle { get; set; }
+        PropertyValue<bool>? IRxFrameworkElement.ForceCursor { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.Height { get; set; }
+        PropertyValue<HorizontalAlignment>? IRxFrameworkElement.HorizontalAlignment { get; set; }
+        PropertyValue<InputScope>? IRxFrameworkElement.InputScope { get; set; }
+        PropertyValue<XmlLanguage>? IRxFrameworkElement.Language { get; set; }
+        PropertyValue<Transform>? IRxFrameworkElement.LayoutTransform { get; set; }
+        PropertyValue<Thickness>? IRxFrameworkElement.Margin { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.MaxHeight { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.MaxWidth { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.MinHeight { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.MinWidth { get; set; }
+        PropertyValue<string>? IRxFrameworkElement.Name { get; set; }
+        PropertyValue<bool>? IRxFrameworkElement.OverridesDefaultStyle { get; set; }
+        PropertyValue<Style>? IRxFrameworkElement.Style { get; set; }
+        PropertyValue<object>? IRxFrameworkElement.Tag { get; set; }
+        PropertyValue<object>? IRxFrameworkElement.ToolTip { get; set; }
+        PropertyValue<bool>? IRxFrameworkElement.UseLayoutRounding { get; set; }
+        PropertyValue<VerticalAlignment>? IRxFrameworkElement.VerticalAlignment { get; set; }
+        PropertyValue<double>? IRxFrameworkElement.Width { get; set; }
 
-        Action IRxFrameworkElement.ContextMenuClosingAction { get; set; }
-        Action<object, ContextMenuEventArgs> IRxFrameworkElement.ContextMenuClosingActionWithArgs { get; set; }
-        Action IRxFrameworkElement.ContextMenuOpeningAction { get; set; }
-        Action<object, ContextMenuEventArgs> IRxFrameworkElement.ContextMenuOpeningActionWithArgs { get; set; }
-        Action IRxFrameworkElement.LoadedAction { get; set; }
-        Action<object, RoutedEventArgs> IRxFrameworkElement.LoadedActionWithArgs { get; set; }
-        Action IRxFrameworkElement.RequestBringIntoViewAction { get; set; }
-        Action<object, RequestBringIntoViewEventArgs> IRxFrameworkElement.RequestBringIntoViewActionWithArgs { get; set; }
-        Action IRxFrameworkElement.SizeChangedAction { get; set; }
-        Action<object, SizeChangedEventArgs> IRxFrameworkElement.SizeChangedActionWithArgs { get; set; }
-        Action IRxFrameworkElement.ToolTipClosingAction { get; set; }
-        Action<object, ToolTipEventArgs> IRxFrameworkElement.ToolTipClosingActionWithArgs { get; set; }
-        Action IRxFrameworkElement.ToolTipOpeningAction { get; set; }
-        Action<object, ToolTipEventArgs> IRxFrameworkElement.ToolTipOpeningActionWithArgs { get; set; }
-        Action IRxFrameworkElement.UnloadedAction { get; set; }
-        Action<object, RoutedEventArgs> IRxFrameworkElement.UnloadedActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.ContextMenuClosingAction { get; set; }
+        Action<object?, ContextMenuEventArgs>? IRxFrameworkElement.ContextMenuClosingActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.ContextMenuOpeningAction { get; set; }
+        Action<object?, ContextMenuEventArgs>? IRxFrameworkElement.ContextMenuOpeningActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.LoadedAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxFrameworkElement.LoadedActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.RequestBringIntoViewAction { get; set; }
+        Action<object?, RequestBringIntoViewEventArgs>? IRxFrameworkElement.RequestBringIntoViewActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.SizeChangedAction { get; set; }
+        Action<object?, SizeChangedEventArgs>? IRxFrameworkElement.SizeChangedActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.ToolTipClosingAction { get; set; }
+        Action<object?, ToolTipEventArgs>? IRxFrameworkElement.ToolTipClosingActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.ToolTipOpeningAction { get; set; }
+        Action<object?, ToolTipEventArgs>? IRxFrameworkElement.ToolTipOpeningActionWithArgs { get; set; }
+        Action? IRxFrameworkElement.UnloadedAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxFrameworkElement.UnloadedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -198,49 +198,49 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        private void NativeControl_ContextMenuClosing(object? sender, ContextMenuEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ContextMenuClosingAction?.Invoke();
             thisAsIRxFrameworkElement.ContextMenuClosingActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        private void NativeControl_ContextMenuOpening(object? sender, ContextMenuEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ContextMenuOpeningAction?.Invoke();
             thisAsIRxFrameworkElement.ContextMenuOpeningActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_Loaded(object sender, RoutedEventArgs e)
+        private void NativeControl_Loaded(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.LoadedAction?.Invoke();
             thisAsIRxFrameworkElement.LoadedActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        private void NativeControl_RequestBringIntoView(object? sender, RequestBringIntoViewEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.RequestBringIntoViewAction?.Invoke();
             thisAsIRxFrameworkElement.RequestBringIntoViewActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void NativeControl_SizeChanged(object? sender, SizeChangedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.SizeChangedAction?.Invoke();
             thisAsIRxFrameworkElement.SizeChangedActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ToolTipClosing(object sender, ToolTipEventArgs e)
+        private void NativeControl_ToolTipClosing(object? sender, ToolTipEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ToolTipClosingAction?.Invoke();
             thisAsIRxFrameworkElement.ToolTipClosingActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_ToolTipOpening(object sender, ToolTipEventArgs e)
+        private void NativeControl_ToolTipOpening(object? sender, ToolTipEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.ToolTipOpeningAction?.Invoke();
             thisAsIRxFrameworkElement.ToolTipOpeningActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_Unloaded(object sender, RoutedEventArgs e)
+        private void NativeControl_Unloaded(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
             thisAsIRxFrameworkElement.UnloadedAction?.Invoke();
@@ -272,7 +272,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxFrameworkElement(Action<FrameworkElement> componentRefAction)
+        public RxFrameworkElement(Action<FrameworkElement?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -536,7 +536,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnContextMenuClosing<T>(this T frameworkelement, Action<object, ContextMenuEventArgs> contextmenuclosingActionWithArgs) where T : IRxFrameworkElement
+        public static T OnContextMenuClosing<T>(this T frameworkelement, Action<object?, ContextMenuEventArgs> contextmenuclosingActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ContextMenuClosingActionWithArgs = contextmenuclosingActionWithArgs;
             return frameworkelement;
@@ -547,7 +547,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnContextMenuOpening<T>(this T frameworkelement, Action<object, ContextMenuEventArgs> contextmenuopeningActionWithArgs) where T : IRxFrameworkElement
+        public static T OnContextMenuOpening<T>(this T frameworkelement, Action<object?, ContextMenuEventArgs> contextmenuopeningActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ContextMenuOpeningActionWithArgs = contextmenuopeningActionWithArgs;
             return frameworkelement;
@@ -558,7 +558,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnLoaded<T>(this T frameworkelement, Action<object, RoutedEventArgs> loadedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnLoaded<T>(this T frameworkelement, Action<object?, RoutedEventArgs> loadedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.LoadedActionWithArgs = loadedActionWithArgs;
             return frameworkelement;
@@ -569,7 +569,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnRequestBringIntoView<T>(this T frameworkelement, Action<object, RequestBringIntoViewEventArgs> requestbringintoviewActionWithArgs) where T : IRxFrameworkElement
+        public static T OnRequestBringIntoView<T>(this T frameworkelement, Action<object?, RequestBringIntoViewEventArgs> requestbringintoviewActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.RequestBringIntoViewActionWithArgs = requestbringintoviewActionWithArgs;
             return frameworkelement;
@@ -580,7 +580,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnSizeChanged<T>(this T frameworkelement, Action<object, SizeChangedEventArgs> sizechangedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnSizeChanged<T>(this T frameworkelement, Action<object?, SizeChangedEventArgs> sizechangedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.SizeChangedActionWithArgs = sizechangedActionWithArgs;
             return frameworkelement;
@@ -591,7 +591,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnToolTipClosing<T>(this T frameworkelement, Action<object, ToolTipEventArgs> tooltipclosingActionWithArgs) where T : IRxFrameworkElement
+        public static T OnToolTipClosing<T>(this T frameworkelement, Action<object?, ToolTipEventArgs> tooltipclosingActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ToolTipClosingActionWithArgs = tooltipclosingActionWithArgs;
             return frameworkelement;
@@ -602,7 +602,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnToolTipOpening<T>(this T frameworkelement, Action<object, ToolTipEventArgs> tooltipopeningActionWithArgs) where T : IRxFrameworkElement
+        public static T OnToolTipOpening<T>(this T frameworkelement, Action<object?, ToolTipEventArgs> tooltipopeningActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.ToolTipOpeningActionWithArgs = tooltipopeningActionWithArgs;
             return frameworkelement;
@@ -613,7 +613,7 @@ namespace WpfReactorUI
             return frameworkelement;
         }
 
-        public static T OnUnloaded<T>(this T frameworkelement, Action<object, RoutedEventArgs> unloadedActionWithArgs) where T : IRxFrameworkElement
+        public static T OnUnloaded<T>(this T frameworkelement, Action<object?, RoutedEventArgs> unloadedActionWithArgs) where T : IRxFrameworkElement
         {
             frameworkelement.UnloadedActionWithArgs = unloadedActionWithArgs;
             return frameworkelement;

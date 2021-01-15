@@ -23,25 +23,25 @@ namespace WpfReactorUI
 {
     public partial interface IRxTextBoxBase : IRxControl
     {
-        PropertyValue<bool> AcceptsReturn { get; set; }
-        PropertyValue<bool> AcceptsTab { get; set; }
-        PropertyValue<bool> AutoWordSelection { get; set; }
-        PropertyValue<Brush> CaretBrush { get; set; }
-        PropertyValue<ScrollBarVisibility> HorizontalScrollBarVisibility { get; set; }
-        PropertyValue<bool> IsInactiveSelectionHighlightEnabled { get; set; }
-        PropertyValue<bool> IsReadOnly { get; set; }
-        PropertyValue<bool> IsReadOnlyCaretVisible { get; set; }
-        PropertyValue<bool> IsUndoEnabled { get; set; }
-        PropertyValue<Brush> SelectionBrush { get; set; }
-        PropertyValue<double> SelectionOpacity { get; set; }
-        PropertyValue<Brush> SelectionTextBrush { get; set; }
-        PropertyValue<int> UndoLimit { get; set; }
-        PropertyValue<ScrollBarVisibility> VerticalScrollBarVisibility { get; set; }
+        PropertyValue<bool>? AcceptsReturn { get; set; }
+        PropertyValue<bool>? AcceptsTab { get; set; }
+        PropertyValue<bool>? AutoWordSelection { get; set; }
+        PropertyValue<Brush>? CaretBrush { get; set; }
+        PropertyValue<ScrollBarVisibility>? HorizontalScrollBarVisibility { get; set; }
+        PropertyValue<bool>? IsInactiveSelectionHighlightEnabled { get; set; }
+        PropertyValue<bool>? IsReadOnly { get; set; }
+        PropertyValue<bool>? IsReadOnlyCaretVisible { get; set; }
+        PropertyValue<bool>? IsUndoEnabled { get; set; }
+        PropertyValue<Brush>? SelectionBrush { get; set; }
+        PropertyValue<double>? SelectionOpacity { get; set; }
+        PropertyValue<Brush>? SelectionTextBrush { get; set; }
+        PropertyValue<int>? UndoLimit { get; set; }
+        PropertyValue<ScrollBarVisibility>? VerticalScrollBarVisibility { get; set; }
 
-        Action SelectionChangedAction { get; set; }
-        Action<object, RoutedEventArgs> SelectionChangedActionWithArgs { get; set; }
-        Action TextChangedAction { get; set; }
-        Action<object, TextChangedEventArgs> TextChangedActionWithArgs { get; set; }
+        Action? SelectionChangedAction { get; set; }
+        Action<object?, RoutedEventArgs>? SelectionChangedActionWithArgs { get; set; }
+        Action? TextChangedAction { get; set; }
+        Action<object?, TextChangedEventArgs>? TextChangedActionWithArgs { get; set; }
     }
 
     public partial class RxTextBoxBase<T> : RxControl<T>, IRxTextBoxBase where T : TextBoxBase, new()
@@ -51,31 +51,31 @@ namespace WpfReactorUI
 
         }
 
-        public RxTextBoxBase(Action<T> componentRefAction)
+        public RxTextBoxBase(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxTextBoxBase.AcceptsReturn { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.AcceptsTab { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.AutoWordSelection { get; set; }
-        PropertyValue<Brush> IRxTextBoxBase.CaretBrush { get; set; }
-        PropertyValue<ScrollBarVisibility> IRxTextBoxBase.HorizontalScrollBarVisibility { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.IsInactiveSelectionHighlightEnabled { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.IsReadOnly { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.IsReadOnlyCaretVisible { get; set; }
-        PropertyValue<bool> IRxTextBoxBase.IsUndoEnabled { get; set; }
-        PropertyValue<Brush> IRxTextBoxBase.SelectionBrush { get; set; }
-        PropertyValue<double> IRxTextBoxBase.SelectionOpacity { get; set; }
-        PropertyValue<Brush> IRxTextBoxBase.SelectionTextBrush { get; set; }
-        PropertyValue<int> IRxTextBoxBase.UndoLimit { get; set; }
-        PropertyValue<ScrollBarVisibility> IRxTextBoxBase.VerticalScrollBarVisibility { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.AcceptsReturn { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.AcceptsTab { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.AutoWordSelection { get; set; }
+        PropertyValue<Brush>? IRxTextBoxBase.CaretBrush { get; set; }
+        PropertyValue<ScrollBarVisibility>? IRxTextBoxBase.HorizontalScrollBarVisibility { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.IsInactiveSelectionHighlightEnabled { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.IsReadOnly { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.IsReadOnlyCaretVisible { get; set; }
+        PropertyValue<bool>? IRxTextBoxBase.IsUndoEnabled { get; set; }
+        PropertyValue<Brush>? IRxTextBoxBase.SelectionBrush { get; set; }
+        PropertyValue<double>? IRxTextBoxBase.SelectionOpacity { get; set; }
+        PropertyValue<Brush>? IRxTextBoxBase.SelectionTextBrush { get; set; }
+        PropertyValue<int>? IRxTextBoxBase.UndoLimit { get; set; }
+        PropertyValue<ScrollBarVisibility>? IRxTextBoxBase.VerticalScrollBarVisibility { get; set; }
 
-        Action IRxTextBoxBase.SelectionChangedAction { get; set; }
-        Action<object, RoutedEventArgs> IRxTextBoxBase.SelectionChangedActionWithArgs { get; set; }
-        Action IRxTextBoxBase.TextChangedAction { get; set; }
-        Action<object, TextChangedEventArgs> IRxTextBoxBase.TextChangedActionWithArgs { get; set; }
+        Action? IRxTextBoxBase.SelectionChangedAction { get; set; }
+        Action<object?, RoutedEventArgs>? IRxTextBoxBase.SelectionChangedActionWithArgs { get; set; }
+        Action? IRxTextBoxBase.TextChangedAction { get; set; }
+        Action<object?, TextChangedEventArgs>? IRxTextBoxBase.TextChangedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -120,13 +120,13 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_SelectionChanged(object sender, RoutedEventArgs e)
+        private void NativeControl_SelectionChanged(object? sender, RoutedEventArgs e)
         {
             var thisAsIRxTextBoxBase = (IRxTextBoxBase)this;
             thisAsIRxTextBoxBase.SelectionChangedAction?.Invoke();
             thisAsIRxTextBoxBase.SelectionChangedActionWithArgs?.Invoke(sender, e);
         }
-        private void NativeControl_TextChanged(object sender, TextChangedEventArgs e)
+        private void NativeControl_TextChanged(object? sender, TextChangedEventArgs e)
         {
             var thisAsIRxTextBoxBase = (IRxTextBoxBase)this;
             thisAsIRxTextBoxBase.TextChangedAction?.Invoke();
@@ -293,7 +293,7 @@ namespace WpfReactorUI
             return textboxbase;
         }
 
-        public static T OnSelectionChanged<T>(this T textboxbase, Action<object, RoutedEventArgs> selectionchangedActionWithArgs) where T : IRxTextBoxBase
+        public static T OnSelectionChanged<T>(this T textboxbase, Action<object?, RoutedEventArgs> selectionchangedActionWithArgs) where T : IRxTextBoxBase
         {
             textboxbase.SelectionChangedActionWithArgs = selectionchangedActionWithArgs;
             return textboxbase;
@@ -304,7 +304,7 @@ namespace WpfReactorUI
             return textboxbase;
         }
 
-        public static T OnTextChanged<T>(this T textboxbase, Action<object, TextChangedEventArgs> textchangedActionWithArgs) where T : IRxTextBoxBase
+        public static T OnTextChanged<T>(this T textboxbase, Action<object?, TextChangedEventArgs> textchangedActionWithArgs) where T : IRxTextBoxBase
         {
             textboxbase.TextChangedActionWithArgs = textchangedActionWithArgs;
             return textboxbase;

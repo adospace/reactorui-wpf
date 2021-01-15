@@ -15,7 +15,7 @@ namespace WpfReactorUI.Internals
     internal class AssemblyFileComponentLoader : IComponentLoader
     {
         private readonly string _assemblyFileName;
-        private FileSystemWatcher _fileSystemWatcher;
+        private FileSystemWatcher? _fileSystemWatcher;
 
         public AssemblyFileComponentLoader(string assemblyFileName)
         {
@@ -27,28 +27,35 @@ namespace WpfReactorUI.Internals
             _assemblyFileName = Path.GetFullPath(assemblyFileName);
         }
 
-        public event EventHandler ComponentAssemblyChanged;
+        public event EventHandler? ComponentAssemblyChanged;
 
         public RxComponent LoadComponent<T>() where T : RxComponent, new()
         {
             var assemblyPath = _assemblyFileName;
-            var assemblyPdbPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
+            var assemblyPdbPath = Path.Combine(
+                Path.GetDirectoryName(assemblyPath) ?? throw new InvalidOperationException($"Unable to get directory name of {assemblyPath}"), 
+                Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
 
             var assembly = File.Exists(assemblyPdbPath) ?
                 Assembly.Load(File.ReadAllBytes(assemblyPath))
                 :
                 Assembly.Load(File.ReadAllBytes(assemblyPath), File.ReadAllBytes(assemblyPdbPath));
 
-            var type = assembly.GetType(typeof(T).FullName);
+            var type = assembly.GetType(typeof(T).FullName ?? throw new InvalidOperationException("Unable to get component type full name"))
+                ?? throw new InvalidOperationException("Unable to get type of the component to load");
 
-            return (RxComponent)Activator.CreateInstance(type);
+            return (RxComponent)(Activator.CreateInstance(type) ?? throw new InvalidOperationException($"Unable to create instance of type {type}"));
         }
 
         public void Run()
         {
-            _fileSystemWatcher = new FileSystemWatcher(Path.GetDirectoryName(_assemblyFileName), "*.dll");
-            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastAccess
-                                 | NotifyFilters.LastWrite;
+            _fileSystemWatcher = new FileSystemWatcher(
+                Path.GetDirectoryName(_assemblyFileName) ?? throw new InvalidOperationException($"Unable to get directory name of {_assemblyFileName}"),
+                "*.dll")
+            {
+                NotifyFilter = NotifyFilters.LastAccess
+                                 | NotifyFilters.LastWrite
+            };
 
             _fileSystemWatcher.Changed += OnAssemblyFileChanged;
 
@@ -59,6 +66,10 @@ namespace WpfReactorUI.Internals
         {
             if (Path.GetFullPath(e.FullPath) != Path.GetFullPath(_assemblyFileName))
                 return;
+            if (_fileSystemWatcher == null)
+            {
+                return;
+            }
 
             _fileSystemWatcher.EnableRaisingEvents = false;
 
@@ -74,9 +85,15 @@ namespace WpfReactorUI.Internals
 
         public void Stop()
         {
+            if (_fileSystemWatcher == null)
+            {
+                return;
+            }
+
             _fileSystemWatcher.EnableRaisingEvents = false;
             _fileSystemWatcher.Changed -= OnAssemblyFileChanged;
             _fileSystemWatcher.Dispose();
+            _fileSystemWatcher = null;
         }
     }
 }

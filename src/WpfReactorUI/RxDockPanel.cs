@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxDockPanel : IRxPanel
     {
-        PropertyValue<bool> LastChildFill { get; set; }
+        PropertyValue<bool>? LastChildFill { get; set; }
 
     }
 
@@ -34,13 +34,13 @@ namespace WpfReactorUI
 
         }
 
-        public RxDockPanel(Action<T> componentRefAction)
+        public RxDockPanel(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxDockPanel.LastChildFill { get; set; }
+        PropertyValue<bool>? IRxDockPanel.LastChildFill { get; set; }
 
 
         protected override void OnUpdate()
@@ -60,7 +60,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxDockPanel = (IRxDockPanel)this;
 
             base.OnAttachNativeEvents();
         }
@@ -83,7 +82,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxDockPanel(Action<DockPanel> componentRefAction)
+        public RxDockPanel(Action<DockPanel?> componentRefAction)
             : base(componentRefAction)
         {
 

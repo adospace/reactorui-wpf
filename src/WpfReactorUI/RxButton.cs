@@ -23,8 +23,8 @@ namespace WpfReactorUI
 {
     public partial interface IRxButton : IRxButtonBase
     {
-        PropertyValue<bool> IsCancel { get; set; }
-        PropertyValue<bool> IsDefault { get; set; }
+        PropertyValue<bool>? IsCancel { get; set; }
+        PropertyValue<bool>? IsDefault { get; set; }
 
     }
 
@@ -35,14 +35,14 @@ namespace WpfReactorUI
 
         }
 
-        public RxButton(Action<T> componentRefAction)
+        public RxButton(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxButton.IsCancel { get; set; }
-        PropertyValue<bool> IRxButton.IsDefault { get; set; }
+        PropertyValue<bool>? IRxButton.IsCancel { get; set; }
+        PropertyValue<bool>? IRxButton.IsDefault { get; set; }
 
 
         protected override void OnUpdate()
@@ -63,7 +63,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxButton = (IRxButton)this;
 
             base.OnAttachNativeEvents();
         }
@@ -86,7 +85,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxButton(Action<Button> componentRefAction)
+        public RxButton(Action<Button?> componentRefAction)
             : base(componentRefAction)
         {
 

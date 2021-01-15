@@ -21,7 +21,7 @@ namespace WpfReactorUI
 
     public static class RxContextExtensions
     {
-        public static T Get<T>(this RxContext context, string key, T defaultValue = default)
+        public static T? Get<T>(this RxContext context, string key, T defaultValue = default)
         {
             if (context.TryGetValue(key, out var value))
                 return (T)value;

@@ -9,7 +9,7 @@ namespace WpfReactorUI
     {
         public static T OnSelectionChanged<T, I>(this T itemscontrol, Action<I> selectedItemAction) where T : IRxSelector
         {
-            itemscontrol.SelectionChangedActionWithArgs = (sender, e) => selectedItemAction((I)((Selector)sender).SelectedItem);
+            itemscontrol.SelectionChangedActionWithArgs = (sender, e) => selectedItemAction((I)((sender as Selector ?? throw new InvalidOperationException()).SelectedItem));
 
             return itemscontrol;
         }

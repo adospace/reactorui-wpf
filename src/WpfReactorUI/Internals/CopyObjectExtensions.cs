@@ -50,7 +50,7 @@ namespace WpfReactorUI.Internals
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine($"Unable to copy property '{targetProperty.Name}' of state ({source.GetType()}) to new state after hot reload (Exception: '{ex.Message}')");
+                        System.Diagnostics.Debug.WriteLine($"Unable to copy property '{targetProperty.Name}' of state ({source?.GetType()}) to new state after hot reload (Exception: '{ex.Message}')");
                     }
                 }
             }

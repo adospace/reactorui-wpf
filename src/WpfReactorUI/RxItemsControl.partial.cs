@@ -10,12 +10,12 @@ namespace WpfReactorUI
 {
     public partial interface IRxItemsControl : IRxControl
     {
-        PropertyValue<DataTemplate> ItemTemplate { get; set; }
+        PropertyValue<DataTemplate>? ItemTemplate { get; set; }
     }
 
     public partial class RxItemsControl<T>
     {
-        PropertyValue<DataTemplate> IRxItemsControl.ItemTemplate { get; set; }
+        PropertyValue<DataTemplate>? IRxItemsControl.ItemTemplate { get; set; }
 
         partial void OnBeginUpdate()
         {
@@ -39,9 +39,9 @@ namespace WpfReactorUI
             Root = root;
         }
 
-        private VisualNode _root;
+        private VisualNode? _root;
 
-        public VisualNode Root
+        public VisualNode? Root
         {
             get => _root;
             set
@@ -54,7 +54,7 @@ namespace WpfReactorUI
             }
         }
 
-        public UIElement RootControl { get; private set; }
+        public UIElement? RootControl { get; private set; }
 
         protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
         {
@@ -73,6 +73,11 @@ namespace WpfReactorUI
 
         protected override IEnumerable<VisualNode> RenderChildren()
         {
+            if (Root == null)
+            {
+                throw new InvalidOperationException();
+            }
+
             yield return Root;
         }
 
@@ -116,16 +121,16 @@ namespace WpfReactorUI
 
     internal interface IItemTemplate
     {
-        IItemTemplate PreviousTemplate { get; set; }
+        IItemTemplate? PreviousTemplate { get; set; }
 
-        ItemTemplateNode GetAvailableTemplateNode();
+        ItemTemplateNode? GetAvailableTemplateNode();
 
         void RegisterTemplate(ItemTemplateNode itemTemplateNode);
     }
 
     internal class ItemTemplate<I> : DataTemplate, IItemTemplate
     {
-        private Queue<ItemTemplateNode> _availableItemTemplates = new Queue<ItemTemplateNode>();
+        private readonly Queue<ItemTemplateNode> _availableItemTemplates = new Queue<ItemTemplateNode>();
         public ItemTemplate(Func<I, VisualNode> renderFunc)
         {
             VisualTree = new FrameworkElementFactory(typeof(ItemTemplatePresenter<I>));
@@ -134,11 +139,11 @@ namespace WpfReactorUI
 
         public Func<I, VisualNode> RenderFunc { get; }
 
-        public Type ItemType => typeof(I);
+        //public Type ItemType => typeof(I);
 
-        public IItemTemplate PreviousTemplate { get; set; }
+        public IItemTemplate? PreviousTemplate { get; set; }
 
-        public ItemTemplateNode GetAvailableTemplateNode()
+        public ItemTemplateNode? GetAvailableTemplateNode()
         {
             if (_availableItemTemplates.TryDequeue(out var itemTemplateNode))
                 return itemTemplateNode;

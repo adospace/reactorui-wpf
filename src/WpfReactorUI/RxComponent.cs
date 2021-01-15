@@ -47,7 +47,7 @@ namespace WpfReactorUI
         protected new IReadOnlyList<VisualNode> Children()
             => _children;
 
-        private IRxHostElement GetPageHost()
+        private IRxHostElement? GetPageHost()
         {
             var current = Parent;
             while (current != null && !(current is IRxHostElement))
@@ -56,7 +56,7 @@ namespace WpfReactorUI
             return current as IRxHostElement;
         }
 
-        protected Window ContainerWindow
+        protected Window? ContainerWindow
         {
             get
             {
@@ -66,6 +66,11 @@ namespace WpfReactorUI
 
         protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
         {
+            if (Parent == null)
+            {
+                throw new InvalidOperationException($"Unable to add native control {nativeControl.GetType().FullName} (widget: {widget.GetType().FullName}): Parent is null");
+            }
+
             if (nativeControl is DependencyObject childAsDependencyObject)
             {
                 foreach (var attachedProperty in _attachedProperties)
@@ -79,6 +84,11 @@ namespace WpfReactorUI
 
         protected sealed override void OnRemoveChild(VisualNode widget, object nativeControl)
         {
+            if (Parent == null)
+            {
+                throw new InvalidOperationException($"Unable to remove native control {nativeControl.GetType().FullName} (widget: {widget.GetType().FullName}): Parent is null");
+            }
+
             Parent.RemoveChild(this, nativeControl);
 
             if (nativeControl is DependencyObject childAsDependencyObject)
@@ -154,8 +164,8 @@ namespace WpfReactorUI
         //public INavigation Navigation
         //    => RxApplication.Instance.Navigation;
 
-        public RxContext Context
-            => RxApplication.Instance.Context;
+        public static RxContext Context
+            => RxApplication.Instance?.Context ?? throw new InvalidOperationException("Unable to get context without an active application");
 
     }
 
@@ -176,7 +186,7 @@ namespace WpfReactorUI
 
         void ForwardState(object stateFromOldComponent, bool invalidateComponent);
 
-        IRxComponentWithState NewComponent { get; }
+        IRxComponentWithState? NewComponent { get; }
 
         void RegisterOnStateChanged(Action action);
     }
@@ -198,7 +208,7 @@ namespace WpfReactorUI
 
     public abstract class RxComponentWithProps<P> : RxComponent, IRxComponentWithProps where P : class, IProps, new()
     {
-        public RxComponentWithProps(P props = null)
+        public RxComponentWithProps(P? props = null)
         {
             Props = props ?? new P();
         }
@@ -210,10 +220,10 @@ namespace WpfReactorUI
 
     public abstract class RxComponent<S, P> : RxComponentWithProps<P>, IRxComponentWithState where S : class, IState, new() where P : class, IProps, new()
     {
-        private IRxComponentWithState _newComponent;
-        private List<Action> _actionsRegisterdOnStateChange = new();
+        private IRxComponentWithState? _newComponent;
+        private readonly List<Action> _actionsRegisterdOnStateChange = new();
 
-        protected RxComponent(S state = null, P props = null)
+        protected RxComponent(S? state = null, P? props = null)
             : base(props)
         {
             State = state ?? new S();
@@ -225,7 +235,7 @@ namespace WpfReactorUI
 
         object IRxComponentWithState.State => State;
 
-        IRxComponentWithState IRxComponentWithState.NewComponent => _newComponent;
+        IRxComponentWithState? IRxComponentWithState.NewComponent => _newComponent;
 
         private bool TryForwardStateToNewComponent(bool invalidateComponent)
         {
@@ -310,7 +320,7 @@ namespace WpfReactorUI
 
     public abstract class RxComponent<S> : RxComponent<S, EmptyProps> where S : class, IState, new()
     {
-        protected RxComponent(S state = null, EmptyProps props = null)
+        protected RxComponent(S? state = null, EmptyProps? props = null)
             : base(state, props)
         {
         }

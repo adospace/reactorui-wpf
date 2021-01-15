@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxGrid : IRxPanel
     {
-        PropertyValue<bool> ShowGridLines { get; set; }
+        PropertyValue<bool>? ShowGridLines { get; set; }
 
     }
 
@@ -34,13 +34,13 @@ namespace WpfReactorUI
 
         }
 
-        public RxGrid(Action<T> componentRefAction)
+        public RxGrid(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<bool> IRxGrid.ShowGridLines { get; set; }
+        PropertyValue<bool>? IRxGrid.ShowGridLines { get; set; }
 
 
         protected override void OnUpdate()
@@ -60,7 +60,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxGrid = (IRxGrid)this;
 
             base.OnAttachNativeEvents();
         }
@@ -83,7 +82,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxGrid(Action<Grid> componentRefAction)
+        public RxGrid(Action<Grid?> componentRefAction)
             : base(componentRefAction)
         {
 

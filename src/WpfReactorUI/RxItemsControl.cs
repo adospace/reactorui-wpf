@@ -23,13 +23,13 @@ namespace WpfReactorUI
 {
     public partial interface IRxItemsControl : IRxControl
     {
-        PropertyValue<int> AlternationCount { get; set; }
-        PropertyValue<string> DisplayMemberPath { get; set; }
-        PropertyValue<bool> IsTextSearchCaseSensitive { get; set; }
-        PropertyValue<bool> IsTextSearchEnabled { get; set; }
-        PropertyValue<Style> ItemContainerStyle { get; set; }
-        PropertyValue<IEnumerable> ItemsSource { get; set; }
-        PropertyValue<string> ItemStringFormat { get; set; }
+        PropertyValue<int>? AlternationCount { get; set; }
+        PropertyValue<string>? DisplayMemberPath { get; set; }
+        PropertyValue<bool>? IsTextSearchCaseSensitive { get; set; }
+        PropertyValue<bool>? IsTextSearchEnabled { get; set; }
+        PropertyValue<Style>? ItemContainerStyle { get; set; }
+        PropertyValue<IEnumerable>? ItemsSource { get; set; }
+        PropertyValue<string>? ItemStringFormat { get; set; }
 
     }
 
@@ -40,19 +40,19 @@ namespace WpfReactorUI
 
         }
 
-        public RxItemsControl(Action<T> componentRefAction)
+        public RxItemsControl(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<int> IRxItemsControl.AlternationCount { get; set; }
-        PropertyValue<string> IRxItemsControl.DisplayMemberPath { get; set; }
-        PropertyValue<bool> IRxItemsControl.IsTextSearchCaseSensitive { get; set; }
-        PropertyValue<bool> IRxItemsControl.IsTextSearchEnabled { get; set; }
-        PropertyValue<Style> IRxItemsControl.ItemContainerStyle { get; set; }
-        PropertyValue<IEnumerable> IRxItemsControl.ItemsSource { get; set; }
-        PropertyValue<string> IRxItemsControl.ItemStringFormat { get; set; }
+        PropertyValue<int>? IRxItemsControl.AlternationCount { get; set; }
+        PropertyValue<string>? IRxItemsControl.DisplayMemberPath { get; set; }
+        PropertyValue<bool>? IRxItemsControl.IsTextSearchCaseSensitive { get; set; }
+        PropertyValue<bool>? IRxItemsControl.IsTextSearchEnabled { get; set; }
+        PropertyValue<Style>? IRxItemsControl.ItemContainerStyle { get; set; }
+        PropertyValue<IEnumerable>? IRxItemsControl.ItemsSource { get; set; }
+        PropertyValue<string>? IRxItemsControl.ItemStringFormat { get; set; }
 
 
         protected override void OnUpdate()
@@ -78,7 +78,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxItemsControl = (IRxItemsControl)this;
 
             base.OnAttachNativeEvents();
         }
@@ -101,7 +100,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxItemsControl(Action<ItemsControl> componentRefAction)
+        public RxItemsControl(Action<ItemsControl?> componentRefAction)
             : base(componentRefAction)
         {
 

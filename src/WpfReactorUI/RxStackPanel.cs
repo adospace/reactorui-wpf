@@ -23,7 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxStackPanel : IRxPanel
     {
-        PropertyValue<Orientation> Orientation { get; set; }
+        PropertyValue<Orientation>? Orientation { get; set; }
 
     }
 
@@ -34,13 +34,13 @@ namespace WpfReactorUI
 
         }
 
-        public RxStackPanel(Action<T> componentRefAction)
+        public RxStackPanel(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<Orientation> IRxStackPanel.Orientation { get; set; }
+        PropertyValue<Orientation>? IRxStackPanel.Orientation { get; set; }
 
 
         protected override void OnUpdate()
@@ -60,7 +60,6 @@ namespace WpfReactorUI
 
         protected override void OnAttachNativeEvents()
         {
-            var thisAsIRxStackPanel = (IRxStackPanel)this;
 
             base.OnAttachNativeEvents();
         }
@@ -83,7 +82,7 @@ namespace WpfReactorUI
 
         }
 
-        public RxStackPanel(Action<StackPanel> componentRefAction)
+        public RxStackPanel(Action<StackPanel?> componentRefAction)
             : base(componentRefAction)
         {
 

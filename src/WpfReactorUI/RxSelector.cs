@@ -23,13 +23,13 @@ namespace WpfReactorUI
 {
     public partial interface IRxSelector : IRxItemsControl
     {
-        PropertyValue<int> SelectedIndex { get; set; }
-        PropertyValue<object> SelectedItem { get; set; }
-        PropertyValue<object> SelectedValue { get; set; }
-        PropertyValue<string> SelectedValuePath { get; set; }
+        PropertyValue<int>? SelectedIndex { get; set; }
+        PropertyValue<object>? SelectedItem { get; set; }
+        PropertyValue<object>? SelectedValue { get; set; }
+        PropertyValue<string>? SelectedValuePath { get; set; }
 
-        Action SelectionChangedAction { get; set; }
-        Action<object, SelectionChangedEventArgs> SelectionChangedActionWithArgs { get; set; }
+        Action? SelectionChangedAction { get; set; }
+        Action<object?, SelectionChangedEventArgs>? SelectionChangedActionWithArgs { get; set; }
     }
 
     public partial class RxSelector<T> : RxItemsControl<T>, IRxSelector where T : Selector, new()
@@ -39,19 +39,19 @@ namespace WpfReactorUI
 
         }
 
-        public RxSelector(Action<T> componentRefAction)
+        public RxSelector(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
-        PropertyValue<int> IRxSelector.SelectedIndex { get; set; }
-        PropertyValue<object> IRxSelector.SelectedItem { get; set; }
-        PropertyValue<object> IRxSelector.SelectedValue { get; set; }
-        PropertyValue<string> IRxSelector.SelectedValuePath { get; set; }
+        PropertyValue<int>? IRxSelector.SelectedIndex { get; set; }
+        PropertyValue<object>? IRxSelector.SelectedItem { get; set; }
+        PropertyValue<object>? IRxSelector.SelectedValue { get; set; }
+        PropertyValue<string>? IRxSelector.SelectedValuePath { get; set; }
 
-        Action IRxSelector.SelectionChangedAction { get; set; }
-        Action<object, SelectionChangedEventArgs> IRxSelector.SelectionChangedActionWithArgs { get; set; }
+        Action? IRxSelector.SelectionChangedAction { get; set; }
+        Action<object?, SelectionChangedEventArgs>? IRxSelector.SelectionChangedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -82,7 +82,7 @@ namespace WpfReactorUI
             base.OnAttachNativeEvents();
         }
 
-        private void NativeControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void NativeControl_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             var thisAsIRxSelector = (IRxSelector)this;
             thisAsIRxSelector.SelectionChangedAction?.Invoke();
@@ -148,7 +148,7 @@ namespace WpfReactorUI
             return selector;
         }
 
-        public static T OnSelectionChanged<T>(this T selector, Action<object, SelectionChangedEventArgs> selectionchangedActionWithArgs) where T : IRxSelector
+        public static T OnSelectionChanged<T>(this T selector, Action<object?, SelectionChangedEventArgs> selectionchangedActionWithArgs) where T : IRxSelector
         {
             selector.SelectionChangedActionWithArgs = selectionchangedActionWithArgs;
             return selector;
