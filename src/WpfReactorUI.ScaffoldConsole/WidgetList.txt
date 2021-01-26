@@ -17,6 +17,12 @@ System.Windows.Controls.Primitives.ButtonBase
 System.Windows.Controls.Grid
 System.Windows.Controls.DockPanel
 System.Windows.Controls.TabControl
+System.Windows.Controls.Primitives.Selector
+System.Windows.Controls.Primitives.MultiSelector
+System.Windows.Controls.DataGrid
+System.Windows.Controls.DataGridColumn
+System.Windows.Controls.DataGridBoundColumn
+System.Windows.Controls.DataGridTextColumn
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar

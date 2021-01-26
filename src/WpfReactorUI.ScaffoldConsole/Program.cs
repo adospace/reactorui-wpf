@@ -26,7 +26,7 @@ namespace WpfReactorUI.ScaffoldConsole
             var types = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
                          // alternative: from domainAssembly in domainAssembly.GetExportedTypes()
                          from assemblyType in domainAssembly.GetTypes()
-                         where typeof(Visual).IsAssignableFrom(assemblyType)
+                         where typeof(DependencyObject).IsAssignableFrom(assemblyType)
                          // alternative: where assemblyType.IsSubclassOf(typeof(B))
                          // alternative: && ! assemblyType.IsAbstract
                          select assemblyType)

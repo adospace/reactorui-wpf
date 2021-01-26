@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 
 using WpfReactorUI.Internals;
 using ModernWpf.Controls;
+using ModernWpf.Controls.Primitives;
 
 namespace WpfReactorUI
 {
