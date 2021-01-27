@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 using WpfReactorUI.Internals;
 
@@ -68,9 +69,13 @@ namespace WpfReactorUI
 
         partial void OnBeginUpdate();
         partial void OnEndUpdate();
+        partial void OnAttachingNewEvents();
+        partial void OnDetachingNewEvents();
 
         protected override void OnAttachNativeEvents()
         {
+            OnAttachingNewEvents();
+
 
             base.OnAttachNativeEvents();
         }
@@ -78,9 +83,8 @@ namespace WpfReactorUI
 
         protected override void OnDetachNativeEvents()
         {
-            if (NativeControl != null)
-            {
-            }
+            OnDetachingNewEvents();
+
 
             base.OnDetachNativeEvents();
         }

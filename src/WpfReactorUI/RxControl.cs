@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 using WpfReactorUI.Internals;
 
@@ -103,9 +104,13 @@ namespace WpfReactorUI
 
         partial void OnBeginUpdate();
         partial void OnEndUpdate();
+        partial void OnAttachingNewEvents();
+        partial void OnDetachingNewEvents();
 
         protected override void OnAttachNativeEvents()
         {
+            OnAttachingNewEvents();
+
             var thisAsIRxControl = (IRxControl)this;
             if (thisAsIRxControl.MouseDoubleClickAction != null || thisAsIRxControl.MouseDoubleClickActionWithArgs != null)
             {
@@ -134,6 +139,8 @@ namespace WpfReactorUI
 
         protected override void OnDetachNativeEvents()
         {
+            OnDetachingNewEvents();
+
             if (NativeControl != null)
             {
                 NativeControl.MouseDoubleClick -= NativeControl_MouseDoubleClick;

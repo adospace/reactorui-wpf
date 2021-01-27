@@ -23,6 +23,9 @@ System.Windows.Controls.DataGrid
 System.Windows.Controls.DataGridColumn
 System.Windows.Controls.DataGridBoundColumn
 System.Windows.Controls.DataGridTextColumn
+System.Windows.Navigation.NavigationWindow
+System.Windows.Controls.Frame
+System.Windows.Controls.Page
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar

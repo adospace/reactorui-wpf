@@ -124,6 +124,9 @@ namespace WpfReactorUI
         internal bool IsLayoutCycleRequired { get; set; } = true;
         internal VisualNode? Parent { get; private set; }
 
+        public virtual INavigation? Navigation
+            => Parent?.Navigation;
+
         public void AppendAnimatable<T>(object key, T animation, Action<T> action) where T : RxAnimation
         {
             if (key is null)
@@ -349,8 +352,6 @@ namespace WpfReactorUI
 
         protected virtual void OnMigrated(VisualNode newNode)
         {
-            OnDetachNativeEvents();
-
             foreach (var newAnimatableProperty in newNode._animatables)
             {
                 if (_animatables.TryGetValue(newAnimatableProperty.Key, out var oldAnimatableProperty))
@@ -376,8 +377,6 @@ namespace WpfReactorUI
 
         protected virtual void OnUnmount()
         {
-            OnDetachNativeEvents();
-
             _isMounted = false;
             Parent = null;
         }
@@ -385,18 +384,6 @@ namespace WpfReactorUI
         protected virtual void OnUpdate()
         {
             _stateChanged = false;
-
-            OnAttachNativeEvents();
-        }
-
-        protected virtual void OnAttachNativeEvents()
-        { 
-        
-        }
-
-        protected virtual void OnDetachNativeEvents()
-        { 
-        
         }
 
         protected virtual IEnumerable<VisualNode> RenderChildren()
@@ -534,9 +521,6 @@ namespace WpfReactorUI
         {
             if (NativeControl != null)
             {
-                //NativeControl.PropertyChanged -= NativeControl_PropertyChanged;
-                //NativeControl.PropertyChanging -= NativeControl_PropertyChanging;
-
                 foreach (var attachedProperty in _attachedProperties)
                 {
                     NativeControl.ClearValue(attachedProperty.Key);
@@ -545,7 +529,19 @@ namespace WpfReactorUI
 
             _attachedProperties.Clear();
 
+            OnDetachNativeEvents();
+
             base.OnMigrated(newNode);
+        }
+
+        protected virtual void OnAttachNativeEvents()
+        {
+
+        }
+
+        protected virtual void OnDetachNativeEvents()
+        {
+
         }
 
         protected override void OnMount()
@@ -561,14 +557,15 @@ namespace WpfReactorUI
         {
             if (_nativeControl != null)
             {
-                //_nativeControl.PropertyChanged -= NativeControl_PropertyChanged;
-                //_nativeControl.PropertyChanging -= NativeControl_PropertyChanging;
+                OnDetachNativeEvents();
 
                 Parent?.RemoveChild(this, _nativeControl);
 
                 _nativeControl = null;
                 _componentRefAction?.Invoke(null);
             }
+
+            var parent = Parent;
 
             base.OnUnmount();
         }
@@ -579,6 +576,8 @@ namespace WpfReactorUI
             {
                 NativeControl.SetValue(attachedProperty.Key, attachedProperty.Value);
             }
+
+            OnAttachNativeEvents();
 
             base.OnUpdate();
         }

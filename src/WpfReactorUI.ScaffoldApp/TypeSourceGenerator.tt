@@ -30,6 +30,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 using WpfReactorUI.Internals;
 <# foreach (var usingNS in AdditionalUsings) { #>
@@ -90,9 +91,13 @@ namespace WpfReactorUI
 
         partial void OnBeginUpdate();
         partial void OnEndUpdate();
+        partial void OnAttachingNewEvents();
+        partial void OnDetachingNewEvents();
 
         protected override void OnAttachNativeEvents()
         {
+            OnAttachingNewEvents();
+
             <# if (Events.Any()) { #>
             var thisAsIRx<#= TypeName #> = (IRx<#= TypeName #>)this;
             <# foreach (var ev in Events) { #>
@@ -117,12 +122,16 @@ namespace WpfReactorUI
 
         protected override void OnDetachNativeEvents()
         {
+            OnDetachingNewEvents();
+
+            <# if (Events.Any()) { #>
             if (NativeControl != null)
             {
             <# foreach (var ev in Events) { #>
             NativeControl.<#= ev.Name #> -= NativeControl_<#= ev.Name #>;
             <# } #>
             }
+            <# } #>
 
             base.OnDetachNativeEvents();
         }

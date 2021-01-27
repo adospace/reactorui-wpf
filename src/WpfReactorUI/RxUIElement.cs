@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 using WpfReactorUI.Internals;
 
@@ -433,9 +434,13 @@ namespace WpfReactorUI
 
         partial void OnBeginUpdate();
         partial void OnEndUpdate();
+        partial void OnAttachingNewEvents();
+        partial void OnDetachingNewEvents();
 
         protected override void OnAttachNativeEvents()
         {
+            OnAttachingNewEvents();
+
             var thisAsIRxUIElement = (IRxUIElement)this;
             if (thisAsIRxUIElement.DragEnterAction != null || thisAsIRxUIElement.DragEnterActionWithArgs != null)
             {
@@ -1274,6 +1279,8 @@ namespace WpfReactorUI
 
         protected override void OnDetachNativeEvents()
         {
+            OnDetachingNewEvents();
+
             if (NativeControl != null)
             {
                 NativeControl.DragEnter -= NativeControl_DragEnter;

@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace WpfReactorUI
 {
@@ -14,15 +15,8 @@ namespace WpfReactorUI
 
         protected readonly Application _application;
 
-        //internal IComponentLoader ComponentLoader { get; set; } = new LocalComponentLoader();
-
         protected RxApplication(Application application)
         {
-            //if (Instance != null)
-            //{
-            //    throw new InvalidOperationException("Only one instance of RxApplication is permitted");
-            //}
-
             Instance = this;
 
             _application = application ?? throw new ArgumentNullException(nameof(application));
@@ -43,9 +37,6 @@ namespace WpfReactorUI
 
         public static RxApplication Create<T>(Application application) where T : RxComponent, new()
             => new RxApplication<T>(application);
-
-        // public static RxApplication CreateWithHotReload<T>(Application application) where T : RxComponent, new()
-        //     => new RxHotReloadApplication<T>(application);
 
         public RxApplication WithContext(string key, object value)
         {
@@ -146,7 +137,7 @@ namespace WpfReactorUI
 
             try
             {
-                var newComponent = ComponentLoader.Instance.LoadComponent<T>();
+                var newComponent = ComponentLoader.Instance?.LoadComponent<T>();
 
                 if (newComponent != null)
                 {
@@ -194,6 +185,11 @@ namespace WpfReactorUI
             }
             catch (Exception ex)
             {
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    throw;
+                }
+
                 FireUnhandledExpectionEvent(ex);
             }
         }
@@ -210,61 +206,4 @@ namespace WpfReactorUI
 
 
     }
-
-    // public class RxHotReloadApplication<T> : RxApplication<T> where T : RxComponent, new()
-    // {
-    //     private readonly HotReloadServer _hotReloadServer;
-
-
-    //     internal RxHotReloadApplication(Application application, int serverPort = 45821) : base(application)
-    //     {
-    //         _hotReloadServer = new HotReloadServer(serverPort);
-    //     }
-
-    //     public override IRxHostElement Run()
-    //     {
-    //         _hotReloadServer.HotReloadCommandIssued += OnHotReloadServer_HotReloadCommandIssued;
-    //         _hotReloadServer.Start();
-
-    //         return base.Run();
-    //     }
-
-    //     private void OnHotReloadServer_HotReloadCommandIssued(object sender, AssemblyToReloadEventArgs e)
-    //     {
-    //         try
-    //         {
-    //             var assemblyPath = e.Path;
-    //             var assemblyPdbPath = Path.Combine(Path.GetDirectoryName(assemblyPath), Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
-
-    //             var assembly = File.Exists(assemblyPdbPath) ?
-    //                 Assembly.Load(File.ReadAllBytes(assemblyPath))
-    //                 :
-    //                 Assembly.Load(File.ReadAllBytes(assemblyPath), File.ReadAllBytes(assemblyPdbPath));
-
-    //             var type = assembly.GetType(typeof(T).FullName);
-
-    //             if (type == null)
-    //                 return;
-
-    //             var newComponent = (RxComponent)Activator.CreateInstance(type);
-
-    //             if (newComponent != null)
-    //             {
-    //                 _rootComponent = newComponent;
-    //                 Invalidate();
-    //             }
-    //         }
-    //         catch (Exception ex)
-    //         {
-    //             FireUnhandledExpectionEvent(ex);
-    //         }
-    //     }
-
-    //     public override void Stop()
-    //     {
-    //         _hotReloadServer.Stop();
-
-    //         base.Stop();
-    //     }
-    // }
 }

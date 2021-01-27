@@ -161,8 +161,8 @@ namespace WpfReactorUI
         protected virtual void OnUpdated()
         { }
 
-        //public INavigation Navigation
-        //    => RxApplication.Instance.Navigation;
+        public sealed override INavigation? Navigation => 
+            base.Navigation;
 
         public static RxContext Context
             => RxApplication.Instance?.Context ?? throw new InvalidOperationException("Unable to get context without an active application");
@@ -299,16 +299,19 @@ namespace WpfReactorUI
 
         internal override void MergeWith(VisualNode newNode)
         {
-            if (newNode is IRxComponentWithState newComponentWithState)
+            if (newNode.GetType().FullName == GetType().FullName)
             {
-                _newComponent = newComponentWithState;
+                if (newNode is IRxComponentWithState newComponentWithState)
+                {
+                    _newComponent = newComponentWithState;
 
-                State.CopyPropertiesTo(newComponentWithState.State, newComponentWithState.StateProperties);
-            }
+                    State.CopyPropertiesTo(newComponentWithState.State, newComponentWithState.StateProperties);
+                }
 
-            if (newNode is IRxComponentWithProps newComponentWithProps)
-            {
-                Props.CopyPropertiesTo(newComponentWithProps.Props, newComponentWithProps.PropsProperties);
+                if (newNode is IRxComponentWithProps newComponentWithProps)
+                {
+                    Props.CopyPropertiesTo(newComponentWithProps.Props, newComponentWithProps.PropsProperties);
+                }
             }
 
             base.MergeWith(newNode);

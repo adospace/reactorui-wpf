@@ -21,20 +21,20 @@ using System.Linq;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxContentControl
+    public partial interface IRxPage
     {
         PropertyValue<string>? ContentString { get; set; }
     }
 
-    public partial class RxContentControl<T> : IEnumerable<VisualNode>
+    public partial class RxPage<T> : IEnumerable<VisualNode>
     {
         private readonly List<VisualNode> _contents = new List<VisualNode>();
-        public RxContentControl(VisualNode content)
+        public RxPage(VisualNode content)
         {
             _contents.Add(content);
         }
 
-        PropertyValue<string>? IRxContentControl.ContentString { get; set; }
+        PropertyValue<string>? IRxPage.ContentString { get; set; }
 
         public void Add(VisualNode child)
         {
@@ -42,24 +42,6 @@ namespace WpfReactorUI
                 throw new InvalidOperationException("Content already set");
 
             _contents.Add(child);
-        }
-
-        protected VisualNode? ContentNode
-        {
-            get => _contents.FirstOrDefault() as VisualNode;
-            set
-            {
-                if (value != ContentNode)
-                {
-                    _contents.Clear();
-                    if (value != null)
-                    {
-                        _contents.Add(value);
-                    }
-
-                    Invalidate();
-                }
-            }
         }
 
         public IEnumerator<VisualNode> GetEnumerator()
@@ -81,7 +63,7 @@ namespace WpfReactorUI
 
         protected sealed override void OnRemoveChild(VisualNode widget, object childControl)
         {
-            OnRemoveChildCore(widget, childControl);
+            NativeControl.Content = null;
 
             base.OnRemoveChild(widget, childControl);
         }
@@ -103,14 +85,14 @@ namespace WpfReactorUI
 
         partial void OnBeginUpdate()
         {
-            var thisAsIRxContentControl = (IRxContentControl)this;
-            SetPropertyValue(NativeControl, ContentControl.ContentProperty, thisAsIRxContentControl.ContentString);
+            var thisAsIRxPage = (IRxPage)this;
+            SetPropertyValue(NativeControl, ContentControl.ContentProperty, thisAsIRxPage.ContentString);
         }
     }
 
-    public static partial class RxContentControlExtensions
+    public static partial class RxPageExtensions
     {
-        public static T ContentString<T>(this T contentcontrol, string contentString) where T : IRxContentControl
+        public static T ContentString<T>(this T contentcontrol, string contentString) where T : IRxPage
         {
             contentcontrol.ContentString = new PropertyValue<string>(contentString);
             return contentcontrol;
