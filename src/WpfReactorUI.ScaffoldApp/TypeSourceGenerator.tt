@@ -177,6 +177,13 @@ namespace WpfReactorUI
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# } #>
+        <# if (IsCommand(property.PropertyType)) { #>
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Action action) where T : IRx<#= TypeName #>
+        {
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new ActionCommand(action));
+            return <#= TypeName.ToLowerInvariant() #>;
+        }
+        <# } #>
         <# if (property.PropertyType.Name == "ImageSource") { 
             var propertyName = property.Name.Length <= 6 ? property.Name : property.Name.Substring(0, property.Name.Length - 6); #>
 

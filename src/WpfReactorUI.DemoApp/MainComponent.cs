@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 
 namespace WpfReactorUI.DemoApp
 {
@@ -8,15 +9,30 @@ namespace WpfReactorUI.DemoApp
         {
             return new RxWindow()
             {
-                //new RxTextBlock()
-                //    .Text("ReactorUI + WFP!")
-                //    .VCenter()
-                //    .HCenter()
-                //    .FontSize(32)
-                //    .Foreground(Brushes.Black)
-                new WindowTestComponent()
+                new RxDockPanel()
+                { 
+                    Menu(),
+                    PageList().DockLeft(),
+                    new RxFrame()
+                }
+
             }
             .Title("ReactorUI for WPF");
+        }
+
+        private RxListBox PageList()
+        {
+            return new RxListBox()
+
+                .OnSelectionChanged((s, e) =>
+                {
+
+                });
+        }
+
+        private VisualNode Menu()
+        {
+            throw new NotImplementedException();
         }
     }
 }

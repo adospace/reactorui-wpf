@@ -26,7 +26,14 @@ System.Windows.Controls.DataGridTextColumn
 System.Windows.Navigation.NavigationWindow
 System.Windows.Controls.Frame
 System.Windows.Controls.Page
+System.Windows.Controls.Primitives.MenuBase
+System.Windows.Controls.HeaderedItemsControl
+System.Windows.Controls.Menu
+System.Windows.Controls.ContextMenu
+System.Windows.Controls.MenuItem
+
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar
 ModernWpf.Controls.AppBarButton
+ModernWpf.Controls.ContentDialog

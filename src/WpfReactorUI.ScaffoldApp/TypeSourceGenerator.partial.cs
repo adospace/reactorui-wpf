@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace WpfReactorUI.ScaffoldApp
 {
@@ -89,6 +90,9 @@ namespace WpfReactorUI.ScaffoldApp
             var formatter = Formatter.Format(tree.GetCompilationUnitRoot(), workSpace);
             return formatter.ToString();
         }
+
+        private bool IsCommand(Type type)
+            => typeof(ICommand).IsAssignableFrom(type);
     }
 
     internal class PropertyInfoEqualityComparer : IEqualityComparer<PropertyInfo>

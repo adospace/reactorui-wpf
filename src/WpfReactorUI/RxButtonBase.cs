@@ -128,6 +128,11 @@ namespace WpfReactorUI
             buttonbase.Command = new PropertyValue<ICommand>(commandFunc);
             return buttonbase;
         }
+        public static T Command<T>(this T buttonbase, Action action) where T : IRxButtonBase
+        {
+            buttonbase.Command = new PropertyValue<ICommand>(new ActionCommand(action));
+            return buttonbase;
+        }
         public static T CommandParameter<T>(this T buttonbase, object commandParameter) where T : IRxButtonBase
         {
             buttonbase.CommandParameter = new PropertyValue<object>(commandParameter);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,14 +14,79 @@ namespace WpfReactorUI
         PropertyValue<DataTemplate>? ItemTemplate { get; set; }
     }
 
-    public partial class RxItemsControl<T>
+    public partial class RxItemsControl<T> : IEnumerable<VisualNode>
     {
+        private readonly List<VisualNode> _internalChildren = new List<VisualNode>();
+
+        protected override void OnAddChild(VisualNode widget, object childControl)
+        {
+            if (childControl is UIElement control)
+            {
+                NativeControl.Items.Insert(widget.ChildIndex, control);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Type '{childControl.GetType()}' not supported under '{GetType()}'");
+            }
+
+            base.OnAddChild(widget, childControl);
+        }
+
+        protected override void OnRemoveChild(VisualNode widget, object childControl)
+        {
+            NativeControl.Items.Remove((UIElement)childControl);
+
+            base.OnRemoveChild(widget, childControl);
+        }
+
+        public IEnumerator<VisualNode> GetEnumerator()
+        {
+            return _internalChildren.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _internalChildren.GetEnumerator();
+        }
+
+        public void Add(params VisualNode[] nodes)
+        {
+            if (nodes is null)
+            {
+                throw new ArgumentNullException(nameof(nodes));
+            }
+
+            foreach (var node in nodes)
+                _internalChildren.Add(node);
+        }
+
+        public void Add(object genericNode)
+        {
+            if (genericNode == null)
+            {
+                return;
+            }
+
+            if (genericNode is VisualNode visualNode)
+            {
+                _internalChildren.Add(visualNode);
+            }
+            else if (genericNode is IEnumerable nodes)
+            {
+                foreach (var node in nodes.Cast<VisualNode>())
+                    _internalChildren.Add(node);
+            }
+            else
+            {
+                throw new NotSupportedException($"Unable to add value of type '{genericNode.GetType()}' under {typeof(T)}");
+            }
+        }
+
         PropertyValue<DataTemplate>? IRxItemsControl.ItemTemplate { get; set; }
 
         partial void OnBeginUpdate()
         {
             var thisAsIRxLayoutable = (IRxItemsControl)this;
-            //NativeControl.Set(ItemsControl.ItemTemplateProperty, thisAsIRxLayoutable.ItemTemplate);
             var previousItemTemplate = NativeControl.ItemTemplate as IItemTemplate;
             
             NativeControl.ItemTemplate = thisAsIRxLayoutable.ItemTemplate?.Value;
