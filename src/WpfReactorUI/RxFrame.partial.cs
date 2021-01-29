@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfReactorUI
 {
@@ -11,13 +13,52 @@ namespace WpfReactorUI
 
     public partial class RxFrame<T>
     {
-        private readonly List<(WeakReference, VisualNode)> _cachedPageReferences = new List<(WeakReference, VisualNode)>();
+        private class CachedPageEntry
+        {
+            private readonly WeakReference<Page> _pageRef;
+            private readonly WeakReference<VisualNode> _nodeRef;
+
+            public CachedPageEntry(Page page, VisualNode node)
+            {
+                _pageRef = new WeakReference<Page>(page);
+                _nodeRef = new WeakReference<VisualNode>(node);
+            }
+
+            public bool IsAlive => _pageRef.TryGetTarget(out var _) && _nodeRef.TryGetTarget(out var _);
+
+            public Page? Page
+            {
+                get
+                {
+                    _pageRef.TryGetTarget(out var page);
+                    return page;
+                }
+            }
+
+            public VisualNode? Node
+            {
+                get
+                {
+                    _nodeRef.TryGetTarget(out var node);
+                    return node;
+                }
+            }
+        }
+        
+        private readonly List<CachedPageEntry> _cachedPageReferences = new List<CachedPageEntry>();
 
         protected override void OnAddChildCore(VisualNode widget, object childControl)
         {
-            NativeControl.Navigate(childControl);
+            if (childControl is Page page)
+            {
+                NativeControl.Navigate(page);
 
-            _cachedPageReferences.Add((new WeakReference(childControl), widget));
+                _cachedPageReferences.Add(new CachedPageEntry(page, widget));
+            }
+            else
+            {
+                throw new NotSupportedException($"The type {childControl} is not supported under a frame: use an RxPage instead");
+            }
 
             base.OnAddChildCore(widget, childControl);
         }
@@ -34,13 +75,17 @@ namespace WpfReactorUI
 
         private void NativeControl_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            var cacheItem = _cachedPageReferences.FirstOrDefault(_ => _.Item1.Target == e.Content);
-            if (cacheItem.Item2 != null)
+            var cacheItem = _cachedPageReferences.FirstOrDefault(_ => _.Page == e.Content);
+            if (cacheItem != null)
             {
-                ContentNode = cacheItem.Item2;
+                ContentNode = cacheItem.Node;
             }
 
-            GC.Collect();
+            _cachedPageReferences.RemoveAll((item) => 
+            {
+                //keep the node in memory if the page is still referenced by the wpf frame
+                return !item.IsAlive;
+            });
         }
 
         partial void OnDetachingNewEvents()
@@ -52,13 +97,11 @@ namespace WpfReactorUI
 
         public void Navigate<TPAGE>() where TPAGE : VisualNode, new()
         {
-            throw new NotSupportedException();
             ContentNode = new TPAGE();
         }
 
         public void GoBack()
         {
-            throw new NotSupportedException();
             NativeControl.NavigationService.GoBack();
         }
     }

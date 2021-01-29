@@ -56,6 +56,11 @@ namespace WpfReactorUI
             return current as IRxHostElement;
         }
 
+        private new bool IsMounted
+        {
+            set => base.IsMounted = value;
+        }
+
         protected Window? ContainerWindow
         {
             get
@@ -119,7 +124,7 @@ namespace WpfReactorUI
         {
             if (newNode.GetType().FullName == GetType().FullName)
             {
-                ((RxComponent)newNode)._isMounted = true;
+                ((RxComponent)newNode).IsMounted = true;
                 ((RxComponent)newNode).OnUpdated();
                 base.MergeWith(newNode);
             }
@@ -146,10 +151,10 @@ namespace WpfReactorUI
         {
             OnWillUnmount();
 
-            foreach (var child in base.Children)
-            {
-                child.Unmount();
-            }
+            //foreach (var child in base.Children)
+            //{
+            //    child.Unmount();
+            //}
 
             base.OnUnmount();
         }

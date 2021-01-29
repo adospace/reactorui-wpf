@@ -80,9 +80,9 @@ namespace WpfReactorUI
 
     public abstract class VisualNode : IVisualNode
     {
-        protected bool _isMounted = false;
+        private bool _isMounted = false;
 
-        protected bool _stateChanged = true;
+        private bool _stateChanged = true;
 
         private readonly Dictionary<object, Animatable> _animatables = new Dictionary<object, Animatable>();
 
@@ -123,6 +123,15 @@ namespace WpfReactorUI
         internal bool IsAnimationFrameRequested { get; private set; } = false;
         internal bool IsLayoutCycleRequired { get; set; } = true;
         internal VisualNode? Parent { get; private set; }
+
+        protected bool IsMounted
+        {
+            get => _isMounted;
+            set
+            {
+                _isMounted = value;
+            }
+        }
 
         public virtual INavigation? Navigation
             => Parent?.Navigation;
@@ -369,6 +378,7 @@ namespace WpfReactorUI
         protected virtual void OnMount()
         {
             _isMounted = true;
+            //System.Diagnostics.Debug.WriteLine($"{this} Mounted");
         }
 
         protected virtual void OnRemoveChild(VisualNode widget, object childNativeControl)
@@ -377,8 +387,15 @@ namespace WpfReactorUI
 
         protected virtual void OnUnmount()
         {
+            foreach (var child in Children)
+            {
+                child.Unmount();
+            }
+
             _isMounted = false;
             Parent = null;
+            IsLayoutCycleRequired = true;
+            //System.Diagnostics.Debug.WriteLine($"{this} Unmounted");
         }
 
         protected virtual void OnUpdate()
@@ -497,14 +514,26 @@ namespace WpfReactorUI
             _componentRefAction = componentRefAction;
         }
 
-        protected T NativeControl { get => (T)(_nativeControl ?? throw new InvalidOperationException()); }
+        protected T NativeControl 
+        {
+            //get => (T)(_nativeControl ?? throw new InvalidOperationException());
+            get
+            {
+                if (_nativeControl == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                return (T)_nativeControl;
+            }
+        }
 
         internal override void MergeWith(VisualNode newNode)
         {
             if (newNode.GetType() == GetType())
             {
                 ((VisualNode<T>)newNode)._nativeControl = this._nativeControl;
-                ((VisualNode<T>)newNode)._isMounted = this._nativeControl != null;
+                ((VisualNode<T>)newNode).IsMounted = this._nativeControl != null;
                 ((VisualNode<T>)newNode)._componentRefAction?.Invoke(NativeControl);
                 ((VisualNode<T>)newNode)._defaultPropertyValueBag = _defaultPropertyValueBag;
                 OnMigrated(newNode);
@@ -519,17 +548,17 @@ namespace WpfReactorUI
 
         protected override void OnMigrated(VisualNode newNode)
         {
-            if (NativeControl != null)
+            if (_nativeControl != null)
             {
                 foreach (var attachedProperty in _attachedProperties)
                 {
                     NativeControl.ClearValue(attachedProperty.Key);
                 }
+
+                _attachedProperties.Clear();
+
+                OnDetachNativeEvents();
             }
-
-            _attachedProperties.Clear();
-
-            OnDetachNativeEvents();
 
             base.OnMigrated(newNode);
         }
@@ -555,19 +584,19 @@ namespace WpfReactorUI
 
         protected override void OnUnmount()
         {
+            var parent = Parent;
+
+            base.OnUnmount();
+
             if (_nativeControl != null)
             {
                 OnDetachNativeEvents();
 
-                Parent?.RemoveChild(this, _nativeControl);
+                parent?.RemoveChild(this, _nativeControl);
 
                 _nativeControl = null;
                 _componentRefAction?.Invoke(null);
             }
-
-            var parent = Parent;
-
-            base.OnUnmount();
         }
 
         protected override void OnUpdate()
