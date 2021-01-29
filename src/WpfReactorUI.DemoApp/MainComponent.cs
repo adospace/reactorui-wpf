@@ -14,7 +14,7 @@ namespace WpfReactorUI.DemoApp
                 //    .HCenter()
                 //    .FontSize(32)
                 //    .Foreground(Brushes.Black)
-                new FrameComponent()
+                new WindowTestComponent()
             }
             .Title("ReactorUI for WPF");
         }

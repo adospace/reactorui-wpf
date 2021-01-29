@@ -33,6 +33,16 @@ namespace WpfReactorUI
         //    return element;
         //}
 
+        public static T? If<T>(this T node, bool flag) where T : VisualNode
+        {
+            if (flag)
+            {
+                return node;
+            }
+
+            return null;
+        }
+
         public static T When<T>(this T node, bool flag, Action<T> actionToApplyWhenFlagIsTrue) where T : VisualNode
         {
             if (flag)
@@ -575,8 +585,12 @@ namespace WpfReactorUI
 
         protected override void OnMount()
         {
-            _nativeControl ??= new T();
-            Parent?.AddChild(this, _nativeControl);
+            if (_nativeControl == null)
+            {
+                _nativeControl = new T();
+                Parent?.AddChild(this, _nativeControl);
+            }
+
             _componentRefAction?.Invoke(NativeControl);
 
             base.OnMount();
