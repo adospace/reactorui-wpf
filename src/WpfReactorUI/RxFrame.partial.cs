@@ -13,34 +13,15 @@ namespace WpfReactorUI
 
     internal class CachedPageEntry
     {
-        private readonly WeakReference<Page> _pageRef;
-        private readonly WeakReference<VisualNode> _nodeRef;
-
         public CachedPageEntry(Page page, VisualNode node)
         {
-            _pageRef = new WeakReference<Page>(page);
-            _nodeRef = new WeakReference<VisualNode>(node);
+            Page = page;
+            Node = node;
         }
 
-        public bool IsAlive => _pageRef.TryGetTarget(out var _) || _nodeRef.TryGetTarget(out var _);
+        public Page Page { get; }
 
-        public Page? Page
-        {
-            get
-            {
-                _pageRef.TryGetTarget(out var page);
-                return page;
-            }
-        }
-
-        public VisualNode? Node
-        {
-            get
-            {
-                _nodeRef.TryGetTarget(out var node);
-                return node;
-            }
-        }
+        public VisualNode Node { get; }
     }
 
     public partial class RxFrame<T>
@@ -81,11 +62,14 @@ namespace WpfReactorUI
                 ContentNode = cacheItem.Node;
             }
 
+            var currentPages = new HashSet<Page>(NativeControl.GetPages());
+
             _cachedPageReferences.RemoveAll((item) => 
             {
                 //keep the node in memory if the page is still referenced by the wpf frame
-                if (!item.IsAlive)
+                if (!currentPages.Contains(item.Page) && ContentNode != item.Node)
                 {
+                    item.Node.Unmount();
                     return true;
                 }
 
@@ -132,6 +116,29 @@ namespace WpfReactorUI
         public void GoBack()
         {
             NativeControl.NavigationService.GoBack();
+        }
+    }
+
+    internal static class NavigationServiceExtensions
+    {
+        public static IEnumerable<Page> GetPages(this Frame frame)
+        {
+            if (frame.BackStack != null)
+            {
+                foreach (var entry in frame.BackStack)
+                {
+                    if (entry.GetType().GetProperty("KeepAliveRoot", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)?.GetValue(entry) is Page page)
+                        yield return page;
+                }
+            }
+            if (frame.ForwardStack != null)
+            {
+                foreach (var entry in frame.ForwardStack)
+                {
+                    if (entry.GetType().GetProperty("KeepAliveRoot", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)?.GetValue(entry) is Page page)
+                        yield return page;
+                }
+            }
         }
     }
 }

@@ -617,8 +617,9 @@ namespace WpfReactorUI
                 parent?.RemoveChild(this, _nativeControl);
 
                 _nativeControl = null;
-                _componentRefAction?.Invoke(null);
             }
+                
+            _componentRefAction?.Invoke(null);
         }
 
         protected override void OnUpdate()

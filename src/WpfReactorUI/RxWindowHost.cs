@@ -80,6 +80,20 @@ namespace WpfReactorUI
             base.OnMount();
         }
 
+        protected override void OnUnmount()
+        {
+            if (_nativeControl != null)
+            {
+                OnDetachNativeEvents();
+
+                //do not remove from parent
+
+                _nativeControl = null;
+            }
+
+            base.OnUnmount();
+        }
+
         protected override void OnUpdate()
         {
             var thisAsIRxWindow = (IRxWindowHost)this;
