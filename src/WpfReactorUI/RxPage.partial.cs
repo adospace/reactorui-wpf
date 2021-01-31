@@ -89,20 +89,20 @@ namespace WpfReactorUI
             SetPropertyValue(NativeControl, ContentControl.ContentProperty, thisAsIRxPage.ContentString);
         }
 
-        protected override void OnMount()
-        {
-            //if the page is reloaded by the native frame the page is already mounted
-            if (!IsMounted)
-            {
-                base.OnMount();
-            }
-        }
+        //protected override void OnMount()
+        //{
+        //    //if the page is reloaded by the native frame the page is already mounted
+        //    if (!IsMounted)
+        //    {
+        //        base.OnMount();
+        //    }
+        //}
 
-        protected override void OnUnmount()
-        {
-            //NOTE: It's important to not unmount the page because the native wpf Page is directly managed by the parent native Frame
-            //base.OnUnmount();
-        }
+        //protected override void OnUnmount()
+        //{
+        //    //NOTE: It's important to not unmount the page because the native wpf Page is directly managed by the parent native Frame
+        //    //base.OnUnmount();
+        //}
     }
 
     public static partial class RxPageExtensions

@@ -304,7 +304,7 @@ namespace WpfReactorUI
 
         internal override void MergeWith(VisualNode newNode)
         {
-            if (newNode.GetType().FullName == GetType().FullName)
+            if (newNode != this && newNode.GetType().FullName == GetType().FullName)
             {
                 if (newNode is IRxComponentWithState newComponentWithState)
                 {

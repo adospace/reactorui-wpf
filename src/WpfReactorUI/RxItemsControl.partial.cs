@@ -20,14 +20,7 @@ namespace WpfReactorUI
 
         protected override void OnAddChild(VisualNode widget, object childControl)
         {
-            if (childControl is UIElement control)
-            {
-                NativeControl.Items.Insert(widget.ChildIndex, control);
-            }
-            else
-            {
-                throw new InvalidOperationException($"Type '{childControl.GetType()}' not supported under '{GetType()}'");
-            }
+            NativeControl.Items.Insert(widget.ChildIndex, childControl);
 
             base.OnAddChild(widget, childControl);
         }
@@ -79,6 +72,14 @@ namespace WpfReactorUI
             else
             {
                 throw new NotSupportedException($"Unable to add value of type '{genericNode.GetType()}' under {typeof(T)}");
+            }
+        }
+
+        protected override IEnumerable<VisualNode> RenderChildren()
+        {
+            foreach (var childItem in _internalChildren.OfType<VisualNode>())
+            {
+                yield return childItem;
             }
         }
 

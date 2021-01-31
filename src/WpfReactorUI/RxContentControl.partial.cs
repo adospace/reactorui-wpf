@@ -29,20 +29,33 @@ namespace WpfReactorUI
     public partial class RxContentControl<T> : IEnumerable<VisualNode>
     {
         private readonly List<VisualNode> _contents = new List<VisualNode>();
-        public RxContentControl(VisualNode content)
+        public RxContentControl(VisualNode? content)
         {
-            _contents.Add(content);
+            if (content != null)
+            {
+                _contents.Add(content);
+            }
         }
 
         PropertyValue<string>? IRxContentControl.ContentString { get; set; }
 
-        public void Add(VisualNode child)
+        public void Add(VisualNode? child)
         {
+            if (child == null)
+            {
+                return;
+            }
+
             if (_contents.Any())
                 throw new InvalidOperationException("Content already set");
 
             _contents.Add(child);
         }
+
+        //protected void Remove(VisualNode node)
+        //{
+        //    _contents.Remove(node);
+        //}
 
         protected VisualNode? ContentNode
         {
@@ -57,6 +70,7 @@ namespace WpfReactorUI
                         _contents.Add(value);
                     }
 
+                    InvalidateChildren();
                     Invalidate();
                 }
             }

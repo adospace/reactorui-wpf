@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using WpfReactorUI.Animations;
 using WpfReactorUI.Internals;
 
@@ -98,6 +99,8 @@ namespace WpfReactorUI
 
         private readonly Dictionary<string, object?> _metadata = new Dictionary<string, object?>();
 
+
+
         private IReadOnlyList<VisualNode>? _children = null;
 
         private bool _invalidated = false;
@@ -129,6 +132,9 @@ namespace WpfReactorUI
                 return _children;
             }
         }
+
+        internal void InvalidateChildren()
+            => _children = null;
 
         internal bool IsAnimationFrameRequested { get; private set; } = false;
         internal bool IsLayoutCycleRequired { get; set; } = true;
@@ -290,7 +296,7 @@ namespace WpfReactorUI
             for (int i = Children.Count; i < oldChildren.Count; i++)
             {
                 oldChildren[i].Unmount();
-                oldChildren[i].Parent = null;
+                //oldChildren[i].Parent = null;
             }
         }
 
@@ -310,10 +316,7 @@ namespace WpfReactorUI
             for (int i = newNode.Children.Count; i < Children.Count; i++)
             {
                 Children[i].Unmount();
-                Children[i].Parent = null;
             }
-
-            Parent = null;
         }
 
         internal void RemoveChild(VisualNode widget, object childNativeControl)
@@ -388,7 +391,7 @@ namespace WpfReactorUI
         protected virtual void OnMount()
         {
             _isMounted = true;
-            //System.Diagnostics.Debug.WriteLine($"{this} Mounted");
+            System.Diagnostics.Debug.WriteLine($"{this} Mounted");
         }
 
         protected virtual void OnRemoveChild(VisualNode widget, object childNativeControl)
@@ -404,8 +407,7 @@ namespace WpfReactorUI
 
             _isMounted = false;
             Parent = null;
-            IsLayoutCycleRequired = true;
-            //System.Diagnostics.Debug.WriteLine($"{this} Unmounted");
+            System.Diagnostics.Debug.WriteLine($"{this} Unmounted");
         }
 
         protected virtual void OnUpdate()
@@ -478,7 +480,7 @@ namespace WpfReactorUI
 
     public abstract class VisualNode<T> : VisualNodeWithAttachedProperties, IVisualNodeWithNativeControl where T : DependencyObject, new()
     {
-        protected DependencyObject? _nativeControl;
+        protected T? _nativeControl;
 
         private IRxComponentWithState? _containerComponent;
 
@@ -542,18 +544,24 @@ namespace WpfReactorUI
         {
             if (newNode.GetType() == GetType())
             {
-                ((VisualNode<T>)newNode)._nativeControl = this._nativeControl;
-                ((VisualNode<T>)newNode).IsMounted = this._nativeControl != null;
-                ((VisualNode<T>)newNode)._componentRefAction?.Invoke(NativeControl);
-                ((VisualNode<T>)newNode)._defaultPropertyValueBag = _defaultPropertyValueBag;
+                ((VisualNode<T>)newNode).OnMergedWith(this);
+
                 OnMigrated(newNode);
 
                 base.MergeWith(newNode);
             }
             else
             {
-                this.Unmount();
+                Unmount();
             }
+        }
+
+        internal virtual void OnMergedWith(VisualNode oldNode)
+        {
+            _nativeControl = ((VisualNode<T>)oldNode)._nativeControl;
+            IsMounted = ((VisualNode<T>)oldNode)._nativeControl != null;
+            _componentRefAction?.Invoke(((VisualNode<T>)oldNode).NativeControl);
+            _defaultPropertyValueBag = ((VisualNode<T>)oldNode)._defaultPropertyValueBag;
         }
 
         protected override void OnMigrated(VisualNode newNode)

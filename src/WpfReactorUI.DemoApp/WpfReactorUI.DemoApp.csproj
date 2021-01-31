@@ -14,8 +14,4 @@
     <ProjectReference Include="..\WpfReactorUI\WpfReactorUI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
 </Project>
