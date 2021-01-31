@@ -15,7 +15,9 @@ namespace WpfReactorUI.DemoApp
         {
             typeof(Pages.CounterPage),
             typeof(Pages.ItemsPage),
-            typeof(Pages.DataGridPage)
+            typeof(Pages.DataGridPage),
+            typeof(Pages.LoginPage),
+            typeof(Pages.WindowPage)
         };
 
         protected override void OnMounted()

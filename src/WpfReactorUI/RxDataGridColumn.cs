@@ -39,6 +39,10 @@ namespace WpfReactorUI
         PropertyValue<Visibility>? Visibility { get; set; }
         PropertyValue<DataGridLength>? Width { get; set; }
 
+        Action? CopyingCellClipboardContentAction { get; set; }
+        Action<object?, DataGridCellClipboardEventArgs>? CopyingCellClipboardContentActionWithArgs { get; set; }
+        Action? PastingCellClipboardContentAction { get; set; }
+        Action<object?, DataGridCellClipboardEventArgs>? PastingCellClipboardContentActionWithArgs { get; set; }
     }
 
     public partial class RxDataGridColumn<T> : VisualNode<T>, IRxDataGridColumn where T : DataGridColumn, new()
@@ -70,6 +74,10 @@ namespace WpfReactorUI
         PropertyValue<Visibility>? IRxDataGridColumn.Visibility { get; set; }
         PropertyValue<DataGridLength>? IRxDataGridColumn.Width { get; set; }
 
+        Action? IRxDataGridColumn.CopyingCellClipboardContentAction { get; set; }
+        Action<object?, DataGridCellClipboardEventArgs>? IRxDataGridColumn.CopyingCellClipboardContentActionWithArgs { get; set; }
+        Action? IRxDataGridColumn.PastingCellClipboardContentAction { get; set; }
+        Action<object?, DataGridCellClipboardEventArgs>? IRxDataGridColumn.PastingCellClipboardContentActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -106,15 +114,41 @@ namespace WpfReactorUI
         {
             OnAttachingNewEvents();
 
+            var thisAsIRxDataGridColumn = (IRxDataGridColumn)this;
+            if (thisAsIRxDataGridColumn.CopyingCellClipboardContentAction != null || thisAsIRxDataGridColumn.CopyingCellClipboardContentActionWithArgs != null)
+            {
+                NativeControl.CopyingCellClipboardContent += NativeControl_CopyingCellClipboardContent;
+            }
+            if (thisAsIRxDataGridColumn.PastingCellClipboardContentAction != null || thisAsIRxDataGridColumn.PastingCellClipboardContentActionWithArgs != null)
+            {
+                NativeControl.PastingCellClipboardContent += NativeControl_PastingCellClipboardContent;
+            }
 
             base.OnAttachNativeEvents();
         }
 
+        private void NativeControl_CopyingCellClipboardContent(object? sender, DataGridCellClipboardEventArgs e)
+        {
+            var thisAsIRxDataGridColumn = (IRxDataGridColumn)this;
+            thisAsIRxDataGridColumn.CopyingCellClipboardContentAction?.Invoke();
+            thisAsIRxDataGridColumn.CopyingCellClipboardContentActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_PastingCellClipboardContent(object? sender, DataGridCellClipboardEventArgs e)
+        {
+            var thisAsIRxDataGridColumn = (IRxDataGridColumn)this;
+            thisAsIRxDataGridColumn.PastingCellClipboardContentAction?.Invoke();
+            thisAsIRxDataGridColumn.PastingCellClipboardContentActionWithArgs?.Invoke(sender, e);
+        }
 
         protected override void OnDetachNativeEvents()
         {
             OnDetachingNewEvents();
 
+            if (NativeControl != null)
+            {
+                NativeControl.CopyingCellClipboardContent -= NativeControl_CopyingCellClipboardContent;
+                NativeControl.PastingCellClipboardContent -= NativeControl_PastingCellClipboardContent;
+            }
 
             base.OnDetachNativeEvents();
         }
@@ -270,6 +304,28 @@ namespace WpfReactorUI
         public static T Width<T>(this T datagridcolumn, Func<DataGridLength> widthFunc) where T : IRxDataGridColumn
         {
             datagridcolumn.Width = new PropertyValue<DataGridLength>(widthFunc);
+            return datagridcolumn;
+        }
+        public static T OnCopyingCellClipboardContent<T>(this T datagridcolumn, Action copyingcellclipboardcontentAction) where T : IRxDataGridColumn
+        {
+            datagridcolumn.CopyingCellClipboardContentAction = copyingcellclipboardcontentAction;
+            return datagridcolumn;
+        }
+
+        public static T OnCopyingCellClipboardContent<T>(this T datagridcolumn, Action<object?, DataGridCellClipboardEventArgs> copyingcellclipboardcontentActionWithArgs) where T : IRxDataGridColumn
+        {
+            datagridcolumn.CopyingCellClipboardContentActionWithArgs = copyingcellclipboardcontentActionWithArgs;
+            return datagridcolumn;
+        }
+        public static T OnPastingCellClipboardContent<T>(this T datagridcolumn, Action pastingcellclipboardcontentAction) where T : IRxDataGridColumn
+        {
+            datagridcolumn.PastingCellClipboardContentAction = pastingcellclipboardcontentAction;
+            return datagridcolumn;
+        }
+
+        public static T OnPastingCellClipboardContent<T>(this T datagridcolumn, Action<object?, DataGridCellClipboardEventArgs> pastingcellclipboardcontentActionWithArgs) where T : IRxDataGridColumn
+        {
+            datagridcolumn.PastingCellClipboardContentActionWithArgs = pastingcellclipboardcontentActionWithArgs;
             return datagridcolumn;
         }
     }

@@ -45,6 +45,18 @@ namespace WpfReactorUI
         PropertyValue<string>? SecondaryButtonText { get; set; }
         PropertyValue<object>? Title { get; set; }
 
+        Action? CloseButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? CloseButtonClickActionWithArgs { get; set; }
+        Action? ClosedAction { get; set; }
+        Action<object?, ContentDialogClosedEventArgs>? ClosedActionWithArgs { get; set; }
+        Action? ClosingAction { get; set; }
+        Action<object?, ContentDialogClosingEventArgs>? ClosingActionWithArgs { get; set; }
+        Action? OpenedAction { get; set; }
+        Action<object?, ContentDialogOpenedEventArgs>? OpenedActionWithArgs { get; set; }
+        Action? PrimaryButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? PrimaryButtonClickActionWithArgs { get; set; }
+        Action? SecondaryButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? SecondaryButtonClickActionWithArgs { get; set; }
     }
 
     public partial class RxContentDialog<T> : RxContentControl<T>, IRxContentDialog where T : ContentDialog, new()
@@ -80,6 +92,18 @@ namespace WpfReactorUI
         PropertyValue<string>? IRxContentDialog.SecondaryButtonText { get; set; }
         PropertyValue<object>? IRxContentDialog.Title { get; set; }
 
+        Action? IRxContentDialog.CloseButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? IRxContentDialog.CloseButtonClickActionWithArgs { get; set; }
+        Action? IRxContentDialog.ClosedAction { get; set; }
+        Action<object?, ContentDialogClosedEventArgs>? IRxContentDialog.ClosedActionWithArgs { get; set; }
+        Action? IRxContentDialog.ClosingAction { get; set; }
+        Action<object?, ContentDialogClosingEventArgs>? IRxContentDialog.ClosingActionWithArgs { get; set; }
+        Action? IRxContentDialog.OpenedAction { get; set; }
+        Action<object?, ContentDialogOpenedEventArgs>? IRxContentDialog.OpenedActionWithArgs { get; set; }
+        Action? IRxContentDialog.PrimaryButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? IRxContentDialog.PrimaryButtonClickActionWithArgs { get; set; }
+        Action? IRxContentDialog.SecondaryButtonClickAction { get; set; }
+        Action<object?, ContentDialogButtonClickEventArgs>? IRxContentDialog.SecondaryButtonClickActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -120,15 +144,85 @@ namespace WpfReactorUI
         {
             OnAttachingNewEvents();
 
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            if (thisAsIRxContentDialog.CloseButtonClickAction != null || thisAsIRxContentDialog.CloseButtonClickActionWithArgs != null)
+            {
+                NativeControl.CloseButtonClick += NativeControl_CloseButtonClick;
+            }
+            if (thisAsIRxContentDialog.ClosedAction != null || thisAsIRxContentDialog.ClosedActionWithArgs != null)
+            {
+                NativeControl.Closed += NativeControl_Closed;
+            }
+            if (thisAsIRxContentDialog.ClosingAction != null || thisAsIRxContentDialog.ClosingActionWithArgs != null)
+            {
+                NativeControl.Closing += NativeControl_Closing;
+            }
+            if (thisAsIRxContentDialog.OpenedAction != null || thisAsIRxContentDialog.OpenedActionWithArgs != null)
+            {
+                NativeControl.Opened += NativeControl_Opened;
+            }
+            if (thisAsIRxContentDialog.PrimaryButtonClickAction != null || thisAsIRxContentDialog.PrimaryButtonClickActionWithArgs != null)
+            {
+                NativeControl.PrimaryButtonClick += NativeControl_PrimaryButtonClick;
+            }
+            if (thisAsIRxContentDialog.SecondaryButtonClickAction != null || thisAsIRxContentDialog.SecondaryButtonClickActionWithArgs != null)
+            {
+                NativeControl.SecondaryButtonClick += NativeControl_SecondaryButtonClick;
+            }
 
             base.OnAttachNativeEvents();
         }
 
+        private void NativeControl_CloseButtonClick(object? sender, ContentDialogButtonClickEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.CloseButtonClickAction?.Invoke();
+            thisAsIRxContentDialog.CloseButtonClickActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_Closed(object? sender, ContentDialogClosedEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.ClosedAction?.Invoke();
+            thisAsIRxContentDialog.ClosedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_Closing(object? sender, ContentDialogClosingEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.ClosingAction?.Invoke();
+            thisAsIRxContentDialog.ClosingActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_Opened(object? sender, ContentDialogOpenedEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.OpenedAction?.Invoke();
+            thisAsIRxContentDialog.OpenedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_PrimaryButtonClick(object? sender, ContentDialogButtonClickEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.PrimaryButtonClickAction?.Invoke();
+            thisAsIRxContentDialog.PrimaryButtonClickActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_SecondaryButtonClick(object? sender, ContentDialogButtonClickEventArgs e)
+        {
+            var thisAsIRxContentDialog = (IRxContentDialog)this;
+            thisAsIRxContentDialog.SecondaryButtonClickAction?.Invoke();
+            thisAsIRxContentDialog.SecondaryButtonClickActionWithArgs?.Invoke(sender, e);
+        }
 
         protected override void OnDetachNativeEvents()
         {
             OnDetachingNewEvents();
 
+            if (NativeControl != null)
+            {
+                NativeControl.CloseButtonClick -= NativeControl_CloseButtonClick;
+                NativeControl.Closed -= NativeControl_Closed;
+                NativeControl.Closing -= NativeControl_Closing;
+                NativeControl.Opened -= NativeControl_Opened;
+                NativeControl.PrimaryButtonClick -= NativeControl_PrimaryButtonClick;
+                NativeControl.SecondaryButtonClick -= NativeControl_SecondaryButtonClick;
+            }
 
             base.OnDetachNativeEvents();
         }
@@ -352,6 +446,72 @@ namespace WpfReactorUI
         public static T Title<T>(this T contentdialog, Func<object> titleFunc) where T : IRxContentDialog
         {
             contentdialog.Title = new PropertyValue<object>(titleFunc);
+            return contentdialog;
+        }
+        public static T OnCloseButtonClick<T>(this T contentdialog, Action closebuttonclickAction) where T : IRxContentDialog
+        {
+            contentdialog.CloseButtonClickAction = closebuttonclickAction;
+            return contentdialog;
+        }
+
+        public static T OnCloseButtonClick<T>(this T contentdialog, Action<object?, ContentDialogButtonClickEventArgs> closebuttonclickActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.CloseButtonClickActionWithArgs = closebuttonclickActionWithArgs;
+            return contentdialog;
+        }
+        public static T OnClosed<T>(this T contentdialog, Action closedAction) where T : IRxContentDialog
+        {
+            contentdialog.ClosedAction = closedAction;
+            return contentdialog;
+        }
+
+        public static T OnClosed<T>(this T contentdialog, Action<object?, ContentDialogClosedEventArgs> closedActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.ClosedActionWithArgs = closedActionWithArgs;
+            return contentdialog;
+        }
+        public static T OnClosing<T>(this T contentdialog, Action closingAction) where T : IRxContentDialog
+        {
+            contentdialog.ClosingAction = closingAction;
+            return contentdialog;
+        }
+
+        public static T OnClosing<T>(this T contentdialog, Action<object?, ContentDialogClosingEventArgs> closingActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.ClosingActionWithArgs = closingActionWithArgs;
+            return contentdialog;
+        }
+        public static T OnOpened<T>(this T contentdialog, Action openedAction) where T : IRxContentDialog
+        {
+            contentdialog.OpenedAction = openedAction;
+            return contentdialog;
+        }
+
+        public static T OnOpened<T>(this T contentdialog, Action<object?, ContentDialogOpenedEventArgs> openedActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.OpenedActionWithArgs = openedActionWithArgs;
+            return contentdialog;
+        }
+        public static T OnPrimaryButtonClick<T>(this T contentdialog, Action primarybuttonclickAction) where T : IRxContentDialog
+        {
+            contentdialog.PrimaryButtonClickAction = primarybuttonclickAction;
+            return contentdialog;
+        }
+
+        public static T OnPrimaryButtonClick<T>(this T contentdialog, Action<object?, ContentDialogButtonClickEventArgs> primarybuttonclickActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.PrimaryButtonClickActionWithArgs = primarybuttonclickActionWithArgs;
+            return contentdialog;
+        }
+        public static T OnSecondaryButtonClick<T>(this T contentdialog, Action secondarybuttonclickAction) where T : IRxContentDialog
+        {
+            contentdialog.SecondaryButtonClickAction = secondarybuttonclickAction;
+            return contentdialog;
+        }
+
+        public static T OnSecondaryButtonClick<T>(this T contentdialog, Action<object?, ContentDialogButtonClickEventArgs> secondarybuttonclickActionWithArgs) where T : IRxContentDialog
+        {
+            contentdialog.SecondaryButtonClickActionWithArgs = secondarybuttonclickActionWithArgs;
             return contentdialog;
         }
     }

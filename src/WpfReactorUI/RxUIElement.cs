@@ -48,6 +48,8 @@ namespace WpfReactorUI
         Action<object?, DragEventArgs>? DragOverActionWithArgs { get; set; }
         Action? DropAction { get; set; }
         Action<object?, DragEventArgs>? DropActionWithArgs { get; set; }
+        Action? FocusableChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? FocusableChangedActionWithArgs { get; set; }
         Action? GiveFeedbackAction { get; set; }
         Action<object?, GiveFeedbackEventArgs>? GiveFeedbackActionWithArgs { get; set; }
         Action? GotFocusAction { get; set; }
@@ -60,10 +62,34 @@ namespace WpfReactorUI
         Action<object?, StylusEventArgs>? GotStylusCaptureActionWithArgs { get; set; }
         Action? GotTouchCaptureAction { get; set; }
         Action<object?, TouchEventArgs>? GotTouchCaptureActionWithArgs { get; set; }
+        Action? IsEnabledChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsEnabledChangedActionWithArgs { get; set; }
+        Action? IsHitTestVisibleChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsHitTestVisibleChangedActionWithArgs { get; set; }
+        Action? IsKeyboardFocusedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsKeyboardFocusedChangedActionWithArgs { get; set; }
+        Action? IsKeyboardFocusWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsKeyboardFocusWithinChangedActionWithArgs { get; set; }
+        Action? IsMouseCapturedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsMouseCapturedChangedActionWithArgs { get; set; }
+        Action? IsMouseCaptureWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsMouseCaptureWithinChangedActionWithArgs { get; set; }
+        Action? IsMouseDirectlyOverChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsMouseDirectlyOverChangedActionWithArgs { get; set; }
+        Action? IsStylusCapturedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsStylusCapturedChangedActionWithArgs { get; set; }
+        Action? IsStylusCaptureWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsStylusCaptureWithinChangedActionWithArgs { get; set; }
+        Action? IsStylusDirectlyOverChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsStylusDirectlyOverChangedActionWithArgs { get; set; }
+        Action? IsVisibleChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IsVisibleChangedActionWithArgs { get; set; }
         Action? KeyDownAction { get; set; }
         Action<object?, KeyEventArgs>? KeyDownActionWithArgs { get; set; }
         Action? KeyUpAction { get; set; }
         Action<object?, KeyEventArgs>? KeyUpActionWithArgs { get; set; }
+        Action? LayoutUpdatedAction { get; set; }
+        Action<object?, EventArgs>? LayoutUpdatedActionWithArgs { get; set; }
         Action? LostFocusAction { get; set; }
         Action<object?, RoutedEventArgs>? LostFocusActionWithArgs { get; set; }
         Action? LostKeyboardFocusAction { get; set; }
@@ -246,6 +272,8 @@ namespace WpfReactorUI
         Action<object?, DragEventArgs>? IRxUIElement.DragOverActionWithArgs { get; set; }
         Action? IRxUIElement.DropAction { get; set; }
         Action<object?, DragEventArgs>? IRxUIElement.DropActionWithArgs { get; set; }
+        Action? IRxUIElement.FocusableChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.FocusableChangedActionWithArgs { get; set; }
         Action? IRxUIElement.GiveFeedbackAction { get; set; }
         Action<object?, GiveFeedbackEventArgs>? IRxUIElement.GiveFeedbackActionWithArgs { get; set; }
         Action? IRxUIElement.GotFocusAction { get; set; }
@@ -258,10 +286,34 @@ namespace WpfReactorUI
         Action<object?, StylusEventArgs>? IRxUIElement.GotStylusCaptureActionWithArgs { get; set; }
         Action? IRxUIElement.GotTouchCaptureAction { get; set; }
         Action<object?, TouchEventArgs>? IRxUIElement.GotTouchCaptureActionWithArgs { get; set; }
+        Action? IRxUIElement.IsEnabledChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsEnabledChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsHitTestVisibleChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsHitTestVisibleChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsKeyboardFocusedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsKeyboardFocusedChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsKeyboardFocusWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsKeyboardFocusWithinChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsMouseCapturedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsMouseCapturedChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsMouseCaptureWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsMouseCaptureWithinChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsMouseDirectlyOverChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsMouseDirectlyOverChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsStylusCapturedChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsStylusCapturedChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsStylusCaptureWithinChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsStylusCaptureWithinChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsStylusDirectlyOverChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsStylusDirectlyOverChangedActionWithArgs { get; set; }
+        Action? IRxUIElement.IsVisibleChangedAction { get; set; }
+        Action<object?, DependencyPropertyChangedEventArgs>? IRxUIElement.IsVisibleChangedActionWithArgs { get; set; }
         Action? IRxUIElement.KeyDownAction { get; set; }
         Action<object?, KeyEventArgs>? IRxUIElement.KeyDownActionWithArgs { get; set; }
         Action? IRxUIElement.KeyUpAction { get; set; }
         Action<object?, KeyEventArgs>? IRxUIElement.KeyUpActionWithArgs { get; set; }
+        Action? IRxUIElement.LayoutUpdatedAction { get; set; }
+        Action<object?, EventArgs>? IRxUIElement.LayoutUpdatedActionWithArgs { get; set; }
         Action? IRxUIElement.LostFocusAction { get; set; }
         Action<object?, RoutedEventArgs>? IRxUIElement.LostFocusActionWithArgs { get; set; }
         Action? IRxUIElement.LostKeyboardFocusAction { get; set; }
@@ -458,6 +510,10 @@ namespace WpfReactorUI
             {
                 NativeControl.Drop += NativeControl_Drop;
             }
+            if (thisAsIRxUIElement.FocusableChangedAction != null || thisAsIRxUIElement.FocusableChangedActionWithArgs != null)
+            {
+                NativeControl.FocusableChanged += NativeControl_FocusableChanged;
+            }
             if (thisAsIRxUIElement.GiveFeedbackAction != null || thisAsIRxUIElement.GiveFeedbackActionWithArgs != null)
             {
                 NativeControl.GiveFeedback += NativeControl_GiveFeedback;
@@ -482,6 +538,50 @@ namespace WpfReactorUI
             {
                 NativeControl.GotTouchCapture += NativeControl_GotTouchCapture;
             }
+            if (thisAsIRxUIElement.IsEnabledChangedAction != null || thisAsIRxUIElement.IsEnabledChangedActionWithArgs != null)
+            {
+                NativeControl.IsEnabledChanged += NativeControl_IsEnabledChanged;
+            }
+            if (thisAsIRxUIElement.IsHitTestVisibleChangedAction != null || thisAsIRxUIElement.IsHitTestVisibleChangedActionWithArgs != null)
+            {
+                NativeControl.IsHitTestVisibleChanged += NativeControl_IsHitTestVisibleChanged;
+            }
+            if (thisAsIRxUIElement.IsKeyboardFocusedChangedAction != null || thisAsIRxUIElement.IsKeyboardFocusedChangedActionWithArgs != null)
+            {
+                NativeControl.IsKeyboardFocusedChanged += NativeControl_IsKeyboardFocusedChanged;
+            }
+            if (thisAsIRxUIElement.IsKeyboardFocusWithinChangedAction != null || thisAsIRxUIElement.IsKeyboardFocusWithinChangedActionWithArgs != null)
+            {
+                NativeControl.IsKeyboardFocusWithinChanged += NativeControl_IsKeyboardFocusWithinChanged;
+            }
+            if (thisAsIRxUIElement.IsMouseCapturedChangedAction != null || thisAsIRxUIElement.IsMouseCapturedChangedActionWithArgs != null)
+            {
+                NativeControl.IsMouseCapturedChanged += NativeControl_IsMouseCapturedChanged;
+            }
+            if (thisAsIRxUIElement.IsMouseCaptureWithinChangedAction != null || thisAsIRxUIElement.IsMouseCaptureWithinChangedActionWithArgs != null)
+            {
+                NativeControl.IsMouseCaptureWithinChanged += NativeControl_IsMouseCaptureWithinChanged;
+            }
+            if (thisAsIRxUIElement.IsMouseDirectlyOverChangedAction != null || thisAsIRxUIElement.IsMouseDirectlyOverChangedActionWithArgs != null)
+            {
+                NativeControl.IsMouseDirectlyOverChanged += NativeControl_IsMouseDirectlyOverChanged;
+            }
+            if (thisAsIRxUIElement.IsStylusCapturedChangedAction != null || thisAsIRxUIElement.IsStylusCapturedChangedActionWithArgs != null)
+            {
+                NativeControl.IsStylusCapturedChanged += NativeControl_IsStylusCapturedChanged;
+            }
+            if (thisAsIRxUIElement.IsStylusCaptureWithinChangedAction != null || thisAsIRxUIElement.IsStylusCaptureWithinChangedActionWithArgs != null)
+            {
+                NativeControl.IsStylusCaptureWithinChanged += NativeControl_IsStylusCaptureWithinChanged;
+            }
+            if (thisAsIRxUIElement.IsStylusDirectlyOverChangedAction != null || thisAsIRxUIElement.IsStylusDirectlyOverChangedActionWithArgs != null)
+            {
+                NativeControl.IsStylusDirectlyOverChanged += NativeControl_IsStylusDirectlyOverChanged;
+            }
+            if (thisAsIRxUIElement.IsVisibleChangedAction != null || thisAsIRxUIElement.IsVisibleChangedActionWithArgs != null)
+            {
+                NativeControl.IsVisibleChanged += NativeControl_IsVisibleChanged;
+            }
             if (thisAsIRxUIElement.KeyDownAction != null || thisAsIRxUIElement.KeyDownActionWithArgs != null)
             {
                 NativeControl.KeyDown += NativeControl_KeyDown;
@@ -489,6 +589,10 @@ namespace WpfReactorUI
             if (thisAsIRxUIElement.KeyUpAction != null || thisAsIRxUIElement.KeyUpActionWithArgs != null)
             {
                 NativeControl.KeyUp += NativeControl_KeyUp;
+            }
+            if (thisAsIRxUIElement.LayoutUpdatedAction != null || thisAsIRxUIElement.LayoutUpdatedActionWithArgs != null)
+            {
+                NativeControl.LayoutUpdated += NativeControl_LayoutUpdated;
             }
             if (thisAsIRxUIElement.LostFocusAction != null || thisAsIRxUIElement.LostFocusActionWithArgs != null)
             {
@@ -802,6 +906,12 @@ namespace WpfReactorUI
             thisAsIRxUIElement.DropAction?.Invoke();
             thisAsIRxUIElement.DropActionWithArgs?.Invoke(sender, e);
         }
+        private void NativeControl_FocusableChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.FocusableChangedAction?.Invoke();
+            thisAsIRxUIElement.FocusableChangedActionWithArgs?.Invoke(sender, e);
+        }
         private void NativeControl_GiveFeedback(object? sender, GiveFeedbackEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
@@ -838,6 +948,72 @@ namespace WpfReactorUI
             thisAsIRxUIElement.GotTouchCaptureAction?.Invoke();
             thisAsIRxUIElement.GotTouchCaptureActionWithArgs?.Invoke(sender, e);
         }
+        private void NativeControl_IsEnabledChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsEnabledChangedAction?.Invoke();
+            thisAsIRxUIElement.IsEnabledChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsHitTestVisibleChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsHitTestVisibleChangedAction?.Invoke();
+            thisAsIRxUIElement.IsHitTestVisibleChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsKeyboardFocusedChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsKeyboardFocusedChangedAction?.Invoke();
+            thisAsIRxUIElement.IsKeyboardFocusedChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsKeyboardFocusWithinChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsKeyboardFocusWithinChangedAction?.Invoke();
+            thisAsIRxUIElement.IsKeyboardFocusWithinChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsMouseCapturedChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsMouseCapturedChangedAction?.Invoke();
+            thisAsIRxUIElement.IsMouseCapturedChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsMouseCaptureWithinChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsMouseCaptureWithinChangedAction?.Invoke();
+            thisAsIRxUIElement.IsMouseCaptureWithinChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsMouseDirectlyOverChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsMouseDirectlyOverChangedAction?.Invoke();
+            thisAsIRxUIElement.IsMouseDirectlyOverChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsStylusCapturedChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsStylusCapturedChangedAction?.Invoke();
+            thisAsIRxUIElement.IsStylusCapturedChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsStylusCaptureWithinChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsStylusCaptureWithinChangedAction?.Invoke();
+            thisAsIRxUIElement.IsStylusCaptureWithinChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsStylusDirectlyOverChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsStylusDirectlyOverChangedAction?.Invoke();
+            thisAsIRxUIElement.IsStylusDirectlyOverChangedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_IsVisibleChanged(object? sender, DependencyPropertyChangedEventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.IsVisibleChangedAction?.Invoke();
+            thisAsIRxUIElement.IsVisibleChangedActionWithArgs?.Invoke(sender, e);
+        }
         private void NativeControl_KeyDown(object? sender, KeyEventArgs e)
         {
             var thisAsIRxUIElement = (IRxUIElement)this;
@@ -849,6 +1025,12 @@ namespace WpfReactorUI
             var thisAsIRxUIElement = (IRxUIElement)this;
             thisAsIRxUIElement.KeyUpAction?.Invoke();
             thisAsIRxUIElement.KeyUpActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_LayoutUpdated(object? sender, EventArgs e)
+        {
+            var thisAsIRxUIElement = (IRxUIElement)this;
+            thisAsIRxUIElement.LayoutUpdatedAction?.Invoke();
+            thisAsIRxUIElement.LayoutUpdatedActionWithArgs?.Invoke(sender, e);
         }
         private void NativeControl_LostFocus(object? sender, RoutedEventArgs e)
         {
@@ -1287,14 +1469,27 @@ namespace WpfReactorUI
                 NativeControl.DragLeave -= NativeControl_DragLeave;
                 NativeControl.DragOver -= NativeControl_DragOver;
                 NativeControl.Drop -= NativeControl_Drop;
+                NativeControl.FocusableChanged -= NativeControl_FocusableChanged;
                 NativeControl.GiveFeedback -= NativeControl_GiveFeedback;
                 NativeControl.GotFocus -= NativeControl_GotFocus;
                 NativeControl.GotKeyboardFocus -= NativeControl_GotKeyboardFocus;
                 NativeControl.GotMouseCapture -= NativeControl_GotMouseCapture;
                 NativeControl.GotStylusCapture -= NativeControl_GotStylusCapture;
                 NativeControl.GotTouchCapture -= NativeControl_GotTouchCapture;
+                NativeControl.IsEnabledChanged -= NativeControl_IsEnabledChanged;
+                NativeControl.IsHitTestVisibleChanged -= NativeControl_IsHitTestVisibleChanged;
+                NativeControl.IsKeyboardFocusedChanged -= NativeControl_IsKeyboardFocusedChanged;
+                NativeControl.IsKeyboardFocusWithinChanged -= NativeControl_IsKeyboardFocusWithinChanged;
+                NativeControl.IsMouseCapturedChanged -= NativeControl_IsMouseCapturedChanged;
+                NativeControl.IsMouseCaptureWithinChanged -= NativeControl_IsMouseCaptureWithinChanged;
+                NativeControl.IsMouseDirectlyOverChanged -= NativeControl_IsMouseDirectlyOverChanged;
+                NativeControl.IsStylusCapturedChanged -= NativeControl_IsStylusCapturedChanged;
+                NativeControl.IsStylusCaptureWithinChanged -= NativeControl_IsStylusCaptureWithinChanged;
+                NativeControl.IsStylusDirectlyOverChanged -= NativeControl_IsStylusDirectlyOverChanged;
+                NativeControl.IsVisibleChanged -= NativeControl_IsVisibleChanged;
                 NativeControl.KeyDown -= NativeControl_KeyDown;
                 NativeControl.KeyUp -= NativeControl_KeyUp;
+                NativeControl.LayoutUpdated -= NativeControl_LayoutUpdated;
                 NativeControl.LostFocus -= NativeControl_LostFocus;
                 NativeControl.LostKeyboardFocus -= NativeControl_LostKeyboardFocus;
                 NativeControl.LostMouseCapture -= NativeControl_LostMouseCapture;
@@ -1591,6 +1786,17 @@ namespace WpfReactorUI
             uielement.DropActionWithArgs = dropActionWithArgs;
             return uielement;
         }
+        public static T OnFocusableChanged<T>(this T uielement, Action focusablechangedAction) where T : IRxUIElement
+        {
+            uielement.FocusableChangedAction = focusablechangedAction;
+            return uielement;
+        }
+
+        public static T OnFocusableChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> focusablechangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.FocusableChangedActionWithArgs = focusablechangedActionWithArgs;
+            return uielement;
+        }
         public static T OnGiveFeedback<T>(this T uielement, Action givefeedbackAction) where T : IRxUIElement
         {
             uielement.GiveFeedbackAction = givefeedbackAction;
@@ -1657,6 +1863,127 @@ namespace WpfReactorUI
             uielement.GotTouchCaptureActionWithArgs = gottouchcaptureActionWithArgs;
             return uielement;
         }
+        public static T OnIsEnabledChanged<T>(this T uielement, Action isenabledchangedAction) where T : IRxUIElement
+        {
+            uielement.IsEnabledChangedAction = isenabledchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsEnabledChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> isenabledchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsEnabledChangedActionWithArgs = isenabledchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsHitTestVisibleChanged<T>(this T uielement, Action ishittestvisiblechangedAction) where T : IRxUIElement
+        {
+            uielement.IsHitTestVisibleChangedAction = ishittestvisiblechangedAction;
+            return uielement;
+        }
+
+        public static T OnIsHitTestVisibleChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> ishittestvisiblechangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsHitTestVisibleChangedActionWithArgs = ishittestvisiblechangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsKeyboardFocusedChanged<T>(this T uielement, Action iskeyboardfocusedchangedAction) where T : IRxUIElement
+        {
+            uielement.IsKeyboardFocusedChangedAction = iskeyboardfocusedchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsKeyboardFocusedChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> iskeyboardfocusedchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsKeyboardFocusedChangedActionWithArgs = iskeyboardfocusedchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsKeyboardFocusWithinChanged<T>(this T uielement, Action iskeyboardfocuswithinchangedAction) where T : IRxUIElement
+        {
+            uielement.IsKeyboardFocusWithinChangedAction = iskeyboardfocuswithinchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsKeyboardFocusWithinChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> iskeyboardfocuswithinchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsKeyboardFocusWithinChangedActionWithArgs = iskeyboardfocuswithinchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsMouseCapturedChanged<T>(this T uielement, Action ismousecapturedchangedAction) where T : IRxUIElement
+        {
+            uielement.IsMouseCapturedChangedAction = ismousecapturedchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsMouseCapturedChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> ismousecapturedchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsMouseCapturedChangedActionWithArgs = ismousecapturedchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsMouseCaptureWithinChanged<T>(this T uielement, Action ismousecapturewithinchangedAction) where T : IRxUIElement
+        {
+            uielement.IsMouseCaptureWithinChangedAction = ismousecapturewithinchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsMouseCaptureWithinChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> ismousecapturewithinchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsMouseCaptureWithinChangedActionWithArgs = ismousecapturewithinchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsMouseDirectlyOverChanged<T>(this T uielement, Action ismousedirectlyoverchangedAction) where T : IRxUIElement
+        {
+            uielement.IsMouseDirectlyOverChangedAction = ismousedirectlyoverchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsMouseDirectlyOverChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> ismousedirectlyoverchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsMouseDirectlyOverChangedActionWithArgs = ismousedirectlyoverchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsStylusCapturedChanged<T>(this T uielement, Action isstyluscapturedchangedAction) where T : IRxUIElement
+        {
+            uielement.IsStylusCapturedChangedAction = isstyluscapturedchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsStylusCapturedChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> isstyluscapturedchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsStylusCapturedChangedActionWithArgs = isstyluscapturedchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsStylusCaptureWithinChanged<T>(this T uielement, Action isstyluscapturewithinchangedAction) where T : IRxUIElement
+        {
+            uielement.IsStylusCaptureWithinChangedAction = isstyluscapturewithinchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsStylusCaptureWithinChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> isstyluscapturewithinchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsStylusCaptureWithinChangedActionWithArgs = isstyluscapturewithinchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsStylusDirectlyOverChanged<T>(this T uielement, Action isstylusdirectlyoverchangedAction) where T : IRxUIElement
+        {
+            uielement.IsStylusDirectlyOverChangedAction = isstylusdirectlyoverchangedAction;
+            return uielement;
+        }
+
+        public static T OnIsStylusDirectlyOverChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> isstylusdirectlyoverchangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsStylusDirectlyOverChangedActionWithArgs = isstylusdirectlyoverchangedActionWithArgs;
+            return uielement;
+        }
+        public static T OnIsVisibleChanged<T>(this T uielement, Action isvisiblechangedAction) where T : IRxUIElement
+        {
+            uielement.IsVisibleChangedAction = isvisiblechangedAction;
+            return uielement;
+        }
+
+        public static T OnIsVisibleChanged<T>(this T uielement, Action<object?, DependencyPropertyChangedEventArgs> isvisiblechangedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.IsVisibleChangedActionWithArgs = isvisiblechangedActionWithArgs;
+            return uielement;
+        }
         public static T OnKeyDown<T>(this T uielement, Action keydownAction) where T : IRxUIElement
         {
             uielement.KeyDownAction = keydownAction;
@@ -1677,6 +2004,17 @@ namespace WpfReactorUI
         public static T OnKeyUp<T>(this T uielement, Action<object?, KeyEventArgs> keyupActionWithArgs) where T : IRxUIElement
         {
             uielement.KeyUpActionWithArgs = keyupActionWithArgs;
+            return uielement;
+        }
+        public static T OnLayoutUpdated<T>(this T uielement, Action layoutupdatedAction) where T : IRxUIElement
+        {
+            uielement.LayoutUpdatedAction = layoutupdatedAction;
+            return uielement;
+        }
+
+        public static T OnLayoutUpdated<T>(this T uielement, Action<object?, EventArgs> layoutupdatedActionWithArgs) where T : IRxUIElement
+        {
+            uielement.LayoutUpdatedActionWithArgs = layoutupdatedActionWithArgs;
             return uielement;
         }
         public static T OnLostFocus<T>(this T uielement, Action lostfocusAction) where T : IRxUIElement

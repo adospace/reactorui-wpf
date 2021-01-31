@@ -14,15 +14,15 @@ namespace WpfReactorUI
     internal class CachedPageEntry
     {
         private readonly WeakReference<Page> _pageRef;
-        private readonly VisualNode _node;
+        private readonly WeakReference<VisualNode> _nodeRef;
 
         public CachedPageEntry(Page page, VisualNode node)
         {
             _pageRef = new WeakReference<Page>(page);
-            _node = node;
+            _nodeRef = new WeakReference<VisualNode>(node);
         }
 
-        public bool IsAlive => _pageRef.TryGetTarget(out var _);
+        public bool IsAlive => _pageRef.TryGetTarget(out var _) || _nodeRef.TryGetTarget(out var _);
 
         public Page? Page
         {
@@ -33,18 +33,18 @@ namespace WpfReactorUI
             }
         }
 
-        public VisualNode Node
+        public VisualNode? Node
         {
             get
             {
-                return _node;
+                _nodeRef.TryGetTarget(out var node);
+                return node;
             }
         }
     }
 
     public partial class RxFrame<T>
     {
-        
         private List<CachedPageEntry> _cachedPageReferences = new List<CachedPageEntry>();
 
         protected override void OnAddChildCore(VisualNode widget, object childControl)
@@ -70,10 +70,10 @@ namespace WpfReactorUI
 
         partial void OnAttachingNewEvents()
         {
-            NativeControl.Navigated += NativeControl_Navigated;
+            NativeControl.Navigated += NativeControl_InternalNavigated;
         }
 
-        private void NativeControl_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void NativeControl_InternalNavigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             var cacheItem = _cachedPageReferences.FirstOrDefault(_ => _.Page == e.Content);
             if (cacheItem != null)
@@ -86,9 +86,6 @@ namespace WpfReactorUI
                 //keep the node in memory if the page is still referenced by the wpf frame
                 if (!item.IsAlive)
                 {
-                    item.Node.Unmount();
-                    //Remove(item.Node);
-                    //Invalidate();
                     return true;
                 }
 
@@ -98,7 +95,7 @@ namespace WpfReactorUI
 
         partial void OnDetachingNewEvents()
         {
-            NativeControl.Navigated -= NativeControl_Navigated;
+            NativeControl.Navigated -= NativeControl_InternalNavigated;
         }
 
         internal override void MergeWith(VisualNode newNode)
@@ -109,7 +106,7 @@ namespace WpfReactorUI
 
                 OnMigrated(newNode);
 
-                //do not call base merge with
+                //do not call base method to avoid unmounting children of this (old) rx frame
                 //base.MergeWith(newNode);
             }
             else
@@ -130,8 +127,6 @@ namespace WpfReactorUI
         public void Navigate<TPAGE>() where TPAGE : VisualNode, new()
         {
             ContentNode = new TPAGE();
-            //Add(new TPAGE());
-            //Invalidate();
         }
 
         public void GoBack()

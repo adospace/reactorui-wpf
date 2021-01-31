@@ -33,6 +33,10 @@ namespace WpfReactorUI
         PropertyValue<bool>? IsOpen { get; set; }
         PropertyValue<CommandBarOverflowButtonVisibility>? OverflowButtonVisibility { get; set; }
 
+        Action? ClosedAction { get; set; }
+        Action<object?, Object>? ClosedActionWithArgs { get; set; }
+        Action? OpenedAction { get; set; }
+        Action<object?, Object>? OpenedActionWithArgs { get; set; }
     }
 
     public partial class RxCommandBar<T> : RxControl<T>, IRxCommandBar where T : CommandBar, new()
@@ -56,6 +60,10 @@ namespace WpfReactorUI
         PropertyValue<bool>? IRxCommandBar.IsOpen { get; set; }
         PropertyValue<CommandBarOverflowButtonVisibility>? IRxCommandBar.OverflowButtonVisibility { get; set; }
 
+        Action? IRxCommandBar.ClosedAction { get; set; }
+        Action<object?, Object>? IRxCommandBar.ClosedActionWithArgs { get; set; }
+        Action? IRxCommandBar.OpenedAction { get; set; }
+        Action<object?, Object>? IRxCommandBar.OpenedActionWithArgs { get; set; }
 
         protected override void OnUpdate()
         {
@@ -84,15 +92,41 @@ namespace WpfReactorUI
         {
             OnAttachingNewEvents();
 
+            var thisAsIRxCommandBar = (IRxCommandBar)this;
+            if (thisAsIRxCommandBar.ClosedAction != null || thisAsIRxCommandBar.ClosedActionWithArgs != null)
+            {
+                NativeControl.Closed += NativeControl_Closed;
+            }
+            if (thisAsIRxCommandBar.OpenedAction != null || thisAsIRxCommandBar.OpenedActionWithArgs != null)
+            {
+                NativeControl.Opened += NativeControl_Opened;
+            }
 
             base.OnAttachNativeEvents();
         }
 
+        private void NativeControl_Closed(object? sender, Object e)
+        {
+            var thisAsIRxCommandBar = (IRxCommandBar)this;
+            thisAsIRxCommandBar.ClosedAction?.Invoke();
+            thisAsIRxCommandBar.ClosedActionWithArgs?.Invoke(sender, e);
+        }
+        private void NativeControl_Opened(object? sender, Object e)
+        {
+            var thisAsIRxCommandBar = (IRxCommandBar)this;
+            thisAsIRxCommandBar.OpenedAction?.Invoke();
+            thisAsIRxCommandBar.OpenedActionWithArgs?.Invoke(sender, e);
+        }
 
         protected override void OnDetachNativeEvents()
         {
             OnDetachingNewEvents();
 
+            if (NativeControl != null)
+            {
+                NativeControl.Closed -= NativeControl_Closed;
+                NativeControl.Opened -= NativeControl_Opened;
+            }
 
             base.OnDetachNativeEvents();
         }
@@ -181,6 +215,28 @@ namespace WpfReactorUI
         public static T OverflowButtonVisibility<T>(this T commandbar, Func<CommandBarOverflowButtonVisibility> overflowButtonVisibilityFunc) where T : IRxCommandBar
         {
             commandbar.OverflowButtonVisibility = new PropertyValue<CommandBarOverflowButtonVisibility>(overflowButtonVisibilityFunc);
+            return commandbar;
+        }
+        public static T OnClosed<T>(this T commandbar, Action closedAction) where T : IRxCommandBar
+        {
+            commandbar.ClosedAction = closedAction;
+            return commandbar;
+        }
+
+        public static T OnClosed<T>(this T commandbar, Action<object?, Object> closedActionWithArgs) where T : IRxCommandBar
+        {
+            commandbar.ClosedActionWithArgs = closedActionWithArgs;
+            return commandbar;
+        }
+        public static T OnOpened<T>(this T commandbar, Action openedAction) where T : IRxCommandBar
+        {
+            commandbar.OpenedAction = openedAction;
+            return commandbar;
+        }
+
+        public static T OnOpened<T>(this T commandbar, Action<object?, Object> openedActionWithArgs) where T : IRxCommandBar
+        {
+            commandbar.OpenedActionWithArgs = openedActionWithArgs;
             return commandbar;
         }
     }

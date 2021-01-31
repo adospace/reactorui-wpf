@@ -48,17 +48,23 @@ namespace WpfReactorUI.ScaffoldApp
                 .OrderBy(_ => _.Name)
                 .ToArray();
 
-            var eventsMap = _typeToScaffold.GetEvents()
-                .Distinct(new EventInfoEqualityComparer())
-                .ToDictionary(_ => _.Name, _ => _);
+            //var eventsMap = _typeToScaffold.GetEvents()
+            //    .Distinct(new EventInfoEqualityComparer())
+            //    .ToDictionary(_ => _.Name, _ => _);
 
-            Events = _typeToScaffold.GetFields(BindingFlags.Public | BindingFlags.Static)
-                .Where(_ => typeof(RoutedEvent).IsAssignableFrom(_.FieldType))
-                .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
-                .Select(_ => _.Name.Substring(0, _.Name.Length - "Event".Length))
-                .Where(_ => eventsMap.ContainsKey(_))
-                .Select(_ => eventsMap[_])
-                .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
+            //Events = _typeToScaffold.GetFields(BindingFlags.Public | BindingFlags.Static)
+            //    .Where(_ => typeof(RoutedEvent).IsAssignableFrom(_.FieldType))
+            //    .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
+            //    .Select(_ => _.Name.Substring(0, _.Name.Length - "Event".Length))
+            //    .Where(_ => eventsMap.ContainsKey(_))
+            //    .Select(_ => eventsMap[_])
+            //    .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
+            //    .OrderBy(_ => _.Name)
+            //    .ToArray();
+            Events = _typeToScaffold.GetEvents(System.Reflection.BindingFlags.Public
+                    | System.Reflection.BindingFlags.Instance
+                    | System.Reflection.BindingFlags.DeclaredOnly)
+                .Distinct(new EventInfoEqualityComparer())
                 .OrderBy(_ => _.Name)
                 .ToArray();
 
