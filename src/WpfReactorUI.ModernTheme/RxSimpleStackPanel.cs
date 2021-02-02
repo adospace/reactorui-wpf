@@ -21,7 +21,7 @@ using WpfReactorUI.Internals;
 using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
 
-namespace WpfReactorUI
+namespace WpfReactorUI.ModernTheme
 {
     public partial interface IRxSimpleStackPanel : IRxPanel
     {

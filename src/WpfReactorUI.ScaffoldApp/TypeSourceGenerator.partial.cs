@@ -17,9 +17,11 @@ namespace WpfReactorUI.ScaffoldApp
     {
         private readonly Type _typeToScaffold;
 
-        public TypeSourceGenerator(Type typeToScaffold, string[] additionalUsings = null)
+        public TypeSourceGenerator(Type typeToScaffold, string[] additionalUsings = null, string ns = "WpfReactorUI")
         {
             _typeToScaffold = typeToScaffold;
+            
+            Namespace = ns;
 
             var propertiesMap = _typeToScaffold.GetProperties()
                 //generic types not supported
@@ -65,11 +67,14 @@ namespace WpfReactorUI.ScaffoldApp
                     | System.Reflection.BindingFlags.Instance
                     | System.Reflection.BindingFlags.DeclaredOnly)
                 .Distinct(new EventInfoEqualityComparer())
+                .Where(_ => !_.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.IsGenericType)//<- to handle properly
                 .OrderBy(_ => _.Name)
                 .ToArray();
 
             AdditionalUsings = additionalUsings ?? Array.Empty<string>();
         }
+
+        public string Namespace { get; }
 
         public string TypeName => _typeToScaffold.Name;
 

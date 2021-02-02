@@ -37,7 +37,7 @@ using WpfReactorUI.Internals;
 using <#= usingNS #>;
 <# } #>
 
-namespace WpfReactorUI
+namespace <#= Namespace #>
 {
     public partial interface IRx<#= TypeName #> : I<#= BaseTypeName #>
     {

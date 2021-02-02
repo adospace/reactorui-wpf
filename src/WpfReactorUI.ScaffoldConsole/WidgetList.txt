@@ -31,9 +31,14 @@ System.Windows.Controls.HeaderedItemsControl
 System.Windows.Controls.Menu
 System.Windows.Controls.ContextMenu
 System.Windows.Controls.MenuItem
-
+System.Windows.Controls.Image
+System.Windows.Controls.ProgressBar
+System.Windows.Controls.Primitives.RangeBase
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar
 ModernWpf.Controls.AppBarButton
 ModernWpf.Controls.ContentDialog
+
+ModernWpf.Controls.ProgressRing
+

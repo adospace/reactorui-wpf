@@ -41,7 +41,7 @@ namespace WpfReactorUI.ScaffoldConsole
                 if (classNameToGenerate.StartsWith("ModernWpf"))
                 {
                     targetPath = Path.Combine(baseWpfReactorUIModernThemePath, $"Rx{typeToGenerate.Name}.cs");
-                    generator = new TypeSourceGenerator(typeToGenerate, new[] { "ModernWpf.Controls", "ModernWpf.Controls.Primitives" });
+                    generator = new TypeSourceGenerator(typeToGenerate, new[] { "ModernWpf.Controls", "ModernWpf.Controls.Primitives" }, "WpfReactorUI.ModernTheme");
                 }
 
                 Console.WriteLine($"Generating {typeToGenerate.FullName} to {targetPath}...");                

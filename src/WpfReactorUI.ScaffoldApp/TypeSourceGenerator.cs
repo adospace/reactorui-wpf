@@ -85,7 +85,14 @@ using WpfReactorUI.Internals;
             
             #line default
             #line hidden
-            this.Write("\r\nnamespace WpfReactorUI\r\n{\r\n    public partial interface IRx");
+            this.Write("\r\nnamespace ");
+            
+            #line 40 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Namespace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    public partial interface IRx");
             
             #line 42 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
