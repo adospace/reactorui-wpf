@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<string>? HeaderStringFormat { get; set; }
 
     }
-
     public partial class RxHeaderedItemsControl<T> : RxItemsControl<T>, IRxHeaderedItemsControl where T : HeaderedItemsControl, new()
     {
         public RxHeaderedItemsControl()

@@ -34,6 +34,8 @@ System.Windows.Controls.MenuItem
 System.Windows.Controls.Image
 System.Windows.Controls.ProgressBar
 System.Windows.Controls.Primitives.RangeBase
+System.Windows.Controls.WrapPanel
+System.Windows.Controls.PasswordBox
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar

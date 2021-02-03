@@ -38,7 +38,6 @@ namespace WpfReactorUI.ModernTheme
         Action? OpenedAction { get; set; }
         Action<object?, Object>? OpenedActionWithArgs { get; set; }
     }
-
     public partial class RxCommandBar<T> : RxControl<T>, IRxCommandBar where T : CommandBar, new()
     {
         public RxCommandBar()

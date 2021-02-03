@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<Style>? ElementStyle { get; set; }
 
     }
-
     public partial class RxDataGridBoundColumn<T> : RxDataGridColumn<T>, IRxDataGridBoundColumn where T : DataGridBoundColumn, new()
     {
         public RxDataGridBoundColumn()

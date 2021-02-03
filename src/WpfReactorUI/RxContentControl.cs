@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<string>? ContentStringFormat { get; set; }
 
     }
-
     public partial class RxContentControl<T> : RxControl<T>, IRxContentControl where T : ContentControl, new()
     {
         public RxContentControl()

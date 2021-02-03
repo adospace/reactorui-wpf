@@ -42,7 +42,6 @@ namespace WpfReactorUI
         Action? NavigationStoppedAction { get; set; }
         Action<object?, NavigationEventArgs>? NavigationStoppedActionWithArgs { get; set; }
     }
-
     public partial class RxNavigationWindow<T> : RxWindow<T>, IRxNavigationWindow where T : NavigationWindow, new()
     {
         public RxNavigationWindow()

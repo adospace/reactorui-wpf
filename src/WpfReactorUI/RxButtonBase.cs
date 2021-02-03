@@ -31,7 +31,6 @@ namespace WpfReactorUI
         Action? ClickAction { get; set; }
         Action<object?, RoutedEventArgs>? ClickActionWithArgs { get; set; }
     }
-
     public partial class RxButtonBase<T> : RxContentControl<T>, IRxButtonBase where T : ButtonBase, new()
     {
         public RxButtonBase()

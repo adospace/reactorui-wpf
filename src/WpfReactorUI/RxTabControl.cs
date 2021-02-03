@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<Dock>? TabStripPlacement { get; set; }
 
     }
-
     public partial class RxTabControl<T> : RxSelector<T>, IRxTabControl where T : TabControl, new()
     {
         public RxTabControl()

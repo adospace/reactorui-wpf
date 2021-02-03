@@ -46,7 +46,6 @@ namespace WpfReactorUI
         Action? UncheckedAction { get; set; }
         Action<object?, RoutedEventArgs>? UncheckedActionWithArgs { get; set; }
     }
-
     public partial class RxMenuItem<T> : RxHeaderedItemsControl<T>, IRxMenuItem where T : MenuItem, new()
     {
         public RxMenuItem()

@@ -44,7 +44,6 @@ namespace WpfReactorUI
         Action? PastingCellClipboardContentAction { get; set; }
         Action<object?, DataGridCellClipboardEventArgs>? PastingCellClipboardContentActionWithArgs { get; set; }
     }
-
     public partial class RxDataGridColumn<T> : VisualNode<T>, IRxDataGridColumn where T : DataGridColumn, new()
     {
         public RxDataGridColumn()

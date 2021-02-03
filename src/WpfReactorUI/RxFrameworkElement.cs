@@ -73,7 +73,6 @@ namespace WpfReactorUI
         Action? UnloadedAction { get; set; }
         Action<object?, RoutedEventArgs>? UnloadedActionWithArgs { get; set; }
     }
-
     public partial class RxFrameworkElement<T> : RxUIElement<T>, IRxFrameworkElement where T : FrameworkElement, new()
     {
         public RxFrameworkElement()

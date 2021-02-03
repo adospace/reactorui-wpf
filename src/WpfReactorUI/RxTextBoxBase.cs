@@ -43,7 +43,6 @@ namespace WpfReactorUI
         Action? TextChangedAction { get; set; }
         Action<object?, TextChangedEventArgs>? TextChangedActionWithArgs { get; set; }
     }
-
     public partial class RxTextBoxBase<T> : RxControl<T>, IRxTextBoxBase where T : TextBoxBase, new()
     {
         public RxTextBoxBase()

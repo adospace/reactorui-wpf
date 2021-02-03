@@ -32,7 +32,6 @@ namespace WpfReactorUI
         PropertyValue<string>? ItemStringFormat { get; set; }
 
     }
-
     public partial class RxItemsControl<T> : RxControl<T>, IRxItemsControl where T : ItemsControl, new()
     {
         public RxItemsControl()

@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<SelectionMode>? SelectionMode { get; set; }
 
     }
-
     public partial class RxListBox<T> : RxSelector<T>, IRxListBox where T : ListBox, new()
     {
         public RxListBox()

@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? IsDefault { get; set; }
 
     }
-
     public partial class RxButton<T> : RxButtonBase<T>, IRxButton where T : Button, new()
     {
         public RxButton()

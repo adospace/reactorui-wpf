@@ -50,15 +50,22 @@ namespace <#= Namespace #>
         Action<object?, <#= ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name #>>? <#= ev.Name #>ActionWithArgs { get; set; }
     <# } #>
     }
-    
+    <# if (!IsSealed) { #>
     public partial class Rx<#= TypeName #><T> : <#= BaseTypeName #><T>, IRx<#= TypeName #> where T : <#= TypeName #>, new()
+    <# } else { #>
+    public partial class Rx<#= TypeName #> : <#= BaseTypeName #><<#= TypeName #>>, IRx<#= TypeName #>
+    <# } #>
     {
         public Rx<#= TypeName #>()
         { 
         
         }
 
+        <# if (!IsSealed) { #>
         public Rx<#= TypeName #>(Action<T?> componentRefAction)
+        <# } else { #>
+        public Rx<#= TypeName #>(Action<<#= TypeName #>?> componentRefAction)
+        <# } #>
             : base(componentRefAction)
         {
 
@@ -137,7 +144,7 @@ namespace <#= Namespace #>
         }
 
     }
-    <# if (IsTypeNotAbstractWithEmptyConstructur) { #>
+    <# if (IsTypeNotAbstractWithEmptyConstructor) { #>
     public partial class Rx<#= TypeName #> : Rx<#= TypeName #><<#= TypeName #>>
     {
         public Rx<#= TypeName #>()

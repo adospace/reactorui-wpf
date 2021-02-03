@@ -38,7 +38,6 @@ namespace WpfReactorUI
         Action? OpenedAction { get; set; }
         Action<object?, RoutedEventArgs>? OpenedActionWithArgs { get; set; }
     }
-
     public partial class RxContextMenu<T> : RxMenuBase<T>, IRxContextMenu where T : ContextMenu, new()
     {
         public RxContextMenu()

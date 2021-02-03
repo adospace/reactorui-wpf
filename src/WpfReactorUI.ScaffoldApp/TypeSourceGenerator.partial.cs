@@ -78,9 +78,11 @@ namespace WpfReactorUI.ScaffoldApp
 
         public string TypeName => _typeToScaffold.Name;
 
+        public bool IsSealed => _typeToScaffold.IsSealed;
+
         public string BaseTypeName => _typeToScaffold.BaseType.Name == "DependencyObject" ? "VisualNode" : $"Rx{_typeToScaffold.BaseType.Name}";
 
-        public bool IsTypeNotAbstractWithEmptyConstructur => !_typeToScaffold.IsAbstract && _typeToScaffold.GetConstructor(Array.Empty<Type>()) != null;
+        public bool IsTypeNotAbstractWithEmptyConstructor => !_typeToScaffold.IsAbstract && !_typeToScaffold.IsSealed && _typeToScaffold.GetConstructor(Array.Empty<Type>()) != null;
 
         public PropertyInfo[] Properties { get; }
 

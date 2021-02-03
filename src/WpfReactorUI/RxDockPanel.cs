@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? LastChildFill { get; set; }
 
     }
-
     public partial class RxDockPanel<T> : RxPanel<T>, IRxDockPanel where T : DockPanel, new()
     {
         public RxDockPanel()

@@ -111,7 +111,6 @@ namespace WpfReactorUI
         Action? UnloadingRowDetailsAction { get; set; }
         Action<object?, DataGridRowDetailsEventArgs>? UnloadingRowDetailsActionWithArgs { get; set; }
     }
-
     public partial class RxDataGrid<T> : RxMultiSelector<T>, IRxDataGrid where T : DataGrid, new()
     {
         public RxDataGrid()

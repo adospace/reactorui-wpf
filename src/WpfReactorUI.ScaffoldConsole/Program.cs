@@ -20,9 +20,10 @@ namespace WpfReactorUI.ScaffoldConsole
             //force assemblies loading
             var uIElement = new UIElement();
             var button = new Button();
+            
             var simplePanel = new ModernWpf.Controls.CommandBar();
             
-
+            
             var types = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
                          // alternative: from domainAssembly in domainAssembly.GetExportedTypes()
                          from assemblyType in domainAssembly.GetTypes()

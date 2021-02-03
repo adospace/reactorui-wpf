@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? ShowGridLines { get; set; }
 
     }
-
     public partial class RxGrid<T> : RxPanel<T>, IRxGrid where T : Grid, new()
     {
         public RxGrid()

@@ -169,7 +169,14 @@ using WpfReactorUI.Internals;
             
             #line default
             #line hidden
-            this.Write("    }\r\n    \r\n    public partial class Rx");
+            this.Write("    }\r\n    ");
+            
+            #line 53 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ if (!IsSealed) { 
+            
+            #line default
+            #line hidden
+            this.Write("    public partial class Rx");
             
             #line 54 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
@@ -197,101 +204,177 @@ using WpfReactorUI.Internals;
             
             #line default
             #line hidden
-            this.Write(", new()\r\n    {\r\n        public Rx");
+            this.Write(", new()\r\n    ");
+            
+            #line 55 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("    public partial class Rx");
             
             #line 56 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
-            this.Write("()\r\n        { \r\n        \r\n        }\r\n\r\n        public Rx");
+            this.Write(" : ");
             
-            #line 61 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 56 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(BaseTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("<");
+            
+            #line 56 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
-            this.Write("(Action<T?> componentRefAction)\r\n            : base(componentRefAction)\r\n        " +
-                    "{\r\n\r\n        }\r\n\r\n        ");
+            this.Write(">, IRx");
+            
+            #line 56 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    ");
+            
+            #line 57 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    {\r\n        public Rx");
+            
+            #line 59 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("()\r\n        { \r\n        \r\n        }\r\n\r\n        ");
+            
+            #line 64 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ if (!IsSealed) { 
+            
+            #line default
+            #line hidden
+            this.Write("        public Rx");
+            
+            #line 65 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("(Action<T?> componentRefAction)\r\n        ");
+            
+            #line 66 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("        public Rx");
             
             #line 67 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("(Action<");
+            
+            #line 67 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("?> componentRefAction)\r\n        ");
+            
+            #line 68 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("            : base(componentRefAction)\r\n        {\r\n\r\n        }\r\n\r\n        ");
+            
+            #line 74 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var property in Properties) { 
             
             #line default
             #line hidden
             this.Write("        PropertyValue<");
             
-            #line 68 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 75 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(">? IRx");
             
-            #line 68 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 75 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 68 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 75 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n        ");
             
-            #line 69 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 76 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n        ");
             
-            #line 71 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 78 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var ev in Events) { 
             
             #line default
             #line hidden
             this.Write("        Action? IRx");
             
-            #line 72 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 79 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 72 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 79 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("Action { get; set; }\r\n        Action<object?, ");
             
-            #line 73 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 80 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
             
             #line default
             #line hidden
             this.Write(">? IRx");
             
-            #line 73 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 80 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 73 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 80 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("ActionWithArgs { get; set; }\r\n        ");
             
-            #line 74 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 81 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
@@ -299,70 +382,70 @@ using WpfReactorUI.Internals;
             this.Write("\r\n        protected override void OnUpdate()\r\n        {\r\n            OnBeginUpdat" +
                     "e();\r\n\r\n            ");
             
-            #line 80 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 87 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  if (Properties.Any()) { 
             
             #line default
             #line hidden
             this.Write("            var thisAsIRx");
             
-            #line 81 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 88 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(" = (IRx");
             
-            #line 81 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 88 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(")this;\r\n            ");
             
-            #line 82 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 89 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var property in Properties) { 
             
             #line default
             #line hidden
             this.Write("            SetPropertyValue(NativeControl, ");
             
-            #line 83 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 90 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 83 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 90 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write("Property, thisAsIRx");
             
-            #line 83 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 90 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 83 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 90 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(");\r\n            ");
             
-            #line 84 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 91 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("            ");
             
-            #line 85 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 92 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
@@ -384,154 +467,154 @@ using WpfReactorUI.Internals;
 
             ");
             
-            #line 101 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 108 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  if (Events.Any()) { 
             
             #line default
             #line hidden
             this.Write("            var thisAsIRx");
             
-            #line 102 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 109 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(" = (IRx");
             
-            #line 102 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 109 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(")this;\r\n            ");
             
-            #line 103 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 110 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var ev in Events) { 
             
             #line default
             #line hidden
             this.Write("            if (thisAsIRx");
             
-            #line 104 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 111 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 104 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 111 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("Action != null || thisAsIRx");
             
-            #line 104 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 111 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 104 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 111 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("ActionWithArgs != null)\r\n            {\r\n                NativeControl.");
             
-            #line 106 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 113 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write(" += NativeControl_");
             
-            #line 106 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 113 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n            }\r\n            ");
             
-            #line 108 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 115 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("            ");
             
-            #line 109 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 116 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n            base.OnAttachNativeEvents();\r\n        }\r\n\r\n        ");
             
-            #line 114 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 121 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var ev in Events) { 
             
             #line default
             #line hidden
             this.Write("        private void NativeControl_");
             
-            #line 115 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 122 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("(object? sender, ");
             
-            #line 115 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 122 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
             
             #line default
             #line hidden
             this.Write(" e)\r\n        {\r\n            var thisAsIRx");
             
-            #line 117 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 124 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(" = (IRx");
             
-            #line 117 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 124 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(")this;\r\n            thisAsIRx");
             
-            #line 118 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 125 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 118 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 125 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("Action?.Invoke();\r\n            thisAsIRx");
             
-            #line 119 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 126 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 119 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 126 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("ActionWithArgs?.Invoke(sender, e);\r\n        }\r\n        ");
             
-            #line 121 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 128 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
@@ -539,91 +622,91 @@ using WpfReactorUI.Internals;
             this.Write("\r\n        protected override void OnDetachNativeEvents()\r\n        {\r\n            " +
                     "OnDetachingNewEvents();\r\n\r\n            ");
             
-            #line 127 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 134 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  if (Events.Any()) { 
             
             #line default
             #line hidden
             this.Write("            if (NativeControl != null)\r\n            {\r\n            ");
             
-            #line 130 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 137 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var ev in Events) { 
             
             #line default
             #line hidden
             this.Write("            NativeControl.");
             
-            #line 131 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 138 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write(" -= NativeControl_");
             
-            #line 131 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 138 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write(";\r\n            ");
             
-            #line 132 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 139 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("            }\r\n            ");
             
-            #line 134 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 141 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n            base.OnDetachNativeEvents();\r\n        }\r\n\r\n    }\r\n    ");
             
-            #line 140 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
- if (IsTypeNotAbstractWithEmptyConstructur) { 
+            #line 147 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ if (IsTypeNotAbstractWithEmptyConstructor) { 
             
             #line default
             #line hidden
             this.Write("    public partial class Rx");
             
-            #line 141 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 148 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(" : Rx");
             
-            #line 141 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 148 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("<");
             
-            #line 141 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 148 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write(">\r\n    {\r\n        public Rx");
             
-            #line 143 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 150 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("()\r\n        { \r\n        \r\n        }\r\n\r\n        public Rx");
             
-            #line 148 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 155 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("(Action<");
             
-            #line 148 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 155 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
@@ -631,210 +714,210 @@ using WpfReactorUI.Internals;
             this.Write("?> componentRefAction)\r\n            : base(componentRefAction)\r\n        {\r\n\r\n    " +
                     "    }\r\n    }\r\n    ");
             
-            #line 154 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 161 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("    public static partial class Rx");
             
-            #line 155 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 162 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("Extensions\r\n    {\r\n        ");
             
-            #line 157 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 164 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var property in Properties) { 
             
             #line default
             #line hidden
             this.Write("        public static T ");
             
-            #line 158 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 158 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", ");
             
-            #line 158 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 158 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name.CamelCase()));
             
             #line default
             #line hidden
             this.Write(") where T : IRx");
             
-            #line 158 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 160 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 167 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 160 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 167 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 160 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 167 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 160 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 167 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name.CamelCase()));
             
             #line default
             #line hidden
             this.Write(");\r\n            return ");
             
-            #line 161 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 168 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        public static T ");
             
-            #line 163 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 163 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", Func<");
             
-            #line 163 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write("> ");
             
-            #line 163 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name.CamelCase()));
             
             #line default
             #line hidden
             this.Write("Func) where T : IRx");
             
-            #line 163 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name.CamelCase()));
             
             #line default
             #line hidden
             this.Write("Func);\r\n            return ");
             
-            #line 166 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 173 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        ");
             
-            #line 168 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 175 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  if (property.PropertyType.Name == "Thickness") { 
             
             #line default
             #line hidden
             this.Write("        public static T ");
             
-            #line 169 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 169 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", double leftRight, double topBottom) where T : IRx");
             
-            #line 169 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 171 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 178 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 171 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 178 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 171 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 178 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
@@ -842,117 +925,54 @@ using WpfReactorUI.Internals;
             this.Write(">(new Thickness(leftRight, topBottom, leftRight, topBottom));\r\n            return" +
                     " ");
             
-            #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 179 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        public static T ");
             
-            #line 174 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 174 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", double uniformSize) where T : IRx");
             
-            #line 174 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 176 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(">(new Thickness(uniformSize));\r\n            return ");
-            
-            #line 177 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n        }\r\n        ");
-            
-            #line 179 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("        ");
-            
-            #line 180 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
- if (IsCommand(property.PropertyType)) { 
-            
-            #line default
-            #line hidden
-            this.Write("        public static T ");
-            
-            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
-            
-            #line default
-            #line hidden
-            this.Write("<T>(this T ");
-            
-            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(", Action action) where T : IRx");
-            
-            #line 181 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        {\r\n            ");
-            
-            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" = new PropertyValue<");
-            
-            #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
-            
-            #line default
-            #line hidden
-            this.Write(">(new ActionCommand(action));\r\n            return ");
             
             #line 184 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
@@ -969,6 +989,69 @@ using WpfReactorUI.Internals;
             this.Write("        ");
             
             #line 187 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ if (IsCommand(property.PropertyType)) { 
+            
+            #line default
+            #line hidden
+            this.Write("        public static T ");
+            
+            #line 188 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
+            
+            #line default
+            #line hidden
+            this.Write("<T>(this T ");
+            
+            #line 188 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(", Action action) where T : IRx");
+            
+            #line 188 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n        {\r\n            ");
+            
+            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = new PropertyValue<");
+            
+            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            
+            #line default
+            #line hidden
+            this.Write(">(new ActionCommand(action));\r\n            return ");
+            
+            #line 191 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n        }\r\n        ");
+            
+            #line 193 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("        ");
+            
+            #line 194 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  if (property.PropertyType.Name == "ImageSource") { 
             var propertyName = property.Name.Length <= 6 ? property.Name : property.Name.Substring(0, property.Name.Length - 6); 
             
@@ -976,189 +1059,189 @@ using WpfReactorUI.Internals;
             #line hidden
             this.Write("\r\n        public static T ");
             
-            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 197 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 197 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", string file) where T : IRx");
             
-            #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 197 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
-            
-            #line 192 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 192 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" = new PropertyValue<");
-            
-            #line 192 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
-            
-            #line default
-            #line hidden
-            this.Write(">(new BitmapImage(new Uri(file)));\r\n            return ");
-            
-            #line 193 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n        }\r\n        /*\r\n        public static T ");
-            
-            #line 196 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
-            
-            #line default
-            #line hidden
-            this.Write("<T>(this T ");
-            
-            #line 196 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(", string resourceName, Assembly sourceAssembly) where T : IRx");
-            
-            #line 196 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        {\r\n            ");
-            
-            #line 198 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 198 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" = new PropertyValue<");
-            
-            #line 198 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
-            
-            #line default
-            #line hidden
-            this.Write(">(ImageSource.FromResource(resourceName, sourceAssembly));\r\n            return ");
             
             #line 199 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
-            this.Write(";\r\n        }\r\n        */\r\n        public static T ");
-            
-            #line 202 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
-            
-            #line default
-            #line hidden
-            this.Write("<T>(this T ");
-            
-            #line 202 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(", Uri imageUri) where T : IRx");
-            
-            #line 202 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        {\r\n            ");
-            
-            #line 204 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
             this.Write(".");
             
-            #line 204 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 199 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 204 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 199 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
-            this.Write(">(new BitmapImage(imageUri));\r\n            return ");
+            this.Write(">(new BitmapImage(new Uri(file)));\r\n            return ");
             
-            #line 205 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 200 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        /*\r\n        public static T ");
             
-            #line 208 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 203 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 208 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 203 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
-            this.Write(", Uri imageUri, bool cachingEnabled, TimeSpan cacheValidity) where T : IRx");
+            this.Write(", string resourceName, Assembly sourceAssembly) where T : IRx");
             
-            #line 208 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 203 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 210 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 205 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 210 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 205 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 210 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 205 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            
+            #line default
+            #line hidden
+            this.Write(">(ImageSource.FromResource(resourceName, sourceAssembly));\r\n            return ");
+            
+            #line 206 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n        }\r\n        */\r\n        public static T ");
+            
+            #line 209 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
+            
+            #line default
+            #line hidden
+            this.Write("<T>(this T ");
+            
+            #line 209 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(", Uri imageUri) where T : IRx");
+            
+            #line 209 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n        {\r\n            ");
+            
+            #line 211 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 211 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = new PropertyValue<");
+            
+            #line 211 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            
+            #line default
+            #line hidden
+            this.Write(">(new BitmapImage(imageUri));\r\n            return ");
+            
+            #line 212 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n        }\r\n        /*\r\n        public static T ");
+            
+            #line 215 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
+            
+            #line default
+            #line hidden
+            this.Write("<T>(this T ");
+            
+            #line 215 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(", Uri imageUri, bool cachingEnabled, TimeSpan cacheValidity) where T : IRx");
+            
+            #line 215 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n        {\r\n            ");
+            
+            #line 217 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 217 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" = new PropertyValue<");
+            
+            #line 217 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
@@ -1167,203 +1250,203 @@ using WpfReactorUI.Internals;
                     "     CachingEnabled = cachingEnabled,\r\n                CacheValidity = cacheVali" +
                     "dity\r\n            });\r\n            return ");
             
-            #line 216 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 223 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        public static T ");
             
-            #line 218 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 225 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(propertyName));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 218 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 225 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", Func<Stream> imageStream) where T : IRx");
             
-            #line 218 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 225 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
             
-            #line 220 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 220 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
             this.Write(" = new PropertyValue<");
             
-            #line 220 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
             
             #line default
             #line hidden
             this.Write(">(ImageSource.FromStream(imageStream));\r\n            return ");
             
-            #line 221 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 228 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(";\r\n        }\r\n        */\r\n            ");
             
-            #line 224 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 231 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("        ");
             
-            #line 225 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 232 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default
             #line hidden
             this.Write("        ");
             
-            #line 226 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  foreach (var ev in Events) { 
             
             #line default
             #line hidden
             this.Write("        public static T On");
             
-            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 234 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
             
             #line default
             #line hidden
             this.Write("<T>(this T ");
             
-            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 234 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write(", Action ");
             
-            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 234 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
             
             #line default
             #line hidden
             this.Write("Action) where T : IRx");
             
-            #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 234 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            ");
-            
-            #line 229 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 229 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
-            
-            #line default
-            #line hidden
-            this.Write("Action = ");
-            
-            #line 229 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write("Action;\r\n            return ");
-            
-            #line 230 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(";\r\n        }\r\n\r\n        public static T On");
-            
-            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
-            
-            #line default
-            #line hidden
-            this.Write("<T>(this T ");
-            
-            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(", Action<object?, ");
-            
-            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
-            
-            #line default
-            #line hidden
-            this.Write("> ");
-            
-            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write("ActionWithArgs) where T : IRx");
-            
-            #line 233 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n        {\r\n            ");
-            
-            #line 235 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write(".");
-            
-            #line 235 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
-            
-            #line default
-            #line hidden
-            this.Write("ActionWithArgs = ");
-            
-            #line 235 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
-            
-            #line default
-            #line hidden
-            this.Write("ActionWithArgs;\r\n            return ");
             
             #line 236 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
             
             #line default
             #line hidden
+            this.Write(".");
+            
+            #line 236 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
+            
+            #line default
+            #line hidden
+            this.Write("Action = ");
+            
+            #line 236 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write("Action;\r\n            return ");
+            
+            #line 237 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(";\r\n        }\r\n\r\n        public static T On");
+            
+            #line 240 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
+            
+            #line default
+            #line hidden
+            this.Write("<T>(this T ");
+            
+            #line 240 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(", Action<object?, ");
+            
+            #line 240 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.Name));
+            
+            #line default
+            #line hidden
+            this.Write("> ");
+            
+            #line 240 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write("ActionWithArgs) where T : IRx");
+            
+            #line 240 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n        {\r\n            ");
+            
+            #line 242 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write(".");
+            
+            #line 242 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name));
+            
+            #line default
+            #line hidden
+            this.Write("ActionWithArgs = ");
+            
+            #line 242 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ev.Name.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
+            this.Write("ActionWithArgs;\r\n            return ");
+            
+            #line 243 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(TypeName.ToLowerInvariant()));
+            
+            #line default
+            #line hidden
             this.Write(";\r\n        }\r\n        ");
             
-            #line 238 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
+            #line 245 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
  } 
             
             #line default

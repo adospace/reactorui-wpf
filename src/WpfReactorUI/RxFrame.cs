@@ -45,7 +45,6 @@ namespace WpfReactorUI
         Action? NavigationStoppedAction { get; set; }
         Action<object?, NavigationEventArgs>? NavigationStoppedActionWithArgs { get; set; }
     }
-
     public partial class RxFrame<T> : RxContentControl<T>, IRxFrame where T : Frame, new()
     {
         public RxFrame()

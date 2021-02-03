@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? IsItemsHost { get; set; }
 
     }
-
     public partial class RxPanel<T> : RxFrameworkElement<T>, IRxPanel where T : Panel, new()
     {
         public RxPanel()

@@ -30,7 +30,6 @@ namespace WpfReactorUI
         PropertyValue<Brush>? Foreground { get; set; }
 
     }
-
     public partial class RxDataGridTextColumn<T> : RxDataGridBoundColumn<T>, IRxDataGridTextColumn where T : DataGridTextColumn, new()
     {
         public RxDataGridTextColumn()

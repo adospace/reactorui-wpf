@@ -25,7 +25,6 @@ namespace WpfReactorUI
     {
 
     }
-
     public partial class RxMultiSelector<T> : RxSelector<T>, IRxMultiSelector where T : MultiSelector, new()
     {
         public RxMultiSelector()

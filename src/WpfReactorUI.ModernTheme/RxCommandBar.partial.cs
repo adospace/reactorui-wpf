@@ -20,7 +20,7 @@ using WpfReactorUI.Internals;
 using ModernWpf.Controls;
 using System.Linq;
 
-namespace WpfReactorUI
+namespace WpfReactorUI.ModernTheme
 {
     public partial interface IRxCommandBar : IRxControl
     {

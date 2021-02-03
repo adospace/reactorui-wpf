@@ -43,7 +43,6 @@ namespace WpfReactorUI
         Action? PreviewMouseDoubleClickAction { get; set; }
         Action<object?, MouseButtonEventArgs>? PreviewMouseDoubleClickActionWithArgs { get; set; }
     }
-
     public partial class RxControl<T> : RxFrameworkElement<T>, IRxControl where T : Control, new()
     {
         public RxControl()

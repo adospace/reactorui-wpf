@@ -169,7 +169,7 @@ namespace WpfReactorUI
         {
             if (!_sleeping)
             {
-                Dispatcher.CurrentDispatcher.BeginInvoke(OnLayout);
+                Application.Current.Dispatcher.BeginInvoke(OnLayout);
             }
 
             base.OnLayoutCycleRequested();

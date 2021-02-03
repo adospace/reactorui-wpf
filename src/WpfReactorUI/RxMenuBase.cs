@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? UsesItemContainerTemplate { get; set; }
 
     }
-
     public partial class RxMenuBase<T> : RxItemsControl<T>, IRxMenuBase where T : MenuBase, new()
     {
         public RxMenuBase()

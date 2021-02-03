@@ -56,7 +56,6 @@ namespace WpfReactorUI
         Action? StateChangedAction { get; set; }
         Action<object?, EventArgs>? StateChangedActionWithArgs { get; set; }
     }
-
     public partial class RxWindow<T> : RxContentControl<T>, IRxWindow where T : Window, new()
     {
         public RxWindow()

@@ -30,7 +30,6 @@ namespace WpfReactorUI
         PropertyValue<double>? Value { get; set; }
 
     }
-
     public partial class RxRangeBase<T> : RxControl<T>, IRxRangeBase where T : RangeBase, new()
     {
         public RxRangeBase()

@@ -36,7 +36,6 @@ namespace WpfReactorUI.ModernTheme
         PropertyValue<bool>? UseSystemFocusVisuals { get; set; }
 
     }
-
     public partial class RxAppBarButton<T> : RxButton<T>, IRxAppBarButton where T : AppBarButton, new()
     {
         public RxAppBarButton()

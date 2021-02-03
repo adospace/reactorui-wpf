@@ -31,7 +31,6 @@ namespace WpfReactorUI
         Action? SelectionChangedAction { get; set; }
         Action<object?, SelectionChangedEventArgs>? SelectionChangedActionWithArgs { get; set; }
     }
-
     public partial class RxSelector<T> : RxItemsControl<T>, IRxSelector where T : Selector, new()
     {
         public RxSelector()

@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<Orientation>? Orientation { get; set; }
 
     }
-
     public partial class RxStackPanel<T> : RxPanel<T>, IRxStackPanel where T : StackPanel, new()
     {
         public RxStackPanel()

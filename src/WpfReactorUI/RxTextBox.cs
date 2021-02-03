@@ -33,7 +33,6 @@ namespace WpfReactorUI
         PropertyValue<TextWrapping>? TextWrapping { get; set; }
 
     }
-
     public partial class RxTextBox<T> : RxTextBoxBase<T>, IRxTextBox where T : TextBox, new()
     {
         public RxTextBox()

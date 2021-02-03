@@ -233,7 +233,6 @@ namespace WpfReactorUI
         Action? TouchUpAction { get; set; }
         Action<object?, TouchEventArgs>? TouchUpActionWithArgs { get; set; }
     }
-
     public partial class RxUIElement<T> : RxVisual<T>, IRxUIElement where T : UIElement, new()
     {
         public RxUIElement()

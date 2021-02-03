@@ -32,7 +32,6 @@ namespace WpfReactorUI
         PropertyValue<string>? Title { get; set; }
 
     }
-
     public partial class RxPage<T> : RxFrameworkElement<T>, IRxPage where T : Page, new()
     {
         public RxPage()

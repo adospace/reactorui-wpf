@@ -32,7 +32,6 @@ namespace WpfReactorUI
         Action? ImageFailedAction { get; set; }
         Action<object?, ExceptionRoutedEventArgs>? ImageFailedActionWithArgs { get; set; }
     }
-
     public partial class RxImage<T> : RxFrameworkElement<T>, IRxImage where T : Image, new()
     {
         public RxImage()

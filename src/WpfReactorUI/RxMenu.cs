@@ -26,7 +26,6 @@ namespace WpfReactorUI
         PropertyValue<bool>? IsMainMenu { get; set; }
 
     }
-
     public partial class RxMenu<T> : RxMenuBase<T>, IRxMenu where T : Menu, new()
     {
         public RxMenu()

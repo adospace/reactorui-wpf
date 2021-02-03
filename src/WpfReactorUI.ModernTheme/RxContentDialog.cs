@@ -58,7 +58,6 @@ namespace WpfReactorUI.ModernTheme
         Action? SecondaryButtonClickAction { get; set; }
         Action<object?, ContentDialogButtonClickEventArgs>? SecondaryButtonClickActionWithArgs { get; set; }
     }
-
     public partial class RxContentDialog<T> : RxContentControl<T>, IRxContentDialog where T : ContentDialog, new()
     {
         public RxContentDialog()

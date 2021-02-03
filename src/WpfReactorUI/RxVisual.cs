@@ -25,7 +25,6 @@ namespace WpfReactorUI
     {
 
     }
-
     public partial class RxVisual<T> : VisualNode<T>, IRxVisual where T : Visual, new()
     {
         public RxVisual()

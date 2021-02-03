@@ -28,7 +28,6 @@ namespace WpfReactorUI.ModernTheme
         PropertyValue<bool>? IsActive { get; set; }
 
     }
-
     public partial class RxProgressRing<T> : RxControl<T>, IRxProgressRing where T : ProgressRing, new()
     {
         public RxProgressRing()

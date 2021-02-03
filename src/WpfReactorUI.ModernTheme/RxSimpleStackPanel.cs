@@ -29,7 +29,6 @@ namespace WpfReactorUI.ModernTheme
         PropertyValue<double>? Spacing { get; set; }
 
     }
-
     public partial class RxSimpleStackPanel<T> : RxPanel<T>, IRxSimpleStackPanel where T : SimpleStackPanel, new()
     {
         public RxSimpleStackPanel()

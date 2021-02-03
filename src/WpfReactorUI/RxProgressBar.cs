@@ -27,7 +27,6 @@ namespace WpfReactorUI
         PropertyValue<Orientation>? Orientation { get; set; }
 
     }
-
     public partial class RxProgressBar<T> : RxRangeBase<T>, IRxProgressBar where T : ProgressBar, new()
     {
         public RxProgressBar()

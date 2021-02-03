@@ -35,7 +35,12 @@ namespace WpfReactorUI.Host
             }
 
             string folderPath = Path.GetDirectoryName(assemblyPath) ?? throw new InvalidOperationException("Unable to get path of the assembly to hot-reload");
-            var assemblyPdbPath = Path.Combine(folderPath, Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
+            string assemblyName = Path.GetFileNameWithoutExtension(assemblyPath);
+
+            //<assemblyName>.deps.json --> WpfReactorUI.Host.deps.json
+            File.Copy(Path.Combine(folderPath, assemblyName + ".deps.json"), Path.Combine(folderPath, "WpfReactorUI.Host.deps.json"));
+
+            var assemblyPdbPath = Path.Combine(folderPath, assemblyName + ".pdb");
 
             var assembly = File.Exists(assemblyPdbPath) ?
                 Assembly.Load(File.ReadAllBytes(assemblyPath))
