@@ -21,7 +21,7 @@ namespace WpfReactorUI.ScaffoldConsole
             var uIElement = new UIElement();
             var button = new Button();
             
-            var simplePanel = new ModernWpf.Controls.CommandBar();
+            var simplePanel = new ModernWpf.Controls.NumberBox();
             
             
             var types = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()

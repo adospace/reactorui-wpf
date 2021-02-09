@@ -10,13 +10,13 @@ namespace WpfReactorUI.ModernTheme
 {
     public static partial class RxSimpleStackPanelExtensions
     {
-        public static T WithHorizontalOrientation<T>(this T stackpanel) where T : IRxStackPanel
+        public static T WithHorizontalOrientation<T>(this T stackpanel) where T : IRxSimpleStackPanel
         {
             stackpanel.Orientation = new PropertyValue<Orientation>(System.Windows.Controls.Orientation.Horizontal);
             return stackpanel;
         }
 
-        public static T WithVerticalOrientation<T>(this T stackpanel) where T : IRxStackPanel
+        public static T WithVerticalOrientation<T>(this T stackpanel) where T : IRxSimpleStackPanel
         {
             stackpanel.Orientation = new PropertyValue<Orientation>(System.Windows.Controls.Orientation.Vertical);
             return stackpanel;

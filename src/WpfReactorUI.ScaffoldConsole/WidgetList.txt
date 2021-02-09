@@ -43,6 +43,6 @@ ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar
 ModernWpf.Controls.AppBarButton
 ModernWpf.Controls.ContentDialog
-
+ModernWpf.Controls.NumberBox
 ModernWpf.Controls.ProgressRing
 
