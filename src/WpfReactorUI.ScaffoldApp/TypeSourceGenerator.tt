@@ -42,7 +42,7 @@ namespace <#= Namespace #>
     public partial interface IRx<#= TypeName #> : I<#= BaseTypeName #>
     {
     <# foreach (var property in Properties) { #>
-        PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>? <#= property.Name #> { get; set; }
+        PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>? <#= property.Name #> { get; set; }
     <# } #>
 
     <# foreach (var ev in Events) { #>
@@ -72,7 +72,7 @@ namespace <#= Namespace #>
         }
 
         <# foreach (var property in Properties) { #>
-        PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>? IRx<#= TypeName #>.<#= property.Name #> { get; set; }
+        PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>? IRx<#= TypeName #>.<#= property.Name #> { get; set; }
         <# } #>
 
         <# foreach (var ev in Events) { #>
@@ -162,32 +162,32 @@ namespace <#= Namespace #>
     public static partial class Rx<#= TypeName #>Extensions
     {
         <# foreach (var property in Properties) { #>
-        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, <#= property.PropertyType.Name.ToResevedWordTypeName() #> <#= property.Name.CamelCase() #>) where T : IRx<#= TypeName #>
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, <#= property.PropertyType.ToResevedWordTypeName() #> <#= property.Name.CamelCase() #>) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>);
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>);
             return <#= TypeName.ToLowerInvariant() #>;
         }
-        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Func<<#= property.PropertyType.Name.ToResevedWordTypeName() #>> <#= property.Name.CamelCase() #>Func) where T : IRx<#= TypeName #>
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Func<<#= property.PropertyType.ToResevedWordTypeName() #>> <#= property.Name.CamelCase() #>Func) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>Func);
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(<#= property.Name.CamelCase() #>Func);
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# if (property.PropertyType.Name == "Thickness") { #>
         public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, double leftRight, double topBottom) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new Thickness(leftRight, topBottom, leftRight, topBottom));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new Thickness(leftRight, topBottom, leftRight, topBottom));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, double uniformSize) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new Thickness(uniformSize));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new Thickness(uniformSize));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# } #>
         <# if (IsCommand(property.PropertyType)) { #>
         public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Action action) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new ActionCommand(action));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new ActionCommand(action));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# } #>
@@ -196,25 +196,25 @@ namespace <#= Namespace #>
 
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, string file) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new BitmapImage(new Uri(file)));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new BitmapImage(new Uri(file)));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         /*
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, string resourceName, Assembly sourceAssembly) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(ImageSource.FromResource(resourceName, sourceAssembly));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(ImageSource.FromResource(resourceName, sourceAssembly));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         */
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, Uri imageUri) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new BitmapImage(imageUri));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new BitmapImage(imageUri));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         /*
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, Uri imageUri, bool cachingEnabled, TimeSpan cacheValidity) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(new UriImageSource
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new UriImageSource
             {
                 Uri = imageUri,
                 CachingEnabled = cachingEnabled,
@@ -224,7 +224,7 @@ namespace <#= Namespace #>
         }
         public static T <#= propertyName #><T>(this T <#= TypeName.ToLowerInvariant() #>, Func<Stream> imageStream) where T : IRx<#= TypeName #>
         {
-            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.Name.ToResevedWordTypeName() #>>(ImageSource.FromStream(imageStream));
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(ImageSource.FromStream(imageStream));
             return <#= TypeName.ToLowerInvariant() #>;
         }
         */

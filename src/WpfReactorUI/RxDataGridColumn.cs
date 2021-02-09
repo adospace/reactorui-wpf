@@ -35,6 +35,7 @@ namespace WpfReactorUI
         PropertyValue<bool>? IsReadOnly { get; set; }
         PropertyValue<double>? MaxWidth { get; set; }
         PropertyValue<double>? MinWidth { get; set; }
+        PropertyValue<ListSortDirection>? SortDirection { get; set; }
         PropertyValue<string>? SortMemberPath { get; set; }
         PropertyValue<Visibility>? Visibility { get; set; }
         PropertyValue<DataGridLength>? Width { get; set; }
@@ -69,6 +70,7 @@ namespace WpfReactorUI
         PropertyValue<bool>? IRxDataGridColumn.IsReadOnly { get; set; }
         PropertyValue<double>? IRxDataGridColumn.MaxWidth { get; set; }
         PropertyValue<double>? IRxDataGridColumn.MinWidth { get; set; }
+        PropertyValue<ListSortDirection>? IRxDataGridColumn.SortDirection { get; set; }
         PropertyValue<string>? IRxDataGridColumn.SortMemberPath { get; set; }
         PropertyValue<Visibility>? IRxDataGridColumn.Visibility { get; set; }
         PropertyValue<DataGridLength>? IRxDataGridColumn.Width { get; set; }
@@ -95,6 +97,7 @@ namespace WpfReactorUI
             SetPropertyValue(NativeControl, DataGridColumn.IsReadOnlyProperty, thisAsIRxDataGridColumn.IsReadOnly);
             SetPropertyValue(NativeControl, DataGridColumn.MaxWidthProperty, thisAsIRxDataGridColumn.MaxWidth);
             SetPropertyValue(NativeControl, DataGridColumn.MinWidthProperty, thisAsIRxDataGridColumn.MinWidth);
+            SetPropertyValue(NativeControl, DataGridColumn.SortDirectionProperty, thisAsIRxDataGridColumn.SortDirection);
             SetPropertyValue(NativeControl, DataGridColumn.SortMemberPathProperty, thisAsIRxDataGridColumn.SortMemberPath);
             SetPropertyValue(NativeControl, DataGridColumn.VisibilityProperty, thisAsIRxDataGridColumn.Visibility);
             SetPropertyValue(NativeControl, DataGridColumn.WidthProperty, thisAsIRxDataGridColumn.Width);
@@ -273,6 +276,16 @@ namespace WpfReactorUI
         public static T MinWidth<T>(this T datagridcolumn, Func<double> minWidthFunc) where T : IRxDataGridColumn
         {
             datagridcolumn.MinWidth = new PropertyValue<double>(minWidthFunc);
+            return datagridcolumn;
+        }
+        public static T SortDirection<T>(this T datagridcolumn, ListSortDirection sortDirection) where T : IRxDataGridColumn
+        {
+            datagridcolumn.SortDirection = new PropertyValue<ListSortDirection>(sortDirection);
+            return datagridcolumn;
+        }
+        public static T SortDirection<T>(this T datagridcolumn, Func<ListSortDirection> sortDirectionFunc) where T : IRxDataGridColumn
+        {
+            datagridcolumn.SortDirection = new PropertyValue<ListSortDirection>(sortDirectionFunc);
             return datagridcolumn;
         }
         public static T SortMemberPath<T>(this T datagridcolumn, string sortMemberPath) where T : IRxDataGridColumn

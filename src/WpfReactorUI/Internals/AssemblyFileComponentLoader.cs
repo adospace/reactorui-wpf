@@ -36,10 +36,12 @@ namespace WpfReactorUI.Internals
                 Path.GetDirectoryName(assemblyPath) ?? throw new InvalidOperationException($"Unable to get directory name of {assemblyPath}"), 
                 Path.GetFileNameWithoutExtension(assemblyPath) + ".pdb");
 
-            var assembly = File.Exists(assemblyPdbPath) ?
-                Assembly.Load(File.ReadAllBytes(assemblyPath))
-                :
-                Assembly.Load(File.ReadAllBytes(assemblyPath), File.ReadAllBytes(assemblyPdbPath));
+            //var assembly = File.Exists(assemblyPdbPath) ?
+            //    Assembly.Load(Utils.ReadFileBytesWithoutLock(assemblyPath))
+            //    :
+            //    Assembly.Load(Utils.ReadFileBytesWithoutLock(assemblyPath), Utils.ReadFileBytesWithoutLock(assemblyPdbPath));
+
+            var assembly = Utils.LoadAssemblyWithoutLock(assemblyPath);
 
             var type = assembly.GetType(typeof(T).FullName ?? throw new InvalidOperationException("Unable to get component type full name"))
                 ?? throw new InvalidOperationException("Unable to get type of the component to load");
@@ -75,6 +77,7 @@ namespace WpfReactorUI.Internals
 
             try
             {
+                Thread.Sleep(2000);
                 ComponentAssemblyChanged?.Invoke(this, EventArgs.Empty);
             }
             finally

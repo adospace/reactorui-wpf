@@ -25,7 +25,7 @@ namespace WpfReactorUI.ScaffoldApp
 
             var propertiesMap = _typeToScaffold.GetProperties()
                 //generic types not supported
-                .Where(_ => !_.PropertyType.IsGenericType)
+                .Where(_ => !_.PropertyType.IsGenericType || _.PropertyType.IsValueType)
                 //excluding common properties not relevant to ReactorUI framework
                 .Where(_ => !typeof(FrameworkTemplate).IsAssignableFrom(_.PropertyType))
                 .Where(_ => !typeof(GroupStyleSelector).IsAssignableFrom(_.PropertyType))
@@ -45,7 +45,6 @@ namespace WpfReactorUI.ScaffoldApp
                 .Where(_ => propertiesMap.ContainsKey(_))
                 .Select(_ => propertiesMap[_])
                 .Where(_ => _.GetCustomAttribute<ObsoleteAttribute>() == null)
-                .Where(_ => !_.PropertyType.IsGenericType)
                 .Where(_ => (_.GetSetMethod()?.IsPublic).GetValueOrDefault())
                 .OrderBy(_ => _.Name)
                 .ToArray();
@@ -143,25 +142,34 @@ namespace WpfReactorUI.ScaffoldApp
             return char.ToLowerInvariant(s[0]) + s[1..];
         }
 
-        public static string ToResevedWordTypeName(this string typename)
+        public static string ToResevedWordTypeName(this Type type)
         {
+            var typename = type.Name;
+            bool isGenericType = false;
+
+            if (type.IsGenericType && type.IsValueType)
+            {
+                typename = type.GenericTypeArguments[0].Name;
+                isGenericType = true;
+            }
+
             return typename switch
             {
-                "SByte" => "sbyte",
-                "Byte" => "byte",
-                "Int16" => "short",
-                "UInt16" => "ushort",
-                "Int32" => "int",
-                "UInt32" => "uint",
-                "Int64" => "long",
-                "UInt64" => "ulong",
-                "Char" => "char",
-                "Single" => "float",
-                "Double" => "double",
-                "Boolean" => "bool",
-                "Decimal" => "decimal",
-                "String" => "string",
-                "Object" => "object",
+                "SByte" => "sbyte" + (isGenericType ? "?" : string.Empty),
+                "Byte" => "byte" + (isGenericType ? "?" : string.Empty),
+                "Int16" => "short" + (isGenericType ? "?" : string.Empty),
+                "UInt16" => "ushort" + (isGenericType ? "?" : string.Empty),
+                "Int32" => "int" + (isGenericType ? "?" : string.Empty),
+                "UInt32" => "uint" + (isGenericType ? "?" : string.Empty),
+                "Int64" => "long" + (isGenericType ? "?" : string.Empty),
+                "UInt64" => "ulong" + (isGenericType ? "?" : string.Empty),
+                "Char" => "char" + (isGenericType ? "?" : string.Empty),
+                "Single" => "float" + (isGenericType ? "?" : string.Empty),
+                "Double" => "double" + (isGenericType ? "?" : string.Empty),
+                "Boolean" => "bool" + (isGenericType ? "?" : string.Empty),
+                "Decimal" => "decimal" + (isGenericType ? "?" : string.Empty),
+                "String" => "string" + (isGenericType ? "?" : string.Empty),
+                "Object" => "object" + (isGenericType ? "?" : string.Empty),
                 _ => typename,
             };
         }

@@ -1,4 +1,5 @@
-﻿System.Windows.Media.Visual
+﻿System.Windows.Controls.Primitives.ToggleButton
+System.Windows.Media.Visual
 System.Windows.UIElement
 System.Windows.FrameworkElement
 System.Windows.Controls.Control
@@ -36,6 +37,7 @@ System.Windows.Controls.ProgressBar
 System.Windows.Controls.Primitives.RangeBase
 System.Windows.Controls.WrapPanel
 System.Windows.Controls.PasswordBox
+
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar

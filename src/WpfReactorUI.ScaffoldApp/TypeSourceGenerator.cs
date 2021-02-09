@@ -116,7 +116,7 @@ using WpfReactorUI.Internals;
             this.Write("        PropertyValue<");
             
             #line 45 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -305,7 +305,7 @@ using WpfReactorUI.Internals;
             this.Write("        PropertyValue<");
             
             #line 75 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -750,7 +750,7 @@ using WpfReactorUI.Internals;
             this.Write(", ");
             
             #line 165 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -785,7 +785,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 167 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -820,7 +820,7 @@ using WpfReactorUI.Internals;
             this.Write(", Func<");
             
             #line 170 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -855,7 +855,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 172 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -918,7 +918,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 178 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -968,7 +968,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 183 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1031,7 +1031,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 190 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1095,7 +1095,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 199 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1144,7 +1144,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 205 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1193,7 +1193,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 211 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1242,7 +1242,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 217 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden
@@ -1293,7 +1293,7 @@ using WpfReactorUI.Internals;
             this.Write(" = new PropertyValue<");
             
             #line 227 "C:\Users\ado\source\repos\github\reactorui-wpf\src\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.Name.ToResevedWordTypeName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyType.ToResevedWordTypeName()));
             
             #line default
             #line hidden

@@ -23,6 +23,7 @@ namespace WpfReactorUI
 {
     public partial interface IRxSelector : IRxItemsControl
     {
+        PropertyValue<bool?>? IsSynchronizedWithCurrentItem { get; set; }
         PropertyValue<int>? SelectedIndex { get; set; }
         PropertyValue<object>? SelectedItem { get; set; }
         PropertyValue<object>? SelectedValue { get; set; }
@@ -44,6 +45,7 @@ namespace WpfReactorUI
 
         }
 
+        PropertyValue<bool?>? IRxSelector.IsSynchronizedWithCurrentItem { get; set; }
         PropertyValue<int>? IRxSelector.SelectedIndex { get; set; }
         PropertyValue<object>? IRxSelector.SelectedItem { get; set; }
         PropertyValue<object>? IRxSelector.SelectedValue { get; set; }
@@ -57,6 +59,7 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxSelector = (IRxSelector)this;
+            SetPropertyValue(NativeControl, Selector.IsSynchronizedWithCurrentItemProperty, thisAsIRxSelector.IsSynchronizedWithCurrentItem);
             SetPropertyValue(NativeControl, Selector.SelectedIndexProperty, thisAsIRxSelector.SelectedIndex);
             SetPropertyValue(NativeControl, Selector.SelectedItemProperty, thisAsIRxSelector.SelectedItem);
             SetPropertyValue(NativeControl, Selector.SelectedValueProperty, thisAsIRxSelector.SelectedValue);
@@ -107,6 +110,16 @@ namespace WpfReactorUI
     }
     public static partial class RxSelectorExtensions
     {
+        public static T IsSynchronizedWithCurrentItem<T>(this T selector, bool? isSynchronizedWithCurrentItem) where T : IRxSelector
+        {
+            selector.IsSynchronizedWithCurrentItem = new PropertyValue<bool?>(isSynchronizedWithCurrentItem);
+            return selector;
+        }
+        public static T IsSynchronizedWithCurrentItem<T>(this T selector, Func<bool?> isSynchronizedWithCurrentItemFunc) where T : IRxSelector
+        {
+            selector.IsSynchronizedWithCurrentItem = new PropertyValue<bool?>(isSynchronizedWithCurrentItemFunc);
+            return selector;
+        }
         public static T SelectedIndex<T>(this T selector, int selectedIndex) where T : IRxSelector
         {
             selector.SelectedIndex = new PropertyValue<int>(selectedIndex);
