@@ -61,7 +61,7 @@ namespace WpfReactorUI
             return _internalChildren.GetEnumerator();
         }
 
-        public void Add(params VisualNode[] nodes)
+        public void Add(params VisualNode?[] nodes)
         {
             if (nodes is null)
             {
@@ -69,10 +69,15 @@ namespace WpfReactorUI
             }
 
             foreach (var node in nodes)
-                _internalChildren.Add(node);
+            {
+                if (node != null)
+                {
+                    _internalChildren.Add(node);
+                }
+            }
         }
 
-        public void Add(object genericNode)
+        public void Add(object? genericNode)
         {
             if (genericNode == null)
             {

@@ -36,8 +36,13 @@ namespace WpfReactorUI
 
         PropertyValue<string>? IRxPage.ContentString { get; set; }
 
-        public void Add(VisualNode child)
+        public void Add(VisualNode? child)
         {
+            if (child == null)
+            {
+                return;
+            }
+
             if (_contents.Any())
                 throw new InvalidOperationException("Content already set");
 

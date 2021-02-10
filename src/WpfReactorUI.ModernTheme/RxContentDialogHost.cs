@@ -1,31 +1,32 @@
-﻿using System;
+﻿using ModernWpf.Controls;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using WpfReactorUI.Internals;
+using WpfReactorUI.ModernTheme.Internals;
 
-namespace WpfReactorUI
+namespace WpfReactorUI.ModernTheme
 {
-    public interface IRxWindowHost
+    public interface IRxContentDialogHost
     {
         PropertyValue<bool>? IsVisible { get; set; }
-        PropertyValue<WindowHostOwnership>? Ownership { get; set; }
-        PropertyValue<bool>? ShowAsDialog { get; set; }
+        //PropertyValue<WindowHostOwnership>? Ownership { get; set; }
+        //PropertyValue<bool>? ShowAsDialog { get; set; }
     }
 
-    public sealed class RxWindowHost : VisualNode<WindowHost>, IRxWindowHost, IEnumerable<VisualNode>
+    public sealed class RxContentDialogHost : VisualNode<ContentDialogHost>, IRxContentDialogHost, IEnumerable<VisualNode>
     {
         private readonly List<VisualNode> _contents = new List<VisualNode>();
 
-        public RxWindowHost()
+        public RxContentDialogHost()
         {
 
         }
 
-        public RxWindowHost(Action<WindowHost?> componentRefAction)
+        public RxContentDialogHost(Action<ContentDialogHost?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -51,7 +52,7 @@ namespace WpfReactorUI
 
         protected sealed override void OnAddChild(VisualNode widget, object childControl)
         {
-            if (childControl is Window window)
+            if (childControl is ContentDialog window)
             {
                 NativeControl.Window = window;
             }
@@ -65,20 +66,20 @@ namespace WpfReactorUI
 
         protected sealed override void OnRemoveChild(VisualNode widget, object childControl)
         {
-            NativeControl.Window = null;
+            //NativeControl.Window = null;
 
             base.OnRemoveChild(widget, childControl);
         }
 
-        PropertyValue<bool>? IRxWindowHost.IsVisible { get; set; }
-        PropertyValue<WindowHostOwnership>? IRxWindowHost.Ownership { get; set; }
-        PropertyValue<bool>? IRxWindowHost.ShowAsDialog { get; set; }
+        PropertyValue<bool>? IRxContentDialogHost.IsVisible { get; set; }
+        //PropertyValue<WindowHostOwnership>? IRxContentDialogHost.Ownership { get; set; }
+        //PropertyValue<bool>? IRxContentDialogHost.ShowAsDialog { get; set; }
 
         protected override void OnMount()
         {
             if (_nativeControl == null)
             {
-                _nativeControl = new WindowHost();
+                _nativeControl = new ContentDialogHost();
                 //do not add it to parent control
             }
 
@@ -101,10 +102,10 @@ namespace WpfReactorUI
 
         protected override void OnUpdate()
         {
-            var thisAsIRxWindow = (IRxWindowHost)this;
-            SetPropertyValue(NativeControl, WindowHost.IsVisibleProperty, thisAsIRxWindow.IsVisible);
-            SetPropertyValue(NativeControl, WindowHost.OwnershipProperty, thisAsIRxWindow.Ownership);
-            SetPropertyValue(NativeControl, WindowHost.ShowAsDialogProperty, thisAsIRxWindow.ShowAsDialog);
+            var thisAsIRxWindow = (IRxContentDialogHost)this;
+            SetPropertyValue(NativeControl, ContentDialogHost.IsVisibleProperty, thisAsIRxWindow.IsVisible);
+            //SetPropertyValue(NativeControl, WindowHost.OwnershipProperty, thisAsIRxWindow.Ownership);
+            //SetPropertyValue(NativeControl, WindowHost.ShowAsDialogProperty, thisAsIRxWindow.ShowAsDialog);
 
             base.OnUpdate();
         }
@@ -121,25 +122,25 @@ namespace WpfReactorUI
 
     }
 
-    public static partial class RxWindowHostExtensions
+    public static partial class RxContentDialogHostExtensions
     {
-        public static T IsVisible<T>(this T windowHost, bool isVisible) where T : IRxWindowHost
+        public static T IsVisible<T>(this T windowHost, bool isVisible) where T : IRxContentDialogHost
         {
             windowHost.IsVisible = new PropertyValue<bool>(isVisible);
             return windowHost;
         }
 
-        public static T Ownership<T>(this T windowHost, WindowHostOwnership ownership) where T : IRxWindowHost
-        {
-            windowHost.Ownership = new PropertyValue<WindowHostOwnership>(ownership);
-            return windowHost;
-        }
+        //public static T Ownership<T>(this T windowHost, WindowHostOwnership ownership) where T : IRxContentDialogHost
+        //{
+        //    windowHost.Ownership = new PropertyValue<WindowHostOwnership>(ownership);
+        //    return windowHost;
+        //}
 
-        public static T ShowAsDialog<T>(this T windowHost, bool showAsDialog) where T : IRxWindowHost
-        {
-            windowHost.ShowAsDialog = new PropertyValue<bool>(showAsDialog);
-            return windowHost;
-        }
+        //public static T ShowAsDialog<T>(this T windowHost, bool showAsDialog) where T : IRxContentDialogHost
+        //{
+        //    windowHost.ShowAsDialog = new PropertyValue<bool>(showAsDialog);
+        //    return windowHost;
+        //}
 
 
     }
