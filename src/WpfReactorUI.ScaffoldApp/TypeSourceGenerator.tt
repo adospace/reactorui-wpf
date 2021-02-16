@@ -17,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -31,6 +30,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 <# foreach (var usingNS in AdditionalUsings) { #>
@@ -183,11 +183,23 @@ namespace <#= Namespace #>
             <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new Thickness(uniformSize));
             return <#= TypeName.ToLowerInvariant() #>;
         }
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, double left, double top, double right, double bottom) where T : IRx<#= TypeName #>
+        {
+            <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new Thickness(left, top, right, bottom));
+            return <#= TypeName.ToLowerInvariant() #>;
+        }
         <# } #>
         <# if (IsCommand(property.PropertyType)) { #>
         public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, Action action) where T : IRx<#= TypeName #>
         {
             <#= TypeName.ToLowerInvariant() #>.<#= property.Name #> = new PropertyValue<<#= property.PropertyType.ToResevedWordTypeName() #>>(new ActionCommand(action));
+            return <#= TypeName.ToLowerInvariant() #>;
+        }
+        <# } #>
+        <# if (IsBrushAndTypeIsFrameworkElement(property.PropertyType)) { #>
+        public static T <#= property.Name #><T>(this T <#= TypeName.ToLowerInvariant() #>, string <#= property.Name.ToLowerInvariant() #>ResourceKey) where T : IRx<#= TypeName #>
+        {
+            <#= TypeName.ToLowerInvariant() #>.ResourceReferences[<#= TypeName #>.<#= property.Name #>Property] = <#= property.Name.ToLowerInvariant() #>ResourceKey;
             return <#= TypeName.ToLowerInvariant() #>;
         }
         <# } #>

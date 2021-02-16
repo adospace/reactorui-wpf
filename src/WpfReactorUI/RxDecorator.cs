@@ -21,18 +21,18 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxMultiSelector : IRxSelector
+    public partial interface IRxDecorator : IRxFrameworkElement
     {
 
     }
-    public partial class RxMultiSelector<T> : RxSelector<T>, IRxMultiSelector where T : MultiSelector, new()
+    public partial class RxDecorator<T> : RxFrameworkElement<T>, IRxDecorator where T : Decorator, new()
     {
-        public RxMultiSelector()
+        public RxDecorator()
         {
 
         }
 
-        public RxMultiSelector(Action<T?> componentRefAction)
+        public RxDecorator(Action<T?> componentRefAction)
             : base(componentRefAction)
         {
 
@@ -73,7 +73,20 @@ namespace WpfReactorUI
         }
 
     }
-    public static partial class RxMultiSelectorExtensions
+    public partial class RxDecorator : RxDecorator<Decorator>
+    {
+        public RxDecorator()
+        {
+
+        }
+
+        public RxDecorator(Action<Decorator?> componentRefAction)
+            : base(componentRefAction)
+        {
+
+        }
+    }
+    public static partial class RxDecoratorExtensions
     {
     }
 }

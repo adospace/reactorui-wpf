@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -153,6 +153,11 @@ namespace WpfReactorUI
             textblock.Background = new PropertyValue<Brush>(backgroundFunc);
             return textblock;
         }
+        public static T Background<T>(this T textblock, string backgroundResourceKey) where T : IRxTextBlock
+        {
+            textblock.ResourceReferences[TextBlock.BackgroundProperty] = backgroundResourceKey;
+            return textblock;
+        }
         public static T BaselineOffset<T>(this T textblock, double baselineOffset) where T : IRxTextBlock
         {
             textblock.BaselineOffset = new PropertyValue<double>(baselineOffset);
@@ -223,6 +228,11 @@ namespace WpfReactorUI
             textblock.Foreground = new PropertyValue<Brush>(foregroundFunc);
             return textblock;
         }
+        public static T Foreground<T>(this T textblock, string foregroundResourceKey) where T : IRxTextBlock
+        {
+            textblock.ResourceReferences[TextBlock.ForegroundProperty] = foregroundResourceKey;
+            return textblock;
+        }
         public static T IsHyphenationEnabled<T>(this T textblock, bool isHyphenationEnabled) where T : IRxTextBlock
         {
             textblock.IsHyphenationEnabled = new PropertyValue<bool>(isHyphenationEnabled);
@@ -271,6 +281,11 @@ namespace WpfReactorUI
         public static T Padding<T>(this T textblock, double uniformSize) where T : IRxTextBlock
         {
             textblock.Padding = new PropertyValue<Thickness>(new Thickness(uniformSize));
+            return textblock;
+        }
+        public static T Padding<T>(this T textblock, double left, double top, double right, double bottom) where T : IRxTextBlock
+        {
+            textblock.Padding = new PropertyValue<Thickness>(new Thickness(left, top, right, bottom));
             return textblock;
         }
         public static T Text<T>(this T textblock, string text) where T : IRxTextBlock

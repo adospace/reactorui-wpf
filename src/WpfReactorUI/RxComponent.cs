@@ -227,10 +227,12 @@ namespace WpfReactorUI
     {
         private IRxComponentWithState? _newComponent;
         private readonly List<Action> _actionsRegisterdOnStateChange = new();
+        private bool _derivedState;
 
         protected RxComponent(S? state = null, P? props = null)
             : base(props)
         {
+            _derivedState = state != null;
             State = state ?? new S();
         }
 
@@ -306,7 +308,7 @@ namespace WpfReactorUI
         {
             if (newNode != this && newNode.GetType().FullName == GetType().FullName)
             {
-                if (newNode is IRxComponentWithState newComponentWithState)
+                if (!_derivedState && newNode is IRxComponentWithState newComponentWithState)
                 {
                     _newComponent = newComponentWithState;
 

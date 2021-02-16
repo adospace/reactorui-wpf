@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -120,6 +120,11 @@ namespace WpfReactorUI
             page.Background = new PropertyValue<Brush>(backgroundFunc);
             return page;
         }
+        public static T Background<T>(this T page, string backgroundResourceKey) where T : IRxPage
+        {
+            page.ResourceReferences[Page.BackgroundProperty] = backgroundResourceKey;
+            return page;
+        }
         public static T Content<T>(this T page, object content) where T : IRxPage
         {
             page.Content = new PropertyValue<object>(content);
@@ -158,6 +163,11 @@ namespace WpfReactorUI
         public static T Foreground<T>(this T page, Func<Brush> foregroundFunc) where T : IRxPage
         {
             page.Foreground = new PropertyValue<Brush>(foregroundFunc);
+            return page;
+        }
+        public static T Foreground<T>(this T page, string foregroundResourceKey) where T : IRxPage
+        {
+            page.ResourceReferences[Page.ForegroundProperty] = foregroundResourceKey;
             return page;
         }
         public static T KeepAlive<T>(this T page, bool keepAlive) where T : IRxPage

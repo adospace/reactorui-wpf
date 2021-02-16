@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -126,6 +126,11 @@ namespace WpfReactorUI
             passwordbox.CaretBrush = new PropertyValue<Brush>(caretBrushFunc);
             return passwordbox;
         }
+        public static T CaretBrush<T>(this T passwordbox, string caretbrushResourceKey) where T : IRxPasswordBox
+        {
+            passwordbox.ResourceReferences[PasswordBox.CaretBrushProperty] = caretbrushResourceKey;
+            return passwordbox;
+        }
         public static T IsInactiveSelectionHighlightEnabled<T>(this T passwordbox, bool isInactiveSelectionHighlightEnabled) where T : IRxPasswordBox
         {
             passwordbox.IsInactiveSelectionHighlightEnabled = new PropertyValue<bool>(isInactiveSelectionHighlightEnabled);
@@ -166,6 +171,11 @@ namespace WpfReactorUI
             passwordbox.SelectionBrush = new PropertyValue<Brush>(selectionBrushFunc);
             return passwordbox;
         }
+        public static T SelectionBrush<T>(this T passwordbox, string selectionbrushResourceKey) where T : IRxPasswordBox
+        {
+            passwordbox.ResourceReferences[PasswordBox.SelectionBrushProperty] = selectionbrushResourceKey;
+            return passwordbox;
+        }
         public static T SelectionOpacity<T>(this T passwordbox, double selectionOpacity) where T : IRxPasswordBox
         {
             passwordbox.SelectionOpacity = new PropertyValue<double>(selectionOpacity);
@@ -184,6 +194,11 @@ namespace WpfReactorUI
         public static T SelectionTextBrush<T>(this T passwordbox, Func<Brush> selectionTextBrushFunc) where T : IRxPasswordBox
         {
             passwordbox.SelectionTextBrush = new PropertyValue<Brush>(selectionTextBrushFunc);
+            return passwordbox;
+        }
+        public static T SelectionTextBrush<T>(this T passwordbox, string selectiontextbrushResourceKey) where T : IRxPasswordBox
+        {
+            passwordbox.ResourceReferences[PasswordBox.SelectionTextBrushProperty] = selectiontextbrushResourceKey;
             return passwordbox;
         }
         public static T OnPasswordChanged<T>(this T passwordbox, Action passwordchangedAction) where T : IRxPasswordBox

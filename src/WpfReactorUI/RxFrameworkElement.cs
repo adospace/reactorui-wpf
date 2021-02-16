@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -473,6 +473,11 @@ namespace WpfReactorUI
         public static T Margin<T>(this T frameworkelement, double uniformSize) where T : IRxFrameworkElement
         {
             frameworkelement.Margin = new PropertyValue<Thickness>(new Thickness(uniformSize));
+            return frameworkelement;
+        }
+        public static T Margin<T>(this T frameworkelement, double left, double top, double right, double bottom) where T : IRxFrameworkElement
+        {
+            frameworkelement.Margin = new PropertyValue<Thickness>(new Thickness(left, top, right, bottom));
             return frameworkelement;
         }
         public static T MaxHeight<T>(this T frameworkelement, double maxHeight) where T : IRxFrameworkElement

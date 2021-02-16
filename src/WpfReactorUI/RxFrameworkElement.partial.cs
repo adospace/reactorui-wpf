@@ -20,8 +20,34 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
+    public partial interface IRxFrameworkElement
+    {
+        Dictionary<DependencyProperty, object> ResourceReferences { get; }
+    }
+
+    public partial class RxFrameworkElement<T>
+    {
+        Dictionary<DependencyProperty, object> IRxFrameworkElement.ResourceReferences { get; } = new Dictionary<DependencyProperty, object>();
+
+        partial void OnEndUpdate()
+        {
+            var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
+
+            foreach (var resourceReference in thisAsIRxFrameworkElement.ResourceReferences)
+            {
+                NativeControl.SetResourceReference(resourceReference.Key, resourceReference.Value);
+            }
+        }
+    }
+
     public static partial class RxFrameworkElementExtensions
     {
+        public static T SetResourceReference<T>(this T frameworkElement, DependencyProperty dependencyProperty, object resourceName) where T : IRxFrameworkElement
+        {
+            frameworkElement.ResourceReferences[dependencyProperty] = resourceName;
+            return frameworkElement;
+        }
+
         public static T HLeft<T>(this T layoutable) where T : IRxFrameworkElement
         {
             layoutable.HorizontalAlignment = new PropertyValue<HorizontalAlignment>(System.Windows.HorizontalAlignment.Left);

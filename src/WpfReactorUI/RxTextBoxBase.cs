@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -192,6 +192,11 @@ namespace WpfReactorUI
             textboxbase.CaretBrush = new PropertyValue<Brush>(caretBrushFunc);
             return textboxbase;
         }
+        public static T CaretBrush<T>(this T textboxbase, string caretbrushResourceKey) where T : IRxTextBoxBase
+        {
+            textboxbase.ResourceReferences[TextBoxBase.CaretBrushProperty] = caretbrushResourceKey;
+            return textboxbase;
+        }
         public static T HorizontalScrollBarVisibility<T>(this T textboxbase, ScrollBarVisibility horizontalScrollBarVisibility) where T : IRxTextBoxBase
         {
             textboxbase.HorizontalScrollBarVisibility = new PropertyValue<ScrollBarVisibility>(horizontalScrollBarVisibility);
@@ -252,6 +257,11 @@ namespace WpfReactorUI
             textboxbase.SelectionBrush = new PropertyValue<Brush>(selectionBrushFunc);
             return textboxbase;
         }
+        public static T SelectionBrush<T>(this T textboxbase, string selectionbrushResourceKey) where T : IRxTextBoxBase
+        {
+            textboxbase.ResourceReferences[TextBoxBase.SelectionBrushProperty] = selectionbrushResourceKey;
+            return textboxbase;
+        }
         public static T SelectionOpacity<T>(this T textboxbase, double selectionOpacity) where T : IRxTextBoxBase
         {
             textboxbase.SelectionOpacity = new PropertyValue<double>(selectionOpacity);
@@ -270,6 +280,11 @@ namespace WpfReactorUI
         public static T SelectionTextBrush<T>(this T textboxbase, Func<Brush> selectionTextBrushFunc) where T : IRxTextBoxBase
         {
             textboxbase.SelectionTextBrush = new PropertyValue<Brush>(selectionTextBrushFunc);
+            return textboxbase;
+        }
+        public static T SelectionTextBrush<T>(this T textboxbase, string selectiontextbrushResourceKey) where T : IRxTextBoxBase
+        {
+            textboxbase.ResourceReferences[TextBoxBase.SelectionTextBrushProperty] = selectiontextbrushResourceKey;
             return textboxbase;
         }
         public static T UndoLimit<T>(this T textboxbase, int undoLimit) where T : IRxTextBoxBase

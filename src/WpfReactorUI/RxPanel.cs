@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -90,6 +90,11 @@ namespace WpfReactorUI
         public static T Background<T>(this T panel, Func<Brush> backgroundFunc) where T : IRxPanel
         {
             panel.Background = new PropertyValue<Brush>(backgroundFunc);
+            return panel;
+        }
+        public static T Background<T>(this T panel, string backgroundResourceKey) where T : IRxPanel
+        {
+            panel.ResourceReferences[Panel.BackgroundProperty] = backgroundResourceKey;
             return panel;
         }
         public static T IsItemsHost<T>(this T panel, bool isItemsHost) where T : IRxPanel

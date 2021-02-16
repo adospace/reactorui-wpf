@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -568,6 +568,11 @@ namespace WpfReactorUI
             datagrid.AlternatingRowBackground = new PropertyValue<Brush>(alternatingRowBackgroundFunc);
             return datagrid;
         }
+        public static T AlternatingRowBackground<T>(this T datagrid, string alternatingrowbackgroundResourceKey) where T : IRxDataGrid
+        {
+            datagrid.ResourceReferences[DataGrid.AlternatingRowBackgroundProperty] = alternatingrowbackgroundResourceKey;
+            return datagrid;
+        }
         public static T AreRowDetailsFrozen<T>(this T datagrid, bool areRowDetailsFrozen) where T : IRxDataGrid
         {
             datagrid.AreRowDetailsFrozen = new PropertyValue<bool>(areRowDetailsFrozen);
@@ -808,6 +813,11 @@ namespace WpfReactorUI
             datagrid.HorizontalGridLinesBrush = new PropertyValue<Brush>(horizontalGridLinesBrushFunc);
             return datagrid;
         }
+        public static T HorizontalGridLinesBrush<T>(this T datagrid, string horizontalgridlinesbrushResourceKey) where T : IRxDataGrid
+        {
+            datagrid.ResourceReferences[DataGrid.HorizontalGridLinesBrushProperty] = horizontalgridlinesbrushResourceKey;
+            return datagrid;
+        }
         public static T HorizontalScrollBarVisibility<T>(this T datagrid, ScrollBarVisibility horizontalScrollBarVisibility) where T : IRxDataGrid
         {
             datagrid.HorizontalScrollBarVisibility = new PropertyValue<ScrollBarVisibility>(horizontalScrollBarVisibility);
@@ -866,6 +876,11 @@ namespace WpfReactorUI
         public static T RowBackground<T>(this T datagrid, Func<Brush> rowBackgroundFunc) where T : IRxDataGrid
         {
             datagrid.RowBackground = new PropertyValue<Brush>(rowBackgroundFunc);
+            return datagrid;
+        }
+        public static T RowBackground<T>(this T datagrid, string rowbackgroundResourceKey) where T : IRxDataGrid
+        {
+            datagrid.ResourceReferences[DataGrid.RowBackgroundProperty] = rowbackgroundResourceKey;
             return datagrid;
         }
         public static T RowDetailsVisibilityMode<T>(this T datagrid, DataGridRowDetailsVisibilityMode rowDetailsVisibilityMode) where T : IRxDataGrid
@@ -946,6 +961,11 @@ namespace WpfReactorUI
         public static T VerticalGridLinesBrush<T>(this T datagrid, Func<Brush> verticalGridLinesBrushFunc) where T : IRxDataGrid
         {
             datagrid.VerticalGridLinesBrush = new PropertyValue<Brush>(verticalGridLinesBrushFunc);
+            return datagrid;
+        }
+        public static T VerticalGridLinesBrush<T>(this T datagrid, string verticalgridlinesbrushResourceKey) where T : IRxDataGrid
+        {
+            datagrid.ResourceReferences[DataGrid.VerticalGridLinesBrushProperty] = verticalgridlinesbrushResourceKey;
             return datagrid;
         }
         public static T VerticalScrollBarVisibility<T>(this T datagrid, ScrollBarVisibility verticalScrollBarVisibility) where T : IRxDataGrid

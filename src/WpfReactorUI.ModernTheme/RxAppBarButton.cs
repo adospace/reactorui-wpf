@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 using ModernWpf.Controls;
@@ -156,6 +156,11 @@ namespace WpfReactorUI.ModernTheme
         public static T FocusVisualMargin<T>(this T appbarbutton, double uniformSize) where T : IRxAppBarButton
         {
             appbarbutton.FocusVisualMargin = new PropertyValue<Thickness>(new Thickness(uniformSize));
+            return appbarbutton;
+        }
+        public static T FocusVisualMargin<T>(this T appbarbutton, double left, double top, double right, double bottom) where T : IRxAppBarButton
+        {
+            appbarbutton.FocusVisualMargin = new PropertyValue<Thickness>(new Thickness(left, top, right, bottom));
             return appbarbutton;
         }
         public static T Icon<T>(this T appbarbutton, IconElement icon) where T : IRxAppBarButton

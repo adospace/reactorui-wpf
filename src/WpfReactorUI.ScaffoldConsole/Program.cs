@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using WpfReactorUI.ScaffoldApp;
 
 namespace WpfReactorUI.ScaffoldConsole
@@ -20,6 +21,7 @@ namespace WpfReactorUI.ScaffoldConsole
             //force assemblies loading
             var uIElement = new UIElement();
             var button = new Button();
+            var shape = new Rectangle();
             
             var simplePanel = new ModernWpf.Controls.NumberBox();
             
@@ -36,12 +38,12 @@ namespace WpfReactorUI.ScaffoldConsole
             foreach (var classNameToGenerate in File.ReadAllLines("WidgetList.txt").Where(_ => !string.IsNullOrWhiteSpace(_)))
             {
                 var typeToGenerate = types[classNameToGenerate];
-                var targetPath = Path.Combine(baseWpfReactorUIPath, $"Rx{typeToGenerate.Name}.cs");
+                var targetPath = System.IO.Path.Combine(baseWpfReactorUIPath, $"Rx{typeToGenerate.Name}.cs");
                 var generator = new TypeSourceGenerator(typeToGenerate);
 
                 if (classNameToGenerate.StartsWith("ModernWpf"))
                 {
-                    targetPath = Path.Combine(baseWpfReactorUIModernThemePath, $"Rx{typeToGenerate.Name}.cs");
+                    targetPath = System.IO.Path.Combine(baseWpfReactorUIModernThemePath, $"Rx{typeToGenerate.Name}.cs");
                     generator = new TypeSourceGenerator(typeToGenerate, new[] { "ModernWpf.Controls", "ModernWpf.Controls.Primitives" }, "WpfReactorUI.ModernTheme");
                 }
 

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 
@@ -175,6 +175,11 @@ namespace WpfReactorUI
             control.Background = new PropertyValue<Brush>(backgroundFunc);
             return control;
         }
+        public static T Background<T>(this T control, string backgroundResourceKey) where T : IRxControl
+        {
+            control.ResourceReferences[Control.BackgroundProperty] = backgroundResourceKey;
+            return control;
+        }
         public static T BorderBrush<T>(this T control, Brush borderBrush) where T : IRxControl
         {
             control.BorderBrush = new PropertyValue<Brush>(borderBrush);
@@ -183,6 +188,11 @@ namespace WpfReactorUI
         public static T BorderBrush<T>(this T control, Func<Brush> borderBrushFunc) where T : IRxControl
         {
             control.BorderBrush = new PropertyValue<Brush>(borderBrushFunc);
+            return control;
+        }
+        public static T BorderBrush<T>(this T control, string borderbrushResourceKey) where T : IRxControl
+        {
+            control.ResourceReferences[Control.BorderBrushProperty] = borderbrushResourceKey;
             return control;
         }
         public static T BorderThickness<T>(this T control, Thickness borderThickness) where T : IRxControl
@@ -203,6 +213,11 @@ namespace WpfReactorUI
         public static T BorderThickness<T>(this T control, double uniformSize) where T : IRxControl
         {
             control.BorderThickness = new PropertyValue<Thickness>(new Thickness(uniformSize));
+            return control;
+        }
+        public static T BorderThickness<T>(this T control, double left, double top, double right, double bottom) where T : IRxControl
+        {
+            control.BorderThickness = new PropertyValue<Thickness>(new Thickness(left, top, right, bottom));
             return control;
         }
         public static T FontFamily<T>(this T control, FontFamily fontFamily) where T : IRxControl
@@ -265,6 +280,11 @@ namespace WpfReactorUI
             control.Foreground = new PropertyValue<Brush>(foregroundFunc);
             return control;
         }
+        public static T Foreground<T>(this T control, string foregroundResourceKey) where T : IRxControl
+        {
+            control.ResourceReferences[Control.ForegroundProperty] = foregroundResourceKey;
+            return control;
+        }
         public static T HorizontalContentAlignment<T>(this T control, HorizontalAlignment horizontalContentAlignment) where T : IRxControl
         {
             control.HorizontalContentAlignment = new PropertyValue<HorizontalAlignment>(horizontalContentAlignment);
@@ -303,6 +323,11 @@ namespace WpfReactorUI
         public static T Padding<T>(this T control, double uniformSize) where T : IRxControl
         {
             control.Padding = new PropertyValue<Thickness>(new Thickness(uniformSize));
+            return control;
+        }
+        public static T Padding<T>(this T control, double left, double top, double right, double bottom) where T : IRxControl
+        {
+            control.Padding = new PropertyValue<Thickness>(new Thickness(left, top, right, bottom));
             return control;
         }
         public static T TabIndex<T>(this T control, int tabIndex) where T : IRxControl

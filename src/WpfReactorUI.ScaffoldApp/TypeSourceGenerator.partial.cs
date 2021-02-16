@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace WpfReactorUI.ScaffoldApp
 {
@@ -105,6 +106,9 @@ namespace WpfReactorUI.ScaffoldApp
 
         private bool IsCommand(Type type)
             => typeof(ICommand).IsAssignableFrom(type);
+
+        private bool IsBrushAndTypeIsFrameworkElement(Type type)
+            => typeof(Brush).IsAssignableFrom(type) && typeof(FrameworkElement).IsAssignableFrom(_typeToScaffold);
     }
 
     internal class PropertyInfoEqualityComparer : IEqualityComparer<PropertyInfo>

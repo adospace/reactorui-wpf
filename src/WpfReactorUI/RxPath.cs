@@ -21,29 +21,33 @@ using WpfReactorUI.Internals;
 
 namespace WpfReactorUI
 {
-    public partial interface IRxMultiSelector : IRxSelector
+    public partial interface IRxPath : IRxShape
     {
+        PropertyValue<Geometry>? Data { get; set; }
 
     }
-    public partial class RxMultiSelector<T> : RxSelector<T>, IRxMultiSelector where T : MultiSelector, new()
+    public partial class RxPath : RxShape<Path>, IRxPath
     {
-        public RxMultiSelector()
+        public RxPath()
         {
 
         }
 
-        public RxMultiSelector(Action<T?> componentRefAction)
+        public RxPath(Action<Path?> componentRefAction)
             : base(componentRefAction)
         {
 
         }
 
+        PropertyValue<Geometry>? IRxPath.Data { get; set; }
 
 
         protected override void OnUpdate()
         {
             OnBeginUpdate();
 
+            var thisAsIRxPath = (IRxPath)this;
+            SetPropertyValue(NativeControl, Path.DataProperty, thisAsIRxPath.Data);
 
             base.OnUpdate();
 
@@ -73,7 +77,17 @@ namespace WpfReactorUI
         }
 
     }
-    public static partial class RxMultiSelectorExtensions
+    public static partial class RxPathExtensions
     {
+        public static T Data<T>(this T path, Geometry data) where T : IRxPath
+        {
+            path.Data = new PropertyValue<Geometry>(data);
+            return path;
+        }
+        public static T Data<T>(this T path, Func<Geometry> dataFunc) where T : IRxPath
+        {
+            path.Data = new PropertyValue<Geometry>(dataFunc);
+            return path;
+        }
     }
 }

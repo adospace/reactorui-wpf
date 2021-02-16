@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 
 using System.Windows;
@@ -16,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 using WpfReactorUI.Internals;
 using ModernWpf.Controls;
@@ -269,6 +269,11 @@ namespace WpfReactorUI.ModernTheme
         public static T SelectionBrush<T>(this T numberbox, Func<Brush> selectionBrushFunc) where T : IRxNumberBox
         {
             numberbox.SelectionBrush = new PropertyValue<Brush>(selectionBrushFunc);
+            return numberbox;
+        }
+        public static T SelectionBrush<T>(this T numberbox, string selectionbrushResourceKey) where T : IRxNumberBox
+        {
+            numberbox.ResourceReferences[NumberBox.SelectionBrushProperty] = selectionbrushResourceKey;
             return numberbox;
         }
         public static T SmallChange<T>(this T numberbox, double smallChange) where T : IRxNumberBox
