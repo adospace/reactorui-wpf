@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using WpfReactorUI.ScaffoldApp;
@@ -22,6 +23,7 @@ namespace WpfReactorUI.ScaffoldConsole
             var uIElement = new UIElement();
             var button = new Button();
             var shape = new Rectangle();
+            
             
             var simplePanel = new ModernWpf.Controls.NumberBox();
             

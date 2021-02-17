@@ -42,6 +42,7 @@ System.Windows.Controls.Border
 System.Windows.Shapes.Shape
 System.Windows.Shapes.Rectangle
 System.Windows.Shapes.Path
+System.Windows.Controls.Primitives.UniformGrid
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar
