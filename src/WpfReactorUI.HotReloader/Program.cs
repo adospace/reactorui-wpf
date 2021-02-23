@@ -13,6 +13,12 @@ namespace WpfReactorUI.HotReloader
 
         static void Main(string[] args)
         {
+            if (args == null || args.Length != 2)
+            {
+                Console.WriteLine("Command line arguments required: <folder-to-monitor> <assembly-pdb-path>");
+                return;
+            }
+
             _folderToMonitor = args[0];
             _assemblyPdbPath = args[1];
 

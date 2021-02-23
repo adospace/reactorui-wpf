@@ -2,7 +2,7 @@
   "profiles": {
     "WpfReactorUI.HotReloader": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\ado\\source\\repos\\rtr\\noaa-lgr\\src\\Desktop\\NoaaLgr.DesktopClient C:\\Users\\ado\\source\\repos\\rtr\\noaa-lgr\\src\\Desktop\\NoaaLgr.DesktopClient\\bin\\Debug\\net5.0-windows10.0.18362.0\\NoaaLgr.DesktopClient.pdb"
+      "commandLineArgs": "C:\\source\\rtr\\noaa-lgr\\src\\Desktop\\NoaaLgr.DesktopClient C:\\\\source\\rtr\\noaa-lgr\\src\\Desktop\\NoaaLgr.DesktopClient\\bin\\Debug\\net5.0-windows10.0.18362.0\\NoaaLgr.DesktopClient.pdb"
     }
   }
 }

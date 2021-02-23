@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,43 +16,62 @@ namespace WpfReactorUI.Internals
             return (type.IsValueType & type.IsPrimitive);
         }
 
-        
-
-        public static void CopyPropertiesTo<T>(this T source, object dest, PropertyInfo[] destProps)
+        private static bool IsEnumerable(Type type)
         {
-            var sourceProps = typeof(T).GetProperties()
+            return typeof(IEnumerable).IsAssignableFrom(type);
+        }
+
+        public static void CopyPropertiesTo(this object source, object dest)//, PropertyInfo[] destProps
+        {
+            var sourceProps = source
+                .GetType()
+                .GetProperties()
                 .Where(x => x.CanRead)
                 .ToList();
 
+            var destProps = dest
+                .GetType()
+                .GetProperties()
+                .Where(_ => _.CanWrite)
+                .ToDictionary(_ => _.Name, _ => _);
+
             foreach (var sourceProp in sourceProps)
             {
-                var targetProperty = destProps.FirstOrDefault(x => x.Name == sourceProp.Name);
-                if (targetProperty != null)
-                {
-                    var sourceValue = sourceProp.GetValue(source, null);
+                if (!destProps.TryGetValue(sourceProp.Name, out var destProp))
+                    continue;
 
-                    try
-                    {                    
-                        if (sourceValue != null)
-                        {
-                            var sourceValueType = sourceValue.GetType();
-                            if (sourceValueType.IsEnum)
-                            {
-                                sourceValue = Convert.ChangeType(sourceValue, Enum.GetUnderlyingType(sourceProp.PropertyType));
-                            }
-                            else if (!IsPrimitive(sourceValueType) &&
-                                sourceValueType.Assembly != targetProperty.PropertyType.Assembly)
-                            {
-                                sourceValue = sourceValue.Adapt(sourceValueType, targetProperty.PropertyType);                            
-                            }
-                        }
+                var sourceValue = sourceProp.GetValue(source, null);
 
-                        targetProperty.SetValue(dest, sourceValue, null);
-                    }
-                    catch (Exception ex)
+                try
+                {                    
+                    if (sourceValue != null && 
+                        sourceProp.PropertyType != destProp.PropertyType)
                     {
-                        System.Diagnostics.Debug.WriteLine($"Unable to copy property '{targetProperty.Name}' of state ({source?.GetType()}) to new state after hot reload (Exception: '{ex.Message}')");
+                        var sourceValueType = sourceValue.GetType();
+                        if (sourceValueType.IsEnum)
+                        {
+                            var underlyingTypeAsNullable = Nullable.GetUnderlyingType(sourceProp.PropertyType);
+                            if (underlyingTypeAsNullable != null)
+                                sourceValue = Convert.ChangeType(sourceValue, Enum.GetUnderlyingType(underlyingTypeAsNullable));
+                            else
+                                sourceValue = Convert.ChangeType(sourceValue, Enum.GetUnderlyingType(sourceProp.PropertyType));
+                        }
+                        else if (!IsPrimitive(sourceValueType))
+                        {
+                            sourceValue = sourceValue.Adapt(sourceValueType, destProp.PropertyType);
+                            //if (IsEnumerable(sourceValueType) ||
+                            //    sourceValueType.Assembly != destProp.PropertyType.Assembly)
+                            //{
+                            //    sourceValue = sourceValue.Adapt(sourceValueType, destProp.PropertyType);
+                            //}
+                        }
                     }
+
+                    destProp.SetValue(dest, sourceValue, null);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Unable to copy property '{destProp.Name}' of state ({source?.GetType()}) to new state after hot reload (Exception: '{ex.Message}')");
                 }
             }
         }

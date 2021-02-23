@@ -187,7 +187,7 @@ namespace WpfReactorUI
     {
         object State { get; }
 
-        PropertyInfo[] StateProperties { get; }
+        //PropertyInfo[] StateProperties { get; }
 
         void ForwardState(object stateFromOldComponent, bool invalidateComponent);
 
@@ -200,7 +200,7 @@ namespace WpfReactorUI
     {
         object Props { get; }
 
-        PropertyInfo[] PropsProperties { get; }
+        //PropertyInfo[] PropsProperties { get; }
     }
 
     public interface IState
@@ -220,7 +220,7 @@ namespace WpfReactorUI
 
         public P Props { get; private set; }
         object IRxComponentWithProps.Props => Props;
-        public PropertyInfo[] PropsProperties => typeof(P).GetProperties().Where(_ => _.CanWrite).ToArray();
+        //public PropertyInfo[] PropsProperties => typeof(P).GetProperties().Where(_ => _.CanWrite).ToArray();
     }
 
     public abstract class RxComponent<S, P> : RxComponentWithProps<P>, IRxComponentWithState where S : class, IState, new() where P : class, IProps, new()
@@ -238,7 +238,7 @@ namespace WpfReactorUI
 
         public S State { get; private set; }
 
-        public PropertyInfo[] StateProperties => typeof(S).GetProperties().Where(_ => _.CanWrite).ToArray();
+        //public PropertyInfo[] StateProperties => typeof(S).GetProperties().Where(_ => _.CanWrite).ToArray();
 
         object IRxComponentWithState.State => State;
 
@@ -291,7 +291,7 @@ namespace WpfReactorUI
 
         void IRxComponentWithState.ForwardState(object stateFromOldComponent, bool invalidateComponent)
         {
-            stateFromOldComponent.CopyPropertiesTo(State, StateProperties);
+            stateFromOldComponent.CopyPropertiesTo(State);//, StateProperties);
 
             _actionsRegisterdOnStateChange.ForEach(_ => _());
 
@@ -312,12 +312,12 @@ namespace WpfReactorUI
                 {
                     _newComponent = newComponentWithState;
 
-                    State.CopyPropertiesTo(newComponentWithState.State, newComponentWithState.StateProperties);
+                    State.CopyPropertiesTo(newComponentWithState.State);//, newComponentWithState.StateProperties);
                 }
 
                 if (newNode is IRxComponentWithProps newComponentWithProps)
                 {
-                    Props.CopyPropertiesTo(newComponentWithProps.Props, newComponentWithProps.PropsProperties);
+                    Props.CopyPropertiesTo(newComponentWithProps.Props);//, newComponentWithProps.PropsProperties);
                 }
             }
 
