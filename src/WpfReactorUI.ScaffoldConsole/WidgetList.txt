@@ -39,6 +39,7 @@ System.Windows.Controls.WrapPanel
 System.Windows.Controls.PasswordBox
 System.Windows.Controls.Decorator
 System.Windows.Controls.Border
+System.Windows.Controls.ScrollViewer
 System.Windows.Shapes.Shape
 System.Windows.Shapes.Rectangle
 System.Windows.Shapes.Path

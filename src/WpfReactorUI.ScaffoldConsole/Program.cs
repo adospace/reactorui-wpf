@@ -20,7 +20,7 @@ namespace WpfReactorUI.ScaffoldConsole
             var baseWpfReactorUIModernThemePath = basePath + "WpfReactorUI.ModernTheme";
 
             //force assemblies loading
-            var uIElement = new UIElement();
+            var uIElement = new ScrollViewer();
             var button = new Button();
             var shape = new Rectangle();
             
