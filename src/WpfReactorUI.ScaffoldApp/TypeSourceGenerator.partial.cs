@@ -36,6 +36,8 @@ namespace WpfReactorUI.ScaffoldApp
 
                 .Where(_ => !(_typeToScaffold == typeof(ContentControl) && _.Name == "Content"))
 
+                .Where(_ => _.Name != "AllowsTransparency")
+
                 .Distinct(new PropertyInfoEqualityComparer())
                 .ToDictionary(_ => _.Name, _ => _);
 

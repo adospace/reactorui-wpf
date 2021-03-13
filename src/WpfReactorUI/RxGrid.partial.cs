@@ -96,9 +96,33 @@ namespace WpfReactorUI
             return grid;
         }
 
+        public static T Rows<T>(this T grid, int rowCount, double rowHeight) where T : IRxGrid
+        {
+            grid.Rows = new PropertyValue<IList<RowDefinition>>(Enumerable.Range(1, rowCount).Select(_ => new RowDefinition() { Height = new GridLength(rowHeight) }).ToList());
+            return grid;
+        }
+
+        public static T Rows<T>(this T grid, int rowCount, GridLength rowHeight) where T : IRxGrid
+        {
+            grid.Rows = new PropertyValue<IList<RowDefinition>>(Enumerable.Range(1, rowCount).Select(_ => new RowDefinition() { Height = rowHeight }).ToList());
+            return grid;
+        }
+
         public static T Columns<T>(this T grid, string columns) where T : IRxGrid
         {
             grid.Columns = new PropertyValue<IList<ColumnDefinition>>(RxGridUtils.ConvertStringToColumnDefinitions(columns));
+            return grid;
+        }
+
+        public static T Columns<T>(this T grid, int columnCount, double columnWidth) where T : IRxGrid
+        {
+            grid.Columns = new PropertyValue<IList<ColumnDefinition>>(Enumerable.Range(1, columnCount).Select(_ => new ColumnDefinition() { Width = new GridLength(columnWidth) }).ToList());
+            return grid;
+        }
+
+        public static T Columns<T>(this T grid, int columnCount, GridLength columnWidth) where T : IRxGrid
+        {
+            grid.Columns = new PropertyValue<IList<ColumnDefinition>>(Enumerable.Range(1, columnCount).Select(_ => new ColumnDefinition() { Width = columnWidth }).ToList());
             return grid;
         }
 

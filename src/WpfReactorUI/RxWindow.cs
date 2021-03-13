@@ -23,7 +23,6 @@ namespace WpfReactorUI
 {
     public partial interface IRxWindow : IRxContentControl
     {
-        PropertyValue<bool>? AllowsTransparency { get; set; }
         PropertyValue<ImageSource>? Icon { get; set; }
         PropertyValue<double>? Left { get; set; }
         PropertyValue<ResizeMode>? ResizeMode { get; set; }
@@ -69,7 +68,6 @@ namespace WpfReactorUI
 
         }
 
-        PropertyValue<bool>? IRxWindow.AllowsTransparency { get; set; }
         PropertyValue<ImageSource>? IRxWindow.Icon { get; set; }
         PropertyValue<double>? IRxWindow.Left { get; set; }
         PropertyValue<ResizeMode>? IRxWindow.ResizeMode { get; set; }
@@ -107,7 +105,6 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxWindow = (IRxWindow)this;
-            SetPropertyValue(NativeControl, Window.AllowsTransparencyProperty, thisAsIRxWindow.AllowsTransparency);
             SetPropertyValue(NativeControl, Window.IconProperty, thisAsIRxWindow.Icon);
             SetPropertyValue(NativeControl, Window.LeftProperty, thisAsIRxWindow.Left);
             SetPropertyValue(NativeControl, Window.ResizeModeProperty, thisAsIRxWindow.ResizeMode);
@@ -267,16 +264,6 @@ namespace WpfReactorUI
     }
     public static partial class RxWindowExtensions
     {
-        public static T AllowsTransparency<T>(this T window, bool allowsTransparency) where T : IRxWindow
-        {
-            window.AllowsTransparency = new PropertyValue<bool>(allowsTransparency);
-            return window;
-        }
-        public static T AllowsTransparency<T>(this T window, Func<bool> allowsTransparencyFunc) where T : IRxWindow
-        {
-            window.AllowsTransparency = new PropertyValue<bool>(allowsTransparencyFunc);
-            return window;
-        }
         public static T Icon<T>(this T window, ImageSource icon) where T : IRxWindow
         {
             window.Icon = new PropertyValue<ImageSource>(icon);
