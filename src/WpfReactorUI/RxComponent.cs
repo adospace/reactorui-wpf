@@ -187,9 +187,9 @@ namespace WpfReactorUI
     {
         object State { get; }
 
-        //PropertyInfo[] StateProperties { get; }
-
         void ForwardState(object stateFromOldComponent, bool invalidateComponent);
+
+        void InvalidateComponent();
 
         IRxComponentWithState? NewComponent { get; }
 
@@ -199,8 +199,6 @@ namespace WpfReactorUI
     internal interface IRxComponentWithProps
     {
         object Props { get; }
-
-        //PropertyInfo[] PropsProperties { get; }
     }
 
     public interface IState
@@ -277,6 +275,25 @@ namespace WpfReactorUI
                 Application.Current.Dispatcher.BeginInvoke(Invalidate);
             else
                 Invalidate();
+        }
+
+        protected override void OnInvalidated()
+        {
+            var newComponent = _newComponent;
+            while (newComponent != null && newComponent.NewComponent != null)
+                newComponent = newComponent.NewComponent;
+
+            if (newComponent != null)
+            {
+                newComponent.InvalidateComponent();
+            }
+
+            base.OnInvalidated();
+        }
+
+        void IRxComponentWithState.InvalidateComponent()
+        {
+            Invalidate();
         }
 
         void IRxComponentWithState.RegisterOnStateChanged(Action action)
