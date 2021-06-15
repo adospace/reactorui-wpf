@@ -453,6 +453,8 @@ namespace WpfReactorUI
     public abstract class VisualNodeWithAttachedProperties : VisualNode
     {
         public abstract void SetAttachedProperty(DependencyProperty property, object value);
+
+        public abstract void OnEvent(RoutedEvent @event, RoutedEventHandler routedEventHandler);
     }
 
     public static class VisualNodeWithAttachedPropertiesExtensions
@@ -460,6 +462,12 @@ namespace WpfReactorUI
         public static T Set<T>(this T element, DependencyProperty property, object value) where T : VisualNodeWithAttachedProperties
         {
             element.SetAttachedProperty(property, value);
+            return element;
+        }
+
+        public static T On<T>(this T element, RoutedEvent @event, RoutedEventHandler routedEventHandler) where T : VisualNodeWithAttachedProperties
+        {
+            element.OnEvent(@event, routedEventHandler);
             return element;
         }
     }
@@ -484,9 +492,11 @@ namespace WpfReactorUI
 
         private IRxComponentWithState? _containerComponent;
 
-        private Dictionary<DependencyProperty, object> _defaultPropertyValueBag = new Dictionary<DependencyProperty, object>();
+        private Dictionary<DependencyProperty, object> _defaultPropertyValueBag = new();
 
         private readonly Dictionary<DependencyProperty, object> _attachedProperties = new();
+
+        private readonly Dictionary<RoutedEvent, RoutedEventHandler> _routedEvents = new();
 
         internal override void Layout(IRxComponentWithState? containerComponent = null)
         {
@@ -528,7 +538,6 @@ namespace WpfReactorUI
 
         protected T NativeControl 
         {
-            //get => (T)(_nativeControl ?? throw new InvalidOperationException());
             get
             {
                 if (_nativeControl == null)
@@ -559,8 +568,8 @@ namespace WpfReactorUI
         internal virtual void OnMergedWith(VisualNode oldNode)
         {
             _nativeControl = ((VisualNode<T>)oldNode)._nativeControl;
-            IsMounted = ((VisualNode<T>)oldNode)._nativeControl != null;
-            _componentRefAction?.Invoke(((VisualNode<T>)oldNode).NativeControl);
+            IsMounted = _nativeControl != null;
+            _componentRefAction?.Invoke(_nativeControl);
             _defaultPropertyValueBag = ((VisualNode<T>)oldNode)._defaultPropertyValueBag;
         }
 
@@ -573,7 +582,16 @@ namespace WpfReactorUI
                     NativeControl.ClearValue(attachedProperty.Key);
                 }
 
+                if (NativeControl is UIElement childAsUiElement)
+                {
+                    foreach (var @eventHandler in _routedEvents)
+                    {
+                        childAsUiElement.RemoveHandler(eventHandler.Key, eventHandler.Value);
+                    }
+                }
+
                 _attachedProperties.Clear();
+                _routedEvents.Clear();
 
                 OnDetachNativeEvents();
             }
@@ -629,6 +647,14 @@ namespace WpfReactorUI
                 NativeControl.SetValue(attachedProperty.Key, attachedProperty.Value);
             }
 
+            if (NativeControl is UIElement childAsUiElement)
+            {
+                foreach (var @eventHandler in _routedEvents)
+                {
+                    childAsUiElement.AddHandler(eventHandler.Key, eventHandler.Value);
+                }
+            }
+
             OnAttachNativeEvents();
 
             base.OnUpdate();
@@ -662,6 +688,10 @@ namespace WpfReactorUI
                 }
             }
         }
+
+        public override void OnEvent(RoutedEvent @event, RoutedEventHandler routedEventHandler)
+            => _routedEvents[@event] = routedEventHandler;
+        
     }
 
 }

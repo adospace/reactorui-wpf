@@ -23,11 +23,14 @@ namespace WpfReactorUI
     public partial interface IRxFrameworkElement
     {
         Dictionary<DependencyProperty, object> ResourceReferences { get; }
+
+        Func<RxContextMenu> ContextMenuBuilder { get; set; }
     }
 
     public partial class RxFrameworkElement<T>
     {
         Dictionary<DependencyProperty, object> IRxFrameworkElement.ResourceReferences { get; } = new Dictionary<DependencyProperty, object>();
+        Func<RxContextMenu> IRxFrameworkElement.ContextMenuBuilder { get; set; }
 
         partial void OnEndUpdate()
         {
@@ -37,11 +40,92 @@ namespace WpfReactorUI
             {
                 NativeControl.SetResourceReference(resourceReference.Key, resourceReference.Value);
             }
+
+            if (thisAsIRxFrameworkElement.ContextMenuBuilder == null)
+            {
+                NativeControl.ContextMenu = null;
+            }
+            else
+            {
+                var ctxMenu = thisAsIRxFrameworkElement.ContextMenuBuilder();
+                if (ctxMenu == null)
+                {
+                    NativeControl.ContextMenu = null;
+                }
+                else
+                {
+                    var contextMenuRenderer = new ContextMenuRender(ctxMenu);
+                    contextMenuRenderer.Layout();
+                    NativeControl.ContextMenu = contextMenuRenderer.ContextMenuControl;
+                }
+            }
+        }
+    }
+
+    internal class ContextMenuRender : VisualNode
+    {
+        public ContextMenuRender(RxContextMenu contextMenu)
+        {
+            ContextMenu = contextMenu;
+        }
+
+        private RxContextMenu? _contextMenu;
+
+        public RxContextMenu? ContextMenu
+        {
+            get => _contextMenu;
+            set
+            {
+                if (_contextMenu != value)
+                {
+                    _contextMenu = value;
+                    Invalidate();
+                }
+            }
+        }
+
+        public ContextMenu? ContextMenuControl { get; private set; }
+
+        protected sealed override void OnAddChild(VisualNode widget, object nativeControl)
+        {
+            if (nativeControl is ContextMenu view)
+                ContextMenuControl = view;
+            else
+            {
+                throw new InvalidOperationException($"Type '{nativeControl.GetType()}' not supported under '{GetType()}'");
+            }
+        }
+
+        protected sealed override void OnRemoveChild(VisualNode widget, object nativeControl)
+        {
+            ContextMenuControl = null;
+        }
+
+        protected override IEnumerable<VisualNode> RenderChildren()
+        {
+            if (ContextMenu == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            yield return ContextMenu;
+        }
+
+        protected internal override void OnLayoutCycleRequested()
+        {
+            Layout();
+            base.OnLayoutCycleRequested();
         }
     }
 
     public static partial class RxFrameworkElementExtensions
     {
+        public static T ContextMenu<T>(this T frameworkElement, Func<RxContextMenu> contextMenuBuilder) where T : IRxFrameworkElement
+        {
+            frameworkElement.ContextMenuBuilder = contextMenuBuilder;
+            return frameworkElement;
+        }
+
         public static T SetResourceReference<T>(this T frameworkElement, DependencyProperty dependencyProperty, object resourceName) where T : IRxFrameworkElement
         {
             frameworkElement.ResourceReferences[dependencyProperty] = resourceName;

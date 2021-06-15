@@ -23,7 +23,6 @@ namespace WpfReactorUI
 {
     public partial interface IRxFrameworkElement : IRxUIElement
     {
-        PropertyValue<ContextMenu>? ContextMenu { get; set; }
         PropertyValue<Cursor>? Cursor { get; set; }
         PropertyValue<object>? DataContext { get; set; }
         PropertyValue<FlowDirection>? FlowDirection { get; set; }
@@ -86,7 +85,6 @@ namespace WpfReactorUI
 
         }
 
-        PropertyValue<ContextMenu>? IRxFrameworkElement.ContextMenu { get; set; }
         PropertyValue<Cursor>? IRxFrameworkElement.Cursor { get; set; }
         PropertyValue<object>? IRxFrameworkElement.DataContext { get; set; }
         PropertyValue<FlowDirection>? IRxFrameworkElement.FlowDirection { get; set; }
@@ -141,7 +139,6 @@ namespace WpfReactorUI
             OnBeginUpdate();
 
             var thisAsIRxFrameworkElement = (IRxFrameworkElement)this;
-            SetPropertyValue(NativeControl, FrameworkElement.ContextMenuProperty, thisAsIRxFrameworkElement.ContextMenu);
             SetPropertyValue(NativeControl, FrameworkElement.CursorProperty, thisAsIRxFrameworkElement.Cursor);
             SetPropertyValue(NativeControl, FrameworkElement.DataContextProperty, thisAsIRxFrameworkElement.DataContext);
             SetPropertyValue(NativeControl, FrameworkElement.FlowDirectionProperty, thisAsIRxFrameworkElement.FlowDirection);
@@ -345,16 +342,6 @@ namespace WpfReactorUI
     }
     public static partial class RxFrameworkElementExtensions
     {
-        public static T ContextMenu<T>(this T frameworkelement, ContextMenu contextMenu) where T : IRxFrameworkElement
-        {
-            frameworkelement.ContextMenu = new PropertyValue<ContextMenu>(contextMenu);
-            return frameworkelement;
-        }
-        public static T ContextMenu<T>(this T frameworkelement, Func<ContextMenu> contextMenuFunc) where T : IRxFrameworkElement
-        {
-            frameworkelement.ContextMenu = new PropertyValue<ContextMenu>(contextMenuFunc);
-            return frameworkelement;
-        }
         public static T Cursor<T>(this T frameworkelement, Cursor cursor) where T : IRxFrameworkElement
         {
             frameworkelement.Cursor = new PropertyValue<Cursor>(cursor);

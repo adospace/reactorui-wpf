@@ -33,6 +33,7 @@ namespace WpfReactorUI.ScaffoldApp
                 .Where(_ => !typeof(BindingGroup).IsAssignableFrom(_.PropertyType))
                 .Where(_ => !typeof(StyleSelector).IsAssignableFrom(_.PropertyType))
                 .Where(_ => !typeof(DataTemplateSelector).IsAssignableFrom(_.PropertyType))
+                .Where(_ => !typeof(ContextMenu).IsAssignableFrom(_.PropertyType))
 
                 .Where(_ => !(_typeToScaffold == typeof(ContentControl) && _.Name == "Content"))
 

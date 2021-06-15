@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using WpfReactorUI.Internals;
 
@@ -18,11 +19,16 @@ namespace WpfReactorUI
     {
         private readonly List<VisualNode> _children = new();
         private readonly Dictionary<DependencyProperty, object> _attachedProperties = new();
+        private readonly Dictionary<RoutedEvent, RoutedEventHandler> _routedEvents = new();
 
         public abstract VisualNode Render();
 
         public override void SetAttachedProperty(DependencyProperty property, object value)
             => _attachedProperties[property] = value;
+
+        public override void OnEvent(RoutedEvent @event, RoutedEventHandler routedEventHandler)
+            => _routedEvents[@event] = routedEventHandler;
+
 
         public IEnumerator<VisualNode> GetEnumerator()
         {
@@ -84,6 +90,14 @@ namespace WpfReactorUI
                 }
             }
 
+            if (nativeControl is UIElement childAsUiElement)
+            {
+                foreach (var @eventHandler in _routedEvents)
+                {
+                    childAsUiElement.AddHandler(eventHandler.Key, eventHandler.Value);
+                }
+            }
+
             Parent.AddChild(this, nativeControl);
         }
 
@@ -101,6 +115,14 @@ namespace WpfReactorUI
                 foreach (var attachedProperty in _attachedProperties)
                 {
                     childAsDependencyObject.ClearValue(attachedProperty.Key);
+                }
+            }
+
+            if (nativeControl is UIElement childAsUiElement)
+            {
+                foreach (var @eventHandler in _routedEvents)
+                {
+                    childAsUiElement.RemoveHandler(eventHandler.Key, eventHandler.Value);
                 }
             }
         }

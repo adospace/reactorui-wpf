@@ -21,6 +21,18 @@ namespace WpfReactorUI.Host
 
             var assemblyPath = args[0];
 
+            if (string.IsNullOrWhiteSpace(assemblyPath))
+            {
+                Trace.WriteLine($"[WpfReactorUI] Invalid assembly path: empty string passed");
+                return -1;
+            }
+
+            bool isDll = Path.GetExtension(assemblyPath).ToLowerInvariant() == ".dll";
+            if (isDll)
+            {
+                Trace.WriteLine($"[WpfReactorUI] WARNING: Assembly path extension is not '.dll'");
+            }
+
             if (!Path.IsPathRooted(assemblyPath))
             {
                 var currentAssemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
@@ -59,8 +71,15 @@ namespace WpfReactorUI.Host
             //    Trace.WriteLine($"[WpfReactorUI] Assembly pdb '{assemblyPdbPath}' loaded");
             //    assembly = Assembly.Load(Utils.ReadFileBytesWithoutLock(assemblyPath), Utils.ReadFileBytesWithoutLock(assemblyPdbPath));
             //}
-
-            var assembly = Utils.LoadAssemblyWithoutLock(assemblyPath);
+            Assembly? assembly;
+            try
+            {
+                assembly = Utils.LoadAssemblyWithoutLock(assemblyPath);
+            }
+            catch (BadImageFormatException ex)
+            {
+                throw new InvalidOperationException($"Unable to load assembly '{assemblyPath}'{(!isDll ? "Isn't a dll?" : string.Empty)}", ex);
+            }
 
             ComponentLoader.Instance = new AssemblyFileComponentLoader(assemblyPath);
 

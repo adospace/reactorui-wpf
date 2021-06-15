@@ -2,7 +2,7 @@
   "profiles": {
     "WpfReactorUI.Host": {
       "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\WpfReactorUI.DemoApp\\bin\\Debug\\net5.0-windows\\WpfReactorUI.DemoApp.dll"
+      "commandLineArgs": "C:\\Source\\rtr\\noaa-lgr\\src\\Desktop\\NoaaLgr.DesktopClient\\bin\\Debug\\net5.0-windows10.0.18362.0\\NoaaLgr.DesktopClient.exe"
     }
   }
 }
