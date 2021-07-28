@@ -57,7 +57,7 @@ namespace WpfReactorUI
         }
     }
 
-    public static partial class RxPasswordBoxExtensions
+    public static partial class RxDatePickerExtensions
     {
         public static T OnSelectedDateChanged<T>(this T passwordbox, Action<DateTime?> action) where T : IRxDatePicker
         {

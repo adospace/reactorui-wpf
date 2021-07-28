@@ -47,6 +47,7 @@ System.Windows.Shapes.Rectangle
 System.Windows.Shapes.Path
 System.Windows.Controls.Primitives.UniformGrid
 System.Windows.Controls.DatePicker
+System.Windows.Controls.ComboBox
 
 ModernWpf.Controls.SimpleStackPanel
 ModernWpf.Controls.CommandBar
