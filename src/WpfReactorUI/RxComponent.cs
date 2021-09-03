@@ -294,7 +294,7 @@ namespace WpfReactorUI
             _actionsRegisterdOnStateChange.ForEach(_ => _());
 
             if (!Application.Current.Dispatcher.CheckAccess())
-                Application.Current.Dispatcher.BeginInvoke(Invalidate);
+                Application.Current.Dispatcher.BeginInvoke((Action)Invalidate);
             else
                 Invalidate();
         }
@@ -337,7 +337,7 @@ namespace WpfReactorUI
             if (invalidateComponent)
             {
                 if (!Application.Current.Dispatcher.CheckAccess())
-                    Application.Current.Dispatcher.BeginInvoke(Invalidate);
+                    Application.Current.Dispatcher.BeginInvoke((Action)Invalidate);
                 else
                     Invalidate();
             }

@@ -131,7 +131,7 @@ namespace WpfReactorUI
         {
             if (!_application.Dispatcher.CheckAccess())
             {
-                _application.Dispatcher.BeginInvoke(() => OnComponentAssemblyChanged(sender, e));
+                _application.Dispatcher.BeginInvoke((Action)(() => OnComponentAssemblyChanged(sender, e)));
                 return;
             }
 
@@ -169,7 +169,7 @@ namespace WpfReactorUI
         {
             if (!_sleeping)
             {
-                Application.Current.Dispatcher.BeginInvoke(OnLayout);
+                Application.Current.Dispatcher.BeginInvoke((Action)OnLayout);
             }
 
             base.OnLayoutCycleRequested();

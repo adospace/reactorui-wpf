@@ -24,13 +24,13 @@ namespace WpfReactorUI
     {
         Dictionary<DependencyProperty, object> ResourceReferences { get; }
 
-        Func<RxContextMenu> ContextMenuBuilder { get; set; }
+        Func<RxContextMenu>? ContextMenuBuilder { get; set; }
     }
 
     public partial class RxFrameworkElement<T>
     {
         Dictionary<DependencyProperty, object> IRxFrameworkElement.ResourceReferences { get; } = new Dictionary<DependencyProperty, object>();
-        Func<RxContextMenu> IRxFrameworkElement.ContextMenuBuilder { get; set; }
+        Func<RxContextMenu>? IRxFrameworkElement.ContextMenuBuilder { get; set; }
 
         partial void OnEndUpdate()
         {

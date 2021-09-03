@@ -174,7 +174,7 @@ namespace WpfReactorUI
             _animatables[key] = newAnimatableProperty;
         }
 
-        public T? GetMetadata<T>(string key, T defaultValue = default)
+        public T? GetMetadata<T>(string key, T? defaultValue = default)
         {
             if (string.IsNullOrWhiteSpace(key))
             {
@@ -182,12 +182,12 @@ namespace WpfReactorUI
             }
 
             if (_metadata.TryGetValue(key, out var value))
-                return (T)value;
+                return (T?)value;
 
             return defaultValue;
         }
 
-        public T? GetMetadata<T>(T defaultValue = default)
+        public T? GetMetadata<T>(T? defaultValue = default)
             => GetMetadata(typeof(T).FullName ?? throw new InvalidOperationException("typeof(T).FullName returns null"), defaultValue);
 
         public void SetMetadata<T>(string key, T value)
@@ -391,7 +391,7 @@ namespace WpfReactorUI
         protected virtual void OnMount()
         {
             _isMounted = true;
-            System.Diagnostics.Debug.WriteLine($"{this} Mounted");
+            //System.Diagnostics.Debug.WriteLine($"{this} Mounted");
         }
 
         protected virtual void OnRemoveChild(VisualNode widget, object childNativeControl)
@@ -407,7 +407,7 @@ namespace WpfReactorUI
 
             _isMounted = false;
             Parent = null;
-            System.Diagnostics.Debug.WriteLine($"{this} Unmounted");
+            //System.Diagnostics.Debug.WriteLine($"{this} Unmounted");
         }
 
         protected virtual void OnUpdate()
