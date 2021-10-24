@@ -674,7 +674,11 @@ namespace WpfReactorUI
             if (propertyValue != null)
             {
                 SetDefaultPropertyValue(property, dependencyObject.GetValue(property));
-                dependencyObject.SetValue(property, propertyValue.GetValue());
+
+                if (!Equals(dependencyObject.GetValue(property), propertyValue.GetValue()))
+                {
+                    dependencyObject.SetValue(property, propertyValue.GetValue());
+                }
                 if (_containerComponent != null && propertyValue.HasValueFunction)
                 {
                     _containerComponent.RegisterOnStateChanged(propertyValue.GetValueAction(dependencyObject, property));

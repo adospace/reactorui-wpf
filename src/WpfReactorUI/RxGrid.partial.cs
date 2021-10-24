@@ -52,24 +52,74 @@ namespace WpfReactorUI
         {
             var thisAsIRxGrid = (IRxGrid)this;
             
-            //TODO: check if rows/columns changed before replace them
-            NativeControl.RowDefinitions.Clear();
+            int iRow = 0;
             if (thisAsIRxGrid.Rows != null && thisAsIRxGrid.Rows.Value != null)
             {
                 foreach (var row in thisAsIRxGrid.Rows.Value)
                 {
-                    NativeControl.RowDefinitions.Add(row);
+                    if (iRow < NativeControl.RowDefinitions.Count)
+                    {
+                        if (!(row.Height.IsAbsolute && NativeControl.RowDefinitions[iRow].Height.IsAbsolute)
+                            && (row.Height != NativeControl.RowDefinitions[iRow].Height))
+                        {
+                            NativeControl.RowDefinitions[iRow].Height = row.Height;
+                        }
+                        if (row.MinHeight != NativeControl.RowDefinitions[iRow].MinHeight)
+                        {
+                            NativeControl.RowDefinitions[iRow].MinHeight = row.MinHeight;
+                        }
+                    }
+                    else
+                    {
+                        NativeControl.RowDefinitions.Add(row);
+                    }
+
+                    iRow++;
                 }
             }
+            while (iRow < NativeControl.RowDefinitions.Count)
+            {
+                NativeControl.RowDefinitions.RemoveAt(iRow);
+            }
 
-            NativeControl.ColumnDefinitions.Clear();
+            int iColumn = 0;
             if (thisAsIRxGrid.Columns != null && thisAsIRxGrid.Columns.Value != null)
             {
                 foreach (var column in thisAsIRxGrid.Columns.Value)
                 {
-                    NativeControl.ColumnDefinitions.Add(column);
+                    if (iColumn < NativeControl.ColumnDefinitions.Count)
+                    {
+                        if (!(column.Width.IsAbsolute && NativeControl.ColumnDefinitions[iColumn].Width.IsAbsolute)
+                            && (column.Width != NativeControl.ColumnDefinitions[iColumn].Width))
+                        {
+                            NativeControl.ColumnDefinitions[iColumn].Width = column.Width;
+                        }
+                        if (column.MinWidth != NativeControl.ColumnDefinitions[iColumn].MinWidth)
+                        {
+                            NativeControl.ColumnDefinitions[iColumn].MinWidth = column.MinWidth;
+                        }
+                    }
+                    else
+                    {
+                        NativeControl.ColumnDefinitions.Add(column);
+                    }
+
+                    iColumn++;
                 }
             }
+            while (iColumn < NativeControl.ColumnDefinitions.Count)
+            {
+                NativeControl.ColumnDefinitions.RemoveAt(iColumn);
+            }
+
+            //NativeControl.ColumnDefinitions.Clear();
+            //if (thisAsIRxGrid.Columns != null && thisAsIRxGrid.Columns.Value != null)
+            //{
+            //    foreach (var column in thisAsIRxGrid.Columns.Value)
+            //    {
+            //        NativeControl.ColumnDefinitions.Add(column);
+            //    }
+            //}
         }
     }
 

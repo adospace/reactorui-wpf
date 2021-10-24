@@ -55,22 +55,22 @@ namespace WpfReactorUI.Internals
             => ValueFunc != null ? () => dependencyObject.SetValue(dependencyProperty, ValueFunc()) : throw new InvalidOperationException();
     }
 
-    internal static class PropertyValueExtenstions
-    {
-        public static void Set(this DependencyObject dependencyObject, IVisualNodeWithNativeControl visualNode, DependencyProperty property, IPropertyValue propertyValue)
-        {
-            if (propertyValue != null)
-            {
-                visualNode.SetDefaultPropertyValue(property, dependencyObject.GetValue(property));
-                dependencyObject.SetValue(property, propertyValue.GetValue());
-            }
-            else
-            {
-                if (visualNode.TryGetDefaultPropertyValue(property, out var defaultValue))
-                {
-                    dependencyObject.SetValue(property, defaultValue);
-                }            
-            }            
-        }
-    }
+    //internal static class PropertyValueExtenstions
+    //{
+    //    public static void Set(this DependencyObject dependencyObject, IVisualNodeWithNativeControl visualNode, DependencyProperty property, IPropertyValue propertyValue)
+    //    {
+    //        if (propertyValue != null)
+    //        {
+    //            visualNode.SetDefaultPropertyValue(property, dependencyObject.GetValue(property));
+    //            dependencyObject.SetValue(property, propertyValue.GetValue());
+    //        }
+    //        else
+    //        {
+    //            if (visualNode.TryGetDefaultPropertyValue(property, out var defaultValue))
+    //            {
+    //                dependencyObject.SetValue(property, defaultValue);
+    //            }            
+    //        }            
+    //    }
+    //}
 }
