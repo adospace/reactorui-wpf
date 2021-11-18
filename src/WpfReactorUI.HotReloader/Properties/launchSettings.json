@@ -6,7 +6,7 @@
     },
     "Hot Reload Scriber": {
       "commandName": "Executable",
-      "executablePath": "C:\\Source\\github\\reactorui-wpf\\src\\WpfReactorUI.HotReloader\\bin\\Debug\\net5.0\\WpfReactorUI.HotReloader.exe",
+      "executablePath": "C:\\Source\\github\\reactorui-wpf\\src\\WpfReactorUI.HotReloader\\bin\\Debug\\net6.0\\WpfReactorUI.HotReloader.exe",
       "commandLineArgs": "C:\\Source\\ado\\Scriber\\src\\Scriber C:\\Source\\ado\\Scriber\\src\\Scriber\\bin\\Debug\\net5.0-windows\\Scriber.dll"
     }
   }

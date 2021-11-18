@@ -28,7 +28,7 @@ namespace WpfReactorUI
 
     public partial class RxContentControl<T> : IEnumerable<VisualNode>
     {
-        private readonly List<VisualNode> _contents = new List<VisualNode>();
+        protected readonly List<VisualNode> _contents = new();
         public RxContentControl(VisualNode? content)
         {
             if (content != null)
