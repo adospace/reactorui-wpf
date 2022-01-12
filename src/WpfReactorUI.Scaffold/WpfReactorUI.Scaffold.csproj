@@ -1,11 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Compile Include="..\WpfReactorUI.ScaffoldApp\TypeSourceGenerator.cs" Link="TypeSourceGenerator.cs">
       <DesignTime>True</DesignTime>
@@ -21,19 +22,16 @@
       <LastGenOutput>TypeSourceGenerator.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
-    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" PrivateAssets="all"/>
     <PackageReference Include="System.CodeDom" Version="6.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="WidgetList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
+  
 </Project>

@@ -47,6 +47,7 @@ System.Windows.Controls.RichTextBox
 System.Windows.Shapes.Shape
 System.Windows.Shapes.Rectangle
 System.Windows.Shapes.Path
+System.Windows.Shapes.Ellipse
 System.Windows.Controls.Primitives.UniformGrid
 System.Windows.Controls.DatePicker
 System.Windows.Controls.ComboBox

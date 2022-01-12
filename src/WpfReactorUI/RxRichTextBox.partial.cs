@@ -24,7 +24,15 @@ namespace WpfReactorUI
                 thisAsIRxRichTextBox.Document.Value != null &&
                 NativeControl.Document != thisAsIRxRichTextBox.Document.Value)
             {
+                //TODO: Why a new richtextbox is created?
+                if (thisAsIRxRichTextBox.Document.Value.Tag != null)
+                {
+                    ((T)thisAsIRxRichTextBox.Document.Value.Tag).Document = new FlowDocument();
+                }
+
                 NativeControl.Document = thisAsIRxRichTextBox.Document.Value;
+                thisAsIRxRichTextBox.Document.Value.Tag = NativeControl;
+
             }
         }
     }

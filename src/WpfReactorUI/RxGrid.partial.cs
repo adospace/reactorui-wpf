@@ -211,6 +211,13 @@ namespace WpfReactorUI
             return grid;
         }
 
+        public static T ColumnDefinition<T>(this T grid, ColumnDefinition definition) where T : IRxGrid
+        {
+            grid.Columns ??= new PropertyValue<IList<ColumnDefinition>>(new List<ColumnDefinition>());
+            grid.Columns.Value!.Add(definition);
+            return grid;
+        }
+
         public static T RowDefinition<T>(this T grid) where T : IRxGrid
         {
             grid.Rows ??= new PropertyValue<IList<RowDefinition>>(new List<RowDefinition>());
@@ -243,6 +250,13 @@ namespace WpfReactorUI
         {
             grid.Rows ??= new PropertyValue<IList<RowDefinition>>(new List<RowDefinition>());
             grid.Rows.Value!.Add(new RowDefinition() { Height = width });
+            return grid;
+        }
+
+        public static T RowDefinition<T>(this T grid, RowDefinition definition) where T : IRxGrid
+        {
+            grid.Rows ??= new PropertyValue<IList<RowDefinition>>(new List<RowDefinition>());
+            grid.Rows.Value!.Add(definition);
             return grid;
         }
 

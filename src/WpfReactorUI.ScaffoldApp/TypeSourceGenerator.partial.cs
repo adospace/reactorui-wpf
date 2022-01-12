@@ -18,7 +18,7 @@ namespace WpfReactorUI.ScaffoldApp
     {
         private readonly Type _typeToScaffold;
 
-        public TypeSourceGenerator(Type typeToScaffold, string[] additionalUsings = null, string ns = "WpfReactorUI")
+        public TypeSourceGenerator(Type typeToScaffold, string[]? additionalUsings = null, string ns = "WpfReactorUI")
         {
             _typeToScaffold = typeToScaffold;
             
@@ -70,7 +70,7 @@ namespace WpfReactorUI.ScaffoldApp
                     | System.Reflection.BindingFlags.Instance
                     | System.Reflection.BindingFlags.DeclaredOnly)
                 .Distinct(new EventInfoEqualityComparer())
-                .Where(_ => !_.EventHandlerType.GetMethod("Invoke").GetParameters()[1].ParameterType.IsGenericType)//<- to handle properly
+                .Where(_ => _.EventHandlerType?.GetMethod("Invoke")?.GetParameters()[1].ParameterType.IsGenericType == false)//<- to handle properly
                 .OrderBy(_ => _.Name)
                 .ToArray();
 
@@ -83,7 +83,7 @@ namespace WpfReactorUI.ScaffoldApp
 
         public bool IsSealed => _typeToScaffold.IsSealed;
 
-        public string BaseTypeName => _typeToScaffold.BaseType.Name == "DependencyObject" ? "VisualNode" : $"Rx{_typeToScaffold.BaseType.Name}";
+        public string BaseTypeName => _typeToScaffold.BaseType?.Name == "DependencyObject" || _typeToScaffold.BaseType?.Name == null ? "VisualNode" : $"Rx{_typeToScaffold.BaseType?.Name}";
 
         public bool IsTypeNotAbstractWithEmptyConstructor => !_typeToScaffold.IsAbstract && !_typeToScaffold.IsSealed && _typeToScaffold.GetConstructor(Array.Empty<Type>()) != null;
 
@@ -116,9 +116,9 @@ namespace WpfReactorUI.ScaffoldApp
 
     internal class PropertyInfoEqualityComparer : IEqualityComparer<PropertyInfo>
     {
-        public bool Equals(PropertyInfo x, PropertyInfo y)
+        public bool Equals(PropertyInfo? x, PropertyInfo? y)
         {
-            return x.Name == y.Name;
+            return x?.Name == y?.Name;
         }
 
         public int GetHashCode(PropertyInfo obj)
@@ -129,9 +129,9 @@ namespace WpfReactorUI.ScaffoldApp
 
     internal class EventInfoEqualityComparer : IEqualityComparer<EventInfo>
     {
-        public bool Equals(EventInfo x, EventInfo y)
+        public bool Equals(EventInfo? x, EventInfo? y)
         {
-            return x.Name == y.Name;
+            return x?.Name == y?.Name;
         }
 
         public int GetHashCode(EventInfo obj)
